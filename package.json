@@ -1,0 +1,32 @@
+{
+  "name": "ste-promo",
+  "version": "1.0.0",
+  "description": "Stereotech - 5D Additive Manufacturing",
+  "author": "frylock34",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@mdi/font": "^3.6.95",
+    "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/vuetify": "0.5.5",
+    "nuxt": "^2.0.0",
+    "nuxt-property-decorator": "^2.3.0",
+    "ts-node": "^8.3.0",
+    "vue-i18n": "^8.11.2",
+    "vuetify": "^1.5.4",
+    "vuetify-loader": "^1.2.2",
+    "vuex-class": "^0.3.2",
+    "vuex-persistedstate": "^2.5.4"
+  },
+  "devDependencies": {
+    "@nuxt/typescript": "^2.8.1",
+    "nodemon": "^1.18.9",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  }
+}
