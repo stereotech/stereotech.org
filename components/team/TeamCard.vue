@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6>
-    <v-sheet hover>
+    <v-card hover>
       <v-container fluid grid-list-xs>
         <v-layout row wrap>
           <v-flex xs4>
@@ -14,7 +14,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-sheet>
+    </v-card>
   </v-flex>
 </template>
 
