@@ -61,5 +61,16 @@
         "ste520": {
             "description": "World's first desktop 5d printer"
         }
+    },
+    "applications": {
+        "title": "Applications",
+        "automotive": "Automotive",
+        "prosthetics": "Prosthetics",
+        "robotics": "Robotics",
+        "rnd": "Research and education",
+        "defence": "Defense industry",
+        "building": "Building",
+        "drones": "Drones",
+        "aerospace": "Aerospace"
     }
 }
