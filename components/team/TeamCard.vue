@@ -9,8 +9,8 @@
             </v-avatar>
           </v-flex>
           <v-flex xs8>
-            <h4 class="text-xs-center display-1 font-weight-light">{{ $t(name) }}</h4>
-            <p class="text-xs-center headline">{{ $t(description) }}</p>
+            <h4 class="text-xs-center headline font-weight-light">{{ $t(name) }}</h4>
+            <p class="text-xs-center title">{{ $t(description) }}</p>
           </v-flex>
         </v-layout>
       </v-container>
