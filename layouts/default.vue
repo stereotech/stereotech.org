@@ -134,19 +134,47 @@
       </v-container>
     </v-content>
     <v-footer height="auto" color="primary" dark>
-      <v-layout row wrap justify-center>
-        <v-flex xs6>
-          &copy;2019 —
-          <strong>Stereotech</strong>
-        </v-flex>
-        <v-flex xs6>
-          <v-img
-            height="64"
-            contain
-            src="http://fasie.ru/local/templates/.default/markup/img/head-logo.svg"
-          />
-        </v-flex>
-      </v-layout>
+      <v-container fluid grid-list-xs>
+        <v-layout row wrap justify-center align-center>
+          <v-flex xs6 sm4>
+            <v-container grid-list-xs>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  &copy;2019 —
+                  <strong>Stereotech</strong>
+                </v-flex>
+                <v-flex xs12>
+                  <v-btn flat icon href="https://vk.com/stereo_tech" target="_blank">
+                    <v-icon>mdi-vk</v-icon>
+                  </v-btn>
+                  <v-btn flat icon href="https://instagram.com/stereo_tech/" target="_blank">
+                    <v-icon>mdi-instagram</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+          <v-flex xs6 sm4>
+            <v-container grid-list-xs>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <v-btn flat large block href="tel:+79023648404">+79023648404</v-btn>
+                </v-flex>
+                <v-flex xs12>
+                  <v-btn flat large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+          <v-flex xs6 sm4>
+            <v-img
+              height="64"
+              contain
+              src="http://fasie.ru/local/templates/.default/markup/img/footer_logo.svg"
+            />
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-footer>
   </v-app>
 </template>
