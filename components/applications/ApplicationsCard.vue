@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12 sm6 md4>
+  <v-flex xs12 sm6 lg3>
     <v-card hover>
       <v-container fluid grid-list-xs>
         <v-layout row wrap align-center>
