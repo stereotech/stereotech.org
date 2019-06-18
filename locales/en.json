@@ -1,4 +1,57 @@
 {
     "stereotech": "Stereotech",
-    "printers": "Printers"
+    "5d-additive": "5D Additive Manufacturing",
+    "printers": "Printers",
+    "ste320": "STE320",
+    "ste520": "STE520",
+    "comparePrinters": "Compare printers",
+    "blog": "Blog",
+    "contacts": "Contacts",
+    "buy": "Buy",
+    "address": "400078, Russia, Volgograd, Lenin Ave., 98, room 525",
+    "language": "Language",
+    "main": {
+        "newOpportunities": "The new opportunities for Additive manufacturing"
+    },
+    "benefit": {
+        "faster": {
+            "title": "Faster",
+            "description": "Reduce printing time without using supports"
+        },
+        "quality": {
+            "title": "Better Quality",
+            "description": "Improving the quality of the surface due to inclined printing"
+        },
+        "stronger": {
+            "title": "Stronger",
+            "description": "A solid 3D structure is constructed instead of layered"
+        }
+    },
+    "team": {
+        "title": "Our Team",
+        "avdeev": {
+            "name": "Artem Avdeev",
+            "description": "CEO"
+        },
+        "drobotov": {
+            "name": "Alexey Drobotov",
+            "description": "CFO"
+        },
+        "gushchin": {
+            "name": "Ilya Gushchin",
+            "description": "SDE lead"
+        },
+        "shvets": {
+            "name": "Andrey Shvets",
+            "description": "CTO"
+        },
+        "martynovich": {
+            "name": "Ivan Martynovich",
+            "description": "3D printing specialist"
+        },
+        "bitushkova": {
+            "name": "Anastasia Bitushkova",
+            "description": "Specialist"
+        }
+    }
 }
