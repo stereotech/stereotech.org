@@ -63,6 +63,12 @@
         },
         "ste520": {
             "description": "World's first desktop 5d printer"
+        },
+        "common": {
+            "light": {
+                "title": "Intelligent light indication",
+                "description": "Helps tonotice when 3D printer completes its task"
+            }
         }
     },
     "materials": "Materials",

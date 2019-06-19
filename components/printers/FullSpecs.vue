@@ -7,7 +7,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
   components: {
   }
 })
-export default class Printers extends Vue {
+export default class FullSpecs extends Vue {
 
 }
 
