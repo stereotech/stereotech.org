@@ -2,14 +2,17 @@
     "stereotech": "Stereotech",
     "5d-additive": "5D Additive Manufacturing",
     "printers": "Printers",
+    "products": "Products",
     "ste320": "STE320",
     "ste520": "STE520",
     "comparePrinters": "Compare printers",
     "blog": "Blog",
     "contacts": "Contacts",
+    "support": "Support",
     "buy": "Buy",
     "address": "400078, Russia, Volgograd, Lenin Ave., 98, room 525",
     "language": "Language",
+    "know-more": "Know More",
     "main": {
         "newOpportunities": "The new opportunities for Additive manufacturing"
     },
@@ -60,6 +63,25 @@
         },
         "ste520": {
             "description": "World's first desktop 5d printer"
+        }
+    },
+    "materials": "Materials",
+    "about": "About",
+    "software": {
+        "title": "Software",
+        "steapp": {
+            "title": "STE App",
+            "description": "Print process management app",
+            "add1": "Easy.",
+            "add2": "Flexible.",
+            "add3": "Effective."
+        },
+        "steslicer": {
+            "title": "STE Slicer",
+            "description": "World's first software for 5D printers",
+            "add1": "3D and 5D slicing.",
+            "add2": "Many 5D printing modes.",
+            "add3": "STE App integrated."
         }
     },
     "applications": {
