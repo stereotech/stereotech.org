@@ -158,7 +158,7 @@
             <v-container grid-list-xs>
               <v-layout row wrap>
                 <v-flex xs12>
-                  &copy;2019 —
+                  &copy;{{ currentYear }} —
                   <strong>Stereotech</strong>
                 </v-flex>
                 <v-flex xs12>
@@ -202,6 +202,10 @@ import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
 export default class Layout extends Vue {
+
+  private get currentYear () {
+    return new Date().getFullYear()
+  }
 
   private readonly mainPage: any = {
     title: '5d-additive',

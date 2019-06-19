@@ -13,6 +13,7 @@
     "address": "400078, Russia, Volgograd, Lenin Ave., 98, room 525",
     "language": "Language",
     "know-more": "Know More",
+    "sale-starts": "Sale starts in",
     "main": {
         "newOpportunities": "The new opportunities for Additive manufacturing"
     },
@@ -67,7 +68,33 @@
         "common": {
             "light": {
                 "title": "Intelligent light indication",
-                "description": "Helps tonotice when 3D printer completes its task"
+                "description": "Indicate completed prining, pause, error and helps to find the exact printer"
+            },
+            "design": {
+                "title": "Laconic design",
+                "description": "Simple but functional",
+                "add1": "Fully closed chamber",
+                "add2": "Low noise level",
+                "add3": "Easy access to the printing material"
+            },
+            "frame": {
+                "title": "Tough aluminum frame",
+                "description": "Less vibration",
+                "add1": "Stable printing",
+                "add2": "Precise linear rails"
+            },
+            "electronics": {
+                "title": "Efficient electronics",
+                "description": "32 bit motion processor",
+                "add1": "4 Core 1GHz ARM Co-processor for network communication and print management",
+                "add2": "8Gb internal storage",
+                "add3": "Stepper motor drivers with 1/128 step division"
+            },
+            "printhead": {
+                "title": "Dual nozzle printhead",
+                "description": "Direct drive extruder for all types of materials",
+                "add1": "320°C maximum temperature",
+                "add2": "Removable printing blocks"
             }
         }
     },
@@ -80,7 +107,10 @@
             "description": "Print process management app",
             "add1": "Easy.",
             "add2": "Flexible.",
-            "add3": "Effective."
+            "add3": "Effective.",
+            "add4": "Control multiple 3D and 5D printers from single interface",
+            "add5": "Print job sceduling",
+            "add6": "Printer reservation"
         },
         "steslicer": {
             "title": "STE Slicer",

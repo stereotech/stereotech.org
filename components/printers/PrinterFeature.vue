@@ -4,7 +4,7 @@
       <v-container fluid grid-list-sm>
         <v-layout row wrap align-center>
           <v-flex xs12 sm6 v-if="!rightText" text-xs-center>
-            <h4 class="display-3 text-uppercase font-weight-light">{{ title }}</h4>
+            <h4 class="display-1 text-uppercase font-weight-light">{{ title }}</h4>
             <p class="headline text-uppercase font-weight-light">{{description}}</p>
             <slot></slot>
           </v-flex>
@@ -12,7 +12,7 @@
             <v-img :src="image"></v-img>
           </v-flex>
           <v-flex xs12 sm6 v-if="rightText" text-xs-center>
-            <h4 class="display-3 text-uppercase font-weight-light">{{ title}}</h4>
+            <h4 class="display-1 text-uppercase font-weight-light">{{ title}}</h4>
             <p class="headline text-uppercase font-weight-light">{{description}}</p>
             <slot></slot>
           </v-flex>
