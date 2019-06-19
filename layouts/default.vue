@@ -13,7 +13,13 @@
       </v-list>
       <v-divider></v-divider>
       <template v-for="(menuItem, index) in mainMenu">
-        <v-list-tile :key="menuItem.title" nuxt ripple :to="menuItem.link">
+        <v-list-tile
+          :key="menuItem.title"
+          nuxt
+          ripple
+          :to="menuItem.link"
+          v-if="menuItem.link && menuItem.link.startsWith('/')"
+        >
           <v-list-tile-action>
             <v-icon>{{ menuItem.icon }}</v-icon>
           </v-list-tile-action>
@@ -21,49 +27,47 @@
             <v-list-tile-title>{{ $t(menuItem.title) }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list :key="menuItem.title + index">
-          <v-list-tile
-            v-for="childItem in menuItem.child"
-            :key="childItem.title"
-            nuxt
-            ripple
-            :to="childItem.link"
-          >
-            <v-list-tile-action>
-              <v-icon>{{ childItem.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+        <v-list-tile :key="menuItem.title" nuxt ripple :href="menuItem.link" target="_blank" v-else>
+          <v-list-tile-action>
+            <v-icon>{{ menuItem.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ $t(menuItem.title) }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list :key="menuItem.title + index" v-if="menuItem.child !== undefined">
+          <template v-for="childItem in menuItem.child">
+            <v-list-tile
+              v-if="childItem.link.startsWith('/')"
+              :key="childItem.title"
+              nuxt
+              ripple
+              :to="childItem.link"
+            >
+              <v-list-tile-action>
+                <v-icon>{{ childItem.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile
+              v-else
+              :key="childItem.title"
+              target="_blank"
+              ripple
+              :href="childItem.link"
+            >
+              <v-list-tile-action>
+                <v-icon>{{ childItem.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
         </v-list>
       </template>
-      <v-list>
-        <v-list-tile href="https://blog.ste3d.ru" target="_blank">
-          <v-list-tile-action>
-            <v-icon>mdi-blogger</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ $t('blog') }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile nuxt to="/contacts">
-          <v-list-tile-action>
-            <v-icon>mdi-contacts</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ $t('contacts') }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile href="https://ste3d.ru/stereotech" target="_blank">
-          <v-list-tile-action>
-            <v-icon>mdi-cart</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ $t('buy') }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
       <v-divider></v-divider>
       <v-container fluid grid-list-xl>
         <v-layout wrap align-center>
@@ -95,25 +99,39 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <template v-for="(menuItem, index) in mainMenu">
-          <v-menu offset-y :key="index" v-if="menuItem.child" open-on-hover>
+          <v-menu offset-y :key="index" v-if="menuItem.child !== undefined" open-on-hover>
             <v-btn flat dark slot="activator">{{ $t(menuItem.title) }}</v-btn>
             <v-list>
-              <v-list-tile
-                v-for="(childItem, index) in menuItem.child"
-                :key="index"
-                nuxt
-                :to="childItem.link"
-              >
-                <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
-              </v-list-tile>
+              <template v-for="(childItem, index) in menuItem.child">
+                <v-list-tile
+                  v-if="childItem.link.startsWith('/')"
+                  :key="index"
+                  nuxt
+                  :to="childItem.link"
+                >
+                  <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile v-else :key="index" :href="childItem.link" target="_blank">
+                  <v-list-tile-title>{{ $t(childItem.title) }}</v-list-tile-title>
+                </v-list-tile>
+              </template>
             </v-list>
           </v-menu>
+          <v-btn
+            v-else-if="menuItem.link.startsWith('/')"
+            :key="index"
+            flat
+            nuxt
+            :to="menuItem.link"
+          >{{$t(menuItem.title)}}</v-btn>
+          <v-btn
+            v-else
+            :key="index"
+            flat
+            :href="menuItem.link"
+            target="_blank"
+          >{{$t(menuItem.title)}}</v-btn>
         </template>
-        <v-btn flat href="https://blog.ste3d.ru" target="_blank">{{$t('blog')}}</v-btn>
-        <v-btn flat nuxt to="/contacts">{{$t('contacts')}}</v-btn>
-        <v-btn flat icon href="https://ste3d.ru/stereotech" target="_blank">
-          <v-icon>mdi-cart</v-icon>
-        </v-btn>
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn flat icon v-on="on">
@@ -192,7 +210,7 @@ export default class Layout extends Vue {
 
   private readonly mainMenu: any[] = [
     {
-      title: 'printers',
+      title: 'products',
       icon: 'mdi-printer-3d',
       child: [
         {
@@ -206,9 +224,38 @@ export default class Layout extends Vue {
         {
           title: 'comparePrinters',
           link: '/printers'
+        },
+        {
+          title: 'software.title',
+          link: '/software'
+        },
+        {
+          title: 'materials',
+          link: 'https://ste3d.ru/filaments'
         }
       ]
     },
+    {
+      title: 'buy',
+      icon: 'mdi-cart',
+      link: 'https://ste3d.ru/stereotech'
+    },
+    {
+      title: 'support',
+      icon: 'mdi-face-agent',
+      link: '/contacts'
+    },
+    {
+      title: 'contacts',
+      icon: 'mdi-contacts',
+      link: '/contacts'
+    },
+    {
+      title: 'about',
+      icon: 'mdi-information',
+      link: '/about'
+    }
+
   ]
   private miniVariant: boolean = this.$vuetify.breakpoint.smOnly
   private drawer: boolean = false
@@ -217,11 +264,13 @@ export default class Layout extends Vue {
     let name = this.mainPage.title
     this.mainMenu.forEach(element => {
       if (element.link !== this.$route.fullPath) {
-        element.child.forEach(childEl => {
-          if (childEl.link === this.$route.fullPath) {
-            name = childEl.title
-          }
-        });
+        if (element.child) {
+          element.child.forEach(childEl => {
+            if (childEl.link === this.$route.fullPath) {
+              name = childEl.title
+            }
+          });
+        }
       } else {
         name = element.title
       }
