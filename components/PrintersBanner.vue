@@ -28,7 +28,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 @Component
 export default class PrintersBanner extends Vue {
   @Prop({ type: Boolean, required: false, default: false }) rightText!: boolean
-  @Prop({ type: String, required: false, default: 'ste520' }) model!: boolean
-  @Prop({ type: String, required: false, default: '' }) description!: boolean
+  @Prop({ type: String, required: false, default: 'ste520' }) model!: string
+  @Prop({ type: String, required: false, default: '' }) description!: string
 }
 </script>
