@@ -1,6 +1,16 @@
 <template>
   <v-layout row wrap>
     <SoftwarePanel
+      :title="$t('software.steslicer.title')"
+      :description="$t('software.steslicer.description')"
+      microsoftstore
+      appName="steslicer"
+    >
+      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add1')}}</p>
+      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add2')}}</p>
+      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add3')}}</p>
+    </SoftwarePanel>
+    <SoftwarePanel
       :title="$t('software.steapp.title')"
       :description="$t('software.steapp.description')"
       appstore
@@ -10,16 +20,6 @@
       <p class="headline text-uppercase font-weight-light">{{$t('software.steapp.add1')}}</p>
       <p class="headline text-uppercase font-weight-light">{{$t('software.steapp.add2')}}</p>
       <p class="headline text-uppercase font-weight-light">{{$t('software.steapp.add3')}}</p>
-    </SoftwarePanel>
-    <SoftwarePanel
-      :title="$t('software.steslicer.title')"
-      :description="$t('software.steslicer.description')"
-      microsoftstore
-      appName="steslicer"
-    >
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add1')}}</p>
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add2')}}</p>
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add3')}}</p>
     </SoftwarePanel>
   </v-layout>
 </template>
