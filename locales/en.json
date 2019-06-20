@@ -3,8 +3,8 @@
     "5d-additive": "5D Additive Manufacturing",
     "printers": "Printers",
     "products": "Products",
-    "ste320": "STE320",
-    "ste520": "STE520",
+    "ste320": "STE 320",
+    "ste520": "STE 520",
     "comparePrinters": "Compare printers",
     "blog": "Blog",
     "cases": "Cases",
@@ -175,7 +175,7 @@
                 },
                 "buildplate": {
                     "key": "Build platform",
-                    "value": "PLatform with additional 2 rotary axis"
+                    "value": "Platform with additional 2 rotary axis"
                 },
                 "power": {
                     "key": "Power",
@@ -241,6 +241,7 @@
     "software": {
         "title": "Software",
         "choose": "Choose your software",
+        "description": "To control and manage 3D and 5D printing process",
         "steapp": {
             "title": "STE App",
             "description": "Print process management app",

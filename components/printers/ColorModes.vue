@@ -16,7 +16,7 @@
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
             <h4
-              class="headline text-uppercase font-weight-regular"
+              class="headline text-uppercase font-weight-regular pb-3"
             >{{ $t('printer.common.light.title') }}</h4>
             <p
               class="title text-uppercase font-weight-light"

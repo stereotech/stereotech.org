@@ -8,9 +8,9 @@
       microsoftstore
       appName="steslicer"
     >
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add1')}}</p>
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add2')}}</p>
-      <p class="headline text-uppercase font-weight-light">{{$t('software.steslicer.add3')}}</p>
+      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add1')}}</p>
+      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add2')}}</p>
+      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add3')}}</p>
     </SoftwarePanel>
 
     <PrinterFeature
@@ -18,9 +18,9 @@
       :description="$t('software.steapp.description')"
       image="/printers/common/cluster1.png"
     >
-      <p class="headline text-uppercase font-weight-light">{{ $t('software.steapp.add4') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('software.steapp.add5') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('software.steapp.add6') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add4') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add5') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add6') }}</p>
     </PrinterFeature>
     <ColorModes/>
     <PrinterFeature
@@ -28,9 +28,9 @@
       :description="$t('printer.common.design.description')"
       image="/printers/ste520/design.png"
     >
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.design.add1') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.design.add2') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.design.add3') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add1') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add3') }}</p>
     </PrinterFeature>
     <PrinterFeature
       rightText
@@ -38,23 +38,17 @@
       :description="$t('printer.common.frame.description')"
       image="/printers/common/frame.png"
     >
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.frame.add1') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.frame.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.frame.add1') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.frame.add2') }}</p>
     </PrinterFeature>
     <PrinterFeature
       :title="$t('printer.common.electronics.title')"
       :description="$t('printer.common.electronics.description')"
       image="/printers/common/motherboard.png"
     >
-      <p
-        class="headline text-uppercase font-weight-light"
-      >{{ $t('printer.common.electronics.add1') }}</p>
-      <p
-        class="headline text-uppercase font-weight-light"
-      >{{ $t('printer.common.electronics.add2') }}</p>
-      <p
-        class="headline text-uppercase font-weight-light"
-      >{{ $t('printer.common.electronics.add3') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add1') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add3') }}</p>
     </PrinterFeature>
     <PrinterFeature
       rightText
@@ -62,8 +56,8 @@
       :description="$t('printer.common.printhead.description')"
       image="/printers/common/printhead.png"
     >
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.printhead.add1') }}</p>
-      <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.printhead.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.printhead.add1') }}</p>
+      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.printhead.add2') }}</p>
     </PrinterFeature>
     <FullSpecs model="ste520"/>
     <BuyPrinter
