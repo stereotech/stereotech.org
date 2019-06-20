@@ -1,5 +1,13 @@
 <template>
   <v-layout row wrap>
+    <v-flex xs12 align-center>
+      <h1
+        class="display-3 text-uppercase font-weight-light text-xs-center hidden-xs-only"
+      >{{ $t('slogan') }}</h1>
+      <h1
+        class="headline text-uppercase font-weight-light text-xs-center hidden-sm-and-up"
+      >{{ $t('slogan') }}</h1>
+    </v-flex>
     <CompareBanner v-if="$vuetify.breakpoint.smAndUp"/>
     <PrintersBanner/>
     <SoftwareBanner/>

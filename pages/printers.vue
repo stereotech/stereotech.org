@@ -1,17 +1,15 @@
 <template>
   <v-layout row wrap>
-    <CompareBanner>
-      <v-layout align-center column justify-end class="fill-height">
-        <h4
-          class="display-1 text-uppercase font-weight-light text-xs-center pb-3"
-          v-if="$vuetify.breakpoint.smAndUp"
-        >Compare our printers</h4>
-        <h4
-          class="title text-uppercase font-weight-light text-xs-center"
-          v-else
-        >Compare our printers</h4>
-      </v-layout>
-    </CompareBanner>
+    <v-flex xs12 align-center>
+      <h1
+        class="display-3 text-uppercase font-weight-light text-xs-center hidden-xs-only"
+      >{{ $t('compareOurPrinters') }}</h1>
+      <h1
+        class="headline text-uppercase font-weight-light text-xs-center hidden-sm-and-up"
+      >{{ $t('compareOurPrinters') }}</h1>
+    </v-flex>
+    <CompareBanner/>
+
     <CompareSpecs/>
   </v-layout>
 </template>

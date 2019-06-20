@@ -7,7 +7,7 @@
             <v-img :src="`/printers/software/${appName}.png`"></v-img>
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
-            <h4 class="display-2 text-uppercase font-weight-light">{{ title }}</h4>
+            <h4 class="display-2 text-uppercase font-weight-light pb-3">{{ title }}</h4>
             <p class="headline text-uppercase font-weight-light">{{description}}</p>
             <slot></slot>
             <v-container fluid grid-list-xs>
