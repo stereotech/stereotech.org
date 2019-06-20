@@ -10,7 +10,12 @@
         <span>{{$t('sale-starts')}}</span>
         {{ date }}
       </p>
-      <v-btn large color="success" :href="`https://ste3d.ru/${model}`" target="_blank">Preorder</v-btn>
+      <v-btn
+        large
+        color="success"
+        :href="`https://ste3d.ru/${model}`"
+        target="_blank"
+      >{{ $t(`printer.${model}.state`)}}</v-btn>
     </v-card>
   </v-flex>
 </template>

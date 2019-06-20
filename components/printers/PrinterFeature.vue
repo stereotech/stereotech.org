@@ -1,19 +1,19 @@
 <template>
   <v-flex xs12>
     <v-card>
-      <v-container fluid grid-list-sm>
+      <v-container fluid grid-list-lg>
         <v-layout row wrap align-center>
           <v-flex xs12 sm6 v-if="!rightText" text-xs-center>
-            <h4 class="display-1 text-uppercase font-weight-light">{{ title }}</h4>
-            <p class="headline text-uppercase font-weight-light">{{description}}</p>
+            <h4 class="headline text-uppercase font-weight-regular">{{ title }}</h4>
+            <p class="title text-uppercase font-weight-light">{{description}}</p>
             <slot></slot>
           </v-flex>
           <v-flex xs12 sm6>
-            <v-img :src="image"></v-img>
+            <v-img :src="image" max-height="500" contain></v-img>
           </v-flex>
           <v-flex xs12 sm6 v-if="rightText" text-xs-center>
-            <h4 class="display-1 text-uppercase font-weight-light">{{ title}}</h4>
-            <p class="headline text-uppercase font-weight-light">{{description}}</p>
+            <h4 class="headline text-uppercase font-weight-regular">{{ title}}</h4>
+            <p class="title text-uppercase font-weight-light">{{description}}</p>
             <slot></slot>
           </v-flex>
         </v-layout>

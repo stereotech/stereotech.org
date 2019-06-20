@@ -7,6 +7,8 @@
     "ste520": "STE520",
     "comparePrinters": "Compare printers",
     "blog": "Blog",
+    "cases": "Cases",
+    "photogallery": "Photogallery",
     "contacts": "Contacts",
     "support": "Support",
     "buy": "Buy",
@@ -14,6 +16,8 @@
     "language": "Language",
     "know-more": "Know More",
     "sale-starts": "Sale starts in",
+    "summary": "Summary",
+    "full-specs": "Specifications",
     "main": {
         "newOpportunities": "The new opportunities for Additive manufacturing"
     },
@@ -60,10 +64,144 @@
     },
     "printer": {
         "ste320": {
-            "description": "First cluster 3D printer"
+            "description": "First cluster 3D printer",
+            "state": "Preorder",
+            "spec": {
+                "technology": {
+                    "key": "Technology",
+                    "value": "Fused filament fabrication"
+                },
+                "printhead": {
+                    "key": "Printhead",
+                    "value": "Dual extrusion"
+                },
+                "size": {
+                    "key": "Printer Size, Weight",
+                    "value": "410x410x440mm, 20kg"
+                },
+                "resolution": {
+                    "key": "Layer Resolution",
+                    "value": "200 - 20 micron"
+                },
+                "speed": {
+                    "key": "Print head travel speed",
+                    "value": "15 - 150 mm/s"
+                },
+                "materials": {
+                    "key": "Supported materials",
+                    "value": "PLA, ABS, SBS, Nylon, PC, TPU. Optimized for: Filamentarno! Materials"
+                },
+                "diameter": {
+                    "key": "Filament diameter",
+                    "value": "1.75 mm"
+                },
+                "nozzle": {
+                    "key": "Nozzle diameter",
+                    "value": "0.4 mm"
+                },
+                "temperature": {
+                    "key": "Nozzle temperature",
+                    "value": "up to 320°C"
+                },
+                "buildplate": {
+                    "key": "Build platform",
+                    "value": "Heated glass build plate, temperature up to 120°C"
+                },
+                "power": {
+                    "key": "Power",
+                    "value": "100 - 240 VAC / 50 - 60 Hz, 350W"
+                },
+                "ambient": {
+                    "key": "Ambient conditions",
+                    "value": "15 - 35 °C, 10 - 90% RH non-condensing"
+                },
+                "connectivity": {
+                    "key": "Connectivity",
+                    "value": "Wi-Fi, LAN, USB port"
+                },
+                "software": {
+                    "key": "Software",
+                    "value": "STE App managing software, STE Slicer, Ultimaker Cura"
+                },
+                "filetypes": {
+                    "key": "File types",
+                    "value": "STL, OBJ, 3MF, STEP"
+                },
+                "price": {
+                    "key": "Price",
+                    "value": "119 000"
+                }
+            }
         },
         "ste520": {
-            "description": "World's first desktop 5d printer"
+            "description": "World's first desktop 5D printer",
+            "state": "Preorder",
+            "spec": {
+                "technology": {
+                    "key": "Technology",
+                    "value": "5D Additive Manufacturing"
+                },
+                "printhead": {
+                    "key": "Printhead",
+                    "value": "Dual extrusion"
+                },
+                "size": {
+                    "key": "Printer Size, Weight",
+                    "value": "410x410x440mm, 20kg"
+                },
+                "resolution": {
+                    "key": "Layer Resolution",
+                    "value": "200 - 20 micron"
+                },
+                "speed": {
+                    "key": "Print head travel speed",
+                    "value": "15 - 150 mm/s"
+                },
+                "materials": {
+                    "key": "Supported materials",
+                    "value": "PLA, ABS, SBS, Nylon, PC, TPU. Optimized for: Filamentarno! Materials"
+                },
+                "diameter": {
+                    "key": "Filament diameter",
+                    "value": "1.75 mm"
+                },
+                "nozzle": {
+                    "key": "Nozzle diameter",
+                    "value": "0.4 mm"
+                },
+                "temperature": {
+                    "key": "Nozzle temperature",
+                    "value": "up to 320°C"
+                },
+                "buildplate": {
+                    "key": "Build platform",
+                    "value": "PLatform with additional 2 rotary axis"
+                },
+                "power": {
+                    "key": "Power",
+                    "value": "100 - 240 VAC / 50 - 60 Hz, 350W"
+                },
+                "ambient": {
+                    "key": "Ambient conditions",
+                    "value": "15 - 35 °C, 10 - 90% RH non-condensing"
+                },
+                "connectivity": {
+                    "key": "Connectivity",
+                    "value": "Wi-Fi, LAN, USB port"
+                },
+                "software": {
+                    "key": "Software",
+                    "value": "STE Slicer software, STE App managing software"
+                },
+                "filetypes": {
+                    "key": "File types",
+                    "value": "STL, OBJ, 3MF, STEP"
+                },
+                "price": {
+                    "key": "Price",
+                    "value": "349 000"
+                }
+            }
         },
         "common": {
             "light": {
@@ -102,6 +240,7 @@
     "about": "About",
     "software": {
         "title": "Software",
+        "choose": "Choose your software",
         "steapp": {
             "title": "STE App",
             "description": "Print process management app",
@@ -115,9 +254,13 @@
         "steslicer": {
             "title": "STE Slicer",
             "description": "World's first software for 5D printers",
-            "add1": "3D and 5D slicing.",
-            "add2": "Many 5D printing modes.",
-            "add3": "STE App integrated."
+            "add1": "Software for 3D and 5D slicing",
+            "add2": "Many 5D printing modes",
+            "add3": "STE App integrated"
+        },
+        "cura": {
+            "title": "Ultimaker Cura",
+            "description": "Advanced software with more than 300 print settings"
         }
     },
     "applications": {

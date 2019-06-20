@@ -240,6 +240,16 @@ export default class Layout extends Vue {
       ]
     },
     {
+      title: 'cases',
+      icon: 'mdi-flag',
+      child: [
+        {
+          title: 'photogallery',
+          link: 'https://ste3d.ru/3d-printing'
+        }
+      ]
+    },
+    {
       title: 'buy',
       icon: 'mdi-cart',
       link: 'https://ste3d.ru/stereotech'

@@ -3,8 +3,8 @@
     <v-card dark>
       <v-img :src="`/printers/${model}/banner.png`" height="500">
         <v-layout align-center column justify-center class="fill-height bottom-gradient">
-          <h1 class="display-4 font-weight-thin text-uppercase">{{ model }}</h1>
-          <h4 class="display-1">{{ description }}</h4>
+          <h1 class="display-3 font-weight-thin text-uppercase">{{ model }}</h1>
+          <h4 class="display-1 text-xs-center">{{ description }}</h4>
         </v-layout>
       </v-img>
     </v-card>
@@ -25,7 +25,7 @@ export default class PrinterBanner extends Vue {
 .bottom-gradient {
   background-image: linear-gradient(
     to top,
-    rgba(2, 119, 189, 0.25),
+    rgba(2, 119, 189, 0.33),
     rgba(2, 119, 189, 0.9)
   );
 }

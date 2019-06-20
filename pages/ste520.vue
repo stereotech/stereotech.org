@@ -65,7 +65,13 @@
       <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.printhead.add1') }}</p>
       <p class="headline text-uppercase font-weight-light">{{ $t('printer.common.printhead.add2') }}</p>
     </PrinterFeature>
-    <BuyPrinter model="ste520" title="STE 520" price="349 000" date="Q1 2020"/>
+    <FullSpecs model="ste520"/>
+    <BuyPrinter
+      model="ste520"
+      title="STE 520"
+      :price="$t('printer.ste520.spec.price.value')"
+      date="Q1 2020"
+    />
   </v-layout>
 </template>
 
@@ -77,6 +83,7 @@ import ColorModes from '~/components/printers/ColorModes.vue'
 import PrinterFeature from '~/components/printers/PrinterFeature.vue'
 import SoftwarePanel from '~/components/software/SoftwarePanel.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
+import FullSpecs from '~/components/printers/FullSpecs.vue'
 
 @Component({
   components: {
@@ -85,7 +92,8 @@ import BuyPrinter from '~/components/printers/BuyPrinter.vue'
     MainParalax,
     PrinterFeature,
     SoftwarePanel,
-    BuyPrinter
+    BuyPrinter,
+    FullSpecs
   }
 })
 export default class Ste520 extends Vue {

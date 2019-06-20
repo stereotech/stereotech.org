@@ -3,8 +3,8 @@
     <v-card>
       <v-parallax :src="image">
         <v-layout align-center column justify-center>
-          <h1 class="display-4 font-weight-thin text-uppercase">5D Printing</h1>
-          <h4 class="display-1">{{ $t('main.newOpportunities') }}</h4>
+          <h1 class="display-3 font-weight-thin text-uppercase">5D Printing</h1>
+          <h4 class="display-1 text-xs-center">{{ $t('main.newOpportunities') }}</h4>
           <v-btn
             v-if="buttonLink !== ''"
             color="accent"
