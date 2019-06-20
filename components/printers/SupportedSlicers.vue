@@ -9,7 +9,7 @@
             >{{ $t('software.choose')}}</h4>
           </v-flex>
           <v-flex xs12 sm6>
-            <v-img src="/printers/software/steslicer.png"></v-img>
+            <v-img src="/printers/software/steslicer.webp"></v-img>
             <h4
               class="headline text-uppercase font-weight-regular"
             >{{$t('software.steslicer.title') }}</h4>
@@ -17,7 +17,7 @@
             <v-btn color="primary" nuxt to="/software">{{ $t('know-more') }}</v-btn>
           </v-flex>
           <v-flex xs12 sm6>
-            <v-img src="/printers/software/cura.png"></v-img>
+            <v-img src="/printers/software/cura.webp"></v-img>
             <h4 class="headline text-uppercase font-weight-regular">{{$t('software.cura.title') }}</h4>
             <p class="title text-uppercase font-weight-light">{{ $t('software.cura.description') }}</p>
             <v-btn

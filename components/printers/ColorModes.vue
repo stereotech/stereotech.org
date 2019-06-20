@@ -40,12 +40,12 @@ export default class ColorModes extends Vue {
   @Prop({ type: String, required: false, default: 'ste520' }) model!: string
 
   private items: string[] = [
-    `/printers/${this.model}/color/color-1.png`,
-    `/printers/${this.model}/color/color-2.png`,
-    `/printers/${this.model}/color/color-3.png`,
-    `/printers/${this.model}/color/color-4.png`,
-    `/printers/${this.model}/color/color-5.png`,
-    `/printers/${this.model}/color/color-6.png`,
+    `/printers/${this.model}/color/color-1.webp`,
+    `/printers/${this.model}/color/color-2.webp`,
+    `/printers/${this.model}/color/color-3.webp`,
+    `/printers/${this.model}/color/color-4.webp`,
+    `/printers/${this.model}/color/color-5.webp`,
+    `/printers/${this.model}/color/color-6.webp`,
   ]
 }
 

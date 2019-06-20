@@ -4,7 +4,7 @@
       <v-container grid-list-xs>
         <v-layout row wrap align-center>
           <v-flex xs12 sm6>
-            <v-img src="/printers/common/cluster1.png" max-height="650"></v-img>
+            <v-img src="/printers/common/cluster1.webp" max-height="650"></v-img>
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
             <h4 class="display-1 text-uppercase font-weight-light">{{ $t('software.title') }}</h4>

@@ -11,7 +11,7 @@
     <CompareBanner v-if="$vuetify.breakpoint.smAndUp"/>
     <PrintersBanner/>
     <SoftwareBanner/>
-    <MainParalax image="/main/bg1.png" buttonLink="/about"/>
+    <MainParalax image="/main/bg1.webp" buttonLink="/about"/>
   </v-layout>
 </template>
 
