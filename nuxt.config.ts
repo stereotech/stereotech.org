@@ -7,9 +7,10 @@ const config: NuxtConfiguration = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'STE App Client' },
+      { hid: 'description', name: 'description', content: 'Stereotech - 5D Additive Manufacturing' },
       { name: 'msapplication-TileColor', content: '#0277bd' },
-      { name: 'theme-color', content: '#0277bd' }
+      { name: 'theme-color', content: '#0277bd' },
+      { name: 'yandex-verification', content: '***REMOVED***' }
     ]
   },
   link: [
@@ -41,8 +42,21 @@ const config: NuxtConfiguration = {
   */
   modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '54147616'
+      }
+    ],
   ],
+
+  manifest: {
+    name: 'Stereotech - 5D Additive Manufacturing',
+    description: 'Stereotech - 5D Additive Manufacturing',
+    author: 'Stereotech'
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -66,6 +80,10 @@ const config: NuxtConfiguration = {
     name: 'folding-cube',
     color: '#ffffff',
     background: '#0277bd'
+  },
+
+  googleAnalytics: {
+    id: 'UA-100135045-1'
   },
   /*
   ** Build configuration

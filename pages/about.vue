@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <MainParalax image="/main/bg1.png"/>
+    <MainParalax image="/main/bg1.webp"/>
     <BenefitsPanel/>
     <ApplicationsPanel/>
     <TeamPanel/>

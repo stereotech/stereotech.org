@@ -4,7 +4,7 @@
       <v-container fluid grid-list-sm>
         <v-layout row wrap align-center>
           <v-flex xs12 sm6>
-            <v-img :src="`/printers/software/${appName}.png`"></v-img>
+            <v-img :src="`/printers/software/${appName}.webp`"></v-img>
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
             <h4 class="display-2 text-uppercase font-weight-light pb-3">{{ title }}</h4>
@@ -13,13 +13,13 @@
             <v-container fluid grid-list-xs>
               <v-layout row wrap>
                 <v-flex xs4 v-if="appstore">
-                  <v-img max-height="120" src="/printers/software/app-store.png"></v-img>
+                  <v-img max-height="120" src="/printers/software/app-store.webp"></v-img>
                 </v-flex>
                 <v-flex xs4 v-if="googleplay">
-                  <v-img max-height="120" src="/printers/software/google-play.png"></v-img>
+                  <v-img max-height="120" src="/printers/software/google-play.webp"></v-img>
                 </v-flex>
                 <v-flex xs4 v-if="microsoftstore">
-                  <v-img max-height="120" src="/printers/software/microsoft-store.png"></v-img>
+                  <v-img max-height="120" src="/printers/software/microsoft-store.webp"></v-img>
                 </v-flex>
               </v-layout>
             </v-container>

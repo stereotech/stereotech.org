@@ -1,7 +1,7 @@
 <template>
   <v-flex xs12>
     <v-card dark>
-      <v-img :src="`/printers/${model}/banner.png`" height="500">
+      <v-img :src="`/printers/${model}/banner.webp`" height="500">
         <v-layout align-center column justify-center class="fill-height bottom-gradient">
           <h1 class="display-3 font-weight-thin text-uppercase">{{ $t(model) }}</h1>
           <h4 class="display-1 text-xs-center">{{ description }}</h4>

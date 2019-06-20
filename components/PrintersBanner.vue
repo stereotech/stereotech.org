@@ -4,7 +4,7 @@
       <v-container fluid grid-list-sm>
         <v-layout row wrap align-center>
           <v-flex xs12 v-if="$vuetify.breakpoint.xsOnly">
-            <v-img :src="`/printers/ste520/black-front.png`"></v-img>
+            <v-img :src="`/printers/ste520/black-front.webp`"></v-img>
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
             <h1 class="display-3 text-uppercase font-weight-light">{{$t('ste520')}}</h1>
@@ -18,7 +18,7 @@
             >{{$t('printer.ste520.state')}}</v-btn>
           </v-flex>
           <v-flex xs12 v-if="$vuetify.breakpoint.xsOnly">
-            <v-img :src="`/printers/ste320/black-front.png`"></v-img>
+            <v-img :src="`/printers/ste320/black-front.webp`"></v-img>
           </v-flex>
           <v-flex xs12 sm6 text-xs-center>
             <h1 class="display-3 text-uppercase font-weight-light">{{$t('ste320')}}</h1>
