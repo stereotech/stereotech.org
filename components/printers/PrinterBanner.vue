@@ -3,7 +3,7 @@
     <v-card dark>
       <v-img :src="`/printers/${model}/banner.png`" height="500">
         <v-layout align-center column justify-center class="fill-height bottom-gradient">
-          <h1 class="display-3 font-weight-thin text-uppercase">{{ model }}</h1>
+          <h1 class="display-3 font-weight-thin text-uppercase">{{ $t(model) }}</h1>
           <h4 class="display-1 text-xs-center">{{ description }}</h4>
         </v-layout>
       </v-img>

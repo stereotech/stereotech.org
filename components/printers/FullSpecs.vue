@@ -12,9 +12,9 @@
             <v-data-table :items="items" :headers="headers" hide-actions item-key="id" hide-headers>
               <template v-slot:items="props">
                 <td
-                  class="title text-uppercase font-weight-light text-xs-center"
+                  class="subheading text-uppercase font-weight-light text-xs-center"
                 >{{ $t(props.item.title) }}</td>
-                <td class="title text-xs-center">{{ $t(props.item.value) }}</td>
+                <td class="subheading text-xs-center">{{ $t(props.item.value) }}</td>
               </template>
             </v-data-table>
           </v-flex>

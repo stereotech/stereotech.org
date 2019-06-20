@@ -1,7 +1,8 @@
 <template>
   <v-layout row wrap>
-    <PrintersBanner :description="$t('printer.ste520.description')" model="ste520"/>
-    <PrintersBanner rightText :description="$t('printer.ste320.description')" model="ste320"/>
+    <CompareBanner v-if="$vuetify.breakpoint.smAndUp"/>
+    <PrintersBanner/>
+    <SoftwareBanner/>
     <MainParalax image="/main/bg1.png" buttonLink="/about"/>
   </v-layout>
 </template>
@@ -9,18 +10,16 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import MainParalax from '~/components/MainParalax.vue'
-import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
-import TeamPanel from '~/components/team/TeamPanel.vue'
-import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import PrintersBanner from '~/components/PrintersBanner.vue'
+import CompareBanner from '~/components/printers/CompareBanner.vue'
+import SoftwareBanner from '~/components/software/SoftwareBanner.vue'
 
 @Component({
   components: {
     MainParalax,
-    BenefitsPanel,
-    TeamPanel,
-    ApplicationsPanel,
-    PrintersBanner
+    CompareBanner,
+    PrintersBanner,
+    SoftwareBanner
   }
 })
 export default class Index extends Vue {
