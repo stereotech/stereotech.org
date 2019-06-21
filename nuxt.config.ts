@@ -10,7 +10,8 @@ const config: NuxtConfiguration = {
       { hid: 'description', name: 'description', content: 'Stereotech - 5D Additive Manufacturing' },
       { name: 'msapplication-TileColor', content: '#0277bd' },
       { name: 'theme-color', content: '#0277bd' },
-      { name: 'yandex-verification', content: '***REMOVED***' }
+      { name: 'yandex-verification', content: '***REMOVED***' },
+
     ]
   },
   link: [
