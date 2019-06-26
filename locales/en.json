@@ -81,6 +81,10 @@
                     "key": "Printer Size, Weight",
                     "value": "410x410x440mm, 16kg"
                 },
+                "volume": {
+                    "key": "Printing volume",
+                    "value": "200x200x200 mm"
+                },
                 "resolution": {
                     "key": "Layer Resolution",
                     "value": "200 - 20 micron"
@@ -150,6 +154,10 @@
                 "size": {
                     "key": "Printer Size, Weight",
                     "value": "410x410x440mm, 20kg"
+                },
+                "volume": {
+                    "key": "Printing volume",
+                    "value": "150x150x150 mm"
                 },
                 "resolution": {
                     "key": "Layer Resolution",
