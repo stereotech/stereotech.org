@@ -68,54 +68,60 @@ export default class FullSpecs extends Vue {
       id: 4,
       title: `printer.${this.model}.spec.size.key`,
       value: `printer.${this.model}.spec.size.value`
-    }, {
+    },
+    {
       id: 5,
+      title: `printer.${this.model}.spec.volume.key`,
+      value: `printer.${this.model}.spec.volume.value`
+    },
+    {
+      id: 6,
       title: `printer.${this.model}.spec.resolution.key`,
       value: `printer.${this.model}.spec.resolution.value`
     }, {
-      id: 6,
+      id: 7,
       title: `printer.${this.model}.spec.materials.key`,
       value: `printer.${this.model}.spec.materials.value`
     },
     {
-      id: 7,
+      id: 8,
       title: `printer.${this.model}.spec.diameter.key`,
       value: `printer.${this.model}.spec.diameter.value`
     },
     {
-      id: 8,
+      id: 9,
       title: `printer.${this.model}.spec.nozzle.key`,
       value: `printer.${this.model}.spec.nozzle.value`
     }, {
-      id: 9,
+      id: 10,
       title: `printer.${this.model}.spec.temperature.key`,
       value: `printer.${this.model}.spec.temperature.value`
     }, {
-      id: 10,
+      id: 11,
       title: `printer.${this.model}.spec.buildplate.key`,
       value: `printer.${this.model}.spec.buildplate.value`
     }, {
-      id: 11,
+      id: 12,
       title: `printer.${this.model}.spec.connectivity.key`,
       value: `printer.${this.model}.spec.connectivity.value`
     },
     {
-      id: 12,
+      id: 13,
       title: `printer.${this.model}.spec.power.key`,
       value: `printer.${this.model}.spec.power.value`
     },
     {
-      id: 13,
+      id: 14,
       title: `printer.${this.model}.spec.ambient.key`,
       value: `printer.${this.model}.spec.ambient.value`
     },
     {
-      id: 14,
+      id: 15,
       title: `printer.${this.model}.spec.software.key`,
       value: `printer.${this.model}.spec.software.value`
     },
     {
-      id: 15,
+      id: 16,
       title: `printer.${this.model}.spec.filetypes.key`,
       value: `printer.${this.model}.spec.filetypes.value`
     }
