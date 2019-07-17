@@ -25,7 +25,7 @@ buildNuxt:
     paths:
       - public
   only: 
-    - tags
+    - master
 
 deployRelease:
   stage: deploy
