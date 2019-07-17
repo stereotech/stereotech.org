@@ -17,7 +17,7 @@ buildNuxt:
     - npm run generate
   artifacts:
     paths:
-      - public
+      - dist
   only: 
     - master
 
@@ -27,7 +27,7 @@ deployRelease:
     - buildNuxt
   script:
     - apt-get update -qq && apt-get install -y -qq lftp
-    - lftp "$LOGIN:$PASS@$URL:" mirror -R public/
+    - lftp "$LOGIN:$PASS@$URL:" mirror -R dist/
   only: 
     - master
   when: manual
