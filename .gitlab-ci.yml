@@ -1,0 +1,39 @@
+image: node
+
+variables:
+  NODE_ENV: production
+  AWS_DEFAULT_REGION: eu-west-3
+  BUCKET_NAME: steapp
+  
+cache:
+  paths:
+    - node_modules
+
+before_script:
+  - npm install --dev
+
+stages:
+  - build
+  - deploy
+
+buildNuxt:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    name: "client"
+    paths:
+      - public
+  only: 
+    - tags
+
+deployRelease:
+  stage: deploy
+  dependencies:
+    - buildNuxt
+  script:
+    - apt-get update -qq && apt-get install -y -qq lftp
+    - lftp $LOGIN:$PASS@$URL: mirror -R public/
+  only: 
+    - master
+  when: manual
