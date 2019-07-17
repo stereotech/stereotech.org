@@ -28,7 +28,7 @@ deployRelease:
     - buildNuxt
   script:
     - apt-get update -qq && apt-get install -y -qq lftp
-    - lftp $LOGIN:$PASS@$URL: mirror -R public/
+    - lftp "$LOGIN:$PASS@$URL:" mirror -R public/
   only: 
     - master
   when: manual
