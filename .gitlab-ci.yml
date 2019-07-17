@@ -14,9 +14,8 @@ stages:
 buildNuxt:
   stage: build
   script:
-    - npm run build
+    - npm run generate
   artifacts:
-    name: "client"
     paths:
       - public
   only: 
