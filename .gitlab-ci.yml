@@ -28,7 +28,7 @@ deployRelease:
     - buildNuxt
   script:
     - apt-get update -qq && apt-get install -y -qq lftp
-    - lftp -c "set ftp:ssl-allow no; open -u $LOGIN,$PASS $URL; mirror -Rnev dist/ ./ --transfer-all --parallel=10 --delete-first"
+    - lftp -c "open -u $LOGIN,$PASS $URL; mirror -Rnev dist/ ./ --transfer-all --parallel=10 --delete-first"
   only: 
     - master
   when: manual
