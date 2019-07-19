@@ -1,0 +1,34 @@
+image: node
+
+cache:
+  paths:
+    - node_modules
+
+before_script:
+  
+
+stages:
+  - build
+  - deploy
+
+buildNuxt:
+  stage: build
+  script:
+    - npm install --dev
+    - npm run generate
+  artifacts:
+    paths:
+      - dist
+  only: 
+    - master
+
+deployRelease:
+  stage: deploy
+  dependencies:
+    - buildNuxt
+  script:
+    - apt-get update -qq && apt-get install -y -qq lftp
+    - lftp -e "set ftp:ssl-allow no; open $URL; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
+  only: 
+    - master
+  when: manual
