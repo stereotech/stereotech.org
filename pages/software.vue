@@ -13,9 +13,7 @@
     <SoftwarePanel
       :title="$t('software.steapp.title')"
       :description="$t('software.steapp.description')"
-      appstore
       googleplay
-      microsoftstore
     >
       <p class="headline text-uppercase font-weight-light">{{$t('software.steapp.add1')}}</p>
       <p class="headline text-uppercase font-weight-light">{{$t('software.steapp.add2')}}</p>

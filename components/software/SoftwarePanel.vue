@@ -16,7 +16,16 @@
                   <v-img max-height="120" src="/printers/software/app-store.webp"></v-img>
                 </v-flex>
                 <v-flex xs4 v-if="googleplay">
-                  <v-img max-height="120" src="/printers/software/google-play.webp"></v-img>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=ru.stereotech.steapp&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+                  >
+                    <v-img
+                      max-height="120"
+                      alt="Доступно в Google Play"
+                      :src="`https://play.google.com/intl/en_us/badges/static/images/badges/${$i18n.locale}_badge_web_generic.png`"
+                    />
+                  </a>
+                  <!--<v-img max-height="120" src="/printers/software/google-play.webp"></v-img>-->
                 </v-flex>
                 <v-flex xs4 v-if="microsoftstore">
                   <v-img max-height="120" src="/printers/software/microsoft-store.webp"></v-img>
@@ -44,6 +53,8 @@ export default class SoftwarePanel extends Vue {
   @Prop({ type: Boolean, required: false, default: false }) appstore!: boolean
   @Prop({ type: Boolean, required: false, default: false }) googleplay!: boolean
   @Prop({ type: Boolean, required: false, default: false }) microsoftstore!: boolean
+
+
 }
 
 </script>
