@@ -4,7 +4,7 @@
       <v-list class="pa-1">
         <v-list-tile avatar nuxt to="/">
           <v-list-tile-avatar>
-            <img src="/ste-logo.png">
+            <img src="/ste-logo.png" />
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>Stereotech</v-list-tile-title>
@@ -87,7 +87,7 @@
     <v-toolbar dark color="primary" flat app clipped-left>
       <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-avatar size="36px">
-        <img src="/ste-logo.png" alt="Logo">
+        <img src="/ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
         <nuxt-link to="/">
@@ -148,13 +148,13 @@
     </v-toolbar>
     <v-content>
       <v-container fluid grid-list-md>
-        <nuxt/>
+        <nuxt />
       </v-container>
     </v-content>
     <v-footer height="auto" color="primary" dark>
       <v-container fluid grid-list-xs>
         <v-layout row wrap justify-center align-center>
-          <v-flex xs6 sm4>
+          <v-flex xs6 sm3>
             <v-container grid-list-xs>
               <v-layout row wrap>
                 <v-flex xs12>
@@ -172,7 +172,7 @@
               </v-layout>
             </v-container>
           </v-flex>
-          <v-flex xs6 sm4>
+          <v-flex xs6 sm3>
             <v-container grid-list-xs>
               <v-layout row wrap>
                 <v-flex xs12>
@@ -184,12 +184,23 @@
               </v-layout>
             </v-container>
           </v-flex>
-          <v-flex xs6 sm4>
-            <v-img
-              height="64"
-              contain
-              src="http://fasie.ru/local/templates/.default/markup/img/footer_logo.svg"
-            />
+          <v-flex xs6 sm3>
+            <a href="http://fasie.ru/" target="_blank">
+              <v-img
+                height="64"
+                contain
+                src="http://fasie.ru/local/templates/.default/markup/img/footer_logo.svg"
+              />
+            </a>
+          </v-flex>
+          <v-flex xs6 sm3>
+            <a href="http://sk.ru/" target="_blank">
+              <v-img
+                height="64"
+                contain
+                :src="`http://sk.ru/themes/generic/images/sklogo_${$i18n.locale}.png`"
+              />
+            </a>
           </v-flex>
         </v-layout>
       </v-container>
