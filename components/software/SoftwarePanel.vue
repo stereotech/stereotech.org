@@ -1,21 +1,21 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container fluid grid-list-sm>
-        <v-layout row wrap align-center>
-          <v-flex xs12 sm6>
-            <v-img :src="`/printers/software/${appName}.webp`"></v-img>
-          </v-flex>
-          <v-flex xs12 sm6 text-xs-center>
-            <h4 class="display-2 text-uppercase font-weight-light pb-3">{{ title }}</h4>
-            <p class="headline text-uppercase font-weight-light">{{description}}</p>
-            <slot></slot>
+        <v-row align="center">
+          <v-col cols="12" sm="6">
+            <v-img :src="`/printers/software/${appName}.webp`" />
+          </v-col>
+          <v-col class="text-center" cols="12" sm="6">
+            <h4 class="display-2 text-uppercase font-weight-light pb-4">{{ title }}</h4>
+            <p class="headline text-uppercase font-weight-light">{{ description }}</p>
+            <slot />
             <v-container fluid grid-list-xs>
-              <v-layout row wrap>
-                <v-flex xs4 v-if="appstore">
-                  <v-img max-height="120" src="/printers/software/app-store.webp"></v-img>
-                </v-flex>
-                <v-flex xs4 v-if="googleplay">
+              <v-row>
+                <v-col v-if="appstore" cols="4">
+                  <v-img max-height="120" src="/printers/software/app-store.webp" />
+                </v-col>
+                <v-col v-if="googleplay" cols="4">
                   <a
                     href="https://play.google.com/store/apps/details?id=ru.stereotech.steapp&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
                   >
@@ -26,21 +26,21 @@
                     />
                   </a>
                   <!--<v-img max-height="120" src="/printers/software/google-play.webp"></v-img>-->
-                </v-flex>
-                <v-flex xs4 v-if="microsoftstore">
-                  <v-img max-height="120" src="/printers/software/microsoft-store.webp"></v-img>
-                </v-flex>
-              </v-layout>
+                </v-col>
+                <v-col v-if="microsoftstore" cols="4">
+                  <v-img max-height="120" src="/printers/software/microsoft-store.webp" />
+                </v-col>
+              </v-row>
             </v-container>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
   components: {
@@ -53,8 +53,6 @@ export default class SoftwarePanel extends Vue {
   @Prop({ type: Boolean, required: false, default: false }) appstore!: boolean
   @Prop({ type: Boolean, required: false, default: false }) googleplay!: boolean
   @Prop({ type: Boolean, required: false, default: false }) microsoftstore!: boolean
-
-
 }
 
 </script>

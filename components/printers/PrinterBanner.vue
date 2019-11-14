@@ -1,18 +1,20 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card dark>
       <v-img :src="`/printers/${model}/banner.webp`" height="500">
-        <v-layout align-center column justify-center class="fill-height bottom-gradient">
-          <h1 class="display-3 font-weight-thin text-uppercase">{{ $t(model) }}</h1>
-          <h4 class="display-1 text-xs-center">{{ description }}</h4>
-        </v-layout>
+        <v-row align="center" justify="center" class="fill-height bottom-gradient text-center">
+          <v-col cols="auto">
+            <h1 class="display-3 font-weight-thin text-uppercase">{{ $t(model) }}</h1>
+            <h4 class="display-1">{{ description }}</h4>
+          </v-col>
+        </v-row>
       </v-img>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class PrinterBanner extends Vue {

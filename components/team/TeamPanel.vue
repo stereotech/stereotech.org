@@ -1,11 +1,13 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container fluid grid-list-xs>
-        <v-layout row wrap>
-          <v-flex xs12>
-            <h4 class="text-xs-center display-2 font-weight-light">{{ $t('team.title')}}</h4>
-          </v-flex>
+        <v-row>
+          <v-col cols="12">
+            <h4 class="text-center display-2 font-weight-light">
+              {{ $t('team.title') }}
+            </h4>
+          </v-col>
           <TeamCard
             v-for="(member, index) in team"
             :key="index"
@@ -13,14 +15,14 @@
             :description="member.description"
             :image="member.image"
           />
-        </v-layout>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import TeamCard from '~/components/team/TeamCard.vue'
 
 @Component({
@@ -63,7 +65,6 @@ export default class TeamPanel extends Vue {
   ]
 }
 </script>
-
 
 <style>
 </style>

@@ -1,6 +1,6 @@
-import NuxtConfiguration from '@nuxt/config'
+import { Configuration } from '@nuxt/types'
 
-const config: NuxtConfiguration = {
+const config: Configuration = {
   mode: 'spa',
   head: {
     title: 'Stereotech - 5D Additive Manufacturing',
@@ -10,7 +10,7 @@ const config: NuxtConfiguration = {
       { hid: 'description', name: 'description', content: 'Stereotech - 5D Additive Manufacturing' },
       { name: 'msapplication-TileColor', content: '#0277bd' },
       { name: 'theme-color', content: '#0277bd' },
-      { name: 'yandex-verification', content: '***REMOVED***' },
+      { name: 'yandex-verification', content: '***REMOVED***' }
 
     ]
   },
@@ -24,25 +24,25 @@ const config: NuxtConfiguration = {
   ],
 
   router: {
-    //middleware: 'i18n'
+    // middleware: 'i18n'
   },
   /*
   ** Global CSS
   */
   css: [
-    '@mdi/font/css/materialdesignicons.css'
+    '@mdi/font/css/materialdesignicons.css', '~/assets/main.css', 'typeface-roboto/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   plugins: [
-    { src: '~/plugins/i18n' }
+    '~/plugins/i18n'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/vuetify',
     '@nuxtjs/pwa',
     '@nuxtjs/google-analytics',
     [
@@ -50,7 +50,7 @@ const config: NuxtConfiguration = {
       {
         id: '54147616'
       }
-    ],
+    ]
   ],
 
   manifest: {
@@ -63,19 +63,32 @@ const config: NuxtConfiguration = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    treeShake: true,
     materialIcons: false,
     theme: {
-      primary: '#0277bd',
-      secondary: '#ffffff',
-      accent: '#263238',
-      error: '#FF5252',
-      info: '#9C27B0',
-      success: '#4CAF50',
-      warning: '#FFC107'
+      themes: {
+        light: {
+          primary: '#0277bd',
+          secondary: '#ffffff',
+          accent: '#263238',
+          error: '#FF5252',
+          info: '#9C27B0',
+          success: '#4CAF50',
+          warning: '#FFC107'
+        },
+        dark: {
+          primary: '#0277bd',
+          secondary: '#ffffff',
+          accent: '#263238',
+          error: '#FF5252',
+          info: '#9C27B0',
+          success: '#4CAF50',
+          warning: '#FFC107'
+        }
+      }
     },
     iconfont: 'mdi'
   },
+
   loading: { color: '#263238' },
   loadingIndicator: {
     name: 'folding-cube',
@@ -89,13 +102,6 @@ const config: NuxtConfiguration = {
   /*
   ** Build configuration
   */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
-  }
 }
 
 export default config

@@ -1,15 +1,19 @@
 <template>
-  <v-flex xs12 sm4>
+  <v-col cols="12" sm="4">
     <v-sheet>
-      <v-img :src="image"></v-img>
-      <h4 class="text-xs-center display-1 font-weight-light">{{ $t(title) }}</h4>
-      <p class="text-xs-center headline">{{ $t(description) }}</p>
+      <v-img :src="image" />
+      <h4 class="text-center display-1 font-weight-light">
+        {{ $t(title) }}
+      </h4>
+      <p class="text-center headline">
+        {{ $t(description) }}
+      </p>
     </v-sheet>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
 })

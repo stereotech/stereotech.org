@@ -1,8 +1,8 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container fluid grid-list-xs>
-        <v-layout row wrap>
+        <v-row>
           <BenefitsCard
             v-for="(benefit, index) in benefits"
             :key="index"
@@ -10,14 +10,14 @@
             :description="benefit.description"
             :image="benefit.image"
           />
-        </v-layout>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import BenefitsCard from '~/components/benefits/BenefitsCard.vue'
 
 @Component({
@@ -45,7 +45,6 @@ export default class BenefitsPanel extends Vue {
   ]
 }
 </script>
-
 
 <style>
 </style>
