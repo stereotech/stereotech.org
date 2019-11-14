@@ -1,24 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "esnext",
+    "experimentalDecorators": true,
     "moduleResolution": "node",
     "lib": [
-      "es2015",
-      "dom",
+      "esnext",
+      "esnext.asynciterable",
       "dom"
     ],
     "esModuleInterop": true,
-    "experimentalDecorators": true,
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
     "noEmit": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "removeComments": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -30,7 +25,12 @@
     },
     "types": [
       "@types/node",
-      "vuetify"
+      "@nuxt/types",
+      "@nuxt/vue-app",
+      "@nuxtjs/vuetify"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

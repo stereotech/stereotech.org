@@ -1,16 +1,22 @@
 <template>
-  <v-layout row wrap>
-    <PrinterBanner model="ste520" :description="$t('printer.ste520.description')"/>
-    <MainParalax image="/main/bg1.webp" buttonLink="/about"/>
+  <v-row>
+    <PrinterBanner model="ste520" :description="$t('printer.ste520.description')" />
+    <MainParalax image="/main/bg1.webp" button-link="/about" />
     <SoftwarePanel
       :title="$t('software.steslicer.title')"
       :description="$t('software.steslicer.description')"
       microsoftstore
-      appName="steslicer"
+      app-name="steslicer"
     >
-      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add1')}}</p>
-      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add2')}}</p>
-      <p class="title text-uppercase font-weight-light">{{$t('software.steslicer.add3')}}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steslicer.add1') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steslicer.add2') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steslicer.add3') }}
+      </p>
     </SoftwarePanel>
 
     <PrinterFeature
@@ -18,59 +24,85 @@
       :description="$t('software.steapp.description')"
       image="/printers/common/cluster1.webp"
     >
-      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add4') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add5') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('software.steapp.add6') }}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steapp.add4') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steapp.add5') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('software.steapp.add6') }}
+      </p>
     </PrinterFeature>
-    <ColorModes/>
+    <ColorModes />
     <PrinterFeature
       :title="$t('printer.common.design.title')"
       :description="$t('printer.common.design.description')"
       image="/printers/ste520/design.webp"
     >
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add1') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add2') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.design.add3') }}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.design.add1') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.design.add2') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.design.add3') }}
+      </p>
     </PrinterFeature>
     <PrinterFeature
-      rightText
+      right-text
       :title="$t('printer.common.frame.title')"
       :description="$t('printer.common.frame.description')"
       image="/printers/common/frame.webp"
     >
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.frame.add1') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.frame.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.frame.add1') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.frame.add2') }}
+      </p>
     </PrinterFeature>
     <PrinterFeature
       :title="$t('printer.common.electronics.title')"
       :description="$t('printer.common.electronics.description')"
       image="/printers/common/motherboard.webp"
     >
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add1') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add2') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.electronics.add3') }}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.electronics.add1') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.electronics.add2') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.electronics.add3') }}
+      </p>
     </PrinterFeature>
     <PrinterFeature
-      rightText
+      right-text
       :title="$t('printer.common.printhead.title')"
       :description="$t('printer.common.printhead.description')"
       image="/printers/common/printhead.webp"
     >
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.printhead.add1') }}</p>
-      <p class="title text-uppercase font-weight-light">{{ $t('printer.common.printhead.add2') }}</p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.printhead.add1') }}
+      </p>
+      <p class="title text-uppercase font-weight-light">
+        {{ $t('printer.common.printhead.add2') }}
+      </p>
     </PrinterFeature>
-    <FullSpecs model="ste520"/>
+    <FullSpecs model="ste520" />
     <BuyPrinter
       model="ste520"
       title="STE 520"
       :price="$t('printer.ste520.spec.price.value')"
       date="Q1 2020"
     />
-  </v-layout>
+  </v-row>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import PrinterBanner from '~/components/printers/PrinterBanner.vue'
 import MainParalax from '~/components/MainParalax.vue'
 import ColorModes from '~/components/printers/ColorModes.vue'

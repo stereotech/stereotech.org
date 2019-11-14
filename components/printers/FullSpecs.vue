@@ -1,31 +1,39 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container grid-list-lg>
-        <v-layout row wrap>
-          <v-flex xs12>
+        <v-row>
+          <v-col cols="12">
             <h4
-              class="headline text-uppercase font-weight-regular text-xs-center"
+              class="headline text-uppercase font-weight-regular text-center"
             >{{ $t('full-specs') }}</h4>
-          </v-flex>
-          <v-flex xs12>
-            <v-data-table :items="items" :headers="headers" hide-actions item-key="id" hide-headers>
-              <template v-slot:items="props">
+          </v-col>
+          <v-col cols="12">
+            <v-data-table
+              :items="items"
+              :headers="headers"
+              hide-default-footer
+              item-key="id"
+              hide-default-header
+            >
+              <template v-slot:item.title="{item}">
                 <td
-                  class="subheading text-uppercase font-weight-light text-xs-center"
-                >{{ $t(props.item.title) }}</td>
-                <td class="subheading text-xs-center">{{ $t(props.item.value) }}</td>
+                  class="subheading text-uppercase font-weight-light text-center"
+                >{{ $t(item.title) }}</td>
+              </template>
+              <template v-slot:item.value="{item}">
+                <td class="subheading text-center">{{ $t(item.value) }}</td>
               </template>
             </v-data-table>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
   components: {
@@ -36,16 +44,16 @@ export default class FullSpecs extends Vue {
 
   private headers: any[] = [
     {
-      text: 'Spec',
+      text: '',
       sortable: false,
       value: 'title',
-      align: 'center',
+      align: 'center'
     },
     {
-      text: 'Value',
+      text: '',
       sortable: false,
       value: 'value'
-    },
+    }
   ]
 
   private items: any[] = [

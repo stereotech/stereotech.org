@@ -1,22 +1,26 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12 align-center>
+  <v-row>
+    <v-col class="align-center" cols="12">
       <h1
-        class="display-3 text-uppercase font-weight-light text-xs-center hidden-xs-only"
-      >{{ $t('slogan') }}</h1>
+        class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
+      >
+        {{ $t('slogan') }}
+      </h1>
       <h1
-        class="headline text-uppercase font-weight-light text-xs-center hidden-sm-and-up"
-      >{{ $t('slogan') }}</h1>
-    </v-flex>
-    <CompareBanner v-if="$vuetify.breakpoint.smAndUp"/>
-    <PrintersBanner/>
-    <SoftwareBanner/>
-    <MainParalax image="/main/bg1.webp" buttonLink="/about"/>
-  </v-layout>
+        class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
+      >
+        {{ $t('slogan') }}
+      </h1>
+    </v-col>
+    <CompareBanner v-if="$vuetify.breakpoint.smAndUp" />
+    <PrintersBanner />
+    <SoftwareBanner />
+    <MainParalax image="/main/bg1.webp" button-link="/about" />
+  </v-row>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import MainParalax from '~/components/MainParalax.vue'
 import PrintersBanner from '~/components/PrintersBanner.vue'
 import CompareBanner from '~/components/printers/CompareBanner.vue'
@@ -37,7 +41,3 @@ export default class Index extends Vue {
 
 <style>
 </style>
-
-
-
-

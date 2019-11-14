@@ -1,25 +1,27 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container fluid grid-list-xs>
-        <v-layout row wrap>
-          <v-flex xs12>
-            <h4 class="text-xs-center display-2 font-weight-light">{{ $t('applications.title')}}</h4>
-          </v-flex>
+        <v-row>
+          <v-col cols="12">
+            <h4 class="text-center display-2 font-weight-light">
+              {{ $t('applications.title') }}
+            </h4>
+          </v-col>
           <ApplicationsCard
             v-for="(application, index) in applications"
             :key="index"
             :name="application.name"
             :icon="application.icon"
           />
-        </v-layout>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import ApplicationsCard from '~/components/applications/ApplicationsCard.vue'
 
 @Component({
@@ -64,7 +66,6 @@ export default class ApplicationsPanel extends Vue {
   ]
 }
 </script>
-
 
 <style>
 </style>

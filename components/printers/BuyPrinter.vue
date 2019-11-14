@@ -1,13 +1,13 @@
 <template>
-  <v-flex xs12 offset-sm3 sm6 offset-md4 md4 text-xs-center>
+  <v-col class="text-center" cols="12" offset-sm="3" sm="6" offset-md="4" md="4">
     <v-card color="accent" dark>
-      <v-card elevation-24 color="primary" class="ma-5 v-sheet--offset">
-        <v-img :src="`/printers/${model}/clusterItem.png`"></v-img>
+      <v-card elevation-24 color="primary" class="ma-12 v-sheet--offset">
+        <v-img :src="`/printers/${model}/clusterItem.png`" />
       </v-card>
       <h4 class="display-3 text-uppercase font-weight-light">{{ title }}</h4>
       <p class="display-1 text-uppercase font-weight-light">{{ price }}</p>
       <p class="headline text-uppercase font-weight-light">
-        <span>{{$t('sale-starts')}}</span>
+        <span>{{ $t('sale-starts') }}</span>
         {{ date }}
       </p>
       <v-btn
@@ -15,13 +15,13 @@
         color="success"
         :href="`https://ste3d.ru/${model}`"
         target="_blank"
-      >{{ $t(`printer.${model}.state`)}}</v-btn>
+      >{{ $t(`printer.${model}.state`) }}</v-btn>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
   components: {

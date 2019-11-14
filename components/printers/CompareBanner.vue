@@ -1,15 +1,15 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card dark>
       <v-img src="/printers/common/front-black.webp" max-height="800">
-        <slot></slot>
+        <slot />
       </v-img>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   components: {

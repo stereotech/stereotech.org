@@ -1,36 +1,36 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card>
       <v-container fluid grid-list-sm>
-        <v-layout row wrap align-center>
-          <v-flex xs12 sm6>
+        <v-row align="center">
+          <v-col cols="12" sm="6">
             <v-carousel
-              hide-controls
+              :show-arrows="false"
               interval="3000"
               height="auto"
               max-height="500"
               delimiter-icon="mdi-minus"
             >
-              <v-carousel-item v-for="(item,i) in items" :key="i" :src="item"></v-carousel-item>
+              <v-carousel-item v-for="(item,i) in items" :key="i" :src="item" />
             </v-carousel>
-          </v-flex>
-          <v-flex xs12 sm6 text-xs-center>
+          </v-col>
+          <v-col class="text-center" cols="12" sm="6">
             <h4
-              class="headline text-uppercase font-weight-regular pb-3"
+              class="headline text-uppercase font-weight-regular pb-4"
             >{{ $t('printer.common.light.title') }}</h4>
             <p
               class="title text-uppercase font-weight-light"
-            >{{$t('printer.common.light.description')}}</p>
-            <slot></slot>
-          </v-flex>
-        </v-layout>
+            >{{ $t('printer.common.light.description') }}</p>
+            <slot />
+          </v-col>
+        </v-row>
       </v-container>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
   components: {
@@ -45,7 +45,7 @@ export default class ColorModes extends Vue {
     `/printers/${this.model}/color/color-3.webp`,
     `/printers/${this.model}/color/color-4.webp`,
     `/printers/${this.model}/color/color-5.webp`,
-    `/printers/${this.model}/color/color-6.webp`,
+    `/printers/${this.model}/color/color-6.webp`
   ]
 }
 

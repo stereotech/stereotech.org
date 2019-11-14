@@ -7,18 +7,18 @@ export interface RootState {
 }
 
 export const state = (): RootState => ({
-    locale: 'en',
-    locales: [
-        { key: 'English', value: 'en' },
-        { key: 'Русский', value: 'ru' }]
+  locale: 'en',
+  locales: [
+    { key: 'English', value: 'en' },
+    { key: 'Русский', value: 'ru' }]
 })
 
 export const mutations: MutationTree<RootState> = {
-    setLang (state, locale: string) {
-        if (state.locales.find(l => l.value == locale) !== undefined) {
-            state.locale = locale
-        }
+  setLang (state, locale: string) {
+    if (state.locales.find(l => l.value == locale) !== undefined) {
+      state.locale = locale
     }
+  }
 }
 
 interface Locale {
