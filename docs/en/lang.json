@@ -1,6 +1,6 @@
 {
     "stereotech": "Stereotech",
-    "5d-additive": "5D Additive Manufacturing",
+    "fived_additive": "5D Additive Manufacturing",
     "slogan": "Professional and education solutions",
     "printers": "Printers",
     "products": "Products",
@@ -13,13 +13,14 @@
     "photogallery": "Photogallery",
     "contacts": "Contacts",
     "support": "Support",
+    "docs": "Documentation",
     "buy": "Buy",
     "address": "400078, Russia, Volgograd, Lenin Ave., 98, room 525",
     "language": "Language",
-    "know-more": "Know More",
-    "sale-starts": "Sale starts in",
+    "know_more": "Know More",
+    "sale_starts": "Sale starts in",
     "summary": "Summary",
-    "full-specs": "Specifications",
+    "full_specs": "Specifications",
     "main": {
         "newOpportunities": "The new opportunities for Additive manufacturing"
     },

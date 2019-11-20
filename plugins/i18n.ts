@@ -12,6 +12,9 @@ declare module '@nuxt/types' {
 }
 
 const i18nPlugin: Plugin = ({ app, store }) => {
+  if (process.server) {
+    return;
+  }
   // Set i18n instance on app
   // This way we can use it in middleware and pages asyncData/fetch\
   app.i18n = new VueI18n({

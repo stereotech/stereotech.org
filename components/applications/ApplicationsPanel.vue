@@ -4,9 +4,9 @@
       <v-container fluid grid-list-xs>
         <v-row>
           <v-col cols="12">
-            <h4 class="text-center display-2 font-weight-light">
-              {{ $t('applications.title') }}
-            </h4>
+            <h4
+              class="text-center display-2 font-weight-light"
+            >{{ $store.state.lang.applications.title }}</h4>
           </v-col>
           <ApplicationsCard
             v-for="(application, index) in applications"
@@ -32,35 +32,35 @@ import ApplicationsCard from '~/components/applications/ApplicationsCard.vue'
 export default class ApplicationsPanel extends Vue {
   private applications = [
     {
-      name: 'applications.automotive',
+      name: this.$store.state.lang.applications.automotive,
       icon: 'mdi-car'
     },
     {
-      name: 'applications.prosthetics',
+      name: this.$store.state.lang.applications.prosthetics,
       icon: 'mdi-seat-legroom-extra'
     },
     {
-      name: 'applications.robotics',
+      name: this.$store.state.lang.applications.robotics,
       icon: 'mdi-robot-industrial'
     },
     {
-      name: 'applications.rnd',
+      name: this.$store.state.lang.applications.rnd,
       icon: 'mdi-bank'
     },
     {
-      name: 'applications.defence',
+      name: this.$store.state.lang.applications.defence,
       icon: 'mdi-shield'
     },
     {
-      name: 'applications.building',
+      name: this.$store.state.lang.applications.building,
       icon: 'mdi-home-modern'
     },
     {
-      name: 'applications.drones',
+      name: this.$store.state.lang.applications.drones,
       icon: 'mdi-quadcopter'
     },
     {
-      name: 'applications.aerospace',
+      name: this.$store.state.lang.applications.aerospace,
       icon: 'mdi-rocket'
     }
   ]

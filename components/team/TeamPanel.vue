@@ -4,9 +4,7 @@
       <v-container fluid grid-list-xs>
         <v-row>
           <v-col cols="12">
-            <h4 class="text-center display-2 font-weight-light">
-              {{ $t('team.title') }}
-            </h4>
+            <h4 class="text-center display-2 font-weight-light">{{ $store.state.lang.team.title }}</h4>
           </v-col>
           <TeamCard
             v-for="(member, index) in team"
@@ -33,34 +31,34 @@ import TeamCard from '~/components/team/TeamCard.vue'
 export default class TeamPanel extends Vue {
   private team: any[] = [
     {
-      name: 'team.avdeev.name',
+      name: this.$store.state.lang.avdeev.name,
       image: '/team/p1.jpg',
-      description: 'team.avdeev.description'
+      description: this.$store.state.lang.avdeev.description
     },
     {
-      name: 'team.drobotov.name',
+      name: this.$store.state.lang.drobotov.name,
       image: '/team/p2.jpg',
-      description: 'team.drobotov.description'
+      description: this.$store.state.lang.drobotov.description
     },
     {
-      name: 'team.gushchin.name',
+      name: this.$store.state.lang.gushchin.name,
       image: '/team/p3.jpg',
-      description: 'team.gushchin.description'
+      description: this.$store.state.lang.gushchin.description
     },
     {
-      name: 'team.shvets.name',
+      name: this.$store.state.lang.shvets.name,
       image: '/team/p4.jpg',
-      description: 'team.shvets.description'
+      description: this.$store.state.lang.shvets.description
     },
     {
-      name: 'team.martynovich.name',
+      name: this.$store.state.lang.martynovich.name,
       image: '/team/p5.jpg',
-      description: 'team.martynovich.description'
+      description: this.$store.state.lang.martynovich.description
     },
     {
-      name: 'team.bitushkova.name',
+      name: this.$store.state.lang.bitushkova.name,
       image: '/team/p6.jpg',
-      description: 'team.bitushkova.description'
+      description: this.$store.state.lang.bitushkova.description
     }
   ]
 }

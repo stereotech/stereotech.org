@@ -17,10 +17,10 @@
           <v-col class="text-center" cols="12" sm="6">
             <h4
               class="headline text-uppercase font-weight-regular pb-4"
-            >{{ $t('printer.common.light.title') }}</h4>
+            >{{ $store.state.lang.printer.common.light.title }}</h4>
             <p
               class="title text-uppercase font-weight-light"
-            >{{ $t('printer.common.light.description') }}</p>
+            >{{ $store.state.lang.printer.common.light.description}}</p>
             <slot />
           </v-col>
         </v-row>

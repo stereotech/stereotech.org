@@ -22,7 +22,7 @@
                     <v-img
                       max-height="120"
                       alt="Доступно в Google Play"
-                      :src="`https://play.google.com/intl/en_us/badges/static/images/badges/${$i18n.locale}_badge_web_generic.png`"
+                      :src="`https://play.google.com/intl/en_us/badges/static/images/badges/${$store.state.locale}_badge_web_generic.png`"
                     />
                   </a>
                   <!--<v-img max-height="120" src="/printers/software/google-play.webp"></v-img>-->
