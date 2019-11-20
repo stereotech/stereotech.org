@@ -42,7 +42,7 @@ const docsPlugin: Plugin = (context, inject) => {
             const response = await fetch('<%= options.url %>' + path)
             if (!response.ok) {
                 const error = new Error(response.statusText)
-                error.response = response
+                //error.response = response
                 throw error
             }
             return response.json();

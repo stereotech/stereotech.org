@@ -31,34 +31,34 @@ import TeamCard from '~/components/team/TeamCard.vue'
 export default class TeamPanel extends Vue {
   private team: any[] = [
     {
-      name: this.$store.state.lang.avdeev.name,
+      name: this.$store.state.lang.team.avdeev.name,
       image: '/team/p1.jpg',
-      description: this.$store.state.lang.avdeev.description
+      description: this.$store.state.lang.team.avdeev.description
     },
     {
-      name: this.$store.state.lang.drobotov.name,
+      name: this.$store.state.lang.team.drobotov.name,
       image: '/team/p2.jpg',
-      description: this.$store.state.lang.drobotov.description
+      description: this.$store.state.lang.team.drobotov.description
     },
     {
-      name: this.$store.state.lang.gushchin.name,
+      name: this.$store.state.lang.team.gushchin.name,
       image: '/team/p3.jpg',
-      description: this.$store.state.lang.gushchin.description
+      description: this.$store.state.lang.team.gushchin.description
     },
     {
-      name: this.$store.state.lang.shvets.name,
+      name: this.$store.state.lang.team.shvets.name,
       image: '/team/p4.jpg',
-      description: this.$store.state.lang.shvets.description
+      description: this.$store.state.lang.team.shvets.description
     },
     {
-      name: this.$store.state.lang.martynovich.name,
+      name: this.$store.state.lang.team.martynovich.name,
       image: '/team/p5.jpg',
-      description: this.$store.state.lang.martynovich.description
+      description: this.$store.state.lang.team.martynovich.description
     },
     {
-      name: this.$store.state.lang.bitushkova.name,
+      name: this.$store.state.lang.team.bitushkova.name,
       image: '/team/p6.jpg',
-      description: this.$store.state.lang.bitushkova.description
+      description: this.$store.state.lang.team.bitushkova.description
     }
   ]
 }

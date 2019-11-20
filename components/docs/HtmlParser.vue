@@ -7,13 +7,15 @@ import { Vue, Component, Prop, Watch, } from 'vue-property-decorator'
 
 @Component
 export default class HtmlParser extends Vue {
-  @Prop({ type: String, required: true }) content!: string
+  @Prop({ type: String, required: true, default: '' }) content!: string
   _links: any[] | HTMLCollectionOf<HTMLAnchorElement> = []
   @Watch('content') contentUpdated () {
+
     this.removeListeners()
     this.$nextTick(() => {
       this.addListeners()
     })
+
   }
 
   navigate (event: any) {

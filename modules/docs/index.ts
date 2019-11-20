@@ -21,7 +21,7 @@ const docsServerModule: Module = async function (moduleOptions) {
 
     if (runServer) {
         const docsServer = new DocsServer(options)
-        await docsServer.cloneRepo()
+        //await docsServer.cloneRepo()
         await docsServer.init()
         await docsServer.listen()
         if (isGenerate) {
