@@ -7,15 +7,10 @@
       <h4 class="display-3 text-uppercase font-weight-light">{{ title }}</h4>
       <p class="display-1 text-uppercase font-weight-light">{{ price }}</p>
       <p class="headline text-uppercase font-weight-light">
-        <span>{{ $t('sale-starts') }}</span>
+        <span>{{ $store.state.lang.sale_starts }}</span>
         {{ date }}
       </p>
-      <v-btn
-        large
-        color="success"
-        :href="`https://ste3d.ru/${model}`"
-        target="_blank"
-      >{{ $t(`printer.${model}.state`) }}</v-btn>
+      <v-btn large color="success" :href="`https://ste3d.ru/${model}`" target="_blank">{{ state }}</v-btn>
     </v-card>
   </v-col>
 </template>
@@ -32,6 +27,15 @@ export default class BuyPrinter extends Vue {
   @Prop({ type: String, required: true, default: 'STE 320' }) title!: string
   @Prop({ type: String, required: true, default: '' }) price!: string
   @Prop({ type: String, required: true, default: '' }) date!: string
+
+  get state (): string {
+    if (this.model === 'ste320') {
+      return this.$store.state.lang.printer.ste320.state
+    } else if (this.model === 'ste520') {
+      return this.$store.state.lang.printer.ste520.state
+    }
+    return ''
+  }
 }
 
 </script>

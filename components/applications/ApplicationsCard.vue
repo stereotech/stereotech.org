@@ -5,15 +5,11 @@
         <v-row align="center">
           <v-col cols="4">
             <v-avatar size="96">
-              <v-icon x-large color="primary">
-                {{ icon }}
-              </v-icon>
+              <v-icon x-large color="primary">{{ icon }}</v-icon>
             </v-avatar>
           </v-col>
           <v-col cols="8">
-            <h4 class="text-center title font-weight-light">
-              {{ $t(name) }}
-            </h4>
+            <h4 class="text-center title font-weight-light">{{ name }}</h4>
           </v-col>
         </v-row>
       </v-container>

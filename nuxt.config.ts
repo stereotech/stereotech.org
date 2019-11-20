@@ -1,7 +1,8 @@
 import { Configuration } from '@nuxt/types'
 
+const locale = process.env.NUXT_LOCALE || 'ru'
+
 const config: Configuration = {
-  mode: 'spa',
   head: {
     title: 'Stereotech - 5D Additive Manufacturing',
     meta: [
@@ -35,9 +36,16 @@ const config: Configuration = {
   /*
   ** Plugins to load before mounting the App
   */
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/vuetify',
+    ['~/modules/docs/', { port: 3001 }],
+    '~/modules/crawler/',
+    '~/modules/static/',
+    '~/modules/components/'
+  ],
   plugins: [
-    '~/plugins/i18n'
+    '~/plugins/init'
   ],
   /*
   ** Nuxt.js modules
@@ -52,11 +60,14 @@ const config: Configuration = {
       }
     ]
   ],
-
+  env: {
+    LOCALE: locale
+  },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',
     description: 'Stereotech - 5D Additive Manufacturing',
-    author: 'Stereotech'
+    author: 'Stereotech',
+    lang: locale
   },
   /*
   ** vuetify module configuration
@@ -102,6 +113,10 @@ const config: Configuration = {
   /*
   ** Build configuration
   */
+  generate: {
+    fallback: true,
+    interval: 100
+  }
 }
 
 export default config

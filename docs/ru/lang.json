@@ -1,6 +1,6 @@
 {
     "stereotech": "Стереотек",
-    "5d-additive": "5D Additive Manufacturing",
+    "fived_additive": "5D Additive Manufacturing",
     "slogan": "Профессиональные и образовательные решения",
     "printers": "Принтеры",
     "products": "Продукция",
@@ -13,12 +13,13 @@
     "photogallery": "Фотогалерея",
     "contacts": "Контакты",
     "support": "Поддержка",
+    "docs": "Руководства",
     "buy": "Купить",
     "language": "Язык",
-    "know-more": "Подробнее",
-    "sale-starts": "Начало продаж",
+    "know_more": "Подробнее",
+    "sale_starts": "Начало продаж",
     "summary": "Краткое описание",
-    "full-specs": "Характеристики",
+    "full_specs": "Характеристики",
     "address": "400078, Россия, Волгоградская обл., Волгоград, пр. имени В.И. Ленина, 98, офис 525",
     "main": {
         "newOpportunities": "Новые возможности Аддитивного производства"
