@@ -114,6 +114,22 @@
           >{{ menuItem.title }}</v-btn>
           <v-btn v-else :key="index" text :href="menuItem.link" target="_blank">{{ menuItem.title }}</v-btn>
         </template>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on">
+              <v-icon>mdi-earth</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(locale, index) in locales"
+              :key="locale.locale"
+              @click="currentLang = index"
+            >
+              <v-list-item-title>{{ locale.text }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
@@ -287,6 +303,25 @@ export default class Layout extends Vue {
     return name
   }
 
-}
+  get locales () {
+    return [
+      { text: 'Русский', locale: 'ru', path: 'https://stereotech.org' + this.$route.path },
+      { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
+    ]
+  }
 
+  get currentLang () {
+    return this.locales.map(l => l.locale).indexOf(this.$store.state.locale)
+  }
+  set currentLang (index: number) {
+    const lang = this.locales[index]
+    if (!lang) {
+      return
+    }
+    if (process.env.NODE_ENV === 'development') {
+      lang.path = lang.path.replace('https', 'http').replace('stereotech.org', window.location.host.split('.').slice(-1)[0])
+    }
+    window.location.href = lang.path
+  }
+}
 </script>

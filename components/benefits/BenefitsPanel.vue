@@ -28,19 +28,19 @@ import BenefitsCard from '~/components/benefits/BenefitsCard.vue'
 export default class BenefitsPanel extends Vue {
   private benefits: any[] = [
     {
-      title: this.$store.state.lang.faster.title,
+      title: this.$store.state.lang.benefit.faster.title,
       image: '/benefits/faster.webp',
-      description: this.$store.state.lang.faster.description
+      description: this.$store.state.lang.benefit.faster.description
     },
     {
-      title: this.$store.state.lang.quality.title,
+      title: this.$store.state.lang.benefit.quality.title,
       image: '/benefits/quality.webp',
-      description: this.$store.state.lang.quality.description
+      description: this.$store.state.lang.benefit.quality.description
     },
     {
-      title: this.$store.state.lang.stronger.title,
+      title: this.$store.state.lang.benefit.stronger.title,
       image: '/benefits/stronger.webp',
-      description: this.$store.state.lang.stronger.description
+      description: this.$store.state.lang.benefit.stronger.description
     }
   ]
 }

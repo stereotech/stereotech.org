@@ -34,7 +34,7 @@ export const actions: ActionTree<RootState, RootState> = {
   async getLangData ({ commit }, locale: string) {
     const lang = await this.$docs.get('/lang/' + locale)
     commit('setLang', lang)
-    const menu = await this.$docs.get('/menu' + locale)
+    const menu = await this.$docs.get('/menu/' + locale)
     commit('setMenu', menu)
   }
 }

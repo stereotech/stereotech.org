@@ -1,11 +1,12 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" sm="3">
-        <SideNav />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row>
+    <v-col cols="12" sm="3">
+      <SideNav />
+    </v-col>
+    <v-col cols="12" sm="9">
+      <nuxt-child />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -18,8 +19,8 @@ import SideNav from '@/components/docs/SideNav.vue'
   }
 })
 export default class ManualSection extends Vue {
-  validate ({ store, params }) {
-    return store.state.menu[params.section] !== undefined
+  validate (context: any) {
+    return context.store.state.menu[context.params.section] !== undefined
   }
 }
 </script>
