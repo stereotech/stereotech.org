@@ -42,10 +42,10 @@ deployReleaseRu:
   extends: .deployRelease
   needs: [buildNuxtRu]
   script:
-    - lftp -e "set ftp:ssl-allow no; open $URL_RU; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
+    - lftp -e "set ftp:ssl-allow no; open $URL_RU; user $LOGIN_EN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
 
 deployReleaseEn:
   extends: .deployRelease
   needs: [buildNuxtEn]
   script:
-    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
+    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_RU $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
