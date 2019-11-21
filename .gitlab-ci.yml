@@ -34,9 +34,6 @@ buildNuxtEn:
   stage: deploy
   before_script:
     - apt-get update -qq && apt-get install -y -qq lftp
-  only: 
-    - master
-  when: manual
     only: 
     - master
   when: manual
