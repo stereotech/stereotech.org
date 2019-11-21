@@ -3,14 +3,10 @@
     <v-col class="align-center" cols="12">
       <h1
         class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
-      >
-        {{ $t('compareOurPrinters') }}
-      </h1>
+      >{{ $store.state.lang.compareOurPrinters }}</h1>
       <h1
         class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
-      >
-        {{ $t('compareOurPrinters') }}
-      </h1>
+      >{{ $store.state.lang.compareOurPrinters }}</h1>
     </v-col>
     <CompareBanner />
 

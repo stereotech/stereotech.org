@@ -7,15 +7,13 @@
             <v-img src="/printers/common/cluster1.webp" max-height="650" />
           </v-col>
           <v-col class="text-center" cols="12" sm="6">
-            <h4 class="display-1 text-uppercase font-weight-light">
-              {{ $t('software.title') }}
-            </h4>
-            <p class="title text-uppercase font-weight-light">
-              {{ $t('software.description') }}
-            </p>
-            <v-btn color="accent" large nuxt to="/software">
-              {{ $t('know-more') }}
-            </v-btn>
+            <h4
+              class="display-1 text-uppercase font-weight-light"
+            >{{ $store.state.lang.software.title }}</h4>
+            <p
+              class="title text-uppercase font-weight-light"
+            >{{ $store.state.lang.software.description }}</p>
+            <v-btn color="accent" large nuxt to="/software">{{ $store.state.lang.know_more }}</v-btn>
           </v-col>
         </v-row>
       </v-container>
