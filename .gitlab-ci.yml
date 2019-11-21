@@ -1,36 +1,54 @@
 image: node
 
-cache:
-  paths:
-    - node_modules
-
-before_script:
-  
-
 stages:
   - build
   - deploy
 
-buildNuxt:
+.buildNuxt: 
   stage: build
-  script:
+  cache:
+    paths:
+      - node_modules
+  before_script:
     - mkdir .nuxt
     - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git .nuxt/docs
     - npm install --dev
-    - npm run generate
   artifacts:
     paths:
       - dist
   only: 
     - master
 
-deployRelease:
-  stage: deploy
-  dependencies:
-    - buildNuxt
+buildNuxtRu:
+  extends: .buildNuxt
   script:
+    - npm run generate
+
+buildNuxtEn:
+  extends: .buildNuxt
+  script:
+    - npm run generate:en
+
+
+.deployRelease:
+  stage: deploy
+  before_script:
     - apt-get update -qq && apt-get install -y -qq lftp
-    - lftp -e "set ftp:ssl-allow no; open $URL; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
   only: 
     - master
   when: manual
+    only: 
+    - master
+  when: manual
+
+deployReleaseRu:
+  extends: .deployRelease
+  needs: [buildNuxtRu]
+  script:
+    - lftp -e "set ftp:ssl-allow no; open $URL_RU; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
+
+deployReleaseEn:
+  extends: .deployRelease
+  needs: [buildNuxtEn]
+  script:
+    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete dist/ ./; bye"
