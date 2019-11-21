@@ -15,7 +15,7 @@
       <template v-for="(menuItem, index) in mainMenu">
         <v-list-item
           v-if="menuItem.link && menuItem.link.startsWith('/')"
-          :key="menuItem.title"
+          :key="index"
           nuxt
           ripple
           :to="menuItem.link"
@@ -24,22 +24,22 @@
             <v-icon>{{ menuItem.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ $t(menuItem.title) }}</v-list-item-title>
+            <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-else :key="menuItem.title" nuxt ripple :href="menuItem.link" target="_blank">
+        <v-list-item v-else :key="index" nuxt ripple :href="menuItem.link" target="_blank">
           <v-list-item-action>
             <v-icon>{{ menuItem.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ $t(menuItem.title) }}</v-list-item-title>
+            <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index">
-          <template v-for="childItem in menuItem.child">
+          <template v-for="(childItem, index) in menuItem.child">
             <v-list-item
               v-if="childItem.link.startsWith('/')"
-              :key="childItem.title"
+              :key="index"
               nuxt
               ripple
               :to="childItem.link"
@@ -48,41 +48,27 @@
                 <v-icon>{{ childItem.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                <v-list-item-title>{{ $t(childItem.title) }}</v-list-item-title>
+                <v-list-item-title>{{ childItem.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item
-              v-else
-              :key="childItem.title"
-              target="_blank"
-              ripple
-              :href="childItem.link"
-            >
+            <v-list-item v-else :key="index" target="_blank" ripple :href="childItem.link">
               <v-list-item-action>
                 <v-icon>{{ childItem.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                <v-list-item-title>{{ $t(childItem.title) }}</v-list-item-title>
+                <v-list-item-title>{{ childItem.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </template>
         </v-list>
       </template>
       <v-divider />
-      <v-container fluid grid-list-xl>
-        <v-row align="center">
-          <v-col class="d-flex" cols="12">
-            <v-select
-              v-model="$i18n.locale"
-              :items="langs"
-              item-value="value"
-              item-text="key"
-              :label="$t('language')"
-              @change="setLocale"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-select
+        :items="locales"
+        v-model="currentLang"
+        item-value="locale"
+        :label="$store.state.lang.language"
+      ></v-select>
     </v-navigation-drawer>
     <v-app-bar dark color="primary" text app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -92,16 +78,22 @@
       <v-toolbar-title>
         <nuxt-link to="/">
           <span class="text-uppercase font-weight-light white--text">Stereotech</span>
-          <span class="text-uppercase font-weight-medium white--text">{{ $t(currentPage) }}</span>
+          <span class="text-uppercase font-weight-medium white--text">{{ currentPage }}</span>
         </nuxt-link>
       </v-toolbar-title>
 
       <v-spacer />
       <v-toolbar-items class="hidden-sm-and-down">
         <template v-for="(menuItem, index) in mainMenu">
-          <v-menu v-if="menuItem.child !== undefined" :key="index" offset-y open-on-hover>
+          <v-menu
+            v-if="menuItem.child !== undefined"
+            :key="index"
+            offset-y
+            open-on-hover
+            close-on-click
+          >
             <template v-slot:activator="{ on }">
-              <v-btn v-on="on" text dark>{{ $t(menuItem.title) }}</v-btn>
+              <v-btn v-on="on" text dark>{{ menuItem.title }}</v-btn>
             </template>
             <v-list>
               <template v-for="(childItem, index) in menuItem.child">
@@ -111,10 +103,10 @@
                   nuxt
                   :to="childItem.link"
                 >
-                  <v-list-item-title>{{ $t(childItem.title) }}</v-list-item-title>
+                  <v-list-item-title>{{ childItem.title }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item v-else :key="index" :href="childItem.link" target="_blank">
-                  <v-list-item-title>{{ $t(childItem.title) }}</v-list-item-title>
+                  <v-list-item-title>{{ childItem.title }}</v-list-item-title>
                 </v-list-item>
               </template>
             </v-list>
@@ -125,37 +117,35 @@
             text
             nuxt
             :to="menuItem.link"
-          >{{ $t(menuItem.title) }}</v-btn>
-          <v-btn
-            v-else
-            :key="index"
-            text
-            :href="menuItem.link"
-            target="_blank"
-          >{{ $t(menuItem.title) }}</v-btn>
+          >{{ menuItem.title }}</v-btn>
+          <v-btn v-else :key="index" text :href="menuItem.link" target="_blank">{{ menuItem.title }}</v-btn>
         </template>
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-btn text icon v-on="on">
-              <v-icon>mdi-web</v-icon>
+            <v-btn icon v-on="on">
+              <v-icon>mdi-earth</v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="(item, index) in langs" :key="index" @click="setLocale(item.value)">
-              <v-list-item-title>{{ item.key }}</v-list-item-title>
+            <v-list-item
+              v-for="locale in locales"
+              :key="locale.locale"
+              @click="currentLang = locale.locale"
+            >
+              <v-list-item-title>{{ locale.text }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
-      <v-container fluid grid-list-md>
+      <v-container>
         <nuxt />
       </v-container>
     </v-content>
     <v-footer height="auto" color="primary" dark>
       <v-container fluid grid-list-xs>
-        <v-row justify="center" align="center">
+        <v-row>
           <v-col cols="6" sm="3">
             <v-container grid-list-xs>
               <v-row>
@@ -200,7 +190,7 @@
               <v-img
                 height="64"
                 contain
-                :src="`http://sk.ru/themes/generic/images/sklogo_${$i18n.locale}.png`"
+                :src="`http://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
               />
             </a>
           </v-col>
@@ -213,71 +203,85 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
+export interface MenuItem {
+  title: string,
+  link?: string,
+  icon?: string,
+  child?: MenuItem[]
+}
+
 @Component
 export default class Layout extends Vue {
   private get currentYear () {
     return new Date().getFullYear()
   }
 
-  private readonly mainPage: any = {
-    title: '5d-additive',
+
+
+  private readonly mainPage: MenuItem = {
+    title: this.$store.state.lang.fived_additive,
     link: '/'
   }
 
-  private readonly mainMenu: any[] = [
+  private readonly mainMenu: MenuItem[] = [
     {
-      title: 'products',
+      title: this.$store.state.lang.products,
       icon: 'mdi-printer-3d',
       child: [
         {
-          title: 'ste320',
+          title: this.$store.state.lang.ste320,
           link: '/ste320'
         },
         {
-          title: 'ste520',
+          title: this.$store.state.lang.ste520,
           link: '/ste520'
         },
         {
-          title: 'comparePrinters',
+          title: this.$store.state.lang.comparePrinters,
           link: '/printers'
         },
         {
-          title: 'software.title',
+          title: this.$store.state.lang.software.title,
           link: '/software'
         },
         {
-          title: 'materials',
+          title: this.$store.state.lang.materials,
           link: 'https://ste3d.ru/filaments'
         }
       ]
     },
     {
-      title: 'cases',
+      title: this.$store.state.lang.cases,
       icon: 'mdi-flag',
       child: [
         {
-          title: 'photogallery',
+          title: this.$store.state.lang.photogallery,
           link: 'https://ste3d.ru/3d-printing'
         }
       ]
     },
     {
-      title: 'buy',
+      title: this.$store.state.lang.buy,
       icon: 'mdi-cart',
       link: 'https://ste3d.ru/stereotech'
     },
     {
-      title: 'support',
+      title: this.$store.state.lang.support,
       icon: 'mdi-face-agent',
-      link: '/contacts'
+      child: [
+        {
+          title: this.$store.state.lang.docs,
+          link: '/manuals'
+        }
+      ]
     },
     {
-      title: 'contacts',
+      title: this.$store.state.lang.contacts,
       icon: 'mdi-contacts',
       link: '/contacts'
     },
     {
-      title: 'about',
+      title: this.$store.state.lang.about,
       icon: 'mdi-information',
       link: '/about'
     }
@@ -305,12 +309,29 @@ export default class Layout extends Vue {
     return name
   }
 
-  private langs = this.$store.state.locales
+  get locales () {
+    return [
+      { text: 'Русский', locale: 'ru', path: 'https://stereotech.org' + this.$route.path },
+      { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
+    ]
+  }
 
-  private setLocale (locale: string) {
-    this.$store.commit('setLang', locale)
-    this.$i18n.locale = locale
+  get currentLang () {
+    const lang = this.locales.find(v => v.locale === this.$store.state.locale)
+    if (lang) {
+      return lang.locale
+    }
+    return 'ru'
+  }
+  set currentLang (newLang: string) {
+    const lang = this.locales.find(v => v.locale == newLang)
+    if (!lang) {
+      return
+    }
+    if (process.env.NODE_ENV === 'development') {
+      lang.path = lang.path.replace('https', 'http').replace('stereotech.org', window.location.host.split('.').slice(-1)[0])
+    }
+    window.location.href = lang.path
   }
 }
-
 </script>
