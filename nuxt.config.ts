@@ -58,7 +58,12 @@ const config: Configuration = {
       {
         id: '54147616'
       }
-    ]
+    ],
+    ['vue-yandex-maps/nuxt', {
+      apiKey: '***REMOVED***',
+      lang: 'ru_RU',
+      version: '2.1'
+    }]
   ],
   env: {
     LOCALE: locale

@@ -10,11 +10,7 @@
     <v-col cols="12">
       <v-card height="600">
         <client-only>
-          <yandex-map
-            :coords="[48.748540, 44.549707]"
-            style="width: 100%; height: 100%;"
-            :settings="settings"
-          >
+          <yandex-map :coords="[48.748540, 44.549707]" style="width: 100%; height: 100%;">
             <ymap-marker
               marker-id="1"
               marker-type="placemark"
@@ -31,31 +27,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-//@ts-ignore
-import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 
-@Component({
-  components: {
-    yandexMap, ymapMarker
-  }
-})
+@Component
 export default class Contacts extends Vue {
-  private settings = {
-    apiKey: '***REMOVED***',
-    lang: 'ru_RU',
-    version: '2.1'
-  }
-
-  placemarks = [
-    {
-      coords: [54.8, 39.8],
-      properties: {}, // define properties here
-      options: {}, // define options here
-      clusterName: '1',
-      balloonTemplate: '<div>"Your custom template"</div>',
-      callbacks: { click () { } }
-    }
-  ]
 }
 </script>
 
