@@ -63,6 +63,12 @@
         </v-list>
       </template>
       <v-divider />
+      <v-select
+        :items="locales"
+        v-model="currentLang"
+        item-value="locale"
+        :label="$store.state.lang.language"
+      ></v-select>
     </v-navigation-drawer>
     <v-app-bar dark color="primary" text app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -122,9 +128,9 @@
           </template>
           <v-list>
             <v-list-item
-              v-for="(locale, index) in locales"
+              v-for="locale in locales"
               :key="locale.locale"
-              @click="currentLang = index"
+              @click="currentLang = locale.locale"
             >
               <v-list-item-title>{{ locale.text }}</v-list-item-title>
             </v-list-item>
@@ -311,10 +317,14 @@ export default class Layout extends Vue {
   }
 
   get currentLang () {
-    return this.locales.map(l => l.locale).indexOf(this.$store.state.locale)
+    const lang = this.locales.find(v => v.locale === this.$store.state.locale)
+    if (lang) {
+      return lang.locale
+    }
+    return 'ru'
   }
-  set currentLang (index: number) {
-    const lang = this.locales[index]
+  set currentLang (newLang: string) {
+    const lang = this.locales.find(v => v.locale == newLang)
     if (!lang) {
       return
     }
