@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types'
 
-const locale = process.env.NUXT_LOCALE || 'ru'
+const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 
 const config: Configuration = {
   head: {

@@ -9,6 +9,7 @@
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
+    "generate:en": "cross-env NUXT_ENV_LOCALE=en nuxt-ts generate",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "@nuxt/typescript-build": "^0.3.4",
     "@nuxtjs/eslint-config-typescript": "^0.1.3",
     "@nuxtjs/vuetify": "^1.9.0",
+    "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-plugin-vuetify": "^1.0.0-beta.5",
     "globby": "^10.0.1",
