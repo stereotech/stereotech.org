@@ -1,18 +1,14 @@
 <template>
   <v-row>
-    <v-col class="align-center" cols="12">
+    <v-col cols="12">
       <h1
         class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
-      >
-        {{ $t('slogan') }}
-      </h1>
+      >{{ $store.state.lang.slogan }}</h1>
       <h1
         class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
-      >
-        {{ $t('slogan') }}
-      </h1>
+      >{{ $store.state.lang.slogan }}</h1>
     </v-col>
-    <CompareBanner v-if="$vuetify.breakpoint.smAndUp" />
+    <CompareBanner />
     <PrintersBanner />
     <SoftwareBanner />
     <MainParalax image="/main/bg1.webp" button-link="/about" />

@@ -5,16 +5,12 @@
         <v-row>
           <v-col cols="4">
             <v-avatar size="96">
-              <img :src="image" alt="alt">
+              <img :src="image" alt="alt" />
             </v-avatar>
           </v-col>
           <v-col cols="8">
-            <h4 class="text-center headline font-weight-light">
-              {{ $t(name) }}
-            </h4>
-            <p class="text-center title">
-              {{ $t(description) }}
-            </p>
+            <h4 class="text-center headline font-weight-light">{{ name }}</h4>
+            <p class="text-center title">{{ description }}</p>
           </v-col>
         </v-row>
       </v-container>
