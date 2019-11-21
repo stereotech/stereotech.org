@@ -4,7 +4,7 @@
       <v-img :src="`/printers/${model}/banner.webp`" height="500">
         <v-row align="center" justify="center" class="fill-height bottom-gradient text-center">
           <v-col cols="auto">
-            <h1 class="display-3 font-weight-thin text-uppercase">{{ $t(model) }}</h1>
+            <h1 class="display-3 font-weight-thin text-uppercase">{{ model }}</h1>
             <h4 class="display-1">{{ description }}</h4>
           </v-col>
         </v-row>
