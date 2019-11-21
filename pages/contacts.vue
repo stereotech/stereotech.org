@@ -9,19 +9,21 @@
     </v-col>
     <v-col cols="12">
       <v-card height="600">
-        <!--     <yandex-map
-          :coords="[48.748540, 44.549707]"
-          style="width: 100%; height: 100%;"
-          :settings="settings"
-        >
-          <ymap-marker
-            marker-id="1"
-            marker-type="placemark"
+        <client-only>
+          <yandex-map
             :coords="[48.748540, 44.549707]"
-            hint-content="Stereotech - 5D Addititve Manufacturing"
-            cluster-name="1"
-          />
-        </yandex-map>-->
+            style="width: 100%; height: 100%;"
+            :settings="settings"
+          >
+            <ymap-marker
+              marker-id="1"
+              marker-type="placemark"
+              :coords="[48.748540, 44.549707]"
+              hint-content="Stereotech - 5D Addititve Manufacturing"
+              cluster-name="1"
+            />
+          </yandex-map>
+        </client-only>
       </v-card>
     </v-col>
   </v-row>
@@ -30,11 +32,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 //@ts-ignore
-//import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 
 @Component({
   components: {
-    // yandexMap, ymapMarker
+    yandexMap, ymapMarker
   }
 })
 export default class Contacts extends Vue {
