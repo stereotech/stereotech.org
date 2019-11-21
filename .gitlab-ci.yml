@@ -14,7 +14,7 @@ stages:
 buildNuxt:
   stage: build
   script:
-    - git clone https://gitlab.com/stereotech/misc/products-documentation.git docs
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
     - npm install --dev
     - npm run generate
   artifacts:
