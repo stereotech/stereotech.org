@@ -5,7 +5,11 @@
         <h1>{{ page.attrs.title }}</h1>
       </v-col>
       <v-col cols="12">
-        <HtmlParser :content="page.body" />
+        <v-card>
+          <v-container>
+            <HtmlParser :content="page.body" />
+          </v-container>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -14,10 +18,12 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import HtmlParser from '@/components/docs/HtmlParser.vue'
+import { VAlert } from 'vuetify/lib'
 
 @Component({
   components: {
-    HtmlParser
+    HtmlParser,
+    VAlert
   },
   async asyncData (context: any) {
     const slug = context.params.slug || 'introduction'
