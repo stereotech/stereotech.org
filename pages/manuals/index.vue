@@ -43,6 +43,16 @@ export default class Manuals extends Vue {
           image: '/printers/STE 320/banner.webp'
         }
       ]
+    },
+    {
+      title: this.$store.state.lang.manuals.software,
+      items: [
+        {
+          title: 'STE App',
+          link: '/manuals/steapp',
+          image: '/printers/common/cluster1.webp'
+        }
+      ]
     }
   ]
 }
