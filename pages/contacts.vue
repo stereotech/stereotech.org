@@ -10,11 +10,11 @@
     <v-col cols="12">
       <v-card height="600">
         <client-only>
-          <yandex-map :coords="[48.748540, 44.549707]" style="width: 100%; height: 100%;">
+          <yandex-map :coords="[48.692225, 44.498048]" style="width: 100%; height: 100%;">
             <ymap-marker
               marker-id="1"
               marker-type="placemark"
-              :coords="[48.748540, 44.549707]"
+              :coords="[48.692225, 44.498048]"
               hint-content="Stereotech - 5D Addititve Manufacturing"
               cluster-name="1"
             />
