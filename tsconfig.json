@@ -29,8 +29,5 @@
       "@nuxt/vue-app",
       "@nuxtjs/vuetify"
     ]
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }
