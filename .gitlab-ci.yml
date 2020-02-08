@@ -13,6 +13,7 @@ stages:
     - mkdir .nuxt
     - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git .nuxt/docs
     - cp -rf .nuxt/docs/static .nuxt
+    - cp -rf .nuxt/docs/static .
     - npm install --dev
   artifacts:
     paths:
