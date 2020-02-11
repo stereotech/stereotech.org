@@ -28,6 +28,13 @@
         >{{ content.name }}</v-list-item>
         </v-list-group>-->
       </template>
+      <v-divider v-if="downloadLink"></v-divider>
+      <v-list-item v-if="downloadLink" :href="downloadLink" target="_blank">
+        <v-list-item-icon>
+          <v-icon>mdi-download</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Загрузить руководство</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-card>
 </template>
@@ -52,6 +59,10 @@ export default class SideNav extends Vue {
 
   get menuSection (): string {
     return '/' + this.$route.params.section
+  }
+
+  get downloadLink (): string | undefined {
+    return this.menu[this.$route.params.section][0].download
   }
 
   goTo (to: string, content: string) {
