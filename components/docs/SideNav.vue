@@ -33,7 +33,7 @@
         <v-list-item-icon>
           <v-icon>mdi-download</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Загрузить руководство</v-list-item-title>
+        <v-list-item-title>{{ $store.state.lang.manuals.download }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
