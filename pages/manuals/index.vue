@@ -51,6 +51,11 @@ export default class Manuals extends Vue {
           title: 'STE App',
           link: '/manuals/steapp',
           image: '/printers/common/cluster1.webp'
+        },
+        {
+          title: 'STE Slicer',
+          link: '/manuals/steslicer',
+          image: '/printers/common/steslicer.jpg'
         }
       ]
     }

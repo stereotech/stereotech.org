@@ -7,7 +7,7 @@
       <h4 class="display-3 text-uppercase font-weight-light">{{ title }}</h4>
       <p class="display-1 text-uppercase font-weight-light">{{ price }}</p>
       <p class="headline text-uppercase font-weight-light">
-        <span>{{ $store.state.lang.sale_starts }}</span>
+        <!--<span>{{ $store.state.lang.sale_starts }}</span>-->
         {{ date }}
       </p>
       <v-btn large color="success" :href="`https://ste3d.ru/${model}`" target="_blank">{{ state }}</v-btn>
