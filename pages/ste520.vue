@@ -90,7 +90,7 @@
       model="ste520"
       title="STE 520"
       :price="$store.state.lang.printer.ste520.spec.price.value"
-      date="Q1 2020"
+      date=" "
     />
   </v-row>
 </template>
