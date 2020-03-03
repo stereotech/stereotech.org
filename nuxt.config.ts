@@ -63,7 +63,9 @@ const config: Configuration = {
       apiKey: '***REMOVED***',
       lang: 'ru_RU',
       version: '2.1'
-    }]
+    }],
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
   env: {
     LOCALE: locale
