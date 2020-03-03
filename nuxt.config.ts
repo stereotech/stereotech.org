@@ -76,6 +76,9 @@ const config: Configuration = {
     author: 'Stereotech',
     lang: locale
   },
+  sitemap: {
+    hostname: 'https://stereotech.org'
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
