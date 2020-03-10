@@ -251,6 +251,20 @@ export default class Layout extends Vue {
       ]
     },
     {
+      title: 'Услуги',
+      icon: 'mdi-rotate-3d',
+      child: [
+        {
+          title: '3D Печать',
+          link: '/services/printing/'
+        },
+        {
+          title: 'Обучение',
+          link: '/services/education/'
+        }
+      ]
+    },
+    {
       title: this.$store.state.lang.cases,
       icon: 'mdi-flag',
       child: [

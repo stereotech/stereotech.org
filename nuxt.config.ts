@@ -46,7 +46,8 @@ const config: Configuration = {
   ],
   plugins: [
     '~/plugins/init',
-    '~/plugins/htmlparser'
+    '~/plugins/htmlparser',
+    '~/plugins/sendemail'
   ],
   /*
   ** Nuxt.js modules
@@ -72,7 +73,7 @@ const config: Configuration = {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://ste3d.ru/index.php?route=api/graphql/usage'
+        httpEndpoint: 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
       },
     }
   },
