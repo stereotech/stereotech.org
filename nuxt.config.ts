@@ -45,7 +45,8 @@ const config: Configuration = {
     '~/modules/components/'
   ],
   plugins: [
-    '~/plugins/init'
+    '~/plugins/init',
+    '~/plugins/htmlparser'
   ],
   /*
   ** Nuxt.js modules
@@ -65,8 +66,16 @@ const config: Configuration = {
       version: '2.1'
     }],
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/apollo'
   ],
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://ste3d.ru/index.php?route=api/graphql/usage'
+      },
+    }
+  },
   env: {
     LOCALE: locale
   },
