@@ -225,6 +225,28 @@ export default class Layout extends Vue {
 
   private readonly mainMenu: MenuItem[] = [
     {
+      title: 'Решения',
+      icon: 'mdi-flag',
+      child: [
+        {
+          title: 'Образование',
+          link: '/classes'
+        },
+        {
+          title: 'Исследования',
+          link: '/research'
+        },
+        {
+          title: 'Производство',
+          link: '/research'
+        },
+        {
+          title: 'Для дилеров',
+          link: '/dealers'
+        },
+      ]
+    },
+    {
       title: this.$store.state.lang.products,
       icon: 'mdi-printer-3d',
       child: [
@@ -243,10 +265,6 @@ export default class Layout extends Vue {
         {
           title: this.$store.state.lang.software.title,
           link: '/software'
-        },
-        {
-          title: this.$store.state.lang.materials,
-          link: 'https://ste3d.ru/filaments'
         }
       ]
     },
@@ -265,21 +283,6 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.cases,
-      icon: 'mdi-flag',
-      child: [
-        {
-          title: this.$store.state.lang.photogallery,
-          link: 'https://ste3d.ru/3d-printing'
-        }
-      ]
-    },
-    {
-      title: this.$store.state.lang.buy,
-      icon: 'mdi-cart',
-      link: 'https://ste3d.ru/stereotech'
-    },
-    {
       title: this.$store.state.lang.support,
       icon: 'mdi-face-agent',
       child: [
@@ -290,14 +293,31 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.contacts,
-      icon: 'mdi-contacts',
-      link: '/contacts'
-    },
-    {
       title: this.$store.state.lang.about,
       icon: 'mdi-information',
-      link: '/about'
+      child: [
+        {
+          title: 'Блог',
+          link: '/blog'
+        },
+        {
+          title: 'Технология 5D печати',
+          link: '/about'
+        },
+        {
+          title: this.$store.state.lang.contacts,
+          link: '/contacts'
+        },
+        {
+          title: 'Научные исследования',
+          link: '/nauchnye-issledovaniya'
+        },
+        {
+          title: 'Юридическая информация',
+          link: '/legal'
+        }
+      ]
+
     }
 
   ]
