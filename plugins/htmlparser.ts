@@ -22,13 +22,22 @@ declare module 'vuex/types/index' {
 const convertHtmlPlugin: Plugin = (context, inject) => {
     inject('convertHtml', (inputHtml: string) => {
         inputHtml = inputHtml.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+        console.log(inputHtml)
+        let processChild = (node: any) => {
+            node.childNodes.forEach((childNode: Node) => {
+                processChild(childNode)
+                if (childNode.nodeType === 1) {
+                    //@ts-ignore
+                    childNode.removeAttribute('class')
+                    //@ts-ignore
+                    childNode.removeAttribute('style')
+                }
+
+            })
+        }
+
         let root = parse(inputHtml)
-        root.childNodes.forEach(childNode => {
-            //@ts-ignore
-            childNode.removeAttribute('class')
-            //@ts-ignore
-            childNode.removeAttribute('style')
-        })
+        processChild(root)
         return root.toString()
     })
 }

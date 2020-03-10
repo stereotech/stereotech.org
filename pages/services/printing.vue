@@ -5,6 +5,9 @@
     </v-col>
     <v-col cols="12">
       <v-card>
+        <v-card-text v-if="$apollo.loading">
+          <v-progress-linear indeterminate></v-progress-linear>
+        </v-card-text>
         <v-card-text>
           <div v-html="text" />
         </v-card-text>
@@ -36,11 +39,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import InstagramGallery from '~/components/InstagramGallery.vue'
 import gql from 'graphql-tag'
 
-//@ts-ignore
 @Component({
   head: {
     title: 'Stereotech - 3D печать в Волгограде'
@@ -49,19 +51,20 @@ import gql from 'graphql-tag'
     InstagramGallery
   },
   apollo: {
-    information: gql`{information(id: "7") {information_id, title, description}}`
+    information: {
+      query: gql`{information(id: "7") {information_id, title, description}}`,
+      prefetch: true
+    }
   }
-})
+}
+)
 export default class Printing extends Vue {
-  text: string = ''
-  mounted () {
-    //@ts-ignore
+  @Watch('information') onInformationChanged (oldVal: any, val: any) {
     this.text = this.$convertHtml(this.information.description)
   }
 
-  asyncData (context: any) {
-    let client = context.app.apolloProvider.defaultClient
-  }
+  text: string = ''
+  information: any = {}
 }
 
 </script>
