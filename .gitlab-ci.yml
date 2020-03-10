@@ -21,8 +21,6 @@ stages:
   artifacts:
     paths:
       - dist
-  only: 
-    - master
 
 buildNuxtRu:
   extends: .buildNuxt
