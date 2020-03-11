@@ -4,7 +4,8 @@ const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 
 const config: Configuration = {
   head: {
-    title: 'Stereotech - 5D Additive Manufacturing',
+    title: '5D Additive Manufacturing',
+    titleTemplate: 'Stereotech - %s',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

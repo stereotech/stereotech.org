@@ -100,6 +100,9 @@ import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
     BuyPrinter,
     FullSpecs,
     SupportedSlicers
+  },
+  head: {
+    title: 'Серия 320'
   }
 })
 export default class Ste320 extends Vue {

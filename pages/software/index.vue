@@ -41,6 +41,9 @@ import SoftwarePanel from '~/components/software/SoftwarePanel.vue'
 @Component({
   components: {
     SoftwarePanel
+  },
+  head: {
+    title: 'Программное обеспечение'
   }
 })
 export default class Software extends Vue {

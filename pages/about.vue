@@ -20,6 +20,9 @@ import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
     BenefitsPanel,
     TeamPanel,
     ApplicationsPanel
+  },
+  head: {
+    title: 'Технология 5D печати'
   }
 })
 export default class About extends Vue {

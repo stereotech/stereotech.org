@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12">
+    <v-col cols="12" md="8" lg="6" offset-lg="3" offset-md="2">
       <v-card>
         <v-carousel cycle hide-delimiter-background show-arrows-on-hover>
           <v-carousel-item v-for="(item, i) in items" :key="i">
@@ -58,7 +58,7 @@ import gql from 'graphql-tag'
 //@ts-ignore
 @Component({
   head: {
-    title: 'Stereotech - Обучение 3D печати'
+    title: 'Обучение 3D печати'
   },
   apollo: {
     information: {

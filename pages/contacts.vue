@@ -28,7 +28,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-@Component
+@Component({
+  head: {
+    title: 'Контакты'
+  }
+})
 export default class Contacts extends Vue {
 }
 </script>

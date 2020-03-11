@@ -35,10 +35,14 @@
             <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index">
+        <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index" subheader>
           <template v-for="(childItem, index) in menuItem.child">
+            <v-subheader
+              v-if="childItem.link.startsWith('-subheader')"
+              :key="index"
+            >{{ childItem.title }}</v-subheader>
             <v-list-item
-              v-if="childItem.link.startsWith('/')"
+              v-else-if="childItem.link.startsWith('/')"
               :key="index"
               nuxt
               ripple
@@ -51,6 +55,7 @@
                 <v-list-item-title>{{ childItem.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+
             <v-list-item v-else :key="index" target="_blank" ripple :href="childItem.link">
               <v-list-item-action>
                 <v-icon>{{ childItem.icon }}</v-icon>
@@ -96,9 +101,13 @@
               <v-btn v-on="on" text dark>{{ menuItem.title }}</v-btn>
             </template>
             <v-list>
-              <template v-for="(childItem, index) in menuItem.child">
+              <template v-for="(childItem, index) in menuItem.child" subheader>
+                <v-subheader
+                  v-if="childItem.link.startsWith('-subheader')"
+                  :key="index"
+                >{{ childItem.title }}</v-subheader>
                 <v-list-item
-                  v-if="childItem.link.startsWith('/')"
+                  v-else-if="childItem.link.startsWith('/')"
                   :key="index"
                   nuxt
                   :to="childItem.link"
@@ -201,7 +210,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
 export interface MenuItem {
   title: string,
@@ -212,6 +221,7 @@ export interface MenuItem {
 
 @Component
 export default class Layout extends Vue {
+
   private get currentYear () {
     return new Date().getFullYear()
   }
@@ -229,15 +239,15 @@ export default class Layout extends Vue {
       icon: 'mdi-flag',
       child: [
         {
-          title: 'Образование',
+          title: 'Для образование',
           link: '/classes'
         },
         {
-          title: 'Исследования',
+          title: 'Для исследований',
           link: '/research'
         },
         {
-          title: 'Производство',
+          title: 'Для производства',
           link: '/research'
         },
         {
@@ -251,21 +261,33 @@ export default class Layout extends Vue {
       icon: 'mdi-printer-3d',
       child: [
         {
+          title: 'Оборудование',
+          link: '-subheader'
+        },
+        {
           title: this.$store.state.lang.ste320,
-          link: '/ste320'
+          link: '/printers/ste320'
         },
         {
           title: this.$store.state.lang.ste520,
-          link: '/ste520'
+          link: '/printers/ste520'
         },
         {
           title: this.$store.state.lang.comparePrinters,
           link: '/printers'
         },
         {
-          title: this.$store.state.lang.software.title,
+          title: 'Программное обеспечение',
+          link: '-subheader'
+        },
+        {
+          title: 'STE Slicer',
           link: '/software'
-        }
+        },
+        {
+          title: 'STE App',
+          link: '/software'
+        },
       ]
     },
     {
@@ -286,6 +308,10 @@ export default class Layout extends Vue {
       title: this.$store.state.lang.support,
       icon: 'mdi-face-agent',
       child: [
+        {
+          title: 'Техническая поддержка',
+          link: '/support'
+        },
         {
           title: this.$store.state.lang.docs,
           link: '/manuals'
@@ -339,9 +365,9 @@ export default class Layout extends Vue {
         name = element.title
       }
     })
-
     return name
   }
+
 
   get locales () {
     return [

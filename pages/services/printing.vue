@@ -45,7 +45,7 @@ import gql from 'graphql-tag'
 
 @Component({
   head: {
-    title: 'Stereotech - 3D печать в Волгограде'
+    title: '3D печать в Волгограде'
   },
   components: {
     InstagramGallery
