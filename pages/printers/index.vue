@@ -23,6 +23,9 @@ import CompareBanner from '~/components/printers/CompareBanner.vue'
   components: {
     CompareBanner,
     CompareSpecs
+  },
+  head: {
+    title: 'Оборудование'
   }
 })
 export default class Printers extends Vue {

@@ -114,6 +114,9 @@ import FullSpecs from '~/components/printers/FullSpecs.vue'
     SoftwarePanel,
     BuyPrinter,
     FullSpecs
+  },
+  head: {
+    title: 'Серия 520'
   }
 })
 export default class Ste520 extends Vue {

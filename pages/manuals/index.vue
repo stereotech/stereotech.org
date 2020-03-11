@@ -31,7 +31,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-@Component
+@Component({
+  head: {
+    title: 'Руководства пользователя'
+  }
+})
 export default class Manuals extends Vue {
   manuals: any[] = [
     {
