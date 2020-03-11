@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" app clipped temporary hide-overlay>
-      <v-list class="pa-1">
+      <v-list class="pa-1" nav>
         <v-list-item nuxt to="/">
           <v-list-item-avatar>
             <img src="/ste-logo.png" />
@@ -35,7 +35,7 @@
             <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index" subheader>
+        <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index" subheader nav>
           <template v-for="(childItem, index) in menuItem.child">
             <v-subheader
               v-if="childItem.link.startsWith('-subheader')"
@@ -135,7 +135,7 @@
               <v-icon>mdi-earth</v-icon>
             </v-btn>
           </template>
-          <v-list>
+          <v-list nav>
             <v-list-item
               v-for="locale in locales"
               :key="locale.locale"
