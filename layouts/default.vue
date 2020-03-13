@@ -372,7 +372,7 @@ export default class Layout extends Vue {
 
   get locales () {
     return [
-      { text: 'Русский', locale: 'ru', path: 'https://stereotech.org' + this.$route.path },
+      { text: 'Русский', locale: 'ru', path: process.env.DOMAIN + this.$route.path },
       { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
     ]
   }
