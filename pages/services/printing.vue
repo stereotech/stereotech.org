@@ -53,7 +53,7 @@ import gql from 'graphql-tag'
   apollo: {
     information: {
       query: gql`{information(id: "7") {information_id, title, description}}`,
-      prefetch: true
+      prefetch: true,
     }
   }
 }
@@ -65,6 +65,7 @@ export default class Printing extends Vue {
 
   text: string = ''
   information: any = {}
+
 }
 
 </script>
