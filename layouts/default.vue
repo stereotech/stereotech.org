@@ -153,14 +153,22 @@
       </v-container>
     </v-content>
     <v-footer height="auto" color="primary" dark>
-      <v-container fluid grid-list-xs>
+      <v-container>
         <v-row>
-          <v-col cols="6" sm="3">
-            <v-container grid-list-xs>
+          <v-col cols="12" sm="6">
+            <v-container>
               <v-row>
                 <v-col cols="12">
-                  &copy;{{ currentYear }} —
-                  <strong>Stereotech</strong>
+                  <v-btn text large block>
+                    &copy;{{ currentYear }} —
+                    <strong>Stereotech</strong>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text large block href="tel:+79023648404">+79023648404</v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
                 </v-col>
                 <v-col cols="12">
                   <v-btn text icon href="https://vk.com/stereo_tech" target="_blank">
@@ -174,15 +182,8 @@
             </v-container>
           </v-col>
           <v-col cols="6" sm="3">
-            <v-container grid-list-xs>
-              <v-row>
-                <v-col cols="12">
-                  <v-btn text large block href="tel:+79023648404">+79023648404</v-btn>
-                </v-col>
-                <v-col cols="12">
-                  <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
-                </v-col>
-              </v-row>
+            <v-container>
+              <v-row></v-row>
             </v-container>
           </v-col>
           <v-col cols="6" sm="3">
