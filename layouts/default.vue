@@ -275,7 +275,7 @@ export default class Layout extends Vue {
         },
         {
           title: this.$store.state.lang.comparePrinters,
-          link: '/printers'
+          link: '/printers/compare'
         },
         {
           title: 'Программное обеспечение',
@@ -329,19 +329,19 @@ export default class Layout extends Vue {
         },
         {
           title: 'Технология 5D печати',
-          link: '/about'
+          link: '/info/about'
         },
         {
           title: this.$store.state.lang.contacts,
-          link: '/contacts'
+          link: '/info/contacts'
         },
         {
           title: 'Научные исследования',
-          link: '/nauchnye-issledovaniya'
+          link: '/info/science'
         },
         {
           title: 'Юридическая информация',
-          link: '/legal'
+          link: '/info/legal'
         }
       ]
 
