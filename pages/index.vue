@@ -11,7 +11,7 @@
     <CompareBanner />
     <PrintersBanner />
     <SoftwareBanner />
-    <MainParalax image="/main/bg1.webp" button-link="/about" />
+    <MainParalax image="/main/bg1.webp" button-link="/info/about" />
   </v-row>
 </template>
 

@@ -153,14 +153,22 @@
       </v-container>
     </v-content>
     <v-footer height="auto" color="primary" dark>
-      <v-container fluid grid-list-xs>
+      <v-container>
         <v-row>
-          <v-col cols="6" sm="3">
-            <v-container grid-list-xs>
+          <v-col cols="12" sm="6">
+            <v-container>
               <v-row>
                 <v-col cols="12">
-                  &copy;{{ currentYear }} —
-                  <strong>Stereotech</strong>
+                  <v-btn text large block>
+                    &copy;{{ currentYear }} —
+                    <strong>Stereotech</strong>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text large block href="tel:+79023648404">+79023648404</v-btn>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
                 </v-col>
                 <v-col cols="12">
                   <v-btn text icon href="https://vk.com/stereo_tech" target="_blank">
@@ -174,15 +182,8 @@
             </v-container>
           </v-col>
           <v-col cols="6" sm="3">
-            <v-container grid-list-xs>
-              <v-row>
-                <v-col cols="12">
-                  <v-btn text large block href="tel:+79023648404">+79023648404</v-btn>
-                </v-col>
-                <v-col cols="12">
-                  <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
-                </v-col>
-              </v-row>
+            <v-container>
+              <v-row></v-row>
             </v-container>
           </v-col>
           <v-col cols="6" sm="3">
@@ -274,7 +275,7 @@ export default class Layout extends Vue {
         },
         {
           title: this.$store.state.lang.comparePrinters,
-          link: '/printers'
+          link: '/printers/compare'
         },
         {
           title: 'Программное обеспечение',
@@ -328,19 +329,19 @@ export default class Layout extends Vue {
         },
         {
           title: 'Технология 5D печати',
-          link: '/about'
+          link: '/info/about'
         },
         {
           title: this.$store.state.lang.contacts,
-          link: '/contacts'
+          link: '/info/contacts'
         },
         {
           title: 'Научные исследования',
-          link: '/nauchnye-issledovaniya'
+          link: '/info/science'
         },
         {
           title: 'Юридическая информация',
-          link: '/legal'
+          link: '/info/legal'
         }
       ]
 
@@ -371,7 +372,7 @@ export default class Layout extends Vue {
 
   get locales () {
     return [
-      { text: 'Русский', locale: 'ru', path: 'https://stereotech.org' + this.$route.path },
+      { text: 'Русский', locale: 'ru', path: process.env.DOMAIN + this.$route.path },
       { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
     ]
   }

@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <PrinterBanner model="ste520" :description="$store.state.lang.printer.ste520.description" />
-    <MainParalax image="/main/bg1.webp" button-link="/about" />
+    <MainParalax image="/main/bg1.webp" button-link="/info/about" />
     <SoftwarePanel
       :title="$store.state.lang.software.steslicer.title"
       :description="$store.state.lang.software.steslicer.description"
