@@ -1,6 +1,7 @@
 import { Configuration } from '@nuxt/types'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
+const domain = process.env.NUXT_ENV_DOMAIN || 'https://stereotech.org'
 
 const config: Configuration = {
   head: {
@@ -80,7 +81,8 @@ const config: Configuration = {
     }
   },
   env: {
-    LOCALE: locale
+    LOCALE: locale,
+    DOMAIN: domain
   },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',
@@ -89,7 +91,7 @@ const config: Configuration = {
     lang: locale
   },
   sitemap: {
-    hostname: 'https://stereotech.org'
+    hostname: domain
   },
   /*
   ** vuetify module configuration
