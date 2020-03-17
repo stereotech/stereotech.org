@@ -48,7 +48,8 @@ const config: Configuration = {
   plugins: [
     '~/plugins/init',
     '~/plugins/htmlparser',
-    '~/plugins/sendemail'
+    '~/plugins/sendemail',
+    '~/plugins/vue-the-mask'
   ],
   /*
   ** Nuxt.js modules
