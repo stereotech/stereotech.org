@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types'
+import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 const domain = process.env.NUXT_ENV_DOMAIN || 'https://stereotech.org'
@@ -71,7 +72,8 @@ const config: Configuration = {
     }],
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    '@nuxtjs/recaptcha'
   ],
   apollo: {
     clientConfigs: {
@@ -99,6 +101,10 @@ const config: Configuration = {
   */
   vuetify: {
     materialIcons: false,
+    lang: {
+      locales: { ru },
+      current: 'ru'
+    },
     theme: {
       themes: {
         light: {
@@ -133,6 +139,12 @@ const config: Configuration = {
 
   googleAnalytics: {
     id: 'UA-100135045-1'
+  },
+  recaptcha: {
+    /* reCAPTCHA options */
+    siteKey: '***REMOVED***',
+    version: 3,
+    hideBadge: true
   },
   /*
   ** Build configuration
