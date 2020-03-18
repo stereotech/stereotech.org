@@ -16,6 +16,7 @@ import ContactForm from '~/components/ContactForm.vue'
 })
 export default class Support extends Vue {
   async mounted () {
+    //@ts-ignore
     await this.$recaptcha.init()
   }
 }

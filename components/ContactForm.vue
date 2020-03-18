@@ -148,6 +148,7 @@ export default class ContactForm extends Vue {
     const description = this.joinFormData
     console.log(name, email, description)
     try {
+      //@ts-ignore
       const token = await this.$recaptcha.execute('login')
       await this.$apollo.mutate({
         mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
