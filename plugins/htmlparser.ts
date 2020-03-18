@@ -34,7 +34,9 @@ const convertHtmlPlugin: Plugin = (context, inject) => {
         }
         let root = parse(inputHtml)
         processChild(root)
+        //@ts-ignore
         if (root.classList) {
+            //@ts-ignore
             root.classList.add('v-data-table__wrapper')
         }
 
