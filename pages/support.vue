@@ -1,5 +1,5 @@
 <template>
-<ContactForm/>
+  <ContactForm />
 </template>
 
 <script lang="ts">
@@ -10,12 +10,14 @@ import ContactForm from '~/components/ContactForm.vue'
   head: {
     title: 'Техническая поддержка'
   },
-  components:{
+  components: {
     ContactForm
   }
 })
 export default class Support extends Vue {
-
+  async mounted () {
+    await this.$recaptcha.init()
+  }
 }
 
 </script>
