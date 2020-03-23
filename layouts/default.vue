@@ -1,96 +1,41 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app clipped temporary hide-overlay>
-      <v-list class="pa-1" nav>
-        <v-list-item nuxt to="/">
-          <v-list-item-avatar>
-            <img src="/ste-logo.png" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Stereotech</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+    <v-navigation-drawer v-model="drawer" app clipped temporary hide-overlay width="300">
+      <v-list nav>
+        <template v-for="(menuItem, index) in mainMenu">
+          <v-list-group value="true" :key="index" :prepend-icon="menuItem.icon">
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <template v-for="(subItem, subIndex) in mapMenuItems(menuItem.child)">
+              <v-list-item :key="subIndex" nuxt :to="subItem.link" exact>
+                <v-list-item-content>
+                  <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list-group>
+        </template>
       </v-list>
-      <v-divider />
-      <template v-for="(menuItem, index) in mainMenu">
-        <v-list-item
-          v-if="menuItem.link && menuItem.link.startsWith('/')"
-          :key="index"
-          nuxt
-          ripple
-          :to="menuItem.link"
-        >
-          <v-list-item-action>
-            <v-icon>{{ menuItem.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item v-else :key="index" nuxt ripple :href="menuItem.link" target="_blank">
-          <v-list-item-action>
-            <v-icon>{{ menuItem.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list v-if="menuItem.child !== undefined" :key="menuItem.title + index" subheader nav>
-          <template v-for="(childItem, index) in menuItem.child">
-            <v-subheader
-              v-if="childItem.link.startsWith('-subheader')"
-              :key="index"
-            >{{ childItem.title }}</v-subheader>
-            <v-list-item
-              v-else-if="childItem.link.startsWith('/')"
-              :key="index"
-              nuxt
-              ripple
-              :to="childItem.link"
-            >
-              <v-list-item-action>
-                <v-icon>{{ childItem.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>{{ childItem.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-list-item v-else :key="index" target="_blank" ripple :href="childItem.link">
-              <v-list-item-action>
-                <v-icon>{{ childItem.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>{{ childItem.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-list>
-      </template>
-      <v-divider />
-      <v-select
-        :items="locales"
-        v-model="currentLang"
-        item-value="locale"
-        :label="$store.state.lang.language"
-      ></v-select>
     </v-navigation-drawer>
-    <v-app-bar dark color="primary" text app clipped-left>
+    <v-app-bar color="secondary" text app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-avatar size="36px" class="mr-2">
         <img src="/ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
         <nuxt-link to="/">
-          <span class="text-uppercase font-weight-light white--text">Stereotech</span>
-          <span class="text-uppercase font-weight-medium white--text">{{ currentPage }}</span>
+          <span class="font-weight-medium accent--text">Stereo</span>
+          <span class="font-weight-medium ml-n1">tech</span>
         </nuxt-link>
       </v-toolbar-title>
 
-      <v-spacer />
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items class="hidden-sm-and-down ml-2">
         <template v-for="(menuItem, index) in mainMenu">
           <v-menu
+            min-width="100%"
             v-if="menuItem.child !== undefined"
             :key="index"
             offset-y
@@ -98,27 +43,41 @@
             close-on-click
           >
             <template v-slot:activator="{ on }">
-              <v-btn v-on="on" text dark>{{ menuItem.title }}</v-btn>
+              <v-btn v-on="on" text color="primary">{{ menuItem.title }}</v-btn>
             </template>
-            <v-list>
-              <template v-for="(childItem, index) in menuItem.child" subheader>
-                <v-subheader
-                  v-if="childItem.link.startsWith('-subheader')"
-                  :key="index"
-                >{{ childItem.title }}</v-subheader>
-                <v-list-item
-                  v-else-if="childItem.link.startsWith('/')"
-                  :key="index"
-                  nuxt
-                  :to="childItem.link"
-                >
-                  <v-list-item-title>{{ childItem.title }}</v-list-item-title>
-                </v-list-item>
-                <v-list-item v-else :key="index" :href="childItem.link" target="_blank">
-                  <v-list-item-title>{{ childItem.title }}</v-list-item-title>
-                </v-list-item>
-              </template>
-            </v-list>
+            <v-card>
+              <v-container>
+                <v-row justify="center">
+                  <template v-for="(childItem, childIndex) in menuItem.child">
+                    <v-col cols="4" :key="childIndex">
+                      <v-list dense nav class="primary--text">
+                        <v-list-item nuxt exact :to="childItem.link">
+                          <v-list-item-avatar tile>
+                            <v-img src="https://via.placeholder.com/100"></v-img>
+                          </v-list-item-avatar>
+                          <v-list-item-content>
+                            <v-list-item-title>{{ childItem.title }}</v-list-item-title>
+                          </v-list-item-content>
+                        </v-list-item>
+                        <v-divider v-if="childItem.child" />
+                        <v-list-item
+                          v-for="(sublink, sublinkIndex) in childItem.child"
+                          :key="sublinkIndex"
+                          nuxt
+                          exact
+                          :to="sublink.link"
+                        >
+                          <v-list-item-content>
+                            <v-list-item-title class="caption">{{ sublink.title }}</v-list-item-title>
+                            <v-list-item-subtitle>{{ sublink.description }}</v-list-item-subtitle>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </v-list>
+                    </v-col>
+                  </template>
+                </v-row>
+              </v-container>
+            </v-card>
           </v-menu>
           <v-btn
             v-else-if="menuItem.link.startsWith('/')"
@@ -129,34 +88,37 @@
           >{{ menuItem.title }}</v-btn>
           <v-btn v-else :key="index" text :href="menuItem.link" target="_blank">{{ menuItem.title }}</v-btn>
         </template>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon>mdi-earth</v-icon>
-            </v-btn>
-          </template>
-          <v-list nav>
-            <v-list-item
-              v-for="locale in locales"
-              :key="locale.locale"
-              @click="currentLang = locale.locale"
-            >
-              <v-list-item-title>{{ locale.text }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
       </v-toolbar-items>
+      <v-spacer />
+      <v-btn text color="primary" nuxt to="/resellers" exact>
+        Где купить
+        <v-icon right dark>mdi-map-marker-question-outline</v-icon>
+      </v-btn>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" color="primary">
+            <v-icon>mdi-earth</v-icon>
+          </v-btn>
+        </template>
+        <v-list nav>
+          <v-list-item
+            v-for="locale in locales"
+            :key="locale.locale"
+            @click="currentLang = locale.locale"
+          >
+            <v-list-item-title>{{ locale.text }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
-    <v-footer height="auto" color="primary" dark>
+    <v-footer height="auto" color="#E0E0E0">
       <v-container>
         <v-row>
-          <v-col cols="12" sm="6">
-            <v-container>
+          <v-col cols="12" sm="6" lg="3">
+            <v-container fluid class="primary--text">
               <v-row>
                 <v-col cols="12">
                   <v-btn text large block>
@@ -165,16 +127,16 @@
                   </v-btn>
                 </v-col>
                 <v-col cols="12">
-                  <v-btn text large block href="tel:+79023648404">+79023648404</v-btn>
+                  <v-btn color="accent" text large block href="tel:+79023648404">+79023648404</v-btn>
                 </v-col>
                 <v-col cols="12">
                   <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
                 </v-col>
-                <v-col cols="12">
-                  <v-btn text icon href="https://vk.com/stereo_tech" target="_blank">
+                <v-col cols="12" class="text-center">
+                  <v-btn text icon href="https://vk.com/ste3d_ru" target="_blank">
                     <v-icon>mdi-vk</v-icon>
                   </v-btn>
-                  <v-btn text icon href="https://instagram.com/stereo_tech/" target="_blank">
+                  <v-btn text icon href="https://instagram.com/ste3d_ru/" target="_blank">
                     <v-icon>mdi-instagram</v-icon>
                   </v-btn>
                 </v-col>
@@ -186,21 +148,25 @@
               <v-row></v-row>
             </v-container>
           </v-col>
-          <v-col cols="6" sm="3">
-            <a href="http://fasie.ru/" target="_blank">
-              <v-img
-                height="64"
-                contain
-                src="http://fasie.ru/local/templates/.default/markup/img/footer_logo.svg"
-              />
-            </a>
-          </v-col>
-          <v-col cols="6" sm="3">
+          <v-col cols="6" sm="3"></v-col>
+          <v-col cols="6" sm="3"></v-col>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="6" lg="3">
             <a href="http://sk.ru/" target="_blank">
               <v-img
                 height="64"
                 contain
                 :src="`http://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
+              />
+            </a>
+          </v-col>
+          <v-col cols="6" lg="3">
+            <a href="http://fasie.ru/" target="_blank">
+              <v-img
+                height="64"
+                contain
+                src="http://fasie.ru/local/templates/.default/markup/img/head_logo_fasie.png"
               />
             </a>
           </v-col>
@@ -217,6 +183,7 @@ export interface MenuItem {
   title: string,
   link?: string,
   icon?: string,
+  description?: string,
   child?: MenuItem[]
 }
 
@@ -234,74 +201,130 @@ export default class Layout extends Vue {
     link: '/'
   }
 
+  private mapMenuItems (items: MenuItem[]): MenuItem[] {
+    return items.flatMap(x => x.child ? [x, ...x.child] : [x])
+  }
+
   private readonly mainMenu: MenuItem[] = [
     {
-      title: 'Решения',
-      icon: 'mdi-flag',
-      child: [
-        {
-          title: 'Для образование',
-          link: '/classes'
-        },
-        {
-          title: 'Для исследований',
-          link: '/research'
-        },
-        {
-          title: 'Для производства',
-          link: '/research'
-        },
-        {
-          title: 'Для дилеров',
-          link: '/dealers'
-        },
-      ]
-    },
-    {
-      title: this.$store.state.lang.products,
+      title: "Продукты",
       icon: 'mdi-printer-3d',
       child: [
         {
-          title: 'Оборудование',
-          link: '-subheader'
+          title: 'Настольные принтеры',
+          link: '/printers',
+          child: [
+            {
+              title: 'Ceрия 3xx',
+              link: '/printers/ste320',
+              description: 'Профессиональные 3D принтеры'
+            },
+            {
+              title: 'Ceрия 5xx',
+              link: '/printers/ste520',
+              description: 'Настольные 5D принтеры'
+            },
+            {
+              title: 'Серия Special',
+              link: '/printers/special',
+              description: '3D и 5D принтеры для особых задач'
+            }
+          ]
         },
         {
-          title: this.$store.state.lang.ste320,
-          link: '/printers/ste320'
-        },
-        {
-          title: this.$store.state.lang.ste520,
-          link: '/printers/ste520'
-        },
-        {
-          title: this.$store.state.lang.comparePrinters,
-          link: '/printers/compare'
+          title: 'Промышленные принтеры',
+          link: '/industrial',
+          child: [
+            {
+              title: 'Ceрия 6xx',
+              link: '/industrial/series6',
+              description: 'Шестиосевое устройство на базе промышленного робота'
+            },
+            {
+              title: 'Ceрия 8xx',
+              link: '/industrial/series8',
+              description: 'Восьмиосевое устройство для специальных задач'
+            }
+          ]
         },
         {
           title: 'Программное обеспечение',
-          link: '-subheader'
-        },
-        {
-          title: 'STE Slicer',
-          link: '/software'
-        },
-        {
-          title: 'STE App',
-          link: '/software'
+          link: '/software',
+          child: [
+            {
+              title: 'STE Slicer',
+              link: '/software/ste-slicer',
+              description: 'Подготовка к 3D и 5D печати'
+            },
+            {
+              title: 'STE App',
+              link: '/software/ste-app',
+              description: 'Управление процессом печати'
+            },
+          ]
         },
       ]
     },
     {
-      title: 'Услуги',
-      icon: 'mdi-rotate-3d',
+      title: 'Узнать больше',
+      icon: 'mdi-post-outline',
       child: [
         {
-          title: '3D Печать',
-          link: '/services/printing/'
+          title: 'Решения',
+          link: '/solutions',
+          child: [
+            {
+              title: 'Обучение',
+              description: 'Изучение основ 3D печати',
+              link: '/solutions/education'
+            },
+            {
+              title: 'Производство',
+              description: 'Изделия для конечного использования',
+              link: '/solutions/manufacturing'
+            },
+            {
+              title: 'Сервис 3D печати',
+              description: 'Услуги 3D печати и прототипирования',
+              link: '/solutions/services'
+            },
+            {
+              title: 'Прототипирование',
+              description: 'Разработка устройств',
+              link: '/solutions/prototyping'
+            },
+          ]
         },
         {
-          title: 'Обучение',
-          link: '/services/education/'
+          title: 'Блог',
+          link: '/blog',
+          child: [
+            {
+              title: 'Анонсы',
+              description: 'Все важные мероприятия с нашим участием',
+              link: '/blog/events'
+            },
+            {
+              title: 'Новости',
+              description: 'Последние новости о нашей компании',
+              link: '/blog/news'
+            },
+            {
+              title: 'Примеры использования',
+              description: 'Истории успеха наших партнеров',
+              link: '/blog/applications'
+            },
+            {
+              title: 'Статьи',
+              description: 'Подробные исследования и руководства',
+              link: '/blog/whitepapers'
+            },
+            {
+              title: 'Научная деятельность',
+              description: '',
+              link: '/blog/sciense'
+            },
+          ]
         }
       ]
     },
@@ -309,14 +332,55 @@ export default class Layout extends Vue {
       title: this.$store.state.lang.support,
       icon: 'mdi-face-agent',
       child: [
+
         {
-          title: 'Техническая поддержка',
-          link: '/support'
+          title: 'Руководства пользователя',
+          link: '/support/manuals',
+          child: [
+            {
+              title: 'Принтеры 3хх серии',
+              link: '/support/manuals/ste320'
+            },
+            {
+              title: 'Принтеры 5хх серии',
+              link: '/support/manuals/ste520'
+            },
+            {
+              title: 'Слайсер STE Slicer',
+              link: '/support/manuals/steslicer'
+            },
+            {
+              title: 'Система управления STE App',
+              link: '/support/manuals/steapp'
+            }
+          ]
         },
         {
-          title: this.$store.state.lang.docs,
-          link: '/manuals'
-        }
+          title: 'Советы по использованию',
+          link: '/support/tips',
+          child: [
+            {
+              title: 'Принтеры',
+              link: '/support/tips/printers'
+            },
+            {
+              title: 'Программное обеспечение',
+              link: '/support/tips/software'
+            },
+            {
+              title: 'Материалы',
+              link: '/support/tips/materials'
+            },
+            {
+              title: 'Печать',
+              link: '/support/tips/printing'
+            }
+          ]
+        },
+        {
+          title: 'Связаться с нами',
+          link: '/support'
+        },
       ]
     },
     {
@@ -324,24 +388,26 @@ export default class Layout extends Vue {
       icon: 'mdi-information',
       child: [
         {
-          title: 'Блог',
-          link: '/blog'
-        },
-        {
-          title: 'Технология 5D печати',
-          link: '/info/about'
-        },
-        {
-          title: this.$store.state.lang.contacts,
-          link: '/info/contacts'
-        },
-        {
-          title: 'Научные исследования',
-          link: '/info/science'
-        },
-        {
-          title: 'Юридическая информация',
-          link: '/info/legal'
+          title: 'О Stereotech',
+          link: '/info',
+          child: [
+            {
+              title: 'Команда',
+              link: '/info/team'
+            },
+            {
+              title: 'Награды',
+              link: '/info/awards'
+            },
+            {
+              title: 'Адреса',
+              link: '/info/address'
+            },
+            {
+              title: 'СМИ о нас',
+              link: '/info/media'
+            }
+          ]
         }
       ]
 

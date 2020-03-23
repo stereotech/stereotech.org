@@ -1,5 +1,11 @@
 <template>
-  <ContactForm />
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col lg="8">
+        <ContactForm />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">

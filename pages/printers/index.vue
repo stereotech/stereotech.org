@@ -1,5 +1,27 @@
 <template>
   <v-row>
+    <v-col cols="12">
+      <v-card>
+        <v-card-title>Общее описание</v-card-title>
+        <v-card-text>Приемущества наших принтеров. Фото с Гришей</v-card-text>
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <v-card>
+        <v-card-title>Карточки с кратким описанием принтера и слоганом</v-card-title>
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <v-card>
+        <v-card-title>Таблица сравнения функций</v-card-title>
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <v-card>
+        <v-card-title>Блог</v-card-title>
+        <v-card-text>Три последних поста</v-card-text>
+      </v-card>
+    </v-col>
     <v-col class="align-center" cols="12">
       <h1
         class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
