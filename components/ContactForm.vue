@@ -4,25 +4,28 @@
     <v-card-text>
       <v-form v-model="valid">
         <v-text-field
+          outlined
           v-model="firstName"
           :rules="[v => !!v || 'Требуется имя']"
           label="Имя"
           required
         ></v-text-field>
 
-        <v-text-field v-model="lastName" label="Фамилия"></v-text-field>
-        <v-text-field v-model="phoneNumber" v-mask="mask" label="Телефон"></v-text-field>
+        <v-text-field outlined v-model="lastName" label="Фамилия"></v-text-field>
+        <v-text-field outlined v-model="phoneNumber" v-mask="mask" label="Телефон"></v-text-field>
 
         <v-text-field
+          outlined
           v-model="email"
           :rules="[v => !!v || 'Требуется E-mail', v => /.+@.+\..+/.test(v) || 'Введенный E-mail неверен']"
           label="Почта"
           required
         ></v-text-field>
 
-        <v-textarea v-model="description" label="Описание проблемы"></v-textarea>
+        <v-textarea outlined v-model="description" label="Описание проблемы"></v-textarea>
 
         <v-select
+          outlined
           v-model="apealTheme"
           :items="apealThemeItems"
           :rules="[v => !!v || 'Требуется выбрать тему обращения']"
@@ -30,6 +33,7 @@
         ></v-select>
 
         <v-select
+          outlined
           v-model="problemType"
           :disabled="!isEnable"
           :rules="[v => !!v || 'Вид проблемы не указан']"
@@ -38,6 +42,7 @@
         ></v-select>
 
         <v-text-field
+          outlined
           v-model="serialNumber"
           :rules="[v => !!v || 'Требуется серийный номер']"
           label="Серийный номер устройства"
@@ -52,18 +57,18 @@
           large
         >Отправить запрос</v-btn>
       </v-form>
+      <small>
+        This site is protected by reCAPTCHA and the Google
+        <a
+          href="https://policies.google.com/privacy"
+        >Privacy Policy</a> and
+        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </small>
     </v-card-text>
     <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
       {{ snackbarText }}
       <v-btn text @click="snackbar = false">Закрыть</v-btn>
     </v-snackbar>
-    <small>
-      This site is protected by reCAPTCHA and the Google
-      <a
-        href="https://policies.google.com/privacy"
-      >Privacy Policy</a> and
-      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-    </small>
   </v-card>
 </template>
 

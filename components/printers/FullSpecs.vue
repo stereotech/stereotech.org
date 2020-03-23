@@ -1,31 +1,42 @@
 <template>
   <v-col cols="12">
     <v-card>
-      <v-container grid-list-lg>
-        <v-row>
+      <v-container>
+        <v-row justify="center">
           <v-col cols="12">
             <h4
               class="headline text-uppercase font-weight-regular text-center"
             >{{ $store.state.lang.full_specs }}</h4>
           </v-col>
-          <v-col cols="12">
-            <v-data-table
-              :items="getItems"
-              :headers="headers"
-              hide-default-footer
-              item-key="id"
-              hide-default-header
-            >
-              <template v-slot:item="{item}">
-                <tr>
-                  <td
-                    class="subheading text-uppercase font-weight-light text-center"
-                  >{{ item.title }}</td>
-                  <td class="subheading text-center">{{ item.value }}</td>
-                </tr>
-              </template>
-            </v-data-table>
+          <v-col cols="4" v-if="$apollo.loading">
+            <v-progress-linear indeterminate></v-progress-linear>
           </v-col>
+          <template v-else-if="printerSpecs">
+            <v-col
+              cols="12"
+              v-for="attributeGroup in printerSpecs.attributes"
+              :key="attributeGroup.attribute_group_id"
+            >
+              <v-data-table
+                :items="attributeGroup.attribute"
+                :headers="headers"
+                hide-default-footer
+                item-key="attribute_id"
+                hide-default-header
+                :items-per-page="99"
+              >
+                <template v-slot:header>{{ attributeGroup.name }}</template>
+                <template v-slot:item="{item}">
+                  <tr>
+                    <td
+                      class="subheading text-uppercase font-weight-light text-center"
+                    >{{ item.name }}</td>
+                    <td class="subheading text-center">{{ item.text }}</td>
+                  </tr>
+                </template>
+              </v-data-table>
+            </v-col>
+          </template>
         </v-row>
       </v-container>
     </v-card>
@@ -34,6 +45,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import gql from 'graphql-tag'
 
 @Component({
   components: {
@@ -42,17 +54,27 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class FullSpecs extends Vue {
   @Prop({ type: String, required: true, default: '' }) model!: string
 
+  get idFromModel (): string {
+    if (this.model == '320') {
+      return '677'
+    }
+    if (this.model == '520') {
+      return '676'
+    }
+    return '677'
+  }
+
   private headers: any[] = [
     {
       text: '',
       sortable: false,
-      value: 'title',
+      value: 'name',
       align: 'center'
     },
     {
       text: '',
       sortable: false,
-      value: 'value'
+      value: 'text'
     }
   ]
 
@@ -297,6 +319,33 @@ export default class FullSpecs extends Vue {
       value: `printer.${this.model}.spec.filetypes.value`
     }
   ]
+
+  printerSpecs: any = {}
+
+  async mounted () {
+    let result = await this.$apollo.query({
+      query: gql`query($id: ID!) {product(id: $id) {
+        product_id, 
+        name, 
+        image,
+        price
+        attributes { 
+          attribute_group_id, 
+          name, 
+          attribute {
+            name, 
+            attribute_id, 
+            text
+          }
+        }
+      }
+      }`,
+      variables: {
+        id: this.idFromModel
+      }
+    })
+    this.printerSpecs = result.data.product
+  }
 }
 
 </script>

@@ -102,7 +102,7 @@ import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
     SupportedSlicers
   },
   head: {
-    title: 'Серия 320'
+    title: 'Серия 3хх'
   }
 })
 export default class Ste320 extends Vue {

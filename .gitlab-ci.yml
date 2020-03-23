@@ -20,7 +20,7 @@ stages:
     - npm install --dev
   artifacts:
     paths:
-      - dist
+      - public
 
 buildNuxtRu:
   extends: .buildNuxt
