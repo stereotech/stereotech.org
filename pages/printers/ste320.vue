@@ -75,7 +75,7 @@
     <BuyPrinter
       model="ste320"
       title="STE 320"
-      :price="$store.state.lang.printer.ste320.spec.price.value"
+      series = "3xx"
       date=" "
     />
   </v-row>

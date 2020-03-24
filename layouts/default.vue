@@ -241,7 +241,7 @@ export default class Layout extends Vue {
       child: [
         {
           title: 'Для образование',
-          link: '/classes'
+          link: '/solutions/education'
         },
         {
           title: 'Для исследований',
@@ -249,7 +249,7 @@ export default class Layout extends Vue {
         },
         {
           title: 'Для производства',
-          link: '/research'
+          link: '/solutions/production'
         },
         {
           title: 'Для дилеров',
