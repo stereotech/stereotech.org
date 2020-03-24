@@ -20,18 +20,28 @@ stages:
     - npm install --dev
   artifacts:
     paths:
-      - dist
+      - public
+
+pages:
+  extends: .buildNuxt
+  script:
+    - npm run generate
+  only:
+    - develop
 
 buildNuxtRu:
   extends: .buildNuxt
   script:
     - npm run generate
+  only: 
+    - master
 
 buildNuxtEn:
   extends: .buildNuxt
   script:
     - npm run generate:en
-
+  only: 
+    - master
 
 .deployRelease:
   stage: deploy

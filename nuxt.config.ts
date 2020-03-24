@@ -150,6 +150,7 @@ const config: Configuration = {
   ** Build configuration
   */
   generate: {
+    dir: 'public',
     fallback: true,
     interval: 100
   }
