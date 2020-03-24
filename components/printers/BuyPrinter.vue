@@ -206,27 +206,17 @@ private specialSeries: Model[] = [{modelName: '320 Glaze V4',
     //let arr 
     if(str === '3xx'){
       this.itemsArray = this.series3xxModels
-      // this.mdl = "320 base V4"
-      // this.printerModel = "Стартовый принтер для обучения, производства и разработки с одним экструдером и закрытой камерой"
-      // this.printerPrice = "129000"
     }
     else if(str === "5xx"){
       this.itemsArray = this.series5xxModels
-      // this.mdl = "520 pro V4"
-      // this.printerModel = "Пятиосевой принтер для печати прочных деталей"
-      // this.printerPrice = "498000"
+      
     }
     else if (str === "special"){
       this.itemsArray = this.specialSeries
-      // this.mdl = "520 Carbon V4"
-      // this.printerModel = "Инновационный принтер для печати прочных деталей с непрерывным углеволокном"
-      // this.printerPrice = "698000"
+     
     }
     else if (str === "industrial"){
      this.itemsArray = this.industrialSeries
-    //  this.mdl = "3000"
-    //  this.printerModel = "Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей"
-    //  this.printerPrice = "Цена по запросу"
     }
     //console.log(str)
     return this.itemsArray
@@ -245,7 +235,24 @@ private specialSeries: Model[] = [{modelName: '320 Glaze V4',
   private getPrinterPrice(){
     let item = this.getModelInfo(this.printerModel)
     if (item == undefined){
-      this.printerPrice = ""
+      if (this.series === '3xx'){
+      this.printerPrice = '129000'
+      this.printerModel = "Стартовый принтер для обучения, производства и разработки с одним экструдером и закрытой камерой"
+
+      }
+      else if (this.series === '5xx'){
+        this.printerPrice = '498000'
+        this.printerModel = "Пятиосевой принтер для печати прочных деталей"       
+      }
+      else if (this.series === 'special'){
+        this.printerPrice = '698000'
+        this.printerModel = "Инновационный принтер для печати прочных деталей с непрерывным углеволокном"
+      }
+      else if (this.series === 'industrial'){
+        this.printerPrice = 'Цена по запросу'
+        this.printerModel = "Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей"
+
+      }
     }
     else {
       this.printerPrice = item.price
@@ -256,7 +263,18 @@ private specialSeries: Model[] = [{modelName: '320 Glaze V4',
   private getPrinterModelName(){
   let item = this.getModelInfo(this.printerModel)
   if ( item == undefined){
-    this.mdl = ""
+    if (this.series === '3xx'){
+      this.mdl = '320 base V4'
+    }
+    else if (this.series === '5xx'){
+      this.mdl = '520 pro V4'
+    }
+    else if (this.series === 'special'){
+      this.mdl = '520 Carbon V4'
+    }
+    else if (this.series === 'industrial'){
+      this.mdl = '3000'
+    }
   }
   else{
     this.mdl = item.modelName
