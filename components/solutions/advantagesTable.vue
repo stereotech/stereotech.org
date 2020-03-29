@@ -1,9 +1,6 @@
 <template>
-    <v-simple-table>
+    <v-simple-table :bordered="true">
 
-        <thead>
-            <td class="text-center" colspan="5">5D принтер Stereotech STE 520 – дешевле, технологичнее и точнее конкурентов:</td>
-        </thead>
         <tbody>
 
             <tr>
@@ -64,3 +61,8 @@ export default class advantagesTable extends Vue {
 }
 
 </script> 
+<style>
+    v-table, th, td{
+        border: 2px
+    }
+</style>

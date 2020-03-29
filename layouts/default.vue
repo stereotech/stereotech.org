@@ -281,7 +281,7 @@ export default class Layout extends Vue {
             {
               title: 'Производство',
               description: 'Изделия для конечного использования',
-              link: '/solutions/manufacturing'
+              link: '/solutions/production'
             },
             {
               title: 'Сервис 3D печати',
