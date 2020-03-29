@@ -55,10 +55,10 @@ export default class FullSpecs extends Vue {
   @Prop({ type: String, required: true, default: '' }) model!: string
 
   get idFromModel (): string {
-    if (this.model == '320') {
+    if (this.model == 'ste320') {
       return '677'
     }
-    if (this.model == '520') {
+    if (this.model == 'ste520') {
       return '676'
     }
     return '677'
