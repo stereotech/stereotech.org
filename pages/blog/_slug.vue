@@ -9,13 +9,25 @@
                 </v-chip>
             </v-chip-group>
         </v-row>
+        <blogPostCard 
+            v-for="(post, index) in posts"
+            :key="index"
+        ></blogPostCard>
+        <v-row align="center">
+            <v-btn dark color="primary" @click="showMore()">Показать ещё</v-btn>
+        </v-row>
     </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import gql from 'graphql-tag'
-@Component
+import blogPostCard from '~/components/blogPostCard.vue'
+@Component({
+    components:{
+        blogPostCard
+    }
+})
 export default class Blog extends Vue {
 
     private posts: any[] = []
@@ -34,6 +46,9 @@ export default class Blog extends Vue {
         //this.posts = this.$route.params.slug
     }
 
+    private showMore(){
+
+    }
 }
 
 </script>
