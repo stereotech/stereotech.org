@@ -2,7 +2,7 @@
     <v-card>
         <v-img :src="`${photoPath}`"></v-img>
         <h2>{{postTitle}}</h2>
-        <p>{{postDescription}}</p>
+        <!-- <p>{{postDescription}}</p> -->
     </v-card>
 </template>
 
