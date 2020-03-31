@@ -15,7 +15,9 @@ import gql from 'graphql-tag'
 export default class BlogPost extends Vue {
     @Prop({type: String, required: true, default: ''}) photoPath!: string
 
+
     private post : any
+    //private blog_post_id: number = 0
     async mounted(){
         let result = await this.$apollo.query({
             query: gql`query blog_post(id:""){
