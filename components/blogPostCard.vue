@@ -2,6 +2,7 @@
     <v-card>
         <v-img :src="`${photoPath}`"></v-img>
         <h2>{{postTitle}}</h2>
+        <nuxt-link to="/blog/id"></nuxt-link>
         <!-- <p>{{postDescription}}</p> -->
     </v-card>
 </template>
