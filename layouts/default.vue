@@ -427,10 +427,10 @@ export default class Layout extends Vue {
               title: 'Команда',
               link: '/info/team'
             },
-            {
-              title: 'Награды',
-              link: '/info/awards'
-            },
+            //{
+            //  title: 'Награды',
+            //  link: '/info/awards'
+            //},
             {
               title: 'Адреса',
               link: '/info/address'
