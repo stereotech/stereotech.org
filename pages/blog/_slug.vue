@@ -30,9 +30,9 @@ import { Vue, Component } from 'vue-property-decorator'
 import gql from 'graphql-tag'
 import blogPostCard from '~/components/blogPostCard.vue'
 @Component({
-    components:{
-        blogPostCard
-    }
+  components: {
+    blogPostCard
+  }
 })
 export default class Blog extends Vue {
     private limit: number = 6
