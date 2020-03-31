@@ -36,7 +36,6 @@
           class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
         >{{ $store.state.lang.slogan }}</h1>
       </v-col>
-      <CompareBanner />
       <PrintersBanner />
       <SoftwareBanner />
       <MainParalax image="/main/bg1.webp" button-link="/info/about" />
@@ -48,13 +47,11 @@
 import { Vue, Component } from 'vue-property-decorator'
 import MainParalax from '~/components/MainParalax.vue'
 import PrintersBanner from '~/components/PrintersBanner.vue'
-import CompareBanner from '~/components/printers/CompareBanner.vue'
 import SoftwareBanner from '~/components/software/SoftwareBanner.vue'
 
 @Component({
   components: {
     MainParalax,
-    CompareBanner,
     PrintersBanner,
     SoftwareBanner
   }

@@ -2,22 +2,12 @@
   <v-row>
     <PrinterBanner model="ste520" :description="$store.state.lang.printer.ste520.description" />
     <MainParalax image="/main/bg1.webp" button-link="/info/about" />
-    <SoftwarePanel
-      :title="$store.state.lang.software.steslicer.title"
-      :description="$store.state.lang.software.steslicer.description"
-      microsoftstore
-      app-name="steslicer"
-    >
-      <p
-        class="title text-uppercase font-weight-light"
-      >{{ $store.state.lang.software.steslicer.add1 }}</p>
-      <p
-        class="title text-uppercase font-weight-light"
-      >{{ $store.state.lang.software.steslicer.add2 }}</p>
-      <p
-        class="title text-uppercase font-weight-light"
-      >{{ $store.state.lang.software.steslicer.add3 }}</p>
-    </SoftwarePanel>
+    <ProductCard
+      image="/printers/software/steslicer.webp"
+      title="STE Slicer"
+      description="'Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'"
+      link="/software/steslicer"
+    />
 
     <PrinterFeature
       :title="$store.state.lang.software.steapp.title"
@@ -86,12 +76,7 @@
       >{{ $store.state.lang.printer.common.printhead.add2 }}</p>
     </PrinterFeature>
     <FullSpecs model="ste520" />
-    <BuyPrinter
-      model="ste520"
-      title="STE 520"
-      series = "5xx"
-      date=" "
-    />
+    <BuyPrinter model="ste520" title="STE 520" series="5xx" date=" " />
   </v-row>
 </template>
 
@@ -101,7 +86,7 @@ import PrinterBanner from '~/components/printers/PrinterBanner.vue'
 import MainParalax from '~/components/MainParalax.vue'
 import ColorModes from '~/components/printers/ColorModes.vue'
 import PrinterFeature from '~/components/printers/PrinterFeature.vue'
-import SoftwarePanel from '~/components/software/SoftwarePanel.vue'
+import ProductCard from '~/components/ProductCard.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
 
@@ -111,15 +96,15 @@ import FullSpecs from '~/components/printers/FullSpecs.vue'
     ColorModes,
     MainParalax,
     PrinterFeature,
-    SoftwarePanel,
+    ProductCard,
     BuyPrinter,
     FullSpecs
   },
   head: {
-    title: 'Серия 520'
+    title: 'Серия 5xx'
   }
 })
-export default class Ste520 extends Vue {
+export default class Series5 extends Vue {
 
 }
 
