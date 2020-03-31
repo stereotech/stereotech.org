@@ -151,7 +151,6 @@ export default class ContactForm extends Vue {
     const name = 'Техническая поддержка: ' + new Date().toString() + ' Обращение от ' + this.firstName + ' ' + this.lastName + ''
     const email = this.email
     const description = this.joinFormData
-    console.log(name, email, description)
     try {
       //@ts-ignore
       const token = await this.$recaptcha.execute('login')

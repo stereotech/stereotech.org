@@ -29,6 +29,7 @@ const convertHtmlPlugin: Plugin = (context, inject) => {
                 if (childNode.nodeType === 1) {
                     childNode.removeAttribute('class')
                     childNode.removeAttribute('style')
+                    childNode.removeAttribute('face')
                 }
             })
         }
@@ -40,7 +41,12 @@ const convertHtmlPlugin: Plugin = (context, inject) => {
             root.classList.add('v-data-table__wrapper')
         }
 
-        return root.toString()
+        let result = root.toString()
+
+        result = result.replace(/<\/?font>/g, '')
+        result = result.replace(/<span><br ?\/?><\/span>/g, '')
+        result = result.replace(/<img src="([^"]*)"\s?\/>/g, '<div class="container fill-height"><div class="row align-center justify-center"><div class="col-lg-4 col-sm-6 col-12"><div class="v-responsive v-image"><div class="v-responsive__sizer" style="padding-bottom: 50%;"></div><div class="v-image__image v-image__image--contain" style="background-image: url($1 ); background-position: center center;"></div><div class="v-responsive__content" ></div></div></div></div></div>')
+        return result
     })
 }
 

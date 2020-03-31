@@ -7,15 +7,16 @@
           <v-card-text>Приемущества наших принтеров. Фото с Гришей</v-card-text>
         </v-card>
       </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title>Карточки с кратким описанием принтера и слоганом</v-card-title>
-        </v-card>
+      <v-col lg="10" v-for="(printer, index) in printers" :key="index">
+        <ProductCard
+          :image="printer.image"
+          :title="printer.title"
+          :description="printer.description"
+          :link="printer.link"
+        />
       </v-col>
       <v-col cols="12">
-        <v-card>
-          <v-card-title>Таблица сравнения функций</v-card-title>
-        </v-card>
+        <CompareSpecs />
       </v-col>
       <v-col cols="12">
         <v-card>
@@ -23,17 +24,6 @@
           <v-card-text>Три последних поста</v-card-text>
         </v-card>
       </v-col>
-      <v-col class="align-center" cols="12">
-        <h1
-          class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
-        >{{ $store.state.lang.compareOurPrinters }}</h1>
-        <h1
-          class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
-        >{{ $store.state.lang.compareOurPrinters }}</h1>
-      </v-col>
-      <CompareBanner />
-
-      <CompareSpecs />
     </v-row>
   </v-container>
 </template>
@@ -41,19 +31,43 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import CompareSpecs from '~/components/printers/CompareSpecs.vue'
-import CompareBanner from '~/components/printers/CompareBanner.vue'
+import ProductCard from '~/components/ProductCard.vue'
 
 @Component({
   components: {
-    CompareBanner,
+    ProductCard,
     CompareSpecs
   },
   head: {
-    title: 'Оборудование'
+    title: 'Настольные принтеры'
   }
 })
 export default class Printers extends Vue {
-
+  printers: {
+    image: string,
+    title: string,
+    description: string,
+    link: string
+  }[] = [
+      {
+        image: '/printers/desktop/series3.jpg',
+        title: 'Серия 3xx',
+        description: 'Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.',
+        link: '/printers/series3'
+      },
+      {
+        image: '/printers/desktop/series5.jpg',
+        title: 'Серия 5xx',
+        description: 'Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.',
+        link: '/printers/series5'
+      },
+      {
+        image: '/printers/desktop/special.jpg',
+        title: 'Специальная серия',
+        description: 'Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.',
+        link: '/printers/special'
+      }
+    ]
 }
 
 </script>

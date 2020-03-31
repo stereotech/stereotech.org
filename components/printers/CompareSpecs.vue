@@ -65,14 +65,7 @@ export default class CompareSpecs extends Vue {
     })
     this.products = result.data.products
 
-    this.compareTableData = this.products.map(product => {
-      if (product.options) {
-        let option = product.options.find(opt => opt.product_option_id == '394')
-        return [...option.product_option_value]
 
-      }
-    })
-    console.log(this.compareTableData)
   }
 }
 
