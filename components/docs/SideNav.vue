@@ -14,7 +14,7 @@
             v-for="content in link.contents"
             :key="content.to"
             nuxt
-            :to="`/manuals${menuSection}${link.to}${content.to}`"
+            :to="`/support/manuals${menuSection}${link.to}${content.to}`"
           >{{ content.name }}</v-list-item>
         </template>
         <!--<v-list-group value="true">

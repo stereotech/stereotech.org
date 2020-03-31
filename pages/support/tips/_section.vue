@@ -1,14 +1,12 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12" sm="3">
-        <SideNav />
-      </v-col>
-      <v-col cols="12" sm="9">
-        <nuxt-child />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row>
+    <v-col cols="12" sm="3">
+      <SideNav />
+    </v-col>
+    <v-col cols="12" sm="9">
+      <nuxt-child />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
