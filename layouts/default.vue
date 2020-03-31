@@ -354,7 +354,7 @@ export default class Layout extends Vue {
             {
               title: 'Научная деятельность',
               description: '',
-              link: '/blog/sciense'
+              link: '/blog/science'
             },
           ]
         }

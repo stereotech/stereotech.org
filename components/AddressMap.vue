@@ -32,12 +32,11 @@
         </v-row>
         <v-row justify="center">
           <template v-for="(address, index) in addresses">
-            <v-col cols="12" sm="6" md="4" lg="3" :key="index">
-              <v-card class="mx-auto" max-width="344" outlined>
+            <v-col cols="12" md="6" lg="4" :key="index">
+              <v-card class="mx-auto" outlined>
                 <v-list-item three-line>
                   <v-list-item-content>
-                    <div class="overline mb-4" v-if="address.type < 1">Производитель</div>
-                    <v-list-item-title class="headline mb-1">{{ address.name }}</v-list-item-title>
+                    <v-list-item-title class="headline">{{ address.name }}</v-list-item-title>
                     <v-list-item-subtitle>{{ address.country }}, {{ address.region }}</v-list-item-subtitle>
                     <v-list-item-subtitle>{{ address.address }}</v-list-item-subtitle>
                   </v-list-item-content>
@@ -46,7 +45,6 @@
                     <v-img :src="address.logo" />
                   </v-list-item-avatar>
                 </v-list-item>
-
                 <v-card-actions>
                   <v-btn
                     v-if="!$vuetify.breakpoint.xs"

@@ -1,22 +1,20 @@
 <template>
-  <v-col cols="12">
-    <v-card>
-      <v-container fluid grid-list-xs>
-        <v-row>
-          <v-col cols="12">
-            <h4 class="text-center display-2 font-weight-light">{{ $store.state.lang.team.title }}</h4>
-          </v-col>
-          <TeamCard
-            v-for="(member, index) in team"
-            :key="index"
-            :name="member.name"
-            :description="member.description"
-            :image="member.image"
-          />
-        </v-row>
-      </v-container>
-    </v-card>
-  </v-col>
+  <v-card>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12">
+          <h4 class="text-center display-2 font-weight-light">{{ $store.state.lang.team.title }}</h4>
+        </v-col>
+        <TeamCard
+          v-for="(member, index) in team"
+          :key="index"
+          :name="member.name"
+          :description="member.description"
+          :image="member.image"
+        />
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script lang="ts">
