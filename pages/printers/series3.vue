@@ -72,12 +72,7 @@
     </PrinterFeature>
     <SupportedSlicers />
     <FullSpecs model="ste320" />
-    <BuyPrinter
-      model="ste320"
-      title="STE 320"
-      series = "3xx"
-      date=" "
-    />
+    <BuyPrinter model="ste320" title="STE 320" series="3xx" date=" " />
   </v-row>
 </template>
 
@@ -86,7 +81,6 @@ import { Vue, Component } from 'vue-property-decorator'
 import PrinterBanner from '~/components/printers/PrinterBanner.vue'
 import ColorModes from '~/components/printers/ColorModes.vue'
 import PrinterFeature from '~/components/printers/PrinterFeature.vue'
-import SoftwarePanel from '~/components/software/SoftwarePanel.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
 import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
@@ -96,7 +90,6 @@ import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
     PrinterBanner,
     ColorModes,
     PrinterFeature,
-    SoftwarePanel,
     BuyPrinter,
     FullSpecs,
     SupportedSlicers
@@ -105,7 +98,7 @@ import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
     title: 'Серия 3хх'
   }
 })
-export default class Ste320 extends Vue {
+export default class Series3 extends Vue {
 
 }
 

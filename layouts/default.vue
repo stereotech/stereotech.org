@@ -18,6 +18,12 @@
             </template>
           </v-list-group>
         </template>
+        <v-list-item nuxt to="/resellers">
+          <v-list-item-icon>
+            <v-icon>mdi-map-marker-question-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Где купить</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="secondary" text app clipped-left>
@@ -52,8 +58,12 @@
                     <v-col cols="4" :key="childIndex">
                       <v-list dense nav class="primary--text">
                         <v-list-item nuxt exact :to="childItem.link">
-                          <v-list-item-avatar tile>
-                            <v-img src="https://via.placeholder.com/100"></v-img>
+                          <v-list-item-avatar tile v-if="childItem.icon">
+                            <v-icon
+                              color="primary"
+                              v-if="childItem.icon.startsWith('mdi-')"
+                            >{{ childItem.icon }}</v-icon>
+                            <v-img contain v-else :src="childItem.icon"></v-img>
                           </v-list-item-avatar>
                           <v-list-item-content>
                             <v-list-item-title>{{ childItem.title }}</v-list-item-title>
@@ -90,7 +100,7 @@
         </template>
       </v-toolbar-items>
       <v-spacer />
-      <v-btn text color="primary" nuxt to="/resellers" exact>
+      <v-btn text color="primary" nuxt to="/resellers" exact class="hidden-sm-and-down">
         Где купить
         <v-icon right dark>mdi-map-marker-question-outline</v-icon>
       </v-btn>
@@ -114,42 +124,61 @@
     <v-content>
       <nuxt />
     </v-content>
-    <v-footer height="auto" color="#E0E0E0">
+    <v-footer height="auto" color="primary" dark>
       <v-container>
         <v-row>
-          <v-col cols="12" sm="6" lg="3">
-            <v-container fluid class="primary--text">
+          <v-col cols="12" sm="3">
+            <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-btn text large block>
-                    &copy;{{ currentYear }} —
-                    <strong>Stereotech</strong>
-                  </v-btn>
-                </v-col>
-                <v-col cols="12">
-                  <v-btn color="accent" text large block href="tel:+79023648404">+79023648404</v-btn>
-                </v-col>
-                <v-col cols="12">
-                  <v-btn text large block href="mailto:info@ste3d.ru" target="_blank">info@ste3d.ru</v-btn>
-                </v-col>
-                <v-col cols="12" class="text-center">
-                  <v-btn text icon href="https://vk.com/ste3d_ru" target="_blank">
-                    <v-icon>mdi-vk</v-icon>
-                  </v-btn>
-                  <v-btn text icon href="https://instagram.com/ste3d_ru/" target="_blank">
-                    <v-icon>mdi-instagram</v-icon>
-                  </v-btn>
+                  <v-list flat light dense dark color="primary">
+                    <v-list-item>
+                      <v-list-item-title>
+                        &copy;{{ currentYear }} —
+                        <strong>Stereotech</strong>
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item href="tel:+79023648404">
+                      <v-list-item-title>+79023648404</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item href="mailto:info@ste3d.ru" target="_blank">
+                      <v-list-item-title>info@ste3d.ru</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-btn text icon href="https://vk.com/ste3d_ru" target="_blank">
+                        <v-icon>mdi-vk</v-icon>
+                      </v-btn>
+                      <v-btn text icon href="https://instagram.com/ste3d_ru/" target="_blank">
+                        <v-icon>mdi-instagram</v-icon>
+                      </v-btn>
+                    </v-list-item>
+                  </v-list>
                 </v-col>
               </v-row>
             </v-container>
           </v-col>
-          <v-col cols="6" sm="3">
+          <v-col cols="12" sm="9">
             <v-container>
-              <v-row></v-row>
+              <v-row>
+                <v-col cols="12" sm="6" lg="3" v-for="(menu, index) in mainMenu" :key="index">
+                  <v-list flat light dense dark color="primary">
+                    <v-list-item>
+                      <v-list-item-title class="text-uppercase font-weight-bold">{{ menu.title }}</v-list-item-title>
+                    </v-list-item>
+                    <v-divider />
+                    <v-list-item
+                      nuxt
+                      :to="child.link"
+                      v-for="(child, childIndex) in menu.child"
+                      :key="childIndex"
+                    >
+                      <v-list-item-title>{{ child.title}}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-col>
+              </v-row>
             </v-container>
           </v-col>
-          <v-col cols="6" sm="3"></v-col>
-          <v-col cols="6" sm="3"></v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols="6" lg="3">
@@ -166,7 +195,7 @@
               <v-img
                 height="64"
                 contain
-                src="http://fasie.ru/local/templates/.default/markup/img/head_logo_fasie.png"
+                src="http://fasie.ru/local/templates/.default/markup/img/footer_logo_fasie.png"
               />
             </a>
           </v-col>
@@ -213,16 +242,17 @@ export default class Layout extends Vue {
         {
           title: 'Настольные принтеры',
           link: '/printers',
+          icon: 'https://via.placeholder.com/150?text=/printers/desktop/series3.jpg',
           child: [
             {
               title: 'Ceрия 3xx',
-              link: '/printers/ste320',
+              link: '/printers/series3',
               description: 'Профессиональные 3D принтеры'
             },
             {
               title: 'Ceрия 5xx',
-              link: '/printers/ste520',
-              description: 'Настольные 5D принтеры'
+              link: '/printers/series5',
+              description: 'Инновационные 5D принтеры'
             },
             {
               title: 'Серия Special',
@@ -234,6 +264,7 @@ export default class Layout extends Vue {
         {
           title: 'Промышленные принтеры',
           link: '/industrial',
+          icon: '/printers/industrial/series8.jpg',
           child: [
             {
               title: 'Ceрия 6xx',
@@ -250,6 +281,7 @@ export default class Layout extends Vue {
         {
           title: 'Программное обеспечение',
           link: '/software',
+          icon: '/printers/software/steapp.webp',
           child: [
             {
               title: 'STE Slicer',
