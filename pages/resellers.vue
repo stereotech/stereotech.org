@@ -37,7 +37,7 @@
             <v-container>
               <v-row justify="center">
                 <v-col cols="12">
-                  <QuoteForm buttonText="Стать дилером" title="Запрос длля дилеров" dealers />
+                  <QuoteForm buttonText="Стать дилером" title="Запрос для дилеров" dealers />
                 </v-col>
               </v-row>
             </v-container>

@@ -27,7 +27,7 @@ import { VAlert } from 'vuetify/lib'
   },
   async asyncData (context: any) {
     const slug = context.params.slug || '1-introduction'
-    const path = `/${context.store.state.locale}/${context.params.section}/${slug}`
+    const path = `/${context.store.state.locale}/tips-${context.params.section}/${slug}`
     const data = {
       path,
       section: context.params.section,
