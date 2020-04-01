@@ -9,8 +9,8 @@
           class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
         >Советы по использованию</h1>
       </v-col>
-      <v-col cols="12" lg="10" v-for="(manualGroup,index) in manualGroups" :key="index">
-        <ManualPanel :title="manualGroup.name" :manuals="manualGroup.items" />
+      <v-col cols="12" sm="6" lg="4" v-for="(manualGroup,index) in manualGroups" :key="index">
+        <ManualPanel text :title="manualGroup.name" :manuals="manualGroup.items" />
       </v-col>
     </v-row>
   </v-container>
@@ -36,14 +36,9 @@ export default class Tips extends Vue {
       items: [
         {
           name: 'STE 320',
-          link: '/support/manuals/ste320/1-introduction',
+          link: '/support/tips/printers/1-introduction',
           image: '/printers/STE 320/banner.webp'
-        },
-        {
-          name: 'STE 320',
-          link: '/support/manuals/ste320/2-quickstart',
-          image: '/printers/STE 320/banner.webp'
-        },
+        }
       ]
     }
   ]
