@@ -1,8 +1,7 @@
 <template>
+<v-container>
+    <h4>Сравнение стоимости производства 3D модели:</h4>
     <v-simple-table>
-        <thead>
-            <td colspan="3">Сравнение стоимости производства 3D модели:</td>
-        </thead>
         <tbody>
             <tr>
                 <td>Stereotech STE 520</td>
@@ -27,6 +26,8 @@
         </tbody>
 
     </v-simple-table>
+</v-container>
+    
 </template>
 
 <script lang="ts">

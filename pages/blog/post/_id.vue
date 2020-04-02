@@ -1,9 +1,10 @@
 <template>
     <v-container>
-        <v-img :src="`${post.image}`"></v-img>
+        <v-parallax :src="`${post.image}`"></v-parallax>
+        <h2 class="text-center">{{post.name}}</h2>
         <p>{{post.author}}</p>
         <p>{{post.date_added}}</p>
-        <p>{{post.description}}</p>
+        <p class="text-center">{{post.description}}</p>
     </v-container>
 </template>
 
@@ -20,13 +21,18 @@ export default class BlogPost extends Vue {
     //private blog_post_id: number = 0
     async mounted(){
         let result = await this.$apollo.query({
-            query: gql`query blog_post(id:""){
+            query: gql`query($id: ID!){
+                blog_post(id: $id){
                 name,
                 image,
                 author,
                 date_added,
                 description
-                }`
+                }
+            }`,
+                variables: {
+                    id: this.$route.params.id
+                }
         })
         this.post = result.data.blog_post
     }

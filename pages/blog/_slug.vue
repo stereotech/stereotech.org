@@ -4,20 +4,20 @@
         <h4>Категории</h4>
         <v-row>
             <v-chip-group>
-                <v-chip>
-                    <nuxt-link to="/blog/news" exact>Новости</nuxt-link>
+                <v-chip nuxt exact to="/blog/news">
+                    Новости
                 </v-chip>
-                <v-chip>
-                    <nuxt-link to="/blog/science" exact>Научная деятельность</nuxt-link>
+                <v-chip nuxt exact to="/blog/science">
+                    Научная деятельность
                 </v-chip>
             </v-chip-group>
         </v-row>
         <blogPostCard 
             v-for="(post, index) in posts"
             :key="index"
-            photoPath = "posts.image"
-            postTitle = "posts.name"
-            postDescription = "posts.description"
+            :photoPath = "post.image"
+            :postTitle = "post.name"
+            :postDescription = "post.description"
         ></blogPostCard>
         <v-row align="center">
             <v-btn dark color="primary" @click="showMore()">Показать ещё</v-btn>
@@ -50,15 +50,17 @@ export default class Blog extends Vue {
         }
     ]
     async mounted(){
+        //this.limit = 6
         let result: any 
         if(this.$route.params.slug === undefined){
             result = await this.$apollo.query({
-            query: gql`query blog_filter(sort: "p.date_added" , order: "DESC", start: 0, $limit: number){
+            query: gql`query($limit: Int!){
+                blog_filter(sort: "p.date_added" , order: "DESC", start: 0, limit: $limit){
                 post_id,
                 name,
                 image,
                 description
-            }`,
+            }}`,
             variables: {
                 limit: this.limit
             }
@@ -66,13 +68,14 @@ export default class Blog extends Vue {
         }
         else{
             result = await this.$apollo.query({
-            query: gql`query blog_filter($filter_category_id: String, sort: "p.date_added" , order: "DESC", start: 0, $limit: number){
+            query: gql`query($category_id: ID!, $limit: Int!){
+                blog_filter(filter_category_id: $category_id, sort: "p.date_added" , order: "DESC", start: 0, limit: $limit){
                 post_id,
                 name,
                 image
-            }`,
+            }}`,
             variables: {
-                filter_category_id: String(this.slugMapping.find(item => item.slug == this.$route.params.slug).id),
+                filter_category_id: this.slugMapping.find(item => item.slug == this.$route.params.slug).id,
                 limit: this.limit
             }
         })
