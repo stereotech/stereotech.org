@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
+      <v-col cols="12" sm="8" md="6" lg="3">
+        <v-img src="stereotech.jpg"></v-img>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="10" v-if="team">
         <TeamPanel />
       </v-col>
