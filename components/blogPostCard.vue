@@ -1,9 +1,10 @@
 <template>
-    <v-card>
+    <v-card nuxt to='/blog/post/id'>
         <v-img :src="`${photoPath}`"></v-img>
-        <h2>{{postTitle}}</h2>
-        <nuxt-link to="/blog/id"></nuxt-link>
-        <!-- <p>{{postDescription}}</p> -->
+        <v-card-title>{{postTitle}}</v-card-title>
+        <v-card-text>            
+            <!-- <p>{{postDescription}}</p> -->
+        </v-card-text>
     </v-card>
 </template>
 
@@ -15,6 +16,7 @@ export default class blogPostCard extends Vue{
     @Prop({type: String, required: true, default: ''}) photoPath!: string
     @Prop({ type: String, required: true, default: '' }) postTitle!: string
     @Prop({ type: String, required: true, default: '' }) postDescription!: string
+    @Prop({ type: String, required: true, default: '' }) postID !: string
 
 }
 </script>
