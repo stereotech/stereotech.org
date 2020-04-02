@@ -16,9 +16,6 @@
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
             </v-col>
-            <v-col cols="12">
-              <v-text-field outlined label="Компания" v-model="company"></v-text-field>
-            </v-col>
             <v-col cols="12" v-if="equipment">
               <v-checkbox
                 color="primary"
@@ -28,9 +25,6 @@
                 :label="interest"
                 :value="interest"
               ></v-checkbox>
-            </v-col>
-            <v-col cols="12" v-if="subscription">
-              <v-switch v-model="subscribe" label="Подписаться на рассылку" color="primary"></v-switch>
             </v-col>
           </v-row>
         </v-container>
@@ -63,26 +57,21 @@ import gql from 'graphql-tag'
     DialogForm
   }
 })
-export default class QuoteForm extends Vue {
+export default class TestingForm extends Vue {
   private snackbar: boolean = false
   private snackbarText: string = ''
   private snackbarError: boolean = false
 
-  dialog: boolean = false
   valid: boolean = false
 
   name: string = ''
   phone: string = ''
   email: string = ''
-  company: string = ''
   interestIn: string[] = []
-  subscribe: boolean = true
 
   interests: string[] = [
-    'Серия 3xx',
-    'Серия 5xx',
-    'Серия Special',
-    'Промышленые принтеры',
+    'STE App',
+    'STE Slicer'
   ]
 
   nameRules = [
@@ -101,15 +90,13 @@ export default class QuoteForm extends Vue {
       Имя обратившегося: ${this.name},
       Телефон: ${this.phone},
       E-Mail: ${this.email},
-      Компания: ${this.company},
       Интерес в: ${this.interestIn},
-      Подписка на новости: ${this.subscribe}
     `
     return str
   }
 
   private async submit () {
-    let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
+    let name = 'Запрос в программу тестирования'
     name += ': ' + new Date().toString() + ' Обращение от ' + this.name
     const email = this.email
     const description = this.joinFormData
@@ -134,25 +121,18 @@ export default class QuoteForm extends Vue {
       this.name = ""
       this.phone = ""
       this.email = ""
-      this.company = ""
       this.interests = []
-      this.subscribe = true
-
-      this.dialog = false
-
     } catch (error) {
       this.snackbarText = 'Произошла ошибка при отправке формы, ' + error
       this.snackbarError = true
       this.snackbar = true
     }
   }
-
   @Prop({ type: String, default: 'button text' }) buttonText!: string
   @Prop({ type: String, default: 'Title' }) title!: string
   @Prop({ type: Boolean, default: false }) equipment!: boolean
-  @Prop({ type: Boolean, default: false }) subscription!: boolean
-  @Prop({ type: Boolean, default: false }) dealers!: boolean
 }
+
 
 </script>
 

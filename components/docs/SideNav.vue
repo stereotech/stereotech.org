@@ -14,19 +14,9 @@
             v-for="content in link.contents"
             :key="content.to"
             nuxt
-            :to="`/manuals${menuSection}${link.to}${content.to}`"
+            :to="`/support/${folder}${menuSection}${link.to}${content.to}`"
           >{{ content.name }}</v-list-item>
         </template>
-        <!--<v-list-group value="true">
-        <template v-slot:activator>
-          
-        </template>
-        <v-list-item
-          v-for="content in link.contents"
-          :key="content.to"
-          @click="goTo(`/manuals${menuSection}${link.to}${content.to}` ,content.to)"
-        >{{ content.name }}</v-list-item>
-        </v-list-group>-->
       </template>
       <v-divider v-if="downloadLink"></v-divider>
       <v-list-item v-if="downloadLink" :href="downloadLink" target="_blank">
@@ -40,12 +30,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { State } from 'vuex-class'
 import { RootState } from '~/store'
 
 @Component
 export default class SideNav extends Vue {
+  @Prop({ type: String, default: '' }) prefix!: string
+  @Prop({ type: String, default: 'manuals' }) folder!: string
   @State menu!: any
 
   current: number = 0
@@ -54,7 +46,7 @@ export default class SideNav extends Vue {
   item: any = {}
 
   get list (): any[] {
-    return this.menu[this.$route.params.section] || []
+    return this.menu[this.prefix + this.$route.params.section] || []
   }
 
   get menuSection (): string {
@@ -62,7 +54,7 @@ export default class SideNav extends Vue {
   }
 
   get downloadLink (): string | undefined {
-    return this.menu[this.$route.params.section][0].download
+    return this.menu[this.prefix + this.$route.params.section][0].download
   }
 
   goTo (to: string, content: string) {
