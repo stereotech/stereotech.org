@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row justify="center">
       <v-col lg="10" v-for="(soft, index) in software" :key="index">
         <ProductCard

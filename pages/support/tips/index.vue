@@ -4,13 +4,13 @@
       <v-col cols="12" lg="10">
         <h1
           class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
-        >{{ $store.state.lang.docs }}</h1>
+        >Советы по использованию</h1>
         <h1
           class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
-        >{{ $store.state.lang.docs }}</h1>
+        >Советы по использованию</h1>
       </v-col>
-      <v-col cols="12" lg="10" v-for="(manualGroup,index) in manualGroups" :key="index">
-        <ManualPanel :title="manualGroup.name" :manuals="manualGroup.items" />
+      <v-col cols="12" sm="6" lg="4" v-for="(manualGroup,index) in manualGroups" :key="index">
+        <ManualPanel text :title="manualGroup.name" :manuals="manualGroup.items" />
       </v-col>
     </v-row>
   </v-container>
@@ -23,36 +23,21 @@ import { ManualGroup } from '~/types/manual'
 
 @Component({
   head: {
-    title: 'Руководства пользователя'
+    title: 'Советы по использованию'
   },
   components: {
     ManualPanel
   }
 })
-export default class Manuals extends Vue {
+export default class Tips extends Vue {
   manualGroups: ManualGroup[] = [
     {
       name: this.$store.state.lang.manuals.printers,
       items: [
         {
           name: 'STE 320',
-          link: '/support/manuals/ste320',
+          link: '/support/tips/printers/1-introduction',
           image: '/printers/STE 320/banner.webp'
-        }
-      ]
-    },
-    {
-      name: this.$store.state.lang.manuals.software,
-      items: [
-        {
-          name: 'STE App',
-          link: '/support/manuals/steapp',
-          image: '/printers/common/cluster1.webp'
-        },
-        {
-          name: 'STE Slicer',
-          link: '/support/manuals/steslicer',
-          image: '/printers/common/steslicer.jpg'
         }
       ]
     }

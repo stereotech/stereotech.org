@@ -34,7 +34,7 @@ export class DocsServer {
     server: any
     constructor (options: DocsServerOptions) {
         this.docsDir = options.docsDir || process.cwd()
-        this.defaultLang = options.defaultLang || 'en'
+        this.defaultLang = options.defaultLang || 'ru'
         this.port = options.port || 3001
         this.repo = options.repo
         this.watch = options.watch

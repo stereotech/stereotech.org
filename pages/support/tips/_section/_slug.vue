@@ -11,23 +11,6 @@
           </v-container>
         </v-card>
       </v-col>
-      <v-col cols="12">
-        <v-btn outlined color="primary" v-if="prevLink" nuxt @click="goBack">
-          <v-icon left>mdi-chevron-left</v-icon>
-          {{ prevLink.name }}
-        </v-btn>
-        <v-btn
-          outlined
-          color="primary"
-          class="inline-block float-right"
-          v-if="nextLink"
-          nuxt
-          @click="goNext"
-        >
-          {{ nextLink.name }}
-          <v-icon right>mdi-chevron-right</v-icon>
-        </v-btn>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -44,7 +27,7 @@ import { VAlert } from 'vuetify/lib'
   },
   async asyncData (context: any) {
     const slug = context.params.slug || '1-introduction'
-    const path = `/${context.store.state.locale}/${context.params.section}/${slug}`
+    const path = `/${context.store.state.locale}/tips-${context.params.section}/${slug}`
     const data = {
       path,
       section: context.params.section,
@@ -64,14 +47,13 @@ import { VAlert } from 'vuetify/lib'
     return data
   }
 })
-export default class ManualSlug extends Vue {
+export default class Slug extends Vue {
   page: any = {}
   path: string = ''
   section: string = ''
 
-
   get baseLink () {
-    return '/support/manuals/' + this.$route.params.section
+    return '/' + this.$route.params.section
   }
   get list (): any[] {
     return this.$store.state.menu[this.$route.params.section].reduce((links: any, section: any) => links.concat(section.links), [])
@@ -79,14 +61,13 @@ export default class ManualSlug extends Vue {
   get lastPathPart (): string {
     return this.$route.path.replace(/\/$/, '').split('/')[4] || ''
   }
-
   get prevLink (): any {
-    const index = this.list.findIndex(link => (link.to || '') === `/${this.lastPathPart}`)
+    const index = this.list.findIndex(link => (link.to || '/') === `/${this.lastPathPart}`)
 
     return this.list[index - 1] || null
   }
   get nextLink (): any {
-    const index = this.list.findIndex(link => (link.to || '') === `/${this.lastPathPart}`)
+    const index = this.list.findIndex(link => (link.to || '/') === `/${this.lastPathPart}`)
 
     return this.list[index + 1] || null
   }
@@ -100,13 +81,8 @@ export default class ManualSlug extends Vue {
     this.$router.push(this.baseLink + this.nextLink.to)
     this.$vuetify.goTo(0)
   }
-
-  mounted () {
-    if (!this.$route.params.slug) {
-      this.$router.push(this.$route.fullPath + '/1-introduction')
-    }
-  }
 }
+
 </script>
 
 <style>

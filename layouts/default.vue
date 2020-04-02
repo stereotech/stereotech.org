@@ -285,12 +285,12 @@ export default class Layout extends Vue {
           child: [
             {
               title: 'STE Slicer',
-              link: '/software/ste-slicer',
+              link: '/software/steslicer',
               description: 'Подготовка к 3D и 5D печати'
             },
             {
               title: 'STE App',
-              link: '/software/ste-app',
+              link: '/software/steapp',
               description: 'Управление процессом печати'
             },
           ]
