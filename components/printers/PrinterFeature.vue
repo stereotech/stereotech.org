@@ -1,25 +1,23 @@
 <template>
-  <v-col cols="12">
-    <v-card>
-      <v-container fluid grid-list-lg>
-        <v-row align="center">
-          <v-col v-if="!rightText" class="text-center" cols="12" sm="6">
-            <h4 class="headline text-uppercase font-weight-regular pb-4">{{ title }}</h4>
-            <p class="title text-uppercase font-weight-light">{{ description }}</p>
-            <slot />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <v-img :src="image" max-height="500" contain />
-          </v-col>
-          <v-col v-if="rightText" class="text-center" cols="12" sm="6">
-            <h4 class="headline text-uppercase font-weight-regular pb-4">{{ title }}</h4>
-            <p class="title text-uppercase font-weight-light">{{ description }}</p>
-            <slot />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
-  </v-col>
+  <v-card>
+    <v-container fluid grid-list-lg>
+      <v-row align="center">
+        <v-col v-if="!rightText" class="text-center" cols="12" sm="6">
+          <h4 class="headline text-uppercase font-weight-regular pb-4">{{ title }}</h4>
+          <p class="title text-uppercase font-weight-light">{{ description }}</p>
+          <slot />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-img :src="image" max-height="500" contain />
+        </v-col>
+        <v-col v-if="rightText" class="text-center" cols="12" sm="6">
+          <h4 class="headline text-uppercase font-weight-regular pb-4">{{ title }}</h4>
+          <p class="title text-uppercase font-weight-light">{{ description }}</p>
+          <slot />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script lang="ts">
