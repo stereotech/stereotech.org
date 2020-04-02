@@ -25,7 +25,7 @@ stages:
 pages:
   extends: .buildNuxt
   script:
-    - npm run generate
+    - npm run generate:pages
   only:
     - develop
 
