@@ -1,9 +1,17 @@
 <template>
   <v-container>
-    <v-row justify="center" v-if="post">
-      <v-col cols="12">
-        <v-parallax :src="`https://api.ste3d.ru/image/${post.image}`"></v-parallax>
-      </v-col>
+    <v-card>
+      <v-img :src="`https://api.ste3d.ru/image/${post.image}`">
+        <v-card-title class="white--text align-end" v-html="post.name"></v-card-title>
+      </v-img>
+      <v-card-subtitle class="pb-0">{{post.date_added}}</v-card-subtitle>
+      <v-card-text class="text--primary">
+        <p>{{post.author}}</p>
+        <div v-html="post.description"></div>
+      </v-card-text>
+    </v-card>
+    <!-- <v-row justify="center" v-if="post">
+
       <v-col class="text-center">
         <h1 class="font-weight-light">{{post.name}}</h1>
       </v-col>
@@ -14,8 +22,8 @@
       <v-col cols="12">
         <div v-html="post.description"></div>
       </v-col>
-    </v-row>
-    <v-row v-else justify="center">
+    </v-row> -->
+    <v-row v-if="!post" justify="center">
       <v-col cols="1">
         <v-progress-circular indeterminate></v-progress-circular>
       </v-col>
