@@ -99,7 +99,7 @@
         <FullSpecs :attributes="product.attributes" />
       </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter :variant="currentPrinter" :price="currentPrice" />
+        <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
     </v-row>
   </v-container>
@@ -137,7 +137,7 @@ export default class Series3 extends Vue {
   printerItems: PrinterVariant[] = [
     {
       model: '320 Base',
-      image: '',
+      image: 'desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Single,
       printVolumeType: PrintVolumeType.Standard,
@@ -145,7 +145,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '320 Pro',
-      image: '',
+      image: 'desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -153,7 +153,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '320 Plus',
-      image: '',
+      image: 'desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.StandardLong,
@@ -161,7 +161,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '330 Pro',
-      image: '',
+      image: 'desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -169,7 +169,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '330 Plus',
-      image: '',
+      image: 'desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.ExtendedLong,
