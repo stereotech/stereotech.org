@@ -1,7 +1,7 @@
 <template>
   <v-card nuxt :to="`/blog/post/${postID}`">
-    <v-img :src="`${photoPath}`"></v-img>
-    <v-card-title class="text-center" v-html="postTitle"></v-card-title>
+    <v-img :src="`${photoPath}`" contain></v-img>
+    <v-card-title class="text-center" v-html="postTitle">{{postTitle}}</v-card-title>
     <v-card-text>
       <!-- <p>{{postDescription}}</p> -->
     </v-card-text>

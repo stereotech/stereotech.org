@@ -18,7 +18,7 @@
     </v-row>
 
     <v-row>
-      <v-col v-for="(post, index) in posts" :key="index" :cols="4">
+      <v-col v-for="(post, index) in posts" :key="index" :cols="12" md="4">
         <blogPostCard
           :postID="post.post_id"
           :photoPath="`https://api.ste3d.ru/image/${post.image}`"

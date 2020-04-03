@@ -1,9 +1,25 @@
 <template>
   <v-container>
-    <v-row justify="center" v-if="post">
-      <v-col cols="12">
-        <v-parallax :src="`https://api.ste3d.ru/image/${post.image}`"></v-parallax>
-      </v-col>
+    <v-card>
+      <v-img
+        gradient="to bottom, rgba(2,119,189,0.2), rgba(2, 119, 189, 0.75)"
+        :src="`https://api.ste3d.ru/image/${post.image}`"
+        class="white--text align-end"
+      >
+        <v-card-title
+          class="hidden-sm-and-down display-1 font-weight-light text-break"
+          v-html="post.name"
+        ></v-card-title>
+        <v-card-title class="hidden-md-and-up font-weight-light text-break" v-html="post.name"></v-card-title>
+      </v-img>
+      <v-card-subtitle class="pb-0">{{post.date_added}}</v-card-subtitle>
+      <v-card-text class="text--primary">
+        <p>{{post.author}}</p>
+        <div v-html="post.description"></div>
+      </v-card-text>
+    </v-card>
+    <!-- <v-row justify="center" v-if="post">
+
       <v-col class="text-center">
         <h1 class="font-weight-light">{{post.name}}</h1>
       </v-col>
@@ -14,8 +30,8 @@
       <v-col cols="12">
         <div v-html="post.description"></div>
       </v-col>
-    </v-row>
-    <v-row v-else justify="center">
+    </v-row>-->
+    <v-row v-if="!post" justify="center">
       <v-col cols="1">
         <v-progress-circular indeterminate></v-progress-circular>
       </v-col>
@@ -58,5 +74,12 @@ export default class BlogPost extends Vue {
 
 </script>
 
-<style>
+<style scoped>
+.bottom-gradient {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    transparent 72px
+  );
+}
 </style>
