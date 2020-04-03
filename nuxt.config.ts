@@ -3,6 +3,7 @@ import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 const domain = process.env.NUXT_ENV_DOMAIN || 'https://stereotech.org'
+const rootPath = process.env.NUXT_ENV_ROOT || '/'
 
 const config: Configuration = {
   head: {
@@ -29,6 +30,7 @@ const config: Configuration = {
 
   router: {
     // middleware: 'i18n'
+    base: rootPath
   },
   /*
   ** Global CSS
