@@ -1,10 +1,20 @@
 <template>
     <v-container>
-        <v-parallax :src="`${post.image}`"></v-parallax>
-        <h2 class="text-center">{{post.name}}</h2>
-        <p>{{post.author}}</p>
-        <p>{{post.date_added}}</p>
-        <p class="text-center">{{post.description}}</p>
+        <v-row justify="center">
+            <v-col cols="12">
+                <v-parallax :src="`https://api.ste3d.ru/image/${post.image}`"></v-parallax>
+            </v-col>
+           <v-col class="text-center">
+                <h1 class="font-weight-light">{{post.name}}</h1>
+           </v-col>
+           <v-col offset-md="2">
+                <p>{{post.author}}</p>
+                <p>{{post.date_added}}</p>
+           </v-col>
+            <v-col class="text-center">
+                <p>{{post.description}}</p>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
@@ -35,6 +45,7 @@ export default class BlogPost extends Vue {
                 }
         })
         this.post = result.data.blog_post
+        //console.log(this.$route.params)
     }
 
 }
