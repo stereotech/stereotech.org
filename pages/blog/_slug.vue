@@ -1,24 +1,40 @@
 <template>
-  <v-container>
-    <h2>Блог</h2>
-    <h4>Категории</h4>
-    <v-row>
+  <v-container fluid>
+  <v-row justify="center">
+    <v-col cols="12" class="text-center">
+      <h1 class="font-weight-light">Блог</h1>
+
+    </v-col>
+  </v-row>
+   
+   <v-row justify="center"> 
+      <v-col cols="auto" >
+      <h4 class="font-weight-light text-center">Категории</h4>
       <v-chip-group color="primary">
         <v-chip nuxt exact to="/blog">Все темы</v-chip>
         <v-chip nuxt exact to="/blog/news">Новости</v-chip>
         <v-chip nuxt exact to="/blog/science">Научная деятельность</v-chip>
       </v-chip-group>
-    </v-row>
-    <blogPostCard
-      v-for="(post, index) in posts"
-      :key="index"
-      :photoPath="`https://api.ste3d.ru/image/${post.image}`"
-      :postTitle="post.name"
-      :postDescription="post.description"
-    ></blogPostCard>
-    <v-row align="center">
+    </v-col>
+   </v-row>
+
+  <v-row >
+    <v-col
+        v-for="(post, index) in posts"
+        :key="index"
+        :cols="4">
+        <blogPostCard 
+          :postID = "post.post_id"   
+          :photoPath="`https://api.ste3d.ru/image/${post.image}`"
+          :postTitle="post.name"
+          :postDescription="post.description"
+        ></blogPostCard>
+      </v-col>
+  </v-row>
+
+    <v-col cols="auto" class="text-center">
       <v-btn dark color="primary" @click="showMore()">Показать ещё</v-btn>
-    </v-row>
+    </v-col>
   </v-container>
 </template>
 
