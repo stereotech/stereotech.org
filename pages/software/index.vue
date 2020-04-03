@@ -33,13 +33,13 @@ export default class Software extends Vue {
     link: string
   }[] = [
       {
-        image: '/printers/software/steapp.webp',
+        image: 'printers/software/steapp.webp',
         title: 'STE App',
         description: 'Приложение для управления процессом печати\nПросто.\nГибко.\nЭффективно.',
         link: '/software/steapp'
       },
       {
-        image: '/printers/software/steslicer.webp',
+        image: 'printers/software/steslicer.webp',
         title: 'STE Slicer',
         description: 'Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App',
         link: '/software/steslicer'

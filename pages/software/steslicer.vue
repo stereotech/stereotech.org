@@ -69,7 +69,7 @@ export default class SteSlicer extends Vue {
   keyFeatures: KeyFeature[] = [
     {
       name: 'Группировка принтеров',
-      image: '/software/steapp/group.jpg',
+      image: 'software/steapp/group.jpg',
       description: 'STE App упрощает работу с группой принтеров, позволяя управлять ими, используя общий интерфейс',
       keys: ['Возможность работы с любого устройства используя Wi-Fi/LAN',
         'Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически',

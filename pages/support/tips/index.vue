@@ -37,7 +37,7 @@ export default class Tips extends Vue {
         {
           name: 'STE 320',
           link: '/support/tips/printers/1-introduction',
-          image: '/printers/STE 320/banner.webp'
+          image: 'printers/STE 320/banner.webp'
         }
       ]
     }

@@ -69,7 +69,7 @@ export default class SteApp extends Vue {
   keyFeatures: KeyFeature[] = [
     {
       name: 'Группировка принтеров',
-      image: '/software/steapp/group.jpg',
+      image: 'software/steapp/group.jpg',
       description: 'STE App упрощает работу с группой принтеров, позволяя управлять ими, используя общий интерфейс',
       keys: ['Возможность работы с любого устройства используя Wi-Fi/LAN',
         'Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически',
@@ -77,13 +77,13 @@ export default class SteApp extends Vue {
     },
     {
       name: 'Уведомления',
-      image: '/software/steapp/notification.jpg',
+      image: 'software/steapp/notification.jpg',
       description: 'Уведомления на смартфон и в браузере подскажут, когда печать будет завершена',
       keys: ['Система уведомлений STE Notice, получайте уведомления при завершении работы принтеров или о событиях требующих вашего внимания']
     },
     {
       name: 'Управление',
-      image: '/software/steapp/group.jpg',
+      image: 'software/steapp/group.jpg',
       description: '',
       keys: [
         'Панель независимого управления принтерами STE Cluster позволяет управлять каждым принтером индивидуально из одного приложения',

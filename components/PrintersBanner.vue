@@ -11,11 +11,11 @@
             <p
               class="title text-uppercase font-weight-light"
             >{{ $store.state.lang.printer.ste520.description }}</p>
-            <v-btn large color="primary" nuxt :to="`/ste520`">{{ $store.state.lang.know_more }}</v-btn>
+            <v-btn large color="primary" nuxt :to="`/series5`">{{ $store.state.lang.know_more }}</v-btn>
             <v-btn
               large
               color="success"
-              href="https://ste3d.ru/ste520"
+              href="https://ste3d.ru/series5"
               target="_blank"
             >{{ $store.state.lang.printer.ste520.state }}</v-btn>
           </v-col>
@@ -27,11 +27,11 @@
             <p
               class="title text-uppercase font-weight-light"
             >{{ $store.state.lang.printer.ste320.description }}</p>
-            <v-btn large color="primary" nuxt :to="`/ste320`">{{ $store.state.lang.know_more }}</v-btn>
+            <v-btn large color="primary" nuxt :to="`/series3`">{{ $store.state.lang.know_more }}</v-btn>
             <v-btn
               large
               color="success"
-              href="https://ste3d.ru/ste320"
+              href="https://ste3d.ru/series3"
               target="_blank"
             >{{ $store.state.lang.printer.ste320.state }}</v-btn>
           </v-col>

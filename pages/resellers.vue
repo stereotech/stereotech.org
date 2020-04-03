@@ -64,7 +64,7 @@ export default class Resellers extends Vue {
   addresses: Seller[] = [
     {
       name: 'Stereotech',
-      logo: '/resellers/stereotech.jpg',
+      logo: 'resellers/stereotech.jpg',
       email: 'store@ste3d.ru',
       website: 'https://ste3d.ru',
       region: 'Волгоградская обл.',

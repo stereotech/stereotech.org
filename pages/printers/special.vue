@@ -28,7 +28,7 @@ import gql from 'graphql-tag'
 export default class Special extends Vue {
   currentPrinter: PrinterVariant = {
     model: 'Серия Special',
-    image: '/printers/desktop/special.jpg',
+    image: 'printers/desktop/special.jpg',
     printerType: PrinterType.ThreeAxis,
     extruderType: ExtruderType.Dual,
     printVolumeType: PrintVolumeType.Standard,

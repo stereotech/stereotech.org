@@ -39,7 +39,7 @@ export default class Industrial extends Vue {
         link: '/industrial/series6'
       },
       {
-        image: '/printers/industrial/series8.jpg',
+        image: 'printers/industrial/series8.jpg',
         title: 'Серия 8xx',
         description: 'Восьмиосевая установка аддитивного производства на базе промышленного манипулятора для производства прочных композитных деталей',
         link: '/industrial/series8'

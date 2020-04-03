@@ -4,7 +4,7 @@
       <v-container grid-list-xs>
         <v-row align="center">
           <v-col cols="12" sm="6">
-            <v-img src="/printers/common/cluster1.webp" max-height="650" />
+            <v-img src="printers/common/cluster1.webp" max-height="650" />
           </v-col>
           <v-col class="text-center" cols="12" sm="6">
             <h4
