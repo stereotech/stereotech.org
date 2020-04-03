@@ -37,7 +37,7 @@ export default class Manuals extends Vue {
         {
           name: 'STE 320',
           link: '/support/manuals/ste320',
-          image: '/printers/STE 320/banner.webp'
+          image: 'printers/STE 320/banner.webp'
         }
       ]
     },
@@ -47,12 +47,12 @@ export default class Manuals extends Vue {
         {
           name: 'STE App',
           link: '/support/manuals/steapp',
-          image: '/printers/common/cluster1.webp'
+          image: 'printers/common/cluster1.webp'
         },
         {
           name: 'STE Slicer',
           link: '/support/manuals/steslicer',
-          image: '/printers/common/steslicer.jpg'
+          image: 'printers/common/steslicer.jpg'
         }
       ]
     }

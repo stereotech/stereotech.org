@@ -29,17 +29,17 @@ export default class BenefitsPanel extends Vue {
   private benefits: any[] = [
     {
       title: this.$store.state.lang.benefit.faster.title,
-      image: '/benefits/faster.webp',
+      image: 'benefits/faster.webp',
       description: this.$store.state.lang.benefit.faster.description
     },
     {
       title: this.$store.state.lang.benefit.quality.title,
-      image: '/benefits/quality.webp',
+      image: 'benefits/quality.webp',
       description: this.$store.state.lang.benefit.quality.description
     },
     {
       title: this.$store.state.lang.benefit.stronger.title,
-      image: '/benefits/stronger.webp',
+      image: 'benefits/stronger.webp',
       description: this.$store.state.lang.benefit.stronger.description
     }
   ]

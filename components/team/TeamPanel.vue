@@ -30,32 +30,32 @@ export default class TeamPanel extends Vue {
   private team: any[] = [
     {
       name: this.$store.state.lang.team.avdeev.name,
-      image: '/team/p1.jpg',
+      image: 'team/p1.jpg',
       description: this.$store.state.lang.team.avdeev.description
     },
     {
       name: this.$store.state.lang.team.drobotov.name,
-      image: '/team/p2.jpg',
+      image: 'team/p2.jpg',
       description: this.$store.state.lang.team.drobotov.description
     },
     {
       name: this.$store.state.lang.team.gushchin.name,
-      image: '/team/p3.jpg',
+      image: 'team/p3.jpg',
       description: this.$store.state.lang.team.gushchin.description
     },
     {
       name: this.$store.state.lang.team.shvets.name,
-      image: '/team/p4.jpg',
+      image: 'team/p4.jpg',
       description: this.$store.state.lang.team.shvets.description
     },
     {
       name: this.$store.state.lang.team.martynovich.name,
-      image: '/team/p5.jpg',
+      image: 'team/p5.jpg',
       description: this.$store.state.lang.team.martynovich.description
     },
     {
       name: this.$store.state.lang.team.bitushkova.name,
-      image: '/team/p6.jpg',
+      image: 'team/p6.jpg',
       description: this.$store.state.lang.team.bitushkova.description
     }
   ]

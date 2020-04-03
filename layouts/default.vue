@@ -29,7 +29,7 @@
     <v-app-bar color="secondary" text app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-avatar size="36px" class="mr-2">
-        <img src="/ste-logo.png" alt="Logo" />
+        <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
         <nuxt-link to="/">
@@ -264,7 +264,7 @@ export default class Layout extends Vue {
         {
           title: 'Промышленные принтеры',
           link: '/industrial',
-          icon: '/printers/industrial/series8.jpg',
+          icon: 'printers/industrial/series8.jpg',
           child: [
             {
               title: 'Ceрия 6xx',
@@ -281,7 +281,7 @@ export default class Layout extends Vue {
         {
           title: 'Программное обеспечение',
           link: '/software',
-          icon: '/printers/software/steapp.webp',
+          icon: 'printers/software/steapp.webp',
           child: [
             {
               title: 'STE Slicer',

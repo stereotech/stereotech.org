@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex md6>
-        <v-img src="/stereotech.jpg"></v-img>
+        <v-img src="stereotech.jpg"></v-img>
         <p offset-md="3" class="subtitle">новые возможности Аддитивного производства</p>
       </v-flex>
       <v-flex md6 align-self-center>

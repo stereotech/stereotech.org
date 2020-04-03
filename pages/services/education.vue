@@ -78,19 +78,19 @@ export default class Education extends Vue {
 
   items: any[] = [
     {
-      link: '/services/education/1.jpg'
+      link: 'services/education/1.jpg'
     },
     {
-      link: '/services/education/2.jpg'
+      link: 'services/education/2.jpg'
     },
     {
-      link: '/services/education/3.jpg'
+      link: 'services/education/3.jpg'
     },
     {
-      link: '/services/education/4.jpg'
+      link: 'services/education/4.jpg'
     },
     {
-      link: '/services/education/5.jpg'
+      link: 'services/education/5.jpg'
     },
   ]
 }
