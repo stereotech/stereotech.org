@@ -241,8 +241,8 @@ export default class Layout extends Vue {
       child: [
         {
           title: 'Настольные принтеры',
-          link: '/printers',
-          icon: 'https://via.placeholder.com/150?text=/printers/desktop/series3.jpg',
+          link: '/printers/',
+          icon: '/printers/desktop/series3.jpg',
           child: [
             {
               title: 'Ceрия 3xx',

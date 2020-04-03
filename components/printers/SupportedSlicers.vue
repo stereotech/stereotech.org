@@ -8,7 +8,7 @@
           >{{ $store.state.lang.software.choose }}</h4>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-img src="printers/software/steslicer.webp" />
+          <v-img src="software/steslicer.webp" />
           <h4
             class="headline text-uppercase font-weight-regular"
           >{{ $store.state.lang.software.steslicer.title }}</h4>
@@ -18,7 +18,7 @@
           <v-btn color="primary" nuxt to="/software" depressed>{{ $store.state.lang.know_more }}</v-btn>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-img src="printers/software/cura.webp" />
+          <v-img src="software/cura.webp" />
           <h4
             class="headline text-uppercase font-weight-regular"
           >{{ $store.state.lang.software.cura.title }}</h4>

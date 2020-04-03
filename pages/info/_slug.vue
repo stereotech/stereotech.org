@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="8" md="6" lg="3">
-        <v-img src="stereotech.jpg"></v-img>
+        <v-img src="/stereotech.jpg"></v-img>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -52,7 +52,7 @@ export default class AboutStereotech extends Vue {
   addresses: Seller[] = [
     {
       name: 'Stereotech',
-      logo: 'resellers/stereotech.jpg',
+      logo: '/resellers/stereotech.jpg',
       email: 'info@ste3d.ru',
       website: 'https://ste3d.ru',
       region: 'Волгоградская область',
@@ -63,7 +63,7 @@ export default class AboutStereotech extends Vue {
     },
     {
       name: 'ATSS Group',
-      logo: 'resellers/atss.jpg',
+      logo: '/resellers/atss.jpg',
       email: 'info@atssgroup.com',
       website: 'http://atssgroup.com',
       region: 'Москва',
@@ -74,7 +74,7 @@ export default class AboutStereotech extends Vue {
     },
     {
       name: 'Capvidia Belgium',
-      logo: 'resellers/capvidia.jpg',
+      logo: '/resellers/capvidia.jpg',
       email: 'info@capvidia.com',
       website: 'http://capvidia.com',
       region: 'Левен',
