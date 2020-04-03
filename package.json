@@ -9,7 +9,7 @@
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "generate:pages": "cross-env NUXT_ENV_DOMAIN=https://stereotech.gitlab.io/misc/ste-promo  nuxt-ts generate",
+    "generate:pages": "cross-env NUXT_ENV_ROOT=/misc/ste-promo  nuxt-ts generate",
     "generate:en": "cross-env NUXT_ENV_LOCALE=en nuxt-ts generate",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
