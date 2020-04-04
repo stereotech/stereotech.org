@@ -8,8 +8,11 @@
       <v-col cols="12" lg="10">
         <PrinterSelector v-model="currentPrinter" :items="printerItems" />
       </v-col>
-      <v-col cols="12">
-        <MainParalax image="/main/bg1.webp" button-link="/info/about" />
+      <v-col cols="12" lg="10">
+        <BenefitsPanel />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <ApplicationsPanel />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
@@ -107,7 +110,7 @@
         <FullSpecs :attributes="product.attributes" />
       </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter :variant="currentPrinter" :price="currentPrice" />
+        <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
     </v-row>
   </v-container>
@@ -115,7 +118,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import PrinterBanner from '~/components/printers/PrinterBanner.vue'
 import MainParalax from '~/components/MainParalax.vue'
 import ColorModes from '~/components/printers/ColorModes.vue'
 import PrinterFeature from '~/components/printers/PrinterFeature.vue'
@@ -123,19 +125,22 @@ import ProductCard from '~/components/ProductCard.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
+import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
+import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
 @Component({
   components: {
-    PrinterBanner,
     ColorModes,
     MainParalax,
     PrinterFeature,
     ProductCard,
     BuyPrinter,
     FullSpecs,
-    PrinterSelector
+    PrinterSelector,
+    BenefitsPanel,
+    ApplicationsPanel
   },
   head: {
     title: 'Серия 5xx'
@@ -145,7 +150,7 @@ export default class Series5 extends Vue {
   printerItems: PrinterVariant[] = [
     {
       model: '520 Pro',
-      image: '',
+      image: '/printers/desktop/series5.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -153,7 +158,7 @@ export default class Series5 extends Vue {
     },
     {
       model: '520 Hybrid',
-      image: '',
+      image: '/printers/desktop/series5.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -161,7 +166,7 @@ export default class Series5 extends Vue {
     },
     {
       model: '530 Pro',
-      image: '',
+      image: '/printers/desktop/series5.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -169,7 +174,7 @@ export default class Series5 extends Vue {
     },
     {
       model: '530 Hybrid',
-      image: '',
+      image: '/printers/desktop/series5.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,

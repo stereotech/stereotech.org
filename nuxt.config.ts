@@ -75,8 +75,30 @@ const config: Configuration = {
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     '@nuxtjs/apollo',
-    '@nuxtjs/recaptcha'
+    '@nuxtjs/recaptcha',
+    'nuxt-i18n'
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json',
+        domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'stereotech.org'
+      },
+      {
+        code: 'ru',
+        name: 'Русский',
+        file: 'ru.json',
+        domain: process.env.NODE_ENV === 'development' ? 'ru.localhost' : 'stereotech.org'
+      }
+    ],
+    differentDomains: true,
+    lazy: true,
+    langDir: 'locales/',
+    defaultLocale: 'en',
+    detectBrowserLanguage: false
+  },
   apollo: {
     clientConfigs: {
       default: {

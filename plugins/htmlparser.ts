@@ -45,7 +45,8 @@ const convertHtmlPlugin: Plugin = (context, inject) => {
 
         result = result.replace(/<\/?font>/g, '')
         result = result.replace(/<span><br ?\/?><\/span>/g, '')
-        result = result.replace(/<img src="([^"]*)"\s?\/>/g, '<div class="container fill-height"><div class="row align-center justify-center"><div class="col-lg-4 col-sm-6 col-12"><div class="v-responsive v-image"><div class="v-responsive__sizer" style="padding-bottom: 50%;"></div><div class="v-image__image v-image__image--contain" style="background-image: url($1 ); background-position: center center;"></div><div class="v-responsive__content" ></div></div></div></div></div>')
+        //result = result.replace(/<img src="([^"]*)"\s?\/>/g, '<div class="container fill-height"><div class="row align-center justify-center"><div class="col-12"><div class="v-responsive v-image" style="max-width: auto;"><div class="v-responsive__sizer" style="padding-bottom: 50%;"></div><div class="v-image__image v-image__image--contain" style="background-image: url($1 ); background-position: center center; max-width: auto;"></div><div class="v-responsive__content" ></div></div></div></div></div>')
+        result = result.replace(/<img src="([^"]*)"\s?\/>/g, '<div class="container fill-height"><div class="row align-center justify-center"><div class="col-12 text-center"><img src="$1"style="max-width: 100%; height: auto;"/></div></div></div>')
         return result
     })
 }
