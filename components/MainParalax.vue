@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="auto" class="text-center">
               <h1 class="display-3 font-weight-thin text-uppercase">5D Printing</h1>
-              <h4 class="display-1">{{ $store.state.lang.main.newOpportunities }}</h4>
+              <h4 class="display-1">Новые возможности аддитивного производства</h4>
               <v-btn
                 class
                 v-if="buttonLink !== ''"
@@ -14,7 +14,7 @@
                 large
                 nuxt
                 :to="buttonLink"
-              >{{ $store.state.lang.know_more }}</v-btn>
+              >Узнать больше</v-btn>
             </v-col>
           </v-row>
         </v-container>

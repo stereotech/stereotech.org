@@ -11,7 +11,8 @@
     "generate": "nuxt-ts generate",
     "generate:pages": "cross-env NUXT_ENV_ROOT=/misc/ste-promo  nuxt-ts generate",
     "generate:en": "cross-env NUXT_ENV_LOCALE=en nuxt-ts generate",
-    "lint": "eslint --ext .ts,.js,.vue ."
+    "lint": "eslint --ext .ts,.js,.vue .",
+    "extract": "node extract-locales.js"
   },
   "dependencies": {
     "@mdi/font": "^4.5.95",
@@ -31,6 +32,7 @@
     "micro": "^9.3.4",
     "node-html-parser": "^1.2.11",
     "nuxt": "^2.0.0",
+    "nuxt-i18n": "^6.8.1",
     "ts-node": "^8.3.0",
     "typeface-roboto": "0.0.75",
     "v-mask": "^2.0.2",
@@ -55,6 +57,7 @@
     "nodemon": "^1.18.9",
     "sass": "^1.23.3",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "vue-i18n-extract": "^1.0.3"
   }
 }

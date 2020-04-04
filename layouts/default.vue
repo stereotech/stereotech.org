@@ -111,13 +111,18 @@
           </v-btn>
         </template>
         <v-list nav>
-          <v-list-item
+          <!--<v-list-item
             v-for="locale in locales"
             :key="locale.locale"
             @click="currentLang = locale.locale"
           >
             <v-list-item-title>{{ locale.text }}</v-list-item-title>
-          </v-list-item>
+          </v-list-item>-->
+          <v-list-item
+            v-for="locale in $i18n.locales"
+            :key="locale.code"
+            :href="switchLocalePath(locale.code)"
+          >{{ locale.name }}</v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -223,13 +228,6 @@ export default class Layout extends Vue {
     return new Date().getFullYear()
   }
 
-
-
-  private readonly mainPage: MenuItem = {
-    title: this.$store.state.lang.fived_additive,
-    link: '/'
-  }
-
   private mapMenuItems (items: MenuItem[]): MenuItem[] {
     return items.flatMap(x => x.child ? [x, ...x.child] : [x])
   }
@@ -301,56 +299,56 @@ export default class Layout extends Vue {
       title: 'Узнать больше',
       icon: 'mdi-post-outline',
       child: [
-        {
-          title: 'Решения',
-          link: '/solutions',
-          child: [
-            {
-              title: 'Обучение',
-              description: 'Изучение основ 3D печати',
-              link: '/solutions/education'
-            },
-            {
-              title: 'Производство',
-              description: 'Изделия для конечного использования',
-              link: '/solutions/production'
-            },
-            {
-              title: 'Сервис 3D печати',
-              description: 'Услуги 3D печати и прототипирования',
-              link: '/solutions/services'
-            },
-            {
-              title: 'Прототипирование',
-              description: 'Разработка устройств',
-              link: '/solutions/prototyping'
-            },
-          ]
-        },
+        //{
+        //  title: 'Решения',
+        //  link: '/solutions',
+        //  child: [
+        //    {
+        //      title: 'Обучение',
+        //      description: 'Изучение основ 3D печати',
+        //      link: '/solutions/education'
+        //    },
+        //    {
+        //      title: 'Производство',
+        //      description: 'Изделия для конечного использования',
+        //      link: '/solutions/production'
+        //    },
+        //    {
+        //      title: 'Сервис 3D печати',
+        //      description: 'Услуги 3D печати и прототипирования',
+        //      link: '/solutions/services'
+        //    },
+        //    {
+        //      title: 'Прототипирование',
+        //      description: 'Разработка устройств',
+        //      link: '/solutions/prototyping'
+        //    },
+        //  ]
+        //},
         {
           title: 'Блог',
           link: '/blog',
           child: [
-            {
-              title: 'Анонсы',
-              description: 'Все важные мероприятия с нашим участием',
-              link: '/blog/events'
-            },
+            //{
+            //  title: 'Анонсы',
+            //  description: 'Все важные мероприятия с нашим участием',
+            //  link: '/blog/events'
+            //},
             {
               title: 'Новости',
               description: 'Последние новости о нашей компании',
               link: '/blog/news'
             },
-            {
-              title: 'Примеры использования',
-              description: 'Истории успеха наших партнеров',
-              link: '/blog/applications'
-            },
-            {
-              title: 'Статьи',
-              description: 'Подробные исследования и руководства',
-              link: '/blog/whitepapers'
-            },
+            //{
+            //  title: 'Примеры использования',
+            //  description: 'Истории успеха наших партнеров',
+            //  link: '/blog/applications'
+            //},
+            //{
+            //  title: 'Статьи',
+            //  description: 'Подробные исследования и руководства',
+            //  link: '/blog/whitepapers'
+            //},
             {
               title: 'Научная деятельность',
               description: '',
@@ -361,7 +359,7 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.support,
+      title: 'Поддержка',
       icon: 'mdi-face-agent',
       child: [
 
@@ -387,28 +385,28 @@ export default class Layout extends Vue {
             }
           ]
         },
-        {
-          title: 'Советы по использованию',
-          link: '/support/tips',
-          child: [
-            {
-              title: 'Принтеры',
-              link: '/support/tips/printers'
-            },
-            {
-              title: 'Программное обеспечение',
-              link: '/support/tips/software'
-            },
-            {
-              title: 'Материалы',
-              link: '/support/tips/materials'
-            },
-            {
-              title: 'Печать',
-              link: '/support/tips/printing'
-            }
-          ]
-        },
+        //{
+        //  title: 'Советы по использованию',
+        //  link: '/support/tips',
+        //  child: [
+        //    {
+        //      title: 'Принтеры',
+        //      link: '/support/tips/printers'
+        //    },
+        //    {
+        //      title: 'Программное обеспечение',
+        //      link: '/support/tips/software'
+        //    },
+        //    {
+        //      title: 'Материалы',
+        //      link: '/support/tips/materials'
+        //    },
+        //    {
+        //      title: 'Печать',
+        //      link: '/support/tips/printing'
+        //    }
+        //  ]
+        //},
         {
           title: 'Связаться с нами',
           link: '/support'
@@ -416,7 +414,7 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.about,
+      title: 'О нас',
       icon: 'mdi-information',
       child: [
         {
@@ -449,48 +447,10 @@ export default class Layout extends Vue {
   private miniVariant: boolean = this.$vuetify.breakpoint.smOnly
   private drawer: boolean = false
 
-  get currentPage (): string {
-    let name = this.mainPage.title
-    this.mainMenu.forEach((element) => {
-      if (element.link !== this.$route.fullPath) {
-        if (element.child) {
-          element.child.forEach((childEl) => {
-            if (childEl.link === this.$route.fullPath) {
-              name = childEl.title
-            }
-          })
-        }
-      } else {
-        name = element.title
-      }
-    })
-    return name
+  get lang () {
+    return this.$i18n.locale
   }
 
 
-  get locales () {
-    return [
-      { text: 'Русский', locale: 'ru', path: process.env.DOMAIN + this.$route.path },
-      { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
-    ]
-  }
-
-  get currentLang () {
-    const lang = this.locales.find(v => v.locale === this.$store.state.locale)
-    if (lang) {
-      return lang.locale
-    }
-    return 'ru'
-  }
-  set currentLang (newLang: string) {
-    const lang = this.locales.find(v => v.locale == newLang)
-    if (!lang) {
-      return
-    }
-    if (process.env.NODE_ENV === 'development') {
-      lang.path = lang.path.replace('https', 'http').replace('stereotech.org', window.location.host.split('.').slice(-1)[0])
-    }
-    window.location.href = lang.path
-  }
 }
 </script>

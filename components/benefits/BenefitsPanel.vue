@@ -1,19 +1,17 @@
 <template>
-  <v-col cols="12">
-    <v-card>
-      <v-container fluid grid-list-xs>
-        <v-row>
-          <BenefitsCard
-            v-for="(benefit, index) in benefits"
-            :key="index"
-            :title="benefit.title"
-            :description="benefit.description"
-            :image="benefit.image"
-          />
-        </v-row>
-      </v-container>
-    </v-card>
-  </v-col>
+  <v-card>
+    <v-container fluid grid-list-xs>
+      <v-row>
+        <BenefitsCard
+          v-for="(benefit, index) in benefits"
+          :key="index"
+          :title="benefit.title"
+          :description="benefit.description"
+          :image="benefit.image"
+        />
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script lang="ts">
