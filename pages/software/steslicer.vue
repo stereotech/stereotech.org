@@ -75,23 +75,23 @@ export default class SteSlicer extends Vue {
       image: 'software/steslicer/printing_modes.jpg',
       description: 'STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech',
       keys: ['Различные режимы слайсинга',
-        'Настройки для режимов слайсинга',
+        'Настройки для каждого из режимов слайсинга',
       ]
     },
     {
-      name: 'Режимы слайсинга',
-      image: 'software/steslicer/printing_modes.jpg',
-      description: 'STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech',
-      keys: ['Различные режимы слайсинга',
-        'Настройки для режимов слайсинга',
+      name: 'Простота использования',
+      image: 'software/steslicer/easy_to_use.jpg',
+      description: 'STE Slicer позволяет подготовить модель к печати за считанные секунды',
+      keys: ['Рекомендованный режим с автоматически настроенными значениями',
+        'Продвинутый режим с ручным контролем различных настроек',
       ]
     },
     {
-      name: 'Режимы слайсинга',
-      image: 'software/steslicer/printing_modes.jpg',
-      description: 'STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech',
-      keys: ['Различные режимы слайсинга',
-        'Настройки для режимов слайсинга',
+      name: 'STE App',
+      image: 'software/steapp/banner.jpg',
+      description: 'Система управления принтерами встроена в STE Steslicer',
+      keys: ['Отправка заданий на печать напрямую из слайсера',
+        'Автоматический поиск принтеров в сети',
       ]
     },
   ]
