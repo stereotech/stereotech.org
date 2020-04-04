@@ -17,9 +17,7 @@ extractLocale:
     paths:
       - ru_extracted.json
   only:
-    -develop
-  
-
+    - develop
 
 .buildNuxt: 
   stage: build
