@@ -12,10 +12,11 @@
               v-if="fullsize && $vuetify.breakpoint.smAndUp"
               class="display-1 font-weight-light"
             >{{ title }}</h4>
-            <br />
+
             <v-btn
               v-if="fullsize  && $vuetify.breakpoint.smAndUp"
               color="accent"
+              class="mt-2"
               depressed
               nuxt
               :to="link"

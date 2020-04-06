@@ -30,8 +30,7 @@ const config: Configuration = {
 
   router: {
     // middleware: 'i18n'
-    base: rootPath,
-    trailingSlash: false
+    base: rootPath
   },
   /*
   ** Global CSS
