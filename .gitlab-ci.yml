@@ -25,13 +25,11 @@ extractLocale:
     paths:
       - node_modules
   before_script:
-    - mkdir .nuxt
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git .nuxt/docs
-    - cd .nuxt/docs
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
+    - cd docs
     - node ./scripts/generate-menu.js
-    - cd ../..
-    - cp -rf .nuxt/docs/static .nuxt
-    - cp -rf .nuxt/docs/static .
+    - cd ..
+    - cp -rf docs/static .
     - npm install --dev
   artifacts:
     paths:
