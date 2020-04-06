@@ -7,7 +7,7 @@
             <v-sheet :height="height" elevation="1">
               <client-only>
                 <yandex-map
-                  :coords="[48.692225, 44.498048]"
+                  :coords="[54.720026, 30.997946]"
                   style="width: 100%; height: 100%;"
                   :controls="['zoomControl', 'typeSelector']"
                   zoom="5"
