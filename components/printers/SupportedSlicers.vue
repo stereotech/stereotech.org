@@ -15,7 +15,12 @@
           <p
             class="title text-uppercase font-weight-light"
           >{{ $store.state.lang.software.steslicer.add1 }}</p>
-          <v-btn color="primary" nuxt to="/software" depressed>{{ $store.state.lang.know_more }}</v-btn>
+          <v-btn
+            color="primary"
+            nuxt
+            :to="localePath('/software')"
+            depressed
+          >{{ $store.state.lang.know_more }}</v-btn>
         </v-col>
         <v-col cols="12" sm="6">
           <v-img src="/printers/software/cura.webp" />

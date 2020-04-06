@@ -10,7 +10,7 @@
               </v-list-item-content>
             </template>
             <template v-for="(subItem, subIndex) in mapMenuItems(menuItem.child)">
-              <v-list-item :key="subIndex" nuxt :to="subItem.link" exact>
+              <v-list-item :key="subIndex" nuxt :to="localePath(subItem.link)" exact>
                 <v-list-item-content>
                   <v-list-item-title>{{ subItem.title }}</v-list-item-title>
                 </v-list-item-content>
@@ -18,7 +18,7 @@
             </template>
           </v-list-group>
         </template>
-        <v-list-item nuxt to="/resellers">
+        <v-list-item nuxt :to="localePath('/resellers')">
           <v-list-item-icon>
             <v-icon>mdi-map-marker-question-outline</v-icon>
           </v-list-item-icon>
@@ -32,7 +32,7 @@
         <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
           <span class="font-weight-medium accent--text">Stereo</span>
           <span class="font-weight-medium ml-n1">tech</span>
         </nuxt-link>
@@ -57,7 +57,7 @@
                   <template v-for="(childItem, childIndex) in menuItem.child">
                     <v-col cols="4" :key="childIndex">
                       <v-list dense nav class="primary--text">
-                        <v-list-item nuxt exact :to="childItem.link">
+                        <v-list-item nuxt exact :to="localePath(childItem.link)">
                           <v-list-item-avatar tile v-if="childItem.icon">
                             <v-icon
                               color="primary"
@@ -75,7 +75,7 @@
                           :key="sublinkIndex"
                           nuxt
                           exact
-                          :to="sublink.link"
+                          :to="localePath(sublink.link)"
                         >
                           <v-list-item-content>
                             <v-list-item-title class="caption">{{ sublink.title }}</v-list-item-title>
@@ -94,13 +94,20 @@
             :key="index"
             text
             nuxt
-            :to="menuItem.link"
+            :to="localePath(menuItem.link)"
           >{{ menuItem.title }}</v-btn>
           <v-btn v-else :key="index" text :href="menuItem.link" target="_blank">{{ menuItem.title }}</v-btn>
         </template>
       </v-toolbar-items>
       <v-spacer />
-      <v-btn text color="primary" nuxt to="/resellers" exact class="hidden-sm-and-down">
+      <v-btn
+        text
+        color="primary"
+        nuxt
+        :to="localePath('/resellers')"
+        exact
+        class="hidden-sm-and-down"
+      >
         Где купить
         <v-icon right dark>mdi-map-marker-question-outline</v-icon>
       </v-btn>
@@ -173,7 +180,7 @@
                     <v-divider />
                     <v-list-item
                       nuxt
-                      :to="child.link"
+                      :to="localePath(child.link)"
                       v-for="(child, childIndex) in menu.child"
                       :key="childIndex"
                     >

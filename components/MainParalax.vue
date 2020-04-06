@@ -13,7 +13,7 @@
                 color="accent"
                 large
                 nuxt
-                :to="buttonLink"
+                :to="localePath(buttonLink)"
               >Узнать больше</v-btn>
             </v-col>
           </v-row>

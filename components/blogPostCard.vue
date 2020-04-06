@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined nuxt :to="`/blog/post/${postID}`">
+  <v-card outlined nuxt :to="localePath(`/blog/post/${postID}`)">
     <v-img :src="`${photoPath}`" max-height="240"></v-img>
     <v-card-title class="text-center text-break" v-html="postTitle">{{postTitle}}</v-card-title>
     <v-card-text>

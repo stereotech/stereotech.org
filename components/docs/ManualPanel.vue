@@ -6,7 +6,12 @@
         <v-row justify="center">
           <v-col v-if="text" cols="12">
             <v-list>
-              <v-list-item v-for="(manual, index) in manuals" :key="index" nuxt :to="manual.link">
+              <v-list-item
+                v-for="(manual, index) in manuals"
+                :key="index"
+                nuxt
+                :to="localePath(manual.link)"
+              >
                 <v-list-item-avatar>
                   <v-icon color="primary">mdi-chevron-right</v-icon>
                 </v-list-item-avatar>
@@ -15,7 +20,7 @@
             </v-list>
           </v-col>
           <v-col v-else v-for="(manual, index) in manuals" :key="index" cols="12" sm="6" md="3">
-            <v-card hover ripple nuxt :to="manual.link">
+            <v-card hover ripple nuxt :to="localePath(manual.link)">
               <v-img
                 :src="manual.image"
                 gradient="to top, rgba(100,115,201,.0), rgba(38, 50, 56, 1)"
