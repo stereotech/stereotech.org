@@ -1,24 +1,7 @@
 <template>
   <v-container>
-    <v-card>
-      <v-img
-        gradient="to bottom, rgba(2,119,189,0.2), rgba(2, 119, 189, 0.75)"
-        :src="`https://api.ste3d.ru/image/${post.image}`"
-        class="white--text align-end"
-      >
-        <v-card-title
-          class="hidden-sm-and-down display-1 font-weight-light text-break"
-          v-html="post.name"
-        ></v-card-title>
-        <v-card-title class="hidden-md-and-up font-weight-light text-break" v-html="post.name"></v-card-title>
-      </v-img>
-      <v-card-subtitle class="pb-0">{{post.date_added}}</v-card-subtitle>
-      <v-card-text class="text--primary">
-        <p>{{post.author}}</p>
-        <div v-html="post.description"></div>
-      </v-card-text>
-    </v-card>
-    <!-- <v-row justify="center" v-if="post">
+    <v-row justify="center" align="center">
+      <!-- <v-row justify="center" v-if="post">
 
       <v-col class="text-center">
         <h1 class="font-weight-light">{{post.name}}</h1>
@@ -30,10 +13,29 @@
       <v-col cols="12">
         <div v-html="post.description"></div>
       </v-col>
-    </v-row>-->
-    <v-row v-if="!post" justify="center">
-      <v-col cols="1">
-        <v-progress-circular indeterminate></v-progress-circular>
+      </v-row>-->
+      <v-col cols="2" v-if="!post">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      </v-col>
+      <v-col cols="12" lg="10" v-else>
+        <v-card>
+          <v-img
+            gradient="to bottom, rgba(2,119,189,0.2), rgba(2, 119, 189, 0.75)"
+            :src="`https://api.ste3d.ru/image/${post.image}`"
+            class="white--text align-end"
+          >
+            <v-card-title
+              class="hidden-sm-and-down display-1 font-weight-light text-break"
+              v-html="post.name"
+            ></v-card-title>
+            <v-card-title class="hidden-md-and-up font-weight-light text-break" v-html="post.name"></v-card-title>
+          </v-img>
+          <v-card-subtitle class="pb-0">{{post.date_added}}</v-card-subtitle>
+          <v-card-text class="text--primary">
+            <p>{{post.author}}</p>
+            <div v-html="post.description"></div>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -45,10 +47,9 @@ import gql from 'graphql-tag'
 
 @Component
 export default class BlogPost extends Vue {
-  @Prop({ type: String, required: true, default: '' }) photoPath!: string
 
 
-  private post: any = {}
+  private post: any = null
   //private blog_post_id: number = 0
   async mounted () {
     let result = await this.$apollo.query({

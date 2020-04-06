@@ -12,7 +12,7 @@ const docsServerModule: Module = async function (moduleOptions) {
 
     const options: DocsServerOptions = {
         port: 3001,
-        docsDir: join(isDev! ? this.options.srcDir! : this.options.buildDir!, 'docs'),
+        docsDir: join(isDev! ? this.options.srcDir! : this.options.srcDir!, 'docs'),
         repo: 'nuxt/docs',
         watch: isDev,
         ...this.options.docs,

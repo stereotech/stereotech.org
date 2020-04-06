@@ -25,10 +25,10 @@ import gql from 'graphql-tag'
     BuyPrinter
   }
 })
-export default class Special extends Vue {
+export default class Series8 extends Vue {
   currentPrinter: PrinterVariant = {
     model: 'Серия 8хх',
-    image: 'printers/industrial/series8.jpg',
+    image: '/printers/industrial/series8.jpg',
     printerType: PrinterType.ThreeAxis,
     extruderType: ExtruderType.Dual,
     printVolumeType: PrintVolumeType.Standard,

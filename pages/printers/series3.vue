@@ -107,7 +107,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import PrinterBanner from '~/components/printers/PrinterBanner.vue'
 import ColorModes from '~/components/printers/ColorModes.vue'
 import PrinterFeature from '~/components/printers/PrinterFeature.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
@@ -119,7 +118,6 @@ import gql from 'graphql-tag'
 
 @Component({
   components: {
-    PrinterBanner,
     ColorModes,
     PrinterFeature,
     BuyPrinter,
@@ -137,7 +135,7 @@ export default class Series3 extends Vue {
   printerItems: PrinterVariant[] = [
     {
       model: '320 Base',
-      image: 'desktop/series3.jpg',
+      image: '/printers/desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Single,
       printVolumeType: PrintVolumeType.Standard,
@@ -145,7 +143,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '320 Pro',
-      image: 'desktop/series3.jpg',
+      image: '/printers/desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -153,7 +151,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '320 Plus',
-      image: 'desktop/series3.jpg',
+      image: '/printers/desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.StandardLong,
@@ -161,7 +159,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '330 Pro',
-      image: 'desktop/series3.jpg',
+      image: '/printers/desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -169,7 +167,7 @@ export default class Series3 extends Vue {
     },
     {
       model: '330 Plus',
-      image: 'desktop/series3.jpg',
+      image: '/printers/desktop/series3.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.ExtendedLong,

@@ -2,7 +2,7 @@ import { Configuration } from '@nuxt/types'
 import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
-const domain = process.env.NUXT_ENV_DOMAIN || 'https://stereotech.org'
+const domain = process.env.NUXT_ENV_DOMAIN || 'https://ste3d.ru'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
 
 const config: Configuration = {
@@ -64,7 +64,8 @@ const config: Configuration = {
     [
       '@nuxtjs/yandex-metrika',
       {
-        id: '54147616'
+        id: '54147616',
+        webvisor: true
       }
     ],
     ['vue-yandex-maps/nuxt', {
@@ -75,8 +76,27 @@ const config: Configuration = {
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     '@nuxtjs/apollo',
-    '@nuxtjs/recaptcha'
+    '@nuxtjs/recaptcha',
+    'nuxt-i18n'
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json',
+      },
+      {
+        code: 'ru',
+        name: 'Русский',
+        file: 'ru.json',
+      }
+    ],
+    differentDomains: false,
+    lazy: false,
+    langDir: 'locales/',
+    defaultLocale: locale,
+  },
   apollo: {
     clientConfigs: {
       default: {

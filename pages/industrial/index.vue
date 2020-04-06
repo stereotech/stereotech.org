@@ -33,13 +33,13 @@ export default class Industrial extends Vue {
     link: string
   }[] = [
       {
-        image: 'https://via.placeholder.com/500?text=/printers/industrial/series6.jpg',
+        image: '/printers/industrial/series6.jpg',
         title: 'Серия 6xx',
         description: 'Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей',
         link: '/industrial/series6'
       },
       {
-        image: 'printers/industrial/series8.jpg',
+        image: '/printers/industrial/series8.jpg',
         title: 'Серия 8xx',
         description: 'Восьмиосевая установка аддитивного производства на базе промышленного манипулятора для производства прочных композитных деталей',
         link: '/industrial/series8'
