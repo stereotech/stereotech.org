@@ -5,25 +5,42 @@
         <v-col cols="12" :sm="fullsize ? 12 : 6">
           <v-img
             :src="image"
-            class="white--text align-end text-center"
-            :gradient="fullsize ? 'to bottom, rgba(2,119,189,0.2), rgba(2, 119, 189, 0.75)' : ''"
+            class="white--text align-center text-center"
+            :gradient="fullsize  && $vuetify.breakpoint.smAndUp ? 'to bottom, rgba(2,119,189,0), rgba(2, 119, 189, 0.8), rgba(2,119,189,0)' : ''"
           >
             <h4
               v-if="fullsize && $vuetify.breakpoint.smAndUp"
               class="display-1 font-weight-light"
             >{{ title }}</h4>
+            <br />
+            <v-btn
+              v-if="fullsize  && $vuetify.breakpoint.smAndUp"
+              color="accent"
+              depressed
+              nuxt
+              :to="link"
+            >
+              Узнать больше
+              <v-icon right>mdi-chevron-right</v-icon>
+            </v-btn>
           </v-img>
         </v-col>
         <v-col cols="12" :sm="fullsize ? 12 : 6" class="text-center">
           <h4
             v-if="!fullsize || $vuetify.breakpoint.xsOnly"
-            class="display-1 text-uppercase font-weight-light"
+            class="display-1 font-weight-light"
           >{{ title }}</h4>
           <p
             class="subtitle-1 font-weight-light"
             v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
           ></p>
-          <v-btn color="primary" depressed nuxt :to="link">
+          <v-btn
+            v-if="!fullsize  || $vuetify.breakpoint.xsOnly"
+            color="primary"
+            depressed
+            nuxt
+            :to="link"
+          >
             Узнать больше
             <v-icon right>mdi-chevron-right</v-icon>
           </v-btn>

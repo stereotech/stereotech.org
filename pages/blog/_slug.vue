@@ -41,7 +41,7 @@
       </v-col>
     </v-row>
     <v-col cols="auto" class="text-center">
-      <v-btn dark color="primary" @click="showMore()">Показать ещё</v-btn>
+      <v-btn depressed color="primary" @click="showMore()">Показать ещё</v-btn>
     </v-col>
   </v-container>
 </template>
