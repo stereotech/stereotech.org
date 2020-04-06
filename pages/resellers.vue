@@ -31,13 +31,13 @@
         <AddressMap :addresses="addresses" :height="500" />
       </v-col>
       <v-col cols="12" lg="4">
-        <v-card>
+        <v-card id="dealer-form">
           <v-card-title>Стать дилером</v-card-title>
           <v-card-text>
             <v-container>
               <v-row justify="center">
                 <v-col cols="12">
-                  <QuoteForm buttonText="Стать дилером" title="Запрос для дилеров" dealers />
+                  <QuoteForm buttonText="Заполнить форму" title="Запрос для дилеров" dealers />
                 </v-col>
               </v-row>
             </v-container>
@@ -72,7 +72,29 @@ export default class Resellers extends Vue {
       address: 'г. Волгоград, ул. им. Огарева, 2',
       coords: [48.692225, 44.498048],
       type: SellerType.Manufacturer
-    }
+    },
+    {
+      name: 'ATSS Group',
+      logo: '/resellers/atss.jpg',
+      email: 'info@atssgroup.com',
+      website: 'http://atssgroup.com',
+      region: 'Москва',
+      country: 'Российская Федерация',
+      address: 'г. Москва, Волоколамское шоссе, д. 2',
+      type: SellerType.Distributor,
+      coords: [55.807476, 37.505292]
+    },
+    {
+      name: 'Capvidia Belgium',
+      logo: '/resellers/capvidia.jpg',
+      email: 'info@capvidia.com',
+      website: 'http://capvidia.com',
+      region: 'Левен',
+      country: 'Бельгия',
+      address: 'Technologielaan 3 B-3001 Leuven',
+      type: SellerType.Distributor,
+      coords: [50.8540782, 4.727265]
+    },
   ]
 }
 

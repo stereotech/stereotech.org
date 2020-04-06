@@ -10,7 +10,7 @@
               </v-list-item-content>
             </template>
             <template v-for="(subItem, subIndex) in mapMenuItems(menuItem.child)">
-              <v-list-item :key="subIndex" nuxt :to="subItem.link" exact>
+              <v-list-item :key="subIndex" nuxt :to="localePath(subItem.link)" exact>
                 <v-list-item-content>
                   <v-list-item-title>{{ subItem.title }}</v-list-item-title>
                 </v-list-item-content>
@@ -18,7 +18,7 @@
             </template>
           </v-list-group>
         </template>
-        <v-list-item nuxt to="/resellers">
+        <v-list-item nuxt :to="localePath('/resellers')">
           <v-list-item-icon>
             <v-icon>mdi-map-marker-question-outline</v-icon>
           </v-list-item-icon>
@@ -32,7 +32,7 @@
         <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
           <span class="font-weight-medium accent--text">Stereo</span>
           <span class="font-weight-medium ml-n1">tech</span>
         </nuxt-link>
@@ -57,7 +57,7 @@
                   <template v-for="(childItem, childIndex) in menuItem.child">
                     <v-col cols="4" :key="childIndex">
                       <v-list dense nav class="primary--text">
-                        <v-list-item nuxt exact :to="childItem.link">
+                        <v-list-item nuxt exact :to="localePath(childItem.link)">
                           <v-list-item-avatar tile v-if="childItem.icon">
                             <v-icon
                               color="primary"
@@ -75,7 +75,7 @@
                           :key="sublinkIndex"
                           nuxt
                           exact
-                          :to="sublink.link"
+                          :to="localePath(sublink.link)"
                         >
                           <v-list-item-content>
                             <v-list-item-title class="caption">{{ sublink.title }}</v-list-item-title>
@@ -94,13 +94,20 @@
             :key="index"
             text
             nuxt
-            :to="menuItem.link"
+            :to="localePath(menuItem.link)"
           >{{ menuItem.title }}</v-btn>
           <v-btn v-else :key="index" text :href="menuItem.link" target="_blank">{{ menuItem.title }}</v-btn>
         </template>
       </v-toolbar-items>
       <v-spacer />
-      <v-btn text color="primary" nuxt to="/resellers" exact class="hidden-sm-and-down">
+      <v-btn
+        text
+        color="primary"
+        nuxt
+        :to="localePath('/resellers')"
+        exact
+        class="hidden-sm-and-down"
+      >
         Где купить
         <v-icon right dark>mdi-map-marker-question-outline</v-icon>
       </v-btn>
@@ -111,13 +118,18 @@
           </v-btn>
         </template>
         <v-list nav>
-          <v-list-item
+          <!--<v-list-item
             v-for="locale in locales"
             :key="locale.locale"
             @click="currentLang = locale.locale"
           >
             <v-list-item-title>{{ locale.text }}</v-list-item-title>
-          </v-list-item>
+          </v-list-item>-->
+          <v-list-item
+            v-for="locale in $i18n.locales"
+            :key="locale.code"
+            :to="switchLocalePath(locale.code)"
+          >{{ locale.name }}</v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -168,7 +180,7 @@
                     <v-divider />
                     <v-list-item
                       nuxt
-                      :to="child.link"
+                      :to="localePath(child.link)"
                       v-for="(child, childIndex) in menu.child"
                       :key="childIndex"
                     >
@@ -223,13 +235,6 @@ export default class Layout extends Vue {
     return new Date().getFullYear()
   }
 
-
-
-  private readonly mainPage: MenuItem = {
-    title: this.$store.state.lang.fived_additive,
-    link: '/'
-  }
-
   private mapMenuItems (items: MenuItem[]): MenuItem[] {
     return items.flatMap(x => x.child ? [x, ...x.child] : [x])
   }
@@ -241,7 +246,7 @@ export default class Layout extends Vue {
       child: [
         {
           title: 'Настольные принтеры',
-          link: '/printers/',
+          link: '/printers',
           icon: '/printers/desktop/series3.jpg',
           child: [
             {
@@ -301,56 +306,56 @@ export default class Layout extends Vue {
       title: 'Узнать больше',
       icon: 'mdi-post-outline',
       child: [
-        {
-          title: 'Решения',
-          link: '/solutions',
-          child: [
-            {
-              title: 'Обучение',
-              description: 'Изучение основ 3D печати',
-              link: '/solutions/education'
-            },
-            {
-              title: 'Производство',
-              description: 'Изделия для конечного использования',
-              link: '/solutions/production'
-            },
-            {
-              title: 'Сервис 3D печати',
-              description: 'Услуги 3D печати и прототипирования',
-              link: '/solutions/services'
-            },
-            {
-              title: 'Прототипирование',
-              description: 'Разработка устройств',
-              link: '/solutions/prototyping'
-            },
-          ]
-        },
+        //{
+        //  title: 'Решения',
+        //  link: '/solutions',
+        //  child: [
+        //    {
+        //      title: 'Обучение',
+        //      description: 'Изучение основ 3D печати',
+        //      link: '/solutions/education'
+        //    },
+        //    {
+        //      title: 'Производство',
+        //      description: 'Изделия для конечного использования',
+        //      link: '/solutions/production'
+        //    },
+        //    {
+        //      title: 'Сервис 3D печати',
+        //      description: 'Услуги 3D печати и прототипирования',
+        //      link: '/solutions/services'
+        //    },
+        //    {
+        //      title: 'Прототипирование',
+        //      description: 'Разработка устройств',
+        //      link: '/solutions/prototyping'
+        //    },
+        //  ]
+        //},
         {
           title: 'Блог',
           link: '/blog',
           child: [
-            {
-              title: 'Анонсы',
-              description: 'Все важные мероприятия с нашим участием',
-              link: '/blog/events'
-            },
+            //{
+            //  title: 'Анонсы',
+            //  description: 'Все важные мероприятия с нашим участием',
+            //  link: '/blog/events'
+            //},
             {
               title: 'Новости',
               description: 'Последние новости о нашей компании',
               link: '/blog/news'
             },
-            {
-              title: 'Примеры использования',
-              description: 'Истории успеха наших партнеров',
-              link: '/blog/applications'
-            },
-            {
-              title: 'Статьи',
-              description: 'Подробные исследования и руководства',
-              link: '/blog/whitepapers'
-            },
+            //{
+            //  title: 'Примеры использования',
+            //  description: 'Истории успеха наших партнеров',
+            //  link: '/blog/applications'
+            //},
+            //{
+            //  title: 'Статьи',
+            //  description: 'Подробные исследования и руководства',
+            //  link: '/blog/whitepapers'
+            //},
             {
               title: 'Научная деятельность',
               description: '',
@@ -361,7 +366,7 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.support,
+      title: 'Поддержка',
       icon: 'mdi-face-agent',
       child: [
 
@@ -373,10 +378,10 @@ export default class Layout extends Vue {
               title: 'Принтеры 3хх серии',
               link: '/support/manuals/ste320'
             },
-            {
-              title: 'Принтеры 5хх серии',
-              link: '/support/manuals/ste520'
-            },
+            //{
+            //  title: 'Принтеры 5хх серии',
+            //  link: '/support/manuals/ste520'
+            //},
             {
               title: 'Слайсер STE Slicer',
               link: '/support/manuals/steslicer'
@@ -387,28 +392,28 @@ export default class Layout extends Vue {
             }
           ]
         },
-        {
-          title: 'Советы по использованию',
-          link: '/support/tips',
-          child: [
-            {
-              title: 'Принтеры',
-              link: '/support/tips/printers'
-            },
-            {
-              title: 'Программное обеспечение',
-              link: '/support/tips/software'
-            },
-            {
-              title: 'Материалы',
-              link: '/support/tips/materials'
-            },
-            {
-              title: 'Печать',
-              link: '/support/tips/printing'
-            }
-          ]
-        },
+        //{
+        //  title: 'Советы по использованию',
+        //  link: '/support/tips',
+        //  child: [
+        //    {
+        //      title: 'Принтеры',
+        //      link: '/support/tips/printers'
+        //    },
+        //    {
+        //      title: 'Программное обеспечение',
+        //      link: '/support/tips/software'
+        //    },
+        //    {
+        //      title: 'Материалы',
+        //      link: '/support/tips/materials'
+        //    },
+        //    {
+        //      title: 'Печать',
+        //      link: '/support/tips/printing'
+        //    }
+        //  ]
+        //},
         {
           title: 'Связаться с нами',
           link: '/support'
@@ -416,7 +421,7 @@ export default class Layout extends Vue {
       ]
     },
     {
-      title: this.$store.state.lang.about,
+      title: 'О нас',
       icon: 'mdi-information',
       child: [
         {
@@ -449,29 +454,10 @@ export default class Layout extends Vue {
   private miniVariant: boolean = this.$vuetify.breakpoint.smOnly
   private drawer: boolean = false
 
-  get currentPage (): string {
-    let name = this.mainPage.title
-    this.mainMenu.forEach((element) => {
-      if (element.link !== this.$route.fullPath) {
-        if (element.child) {
-          element.child.forEach((childEl) => {
-            if (childEl.link === this.$route.fullPath) {
-              name = childEl.title
-            }
-          })
-        }
-      } else {
-        name = element.title
-      }
-    })
-    return name
-  }
-
-
   get locales () {
     return [
       { text: 'Русский', locale: 'ru', path: process.env.DOMAIN + this.$route.path },
-      { text: 'English', locale: 'en', path: 'https://en.stereotech.org' + this.$route.path }
+      { text: 'English', locale: 'en', path: 'https://stereotech.org' + this.$route.path }
     ]
   }
 
@@ -492,5 +478,11 @@ export default class Layout extends Vue {
     }
     window.location.href = lang.path
   }
+
+  get lang () {
+    return this.$i18n.locale
+  }
+
+
 }
 </script>

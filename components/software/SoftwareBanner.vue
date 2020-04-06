@@ -13,7 +13,12 @@
             <p
               class="title text-uppercase font-weight-light"
             >{{ $store.state.lang.software.description }}</p>
-            <v-btn color="accent" large nuxt to="/software">{{ $store.state.lang.know_more }}</v-btn>
+            <v-btn
+              color="accent"
+              large
+              nuxt
+              :to="localePath('/software')"
+            >{{ $store.state.lang.know_more }}</v-btn>
           </v-col>
         </v-row>
       </v-container>

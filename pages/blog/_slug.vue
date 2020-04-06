@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">Блог</h1>
@@ -10,26 +10,38 @@
       <v-col cols="auto">
         <h4 class="font-weight-light text-center">Категории</h4>
         <v-chip-group color="primary">
-          <v-chip nuxt exact to="/blog">Все темы</v-chip>
-          <v-chip nuxt exact to="/blog/news">Новости</v-chip>
-          <v-chip nuxt exact to="/blog/science">Научная деятельность</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog')">Все темы</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/news')">Новости</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/science')">Научная деятельность</v-chip>
         </v-chip-group>
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col v-for="(post, index) in posts" :key="index" :cols="12" md="4">
-        <blogPostCard
-          :postID="post.post_id"
-          :photoPath="`https://api.ste3d.ru/image/${post.image}`"
-          :postTitle="post.name"
-          :postDescription="post.description"
-        ></blogPostCard>
+    <v-row justify="center" v-if="posts.length < 1">
+      <v-col cols="2" class="text-center">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </v-col>
     </v-row>
-
+    <v-row justify="center" v-else>
+      <v-col cols="12" lg="10">
+        <v-card>
+          <v-container fluid>
+            <v-row justify="center" align="center">
+              <v-col v-for="(post, index) in posts" :key="index" cols="12" md="4">
+                <blogPostCard
+                  :postID="post.post_id"
+                  :photoPath="`https://api.ste3d.ru/image/${post.image}`"
+                  :postTitle="post.name"
+                  :postDescription="post.description"
+                ></blogPostCard>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-col cols="auto" class="text-center">
-      <v-btn dark color="primary" @click="showMore()">Показать ещё</v-btn>
+      <v-btn depressed color="primary" @click="showMore()">Показать ещё</v-btn>
     </v-col>
   </v-container>
 </template>
