@@ -19,7 +19,7 @@
               class="mt-2"
               depressed
               nuxt
-              :to="link"
+              :to="localePath(link)"
             >
               Узнать больше
               <v-icon right>mdi-chevron-right</v-icon>
@@ -40,7 +40,7 @@
             color="primary"
             depressed
             nuxt
-            :to="link"
+            :to="localePath(link)"
           >
             Узнать больше
             <v-icon right>mdi-chevron-right</v-icon>

@@ -8,13 +8,17 @@
         <v-divider :key="`divider-${index}`"></v-divider>
         <template v-for="link in group.links">
           <v-list-item :key="link.to">
-            <v-list-item-title class="font-weight-bold" nuxt :to="link.to">{{ link.name }}</v-list-item-title>
+            <v-list-item-title
+              class="font-weight-bold"
+              nuxt
+              :to="localePath(link.to)"
+            >{{ link.name }}</v-list-item-title>
           </v-list-item>
           <v-list-item
             v-for="content in link.contents"
             :key="content.to"
             nuxt
-            :to="`/support/${folder}${menuSection}${link.to}${content.to}`"
+            :to="localePath(`/support/${folder}${menuSection}${link.to}${content.to}`)"
           >{{ content.name }}</v-list-item>
         </template>
       </template>

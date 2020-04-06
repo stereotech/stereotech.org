@@ -10,9 +10,9 @@
       <v-col cols="auto">
         <h4 class="font-weight-light text-center">Категории</h4>
         <v-chip-group color="primary">
-          <v-chip nuxt exact to="/blog">Все темы</v-chip>
-          <v-chip nuxt exact to="/blog/news">Новости</v-chip>
-          <v-chip nuxt exact to="/blog/science">Научная деятельность</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog')">Все темы</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/news')">Новости</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/science')">Научная деятельность</v-chip>
         </v-chip-group>
       </v-col>
     </v-row>
