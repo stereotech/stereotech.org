@@ -14,7 +14,7 @@
             >{{ title }}</h4>
 
             <v-btn
-              v-if="fullsize  && $vuetify.breakpoint.smAndUp"
+              v-if="fullsize && $vuetify.breakpoint.smAndUp"
               color="accent"
               class="mt-2"
               depressed
@@ -26,22 +26,13 @@
             </v-btn>
           </v-img>
         </v-col>
-        <v-col cols="12" :sm="fullsize ? 12 : 6" class="text-center">
-          <h4
-            v-if="!fullsize || $vuetify.breakpoint.xsOnly"
-            class="display-1 font-weight-light"
-          >{{ title }}</h4>
+        <v-col cols="12" :sm="fullsize ? 12 : 6" class="text-center hidden-sm-and-up">
+          <h4 class="display-1 font-weight-light">{{ title }}</h4>
           <p
             class="subtitle-1 font-weight-light"
             v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
           ></p>
-          <v-btn
-            v-if="!fullsize  || $vuetify.breakpoint.xsOnly"
-            color="primary"
-            depressed
-            nuxt
-            :to="localePath(link)"
-          >
+          <v-btn color="primary" depressed nuxt :to="localePath(link)">
             Узнать больше
             <v-icon right>mdi-chevron-right</v-icon>
           </v-btn>

@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" class="text-center">
-          <h4 class="display-1 text-uppercase font-weight-light">{{ $t('Последние новости')}}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light">{{ $t('Последние новости') }}</h4>
         </v-col>
       </v-row>
       <v-row justify="center" v-if="posts.length < 1">
@@ -11,7 +11,7 @@
           <v-progress-circular indeterminate color="primary"></v-progress-circular>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center">
+      <v-row v-else justify="center" align="center">
         <v-col v-for="(post, index) in posts" :key="index" cols="12" md="4">
           <blogPostCard
             :postID="post.post_id"
