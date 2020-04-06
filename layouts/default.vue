@@ -111,18 +111,13 @@
           </v-btn>
         </template>
         <v-list nav>
-          <!--<v-list-item
+          <v-list-item
             v-for="locale in locales"
             :key="locale.locale"
             @click="currentLang = locale.locale"
           >
             <v-list-item-title>{{ locale.text }}</v-list-item-title>
-          </v-list-item>-->
-          <v-list-item
-            v-for="locale in $i18n.locales"
-            :key="locale.code"
-            :href="switchLocalePath(locale.code)"
-          >{{ locale.name }}</v-list-item>
+          </v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -371,10 +366,10 @@ export default class Layout extends Vue {
               title: 'Принтеры 3хх серии',
               link: '/support/manuals/ste320'
             },
-            {
-              title: 'Принтеры 5хх серии',
-              link: '/support/manuals/ste520'
-            },
+            //{
+            //  title: 'Принтеры 5хх серии',
+            //  link: '/support/manuals/ste520'
+            //},
             {
               title: 'Слайсер STE Slicer',
               link: '/support/manuals/steslicer'
@@ -446,6 +441,31 @@ export default class Layout extends Vue {
   ]
   private miniVariant: boolean = this.$vuetify.breakpoint.smOnly
   private drawer: boolean = false
+
+  get locales () {
+    return [
+      { text: 'Русский', locale: 'ru', path: process.env.DOMAIN + this.$route.path },
+      { text: 'English', locale: 'en', path: 'https://stereotech.org' + this.$route.path }
+    ]
+  }
+
+  get currentLang () {
+    const lang = this.locales.find(v => v.locale === this.$store.state.locale)
+    if (lang) {
+      return lang.locale
+    }
+    return 'ru'
+  }
+  set currentLang (newLang: string) {
+    const lang = this.locales.find(v => v.locale == newLang)
+    if (!lang) {
+      return
+    }
+    if (process.env.NODE_ENV === 'development') {
+      lang.path = lang.path.replace('https', 'http').replace('stereotech.org', window.location.host.split('.').slice(-1)[0])
+    }
+    window.location.href = lang.path
+  }
 
   get lang () {
     return this.$i18n.locale

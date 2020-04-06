@@ -2,7 +2,7 @@ import { Configuration } from '@nuxt/types'
 import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
-const domain = process.env.NUXT_ENV_DOMAIN || 'https://stereotech.org'
+const domain = process.env.NUXT_ENV_DOMAIN || 'https://ste3d.ru'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
 
 const config: Configuration = {
@@ -84,19 +84,18 @@ const config: Configuration = {
         code: 'en',
         name: 'English',
         file: 'en.json',
-        domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'stereotech.org'
       },
       {
         code: 'ru',
         name: 'Русский',
         file: 'ru.json',
-        domain: process.env.NODE_ENV === 'development' ? 'ru.localhost' : 'stereotech.org'
       }
     ],
-    differentDomains: true,
-    lazy: true,
+    differentDomains: false,
+    lazy: false,
+    strategy: 'no_prefix',
     langDir: 'locales/',
-    defaultLocale: 'en',
+    defaultLocale: locale,
     detectBrowserLanguage: false
   },
   apollo: {
