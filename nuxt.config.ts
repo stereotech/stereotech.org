@@ -64,7 +64,8 @@ const config: Configuration = {
     [
       '@nuxtjs/yandex-metrika',
       {
-        id: '54147616'
+        id: '54147616',
+        webvisor: true
       }
     ],
     ['vue-yandex-maps/nuxt', {
