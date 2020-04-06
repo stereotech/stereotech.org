@@ -30,7 +30,7 @@
       <v-col cols="12" lg="10">
         <AddressMap :addresses="addresses" :height="500" />
       </v-col>
-      <v-col cols="12" lg="4">
+      <v-col cols="12" lg="4" id="dealer-form">
         <v-card>
           <v-card-title>Стать дилером</v-card-title>
           <v-card-text>

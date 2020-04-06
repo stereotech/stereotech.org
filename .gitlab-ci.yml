@@ -19,7 +19,7 @@ extractLocale:
   only:
     - develop
 
-.buildNuxt: 
+buildNuxt: 
   stage: build
   cache:
     paths:
@@ -31,46 +31,38 @@ extractLocale:
     - cd ..
     - cp -rf docs/static .
     - npm install --dev
+  script:
+    - npm run generate
+  only: 
+    - master
   artifacts:
     paths:
       - public
 
 pages:
-  extends: .buildNuxt
+  stage: build
+  cache:
+    paths:
+      - node_modules
+  before_script:
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
+    - cd docs
+    - node ./scripts/generate-menu.js
+    - cd ..
+    - cp -rf docs/static .
+    - npm install --dev
   script:
     - npm run generate:pages
   only:
     - develop
 
-buildNuxtRu:
-  extends: .buildNuxt
-  script:
-    - npm run generate
-  only: 
-    - master
 
-buildNuxtEn:
-  extends: .buildNuxt
-  script:
-    - npm run generate:en
-  only: 
-    - master
-
-.deployRelease:
+deployRelease:
   stage: deploy
   before_script:
     - apt-get update -qq && apt-get install -y -qq lftp
+  script: 
+    - lftp -e "set ftp:ssl-allow no; open $URL_RU; user $LOGIN_RU $PASS; mirror -X .* -X .*/ --reverse --verbose --delete public/ ./; bye"
+    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_EN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete public/ ./; bye"
   only: 
     - master
-
-deployReleaseRu:
-  extends: .deployRelease
-  needs: [buildNuxtRu]
-  script:
-    - lftp -e "set ftp:ssl-allow no; open $URL_RU; user $LOGIN_RU $PASS; mirror -X .* -X .*/ --reverse --verbose --delete public/ ./; bye"
-
-deployReleaseEn:
-  extends: .deployRelease
-  needs: [buildNuxtEn]
-  script:
-    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_EN $PASS; mirror -X .* -X .*/ --reverse --verbose --delete public/ ./; bye"
