@@ -30,7 +30,8 @@ const config: Configuration = {
 
   router: {
     // middleware: 'i18n'
-    base: rootPath
+    base: rootPath,
+    trailingSlash: false
   },
   /*
   ** Global CSS
@@ -93,10 +94,8 @@ const config: Configuration = {
     ],
     differentDomains: false,
     lazy: false,
-    strategy: 'no_prefix',
     langDir: 'locales/',
     defaultLocale: locale,
-    detectBrowserLanguage: false
   },
   apollo: {
     clientConfigs: {
