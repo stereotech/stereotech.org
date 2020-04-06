@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex md6>
+    <v-row align="center">
+      <v-col cols="6">
         <v-img src="stereotech.jpg"></v-img>
         <p offset-md="3" class="subtitle">новые возможности Аддитивного производства</p>
-      </v-flex>
-      <v-flex md6 align-self-center>
+      </v-col>
+      <v-col cols="6" class="text center">
         <p class="phoneNumber">+7 (902) 364 84 04</p>
         <p class="email">info@ste3d.ru</p>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
