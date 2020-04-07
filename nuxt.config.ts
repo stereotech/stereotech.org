@@ -38,7 +38,7 @@ const config: Configuration = {
   ** Global CSS
   */
   css: [
-    '@mdi/font/css/materialdesignicons.css', '~/assets/main.css', 'typeface-roboto/index.css'
+    '@mdi/font/css/materialdesignicons.css', 'typeface-roboto/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -54,7 +54,6 @@ const config: Configuration = {
   plugins: [
     '~/plugins/init',
     '~/plugins/htmlparser',
-    '~/plugins/sendemail',
     '~/plugins/vue-the-mask'
   ],
   /*
