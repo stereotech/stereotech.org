@@ -1,6 +1,6 @@
 <template>
-  <v-parallax src="main/bg1.webp">
-    <v-row>
+  <v-parallax src="main/bg1.webp" contain>
+    <v-row justify="center">
       <v-col class="text-center">
         <h2
           class="display-3"
