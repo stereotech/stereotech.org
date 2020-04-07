@@ -32,7 +32,7 @@
         </v-row>
         <v-row justify="center">
           <template v-for="(address, index) in addresses">
-            <v-col cols="12" md="6" lg="4" :key="index">
+            <v-col cols="12" md="6" :key="index">
               <v-card class="mx-auto" outlined>
                 <v-list-item three-line>
                   <v-list-item-content>
