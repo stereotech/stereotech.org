@@ -62,6 +62,6 @@ deployRelease:
   before_script:
     - apt-get update -qq && apt-get install -y -qq lftp
   script: 
-    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_EN $PASS; mirror -P -X .* -X .*/ --reverse --verbose --delete public/ ./; bye"
+    - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_EN $PASS; mirror -parallel=10 -R public/ ./; bye"
   only: 
     - master

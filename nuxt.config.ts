@@ -174,7 +174,8 @@ const config: Configuration = {
   generate: {
     dir: 'public',
     fallback: true,
-    interval: 100
+    interval: 100,
+
   }
 }
 
