@@ -26,7 +26,7 @@
             </v-btn>
           </v-img>
         </v-col>
-        <v-col cols="12" :sm="fullsize ? 12 : 6" class="text-center hidden-sm-and-up">
+        <v-col cols="12" :sm="fullsize ? 12 : 6" :class="`text-center ${hidden}`">
           <h4 class="display-1 font-weight-light">{{ title }}</h4>
           <p
             class="subtitle-1 font-weight-light"
@@ -52,6 +52,10 @@ export default class ProductCard extends Vue {
   @Prop({ type: String, default: '' }) description!: string
   @Prop({ type: String, default: '' }) link!: string
   @Prop({ type: Boolean, default: false }) fullsize!: boolean
+
+  get hidden () {
+    return this.fullsize ? 'hidden-sm-and-up' : ''
+  }
 }
 
 </script>
