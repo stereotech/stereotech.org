@@ -1,9 +1,11 @@
 import { Configuration } from '@nuxt/types'
 import ru from 'vuetify/src/locale/ru'
+import { createApolloFetch } from 'apollo-fetch'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 const domain = process.env.NUXT_ENV_DOMAIN || 'https://ste3d.ru'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
+const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
 const config: Configuration = {
   head: {
@@ -100,7 +102,7 @@ const config: Configuration = {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
+        httpEndpoint: apolloUri
       },
     }
   },
@@ -175,7 +177,20 @@ const config: Configuration = {
     dir: 'public',
     fallback: true,
     interval: 100,
-
+    routes () {
+      const client = createApolloFetch({ uri: apolloUri })
+      const query = `
+        query {
+          blog_allposts {
+            post_id
+          }
+        }
+      `
+      return client({ query }).then(result => {
+        const { data } = result
+        return data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+      })
+    }
   }
 }
 
