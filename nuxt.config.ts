@@ -22,6 +22,8 @@ const config: Configuration = {
     ]
   },
   link: [
+    { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css'},
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'},
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
     { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
@@ -38,7 +40,7 @@ const config: Configuration = {
   ** Global CSS
   */
   css: [
-    '@mdi/font/css/materialdesignicons.css', 'typeface-roboto/index.css'
+    
   ],
   /*
   ** Plugins to load before mounting the App
