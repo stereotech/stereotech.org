@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">Серия 3хх - доступные принтеры для профессиональной 3D печати</h1>
+        <h1 class="font-weight-light">{{$t('Серия 3хх - доступные принтеры для профессиональной 3D печати')}}</h1>
         <h2>от {{ product.price }}</h2>
       </v-col>
       <v-col cols="12" lg="10">
@@ -10,19 +10,19 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="$store.state.lang.software.steapp.title"
-          :description="$store.state.lang.software.steapp.description"
+          :title="this.$tc('STE APP')"
+          :description="this.$tc('приложение для управления процессом печати')"
           image="/printers/common/cluster1.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.software.steapp.add4 }}</p>
+          >{{ this.$tc('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.software.steapp.add5 }}</p>
+          >{{ this.$tc('планирование заданий печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.software.steapp.add6 }}</p>
+          >{{ this.$tc('резервация принтеров') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -30,66 +30,66 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="$store.state.lang.printer.common.design.title"
-          :description="$store.state.lang.printer.common.design.description"
+          :title="this.$tc('лаконичный дизайн')"
+          :description="this.$tc('простой, но функциональный')"
           image="/printers/ste320/design.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.design.add1 }}</p>
+          >{{ this.$tc('полностью закрытая камера') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.design.add2 }}</p>
+          >{{ this.$tc('низкий уровень шума') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.design.add3 }}</p>
+          >{{ this.$tc('легкий доступ к материалу печати') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="$store.state.lang.printer.common.frame.title"
-          :description="$store.state.lang.printer.common.frame.description"
+          :title="this.$tc('жесткая алюминиевая рама')"
+          :description="this.$tc('минимум вибраций')"
           image="/printers/common/frame.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.frame.add1 }}</p>
+          >{{ this.$tc('стабильный процесс печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.frame.add2 }}</p>
+          >{{ this.$tc('точные линейные направляющие') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="$store.state.lang.printer.common.electronics.title"
-          :description="$store.state.lang.printer.common.electronics.description"
+          :title="this.$tc('производительная электроника')"
+          :description="this.$tc('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
           image="/printers/common/motherboard.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.electronics.add1}}</p>
+          >{{ this.$tc('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.electronics.add2 }}</p>
+          >{{ this.$tc('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.electronics.add3 }}</p>
+          >{{ this.$tc('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="$store.state.lang.printer.common.printhead.title"
-          :description="$store.state.lang.printer.common.printhead.description"
+          :title="this.$tc('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
+          :description="this.$tc('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
           image="/printers/common/printhead.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.printhead.add1 }}</p>
+          >{{ this.$tc('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.printhead.add2 }}</p>
+          >{{ this.$tc('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">

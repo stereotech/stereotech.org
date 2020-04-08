@@ -198,6 +198,51 @@ export default class PrinterSelector extends Vue {
     this.$emit('change', this.items.find(v => (v.extruderType === this.currentExtruderVariant.value
       && v.printVolumeType === this.currentPrintVolume.value
       && v.fiveAxisType === value.value)) || this.items[0])  }
+
+  // async mounted(){
+  //   this.extruderVariants.push({
+  //     name: this.$tc('Один экструдер'),
+  //     description: this.$tc('Надежная печать одним материалом'),
+  //     value: ExtruderType.Single
+  //   },
+  //   {
+  //     name: this.$tc('Два экструдера'),
+  //     description: this.$tc('Печать различными материалами двумя экструдерами'),
+  //     value: ExtruderType.Dual
+  //   })
+
+  //   this.printVolumeVariants.push(  {
+  //     name: this.$tc('Стандартная область печати'),
+  //     description: '200x210x200мм',
+  //     value: PrintVolumeType.Standard
+  //   },
+  //   {
+  //     name: this.$tc('Стандартная область печати, увеличенная по оси Z'),
+  //     description: '200x210x300мм',
+  //     value: PrintVolumeType.StandardLong
+  //   },
+  //   {
+  //     name: this.$tc('Увеличенная область печати'),
+  //     description: '300x310x300мм',
+  //     value: PrintVolumeType.Extended
+  //   },
+  //   {
+  //     name: this.$tc('Увеличенная область печати, удлиненная по оси Z'),
+  //     description: '300x310x400мм',
+  //     value: PrintVolumeType.ExtendedLong
+  //   })
+
+  //   this.fiveAxisVariants.push(    {
+  //     name: this.$tc('5D принтер'),
+  //     description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
+  //     value: FiveAxisType.Normal
+  //   },
+  //   {
+  //     name: this.$tc('Гибридный 5D принтер'),
+  //     description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
+  //     value: FiveAxisType.Hybrid
+  //   })
+  // }    
 }
 
 </script>

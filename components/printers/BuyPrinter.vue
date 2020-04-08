@@ -3,23 +3,23 @@
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" md="6" class="text-center">
-          <h2>Заказ</h2>
+          <h2>{{$t('Заказ')}}</h2>
           <h3 class="text-uppercase">{{ variant.model }}</h3>
           <h3>{{ price }}</h3>
 
           <v-form v-model="valid">
             <v-text-field
               v-model="orderName"
-              :rules="[v => !!v || 'Требуется ФИО']"
-              label="ФИО"
+              :rules="[v => !!v || this.$tc('Требуется ФИО')]"
+              :label="this.$tc('ФИО')"
               required
               outlined
             ></v-text-field>
 
             <v-text-field
               v-model="email"
-              :rules="[v => !!v || 'Требуется E-mail', v => /.+@.+\..+/.test(v) || 'Введенный E-mail неверен']"
-              label="Почта"
+              :rules="[v => !!v || this.$tc('Требуется E-mail'), v => /.+@.+\..+/.test(v) || this.$tc('Введенный E-mail неверен')]"
+              :label="this.$tc('Почта')"
               required
               outlined
             ></v-text-field>
@@ -27,18 +27,18 @@
             <v-text-field
               v-model="phoneNumber"
               v-mask="mask"
-              label="Номер телефона"
-              :rules="[v => !!v || 'Требуется номер телефона']"
+              :label="this.$tc('Номер телефона')"
+              :rules="[v => !!v || this.$tc('Требуется номер телефона')]"
               outlined
             ></v-text-field>
 
-            <v-text-field v-model="companyName" label="Название компании" outlined></v-text-field>
+            <v-text-field v-model="companyName" :label="this.$tc('Название компании')" outlined></v-text-field>
 
-            <v-btn :disabled="!valid" color="primary" @click="submit()" large>Заказать</v-btn>
+            <v-btn :disabled="!valid" color="primary" @click="submit()" large>{{$t("Заказать")}}</v-btn>
           </v-form>
           <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
             {{ snackbarText }}
-            <v-btn text @click="snackbar = false">Закрыть</v-btn>
+            <v-btn text @click="snackbar = false">{{$t('Закрыть')}}</v-btn>
           </v-snackbar>
           <small>
             This site is protected by reCAPTCHA and the Google
@@ -72,7 +72,6 @@ export default class BuyPrinter extends Vue {
   @Prop({ type: Object, required: true, default: {} }) variant!: PrinterVariant
 
   @Prop({ type: String, required: true, default: '' }) price!: number
-
 
   private orderName: string = ""
   private phoneNumber: string = ""

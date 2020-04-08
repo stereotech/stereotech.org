@@ -4,7 +4,7 @@
       <v-col class="text-center">
         <h2
           class="display-3"
-        >Первый в мире настольный 5D принтер Stereotech STE 520 от российской компании</h2>
+        >{{$t('Первый в мире настольный 5D принтер Stereotech STE 520 от российской компании')}}</h2>
       </v-col>
     </v-row>
   </v-parallax>

@@ -5,26 +5,26 @@
             <headerInfo></headerInfo>
             <banner></banner>
             <textStripe>
-                5D принтер Stereotech STE 520 –
-                дешевле, технологичнее и точнее конкурентов:
+                $t('5D принтер Stereotech STE 520 –
+                дешевле, технологичнее и точнее конкурентов:')
             </textStripe>
             <advantagesTable></advantagesTable>
         </v-col>
         <v-col  :cols="12" md="6">
             <listComponent :listElements="applying">
-                <h3><span class="blueText text center">СФЕРЫ ПРИМЕНЕНИЯ</span> пятиосевого 3D принтера Stereotech STE 520:</h3>
+                <h3><span class="blueText text center">$t('СФЕРЫ ПРИМЕНЕНИЯ')</span> $t('пятиосевого 3D принтера Stereotech STE 520:')</h3>
             </listComponent>
         </v-col>
         <v-col  :cols="12" md="6">
             <listComponent :listElements="applying">
-                <h3 class="blueText text center">ПРЕИМУЩЕСТВА 5D ТЕХНОЛОГИИ:</h3>
+                <h3 class="blueText text center">$t('ПРЕИМУЩЕСТВА 5D ТЕХНОЛОГИИ:')</h3>
                 <h3> <br></h3>
             </listComponent>
         </v-col>
         <v-col>
             <textStripe>
-                5D принтер Stereotech STE 520
-                снижает себестоимость готовых моделей в 8 раз!
+                $t('5D принтер Stereotech STE 520
+                снижает себестоимость готовых моделей в 8 раз!')
             </textStripe>
             <costCompare></costCompare>
         </v-col>
