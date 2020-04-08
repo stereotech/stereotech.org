@@ -44,15 +44,18 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import gql from 'graphql-tag'
+import { Context } from '@nuxt/types'
 
-@Component
-export default class BlogPost extends Vue {
+@Component({
+  asyncData: async (context) => {
+    if (context.app.apolloProvider === undefined)
+      return {
+        post: null
+      }
+    let client = context.app.apolloProvider.defaultClient
 
-
-  private post: any = null
-  //private blog_post_id: number = 0
-  async mounted () {
-    let result = await this.$apollo.query({
+    const id = context.params.id
+    let result = await client.query({
       query: gql`query($id: ID!){
                 blog_post(id: $id) {
                     name,
@@ -63,12 +66,22 @@ export default class BlogPost extends Vue {
                 }
             }`,
       variables: {
-        id: this.$route.params.id
+        id
       }
     })
-    this.post = result.data.blog_post
-    this.post.description = this.$convertHtml(this.post.description)
-    //console.log(this.$route.params)
+    return {
+      post: result.data.blog_post
+    }
+  }
+})
+export default class BlogPost extends Vue {
+
+  private post: any = null
+
+  async mounted () {
+    if (this.post) {
+      this.post.description = this.$convertHtml(this.post.description)
+    }
   }
 
 }
