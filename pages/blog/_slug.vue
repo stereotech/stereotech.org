@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">Блог</h1>
+        <h1 class="font-weight-light">{{$t('Блог')}}</h1>
       </v-col>
     </v-row>
 

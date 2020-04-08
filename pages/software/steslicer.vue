@@ -4,37 +4,37 @@
       <v-col cols="12" lg="10">
         <ProductBanner
           image="/software/steslicer/banner.jpg"
-          title="Уникальное программное обеспечение для 5D печати"
-          :description="'Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.'"
+          :title="$tc('Уникальное программное обеспечение для 5D печати')"
+          :description="this.$tc('Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.')"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <DownloadForm title="Загрузить STE Slicer" :links="downloadLinks" />
+        <DownloadForm :title="this.$tc('Загрузить STE Slicer')" :links="downloadLinks" />
       </v-col>
       <v-col cols="12" lg="10">
-        <KeyFeatures title="Особенности STE Slicer" :items="keyFeatures" />
+        <KeyFeatures :title="this.$tc('Особенности STE Slicer')" :items="keyFeatures" />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/software/steslicer/manual.jpg"
-          title="Быстрый старт"
-          description="Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer"
+          :title="this.$tc('Быстрый старт')"
+          :description="this.$tc('Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer')"
           link="/support/manuals/steslicer"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title>Программа предварительного тестирования</v-card-title>
+          <v-card-title>{{$t('Программа предварительного тестирования')}}</v-card-title>
           <v-card-text>
             <v-container fluid>
               <v-row justify="center">
                 <v-col cols="12">
-                  <p>Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения</p>
+                  <p>{{$t('Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения')}}</p>
                 </v-col>
                 <v-col cols="12" lg="4">
                   <TestingForm
-                    buttonText="Запись в программу"
-                    title="Предварительное тестирование"
+                    :buttonText="this.$tc('Запись в программу')"
+                    :title="this.$tc('Предварительное тестирование')"
                   />
                 </v-col>
               </v-row>
@@ -69,43 +69,43 @@ import { DownloadLink } from '~/types/download'
   }
 })
 export default class SteSlicer extends Vue {
-  keyFeatures: KeyFeature[] = [
-    {
-      name: 'Режимы слайсинга',
+  keyFeatures: KeyFeature[] = []
+  downloadLinks: DownloadLink[] = []
+  async mounted(){
+    this.keyFeatures.push({
+      name: this.$tc('Режимы слайсинга'),
       image: 'software/steslicer/printing_modes.jpg',
-      description: 'STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech',
-      keys: ['Различные режимы слайсинга',
-        'Настройки для каждого из режимов слайсинга',
+      description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
+      keys: [this.$tc('Различные режимы слайсинга'),
+        this.$tc('Настройки для каждого из режимов слайсинга'),
       ]
     },
     {
-      name: 'Простота использования',
+      name: this.$tc('Простота использования'),
       image: 'software/steslicer/easy_to_use.jpg',
-      description: 'STE Slicer позволяет подготовить модель к печати за считанные секунды',
-      keys: ['Рекомендованный режим с автоматически настроенными значениями',
-        'Продвинутый режим с ручным контролем различных настроек',
+      description: this.$tc('STE Slicer позволяет подготовить модель к печати за считанные секунды'),
+      keys: [this.$tc('Рекомендованный режим с автоматически настроенными значениями'),
+        this.$tc('Продвинутый режим с ручным контролем различных настроек'),
       ]
     },
     {
-      name: 'STE App',
+      name: this.$tc('STE App'),
       image: 'software/steapp/banner.jpg',
-      description: 'Система управления принтерами встроена в STE Steslicer',
-      keys: ['Отправка заданий на печать напрямую из слайсера',
-        'Автоматический поиск принтеров в сети',
+      description: this.$tc('Система управления принтерами встроена в STE Steslicer'),
+      keys: [this.$tc('Отправка заданий на печать напрямую из слайсера'),
+        this.$tc('Автоматический поиск принтеров в сети'),
       ]
-    },
-  ]
+    })
 
-
-  downloadLinks: DownloadLink[] = [
-    {
-      name: 'Загрузить для Windows x64',
+    this.downloadLinks.push({
+      name: this.$tc('Загрузить для Windows x64'),
       icon: 'mdi-download',
-      description: 'Доступно для Windows Vista и выше, 64-бит',
-      version: 'Версия 0.1.0',
+      description: this.$tc('Доступно для Windows Vista и выше, 64-бит'),
+      version: this.$tc('Версия 0.1.0'),
       download: 'http://software.stereotech.org/steslicer/stable/latest.version'
-    }
-  ]
+    })
+  }
+ 
 }
 
 </script>

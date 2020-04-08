@@ -4,8 +4,8 @@
       <v-col cols="12" class="text-center">
         <h1
           class="font-weight-light"
-        >Серия Special - Серия 3D и 5D принтеров для композитной печати с непрерывным волокном</h1>
-        <h2>от 399000</h2>
+        >{{$t('Серия Special - Серия 3D и 5D принтеров для композитной печати с непрерывным волокном')}}</h1>
+        <h2>{{$t('от 399000')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" />
