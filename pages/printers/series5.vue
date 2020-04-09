@@ -2,8 +2,8 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">{{$t('Серия 5хх - инновационные 5D принтеры')}}</h1>
-        <h2>от {{ product.price }}</h2>
+        <h1 class="font-weight-light">{{$tc('Серия 5хх - инновационные 5D принтеры')}}</h1>
+        <h2>{{$tc('от')}} {{ product.price }}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterSelector v-model="currentPrinter" :items="printerItems" />
@@ -18,25 +18,25 @@
         <ProductCard
           image="/printers/software/steslicer.webp"
           title="STE Slicer"
-          description="'Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'"
+          :description="$tc('Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App')"
           link="/software/steslicer"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="this.$tc('STE APP')"
-          :description="this.$tc('приложение для управления процессом печати')"
+          :title="$tc('STE APP')"
+          :description="$tc('приложение для управления процессом печати')"
           image="/printers/common/cluster1.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
+          >{{ $tc('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('планирование заданий печати') }}</p>
+          >{{ $tc('планирование заданий печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('резервация принтеров') }}</p>
+          >{{ $tc('резервация принтеров') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -44,66 +44,66 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="this.$tc('лаконичный дизайн')"
-          :description="this.$tc('простой, но функциональный')"
+          :title="$tc('лаконичный дизайн')"
+          :description="$tc('простой, но функциональный')"
           image="/printers/ste520/design.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('полностью закрытая камера') }}</p>
+          >{{ $tc('полностью закрытая камера') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('низкий уровень шума') }}</p>
+          >{{ $tc('низкий уровень шума') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('легкий доступ к материалу печати') }}</p>
+          >{{ $tc('легкий доступ к материалу печати') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="this.$tc('жесткая алюминиевая рама')"
-          :description="this.$tc('минимум вибраций')"
+          :title="$tc('жесткая алюминиевая рама')"
+          :description="$tc('минимум вибраций')"
           image="/printers/common/frame.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('стабильный процесс печати') }}</p>
+          >{{ $tc('стабильный процесс печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('точные линейные направляющие')}}</p>
+          >{{ $tc('точные линейные направляющие')}}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="this.$tc('производительная электроника')"
-          :description="this.$tc('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
+          :title="$tc('производительная электроника')"
+          :description="$tc('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
           image="/printers/common/motherboard.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ') }}</p>
+          >{{ $tc('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ') }}</p>
+          >{{ $tc('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128') }}</p>
+          >{{ $tc('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="this.$tc('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
-          :description="this.$tc('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
+          :title="$tc('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
+          :description="$tc('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
           image="/printers/common/printhead.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C') }}</p>
+          >{{ $tc('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ this.$tc('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ') }}</p>
+          >{{ $tc('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10" v-if="product">

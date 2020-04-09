@@ -19,7 +19,7 @@
             hide-default-header
             :items-per-page="99"
           >
-            <template v-slot:header>{{ this.$tc(attributeGroup.name) }}</template>
+            <template v-slot:header>{{attributeGroup.name}}</template>
             <template v-slot:item="{item}">
               <tr>
                 <td class="subheading text-uppercase font-weight-light text-center">{{ item.name }}</td>
