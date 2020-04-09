@@ -11,18 +11,18 @@
       <v-col cols="12" lg="10">
         <PrinterFeature
           :title="$tc('STE APP')"
-          :description="$tc('приложение для управления процессом печати')"
+          :description="$t('приложение для управления процессом печати')"
           image="/printers/common/cluster1.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
+          >{{ $t('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('планирование заданий печати') }}</p>
+          >{{ $t('планирование заданий печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('резервация принтеров') }}</p>
+          >{{ $t('резервация принтеров') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -30,66 +30,66 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="$tc('лаконичный дизайн')"
-          :description="$tc('простой, но функциональный')"
+          :title="$t('лаконичный дизайн')"
+          :description="$t('простой, но функциональный')"
           image="/printers/ste320/design.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ tc('полностью закрытая камера') }}</p>
+          >{{ $t('полностью закрытая камера') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('низкий уровень шума') }}</p>
+          >{{ $t('низкий уровень шума') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('легкий доступ к материалу печати') }}</p>
+          >{{ $t('легкий доступ к материалу печати') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="$tc('жесткая алюминиевая рама')"
-          :description="$tc('минимум вибраций')"
+          :title="$t('жесткая алюминиевая рама')"
+          :description="$t('минимум вибраций')"
           image="/printers/common/frame.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('стабильный процесс печати') }}</p>
+          >{{ $t('стабильный процесс печати') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('точные линейные направляющие') }}</p>
+          >{{ $t('точные линейные направляющие') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
-          :title="$tc('производительная электроника')"
-          :description="$tc('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
+          :title="$t('производительная электроника')"
+          :description="$t('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
           image="/printers/common/motherboard.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ')}}</p>
+          >{{ $t('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ') }}</p>
+          >{{ $t('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128') }}</p>
+          >{{ $t('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterFeature
           right-text
-          :title="$tc('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
-          :description="$tc('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
+          :title="$t('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
+          :description="$t('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
           image="/printers/common/printhead.webp"
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C') }}</p>
+          >{{ $t('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C') }}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $tc('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ') }}</p>
+          >{{ $t('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ') }}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
