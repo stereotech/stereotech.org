@@ -4,8 +4,8 @@
       <v-col cols="12" class="text-center">
         <h1
           class="font-weight-light"
-        >Серия 6хх - Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей</h1>
-        <h2>Стоимость по запросу</h2>
+        >{{$t('Серия 6хх - Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей')}}</h1>
+        <h2>{{$t('Стоимость по запросу')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" />
@@ -32,7 +32,8 @@ export default class Series6 extends Vue {
     printerType: PrinterType.ThreeAxis,
     extruderType: ExtruderType.Dual,
     printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal
+    fiveAxisType: FiveAxisType.Normal,
+    description: 'Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей'
   }
 }
 

@@ -139,7 +139,8 @@ export default class Series3 extends Vue {
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Single,
       printVolumeType: PrintVolumeType.Standard,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Стартовый принтер для обучения, производства и разработки с одним экструдером и закрытой камерой'
     },
     {
       model: '320 Pro',
@@ -147,7 +148,8 @@ export default class Series3 extends Vue {
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Продвинутый принтер для обучения, производства и разработки с двумя экструдерами и закрытой камерой'
     },
     {
       model: '320 Plus',
@@ -155,7 +157,8 @@ export default class Series3 extends Vue {
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.StandardLong,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Продвинутый принтер с двумя экструдерами и зоной печати 200x210x300 мм'
     },
     {
       model: '330 Pro',
@@ -163,7 +166,8 @@ export default class Series3 extends Vue {
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Продвинутый принтер с двумя экструдерами и зоной печати 300x310x300 мм'
     },
     {
       model: '330 Plus',
@@ -171,7 +175,8 @@ export default class Series3 extends Vue {
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.ExtendedLong,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм'
     },
   ]
 

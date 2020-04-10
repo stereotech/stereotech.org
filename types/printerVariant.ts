@@ -5,6 +5,7 @@ export interface PrinterVariant {
     extruderType: ExtruderType
     printVolumeType: PrintVolumeType
     fiveAxisType: FiveAxisType
+    description: string
 }
 
 export enum PrinterType {

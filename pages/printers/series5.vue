@@ -154,7 +154,8 @@ export default class Series5 extends Vue {
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Пятиосевой принтер для печати прочных деталей'
     },
     {
       model: '520 Hybrid',
@@ -162,7 +163,8 @@ export default class Series5 extends Vue {
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
-      fiveAxisType: FiveAxisType.Hybrid
+      fiveAxisType: FiveAxisType.Hybrid,
+      description: 'Универсальный принтер для решения уникальных задач'
     },
     {
       model: '530 Pro',
@@ -170,7 +172,8 @@ export default class Series5 extends Vue {
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
-      fiveAxisType: FiveAxisType.Normal
+      fiveAxisType: FiveAxisType.Normal,
+      description: 'Пятиосевой принтер для печати прочных деталей с зоной печати 330x330x250 мм'
     },
     {
       model: '530 Hybrid',
@@ -178,7 +181,8 @@ export default class Series5 extends Vue {
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
-      fiveAxisType: FiveAxisType.Hybrid
+      fiveAxisType: FiveAxisType.Hybrid,
+      description: 'Универсальный принтер для решения уникальных задач с зоной печати в режиме 3D 300x310x300 мм'
     }
   ]
 

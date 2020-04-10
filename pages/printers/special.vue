@@ -32,7 +32,8 @@ export default class Special extends Vue {
     printerType: PrinterType.ThreeAxis,
     extruderType: ExtruderType.Dual,
     printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal
+    fiveAxisType: FiveAxisType.Normal,
+    description: ''
   }
 }
 
