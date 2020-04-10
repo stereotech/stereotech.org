@@ -12,42 +12,42 @@
             </tr>
 
             <tr>
-                <td class="text-center">Программное обеспечение</td>
-                <td class="text-center">Siemens NX. Использовать другой софт нельзя</td>
-                <td class="text-center">Нет данных</td>
-                <td class="text-center">Нет данных</td>
-                <td class="text-center">Собственная разработка. Работает с любой CAD </td>
+                <td class="text-center">{{$t('Программное обеспечение')}}</td>
+                <td class="text-center">Siemens NX. {{$t('Использовать другой софт нельзя')}}</td>
+                <td class="text-center">{{$t('Нет данных')}}</td>
+                <td class="text-center">{{$t("Нет данных")}}</td>
+                <td class="text-center">{{$t('Собственная разработка. Работает с любой CAD')}} </td>
             </tr>
             <tr>
-                <td class="text-center">Печать общих CAD моделей (STL)</td>
-                <td class="text-center">Нет. Только с известной топологией модели</td>
-                <td class="text-center">Нет. Только с известной топологией модели</td>
-                <td class="text-center">Нет. Только с известной топологией модели</td>
-                <td class="text-center">Да</td>
+                <td class="text-center">{{$t('Печать общих CAD моделей (STL)')}}</td>
+                <td class="text-center">{{$t('Нет. Только с известной топологией модели')}}</td>
+                <td class="text-center">{{$t('Нет. Только с известной топологией модели')}}</td>
+                <td class="text-center">{{$t('Нет. Только с известной топологией модели')}}</td>
+                <td class="text-center">{{$t('Да')}}</td>
             </tr>
             <tr>
-                <td class="text-center">Подготовка модели</td>
-                <td class="text-center">Ручная</td>
-                <td class="text-center">Ручная</td>
-                <td class="text-center">Ручная</td>
-                <td class="text-center">Автоматическая</td>
+                <td class="text-center">{{$t('Подготовка модели')}}</td>
+                <td class="text-center">{{$t("Ручная")}}</td>
+                <td class="text-center">{{$t('Ручная')}}</td>
+                <td class="text-center">{{$t('Ручная')}}</td>
+                <td class="text-center">{{$t("Автоматическая")}}</td>
             </tr>
             <tr>
-                <td class="text-center">Состояние разработки</td>
-                <td class="text-center">Опытный образец. Печать тестовых изделий</td>
-                <td class="text-center">Опытный образец. Печать тестовых изделий</td>
-                <td class="text-center">Опытный образец. Печать тестовых изделий</td>
-                <td class="text-center">Промышленный образец. Печать любых изделий</td>
+                <td class="text-center">{{$t('Состояние разработки')}}</td>
+                <td class="text-center">{{$t("Опытный образец. Печать тестовых изделий")}}</td>
+                <td class="text-center">{{$t('Опытный образец. Печать тестовых изделий')}}</td>
+                <td class="text-center">{{$t("Опытный образец. Печать тестовых изделий")}}</td>
+                <td class="text-center">{{$t('Промышленный образец. Печать любых изделий')}}</td>
             </tr>
             <tr>
-                <td class="text-center">Настольное решение</td>
-                <td class="text-center">Нет</td>
-                <td class="text-center">Нет</td>
-                <td class="text-center">Нет</td>
-                <td class="text-center">Да</td>
+                <td class="text-center">{{$t('Настольное решение')}}</td>
+                <td class="text-center">{{$t('Нет')}}</td>
+                <td class="text-center">{{$t("Нет")}}</td>
+                <td class="text-center">{{$t('Нет')}}</td>
+                <td class="text-center">{{$t('Да')}}</td>
             </tr>
             <tr>
-                <th class="text-center">Стоимость</th>
+                <th class="text-center">{{$t('Стоимость')}}</th>
                 <th class="text-center">$ 45 000</th>
                 <th class="text-center">$ 350 000</th>
                 <th class="text-center">$ 25 000</th>
