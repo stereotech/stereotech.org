@@ -8,7 +8,7 @@
         </v-col>
         <v-col cols="12" sm="6">
           <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
-          <p class="subtitle-1 text-center">{{ model.description }}</p>
+          <p class="title font-weight-light text-center">{{ model.description }}</p>
           <v-radio-group
             v-if="selectExtruder.length > 1"
             @change="changeExtruder"
