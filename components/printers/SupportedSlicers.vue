@@ -20,7 +20,7 @@
             nuxt
             :to="localePath('/software')"
             depressed
-          >{{ this.$tc('подробнее') }}</v-btn>
+          >{{$t('подробнее')}}</v-btn>
         </v-col>
         <v-col cols="12" sm="6">
           <v-img src="/printers/software/cura.webp" />
@@ -35,7 +35,7 @@
             href="https://ultimaker.com/en/products/ultimaker-cura-software"
             target="_blank"
             depressed
-          >{{ this.$tc('подробнее') }}</v-btn>
+          >{{$t('подробнее')}}</v-btn>
         </v-col>
       </v-row>
     </v-container>

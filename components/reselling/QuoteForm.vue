@@ -48,7 +48,7 @@
     </small>
     <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
       {{ snackbarText }}
-      <v-btn text @click="snackbar = false">Закрыть</v-btn>
+      <v-btn text @click="snackbar = false">{{$t('Закрыть')}}</v-btn>
     </v-snackbar>
   </DialogForm>
 </template>
@@ -78,11 +78,14 @@ export default class QuoteForm extends Vue {
   interestIn: string[] = []
   subscribe: boolean = true
 
+  async mounted(){
+    this.interests.push(this.$tc('Серия 3xx'), this.$tc('Серия 5xx'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
+  }
   interests: string[] = [
-    'Серия 3xx',
-    'Серия 5xx',
-    'Серия Special',
-    'Промышленые принтеры',
+    // 'Серия 3xx',
+    // 'Серия 5xx',
+    // 'Серия Special',
+    // 'Промышленые принтеры',
   ]
 
   nameRules = [

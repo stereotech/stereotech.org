@@ -16,13 +16,13 @@
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('управление несколькими 3D и 5D принтерами через единый интерфейс') }}</p>
+          >{{$t('управление несколькими 3D и 5D принтерами через единый интерфейс')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('планирование заданий печати') }}</p>
+          >{{$t('планирование заданий печати')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('резервация принтеров') }}</p>
+          >{{$t('резервация принтеров')}}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -36,13 +36,13 @@
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('полностью закрытая камера') }}</p>
+          >{{$t('полностью закрытая камера')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('низкий уровень шума') }}</p>
+          >{{$t('низкий уровень шума')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('легкий доступ к материалу печати') }}</p>
+          >{{$t('легкий доступ к материалу печати')}}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -54,10 +54,10 @@
         >
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('стабильный процесс печати') }}</p>
+          >{{$t('стабильный процесс печати')}}</p>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $t('точные линейные направляющие') }}</p>
+          >{{$t('точные линейные направляющие')}}</p>
         </PrinterFeature>
       </v-col>
       <v-col cols="12" lg="10">
@@ -221,6 +221,13 @@ export default class Series3 extends Vue {
     })
     this.product = result.data.product
     this.product.price = Number(this.product.price)
+
+    this.printerItems[0].description = this.$tc('Стартовый принтер для обучения, производства и разработки с одним экструдером и закрытой камерой')
+    this.printerItems[1].description = this.$tc('Продвинутый принтер для обучения, производства и разработки с двумя экструдерами и закрытой камерой')
+    this.printerItems[2].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 200x210x300 мм')
+    this.printerItems[3].description= this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x300 мм')
+    this.printerItems[4].description= this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм')
+
   }
 }
 

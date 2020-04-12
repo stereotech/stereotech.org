@@ -14,7 +14,7 @@
             target="_blank"
             block
           >
-            <v-icon left>mdi-download</v-icon>Загрузить карту партнера
+            <v-icon left>mdi-download</v-icon>{{$t('Загрузить карту партнера')}}
           </v-btn>
         </v-card-text>
       </v-card>

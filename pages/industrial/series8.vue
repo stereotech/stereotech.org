@@ -35,6 +35,11 @@ export default class Series8 extends Vue {
     fiveAxisType: FiveAxisType.Normal,
     description: 'Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей'
   }
+
+  async mounted(){
+    this.currentPrinter.model = this.$tc('Серия 8хх')
+    this.currentPrinter.description = this.$tc('Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей')
+  }
 }
 
 </script>
