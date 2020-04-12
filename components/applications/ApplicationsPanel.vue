@@ -3,7 +3,7 @@
     <v-container fluid grid-list-xs>
       <v-row>
         <v-col cols="12">
-          <h4 class="text-center display-2 font-weight-light">{{ $t('Области применения') }}</h4>
+          <h4 class="text-center display-2 font-weight-light">{{$t('Области применения')}}</h4>
         </v-col>
         <ApplicationsCard
           v-for="(application, index) in applications"

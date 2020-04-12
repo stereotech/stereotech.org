@@ -5,7 +5,7 @@
         <v-col cols="12">
           <h4
             class="headline text-uppercase font-weight-regular text-center"
-          >{{ $t('Характеристики') }}</h4>
+          >{{$t('Характеристики')}}</h4>
         </v-col>
         <v-col
           cols="12"

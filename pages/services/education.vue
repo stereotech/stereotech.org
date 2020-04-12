@@ -38,7 +38,7 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-btn block large outlined href="tel:+78442248443" color="accent">
-                 {{$t(' Позвонить в учебный центр')}}
+                 {{$t('Позвонить в учебный центр')}}
                   <v-icon right>mdi-phone</v-icon>
                 </v-btn>
               </v-col>

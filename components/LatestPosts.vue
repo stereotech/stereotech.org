@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" class="text-center">
-          <h4 class="display-1 text-uppercase font-weight-light">{{ $t('Последние новости') }}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light">{{$t('Последние новости')}}</h4>
         </v-col>
       </v-row>
       <v-row justify="center" v-if="posts.length < 1">

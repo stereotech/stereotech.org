@@ -5,26 +5,24 @@
             <headerInfo></headerInfo>
             <banner></banner>
             <textStripe>
-                $t('5D принтер Stereotech STE 520 –
-                дешевле, технологичнее и точнее конкурентов:')
+               {{$t('5D принтер Stereotech STE 520 – дешевле, технологичнее и точнее конкурентов:')}}
             </textStripe>
             <advantagesTable></advantagesTable>
         </v-col>
         <v-col  :cols="12" md="6">
             <listComponent :listElements="applying">
-                <h3><span class="blueText text center">$t('СФЕРЫ ПРИМЕНЕНИЯ')</span> $t('пятиосевого 3D принтера Stereotech STE 520:')</h3>
+                <h3><span class="blueText text center">{{$t('СФЕРЫ ПРИМЕНЕНИЯ')}}</span> {{$t('пятиосевого 3D принтера Stereotech STE 520:')}}</h3>
             </listComponent>
         </v-col>
         <v-col  :cols="12" md="6">
             <listComponent :listElements="applying">
-                <h3 class="blueText text center">$t('ПРЕИМУЩЕСТВА 5D ТЕХНОЛОГИИ:')</h3>
+                <h3 class="blueText text center">{{$t('ПРЕИМУЩЕСТВА 5D ТЕХНОЛОГИИ:')}}</h3>
                 <h3> <br></h3>
             </listComponent>
         </v-col>
         <v-col>
             <textStripe>
-                $t('5D принтер Stereotech STE 520
-                снижает себестоимость готовых моделей в 8 раз!')
+                {{$t('5D принтер Stereotech STE 520 снижает себестоимость готовых моделей в 8 раз!')}}
             </textStripe>
             <costCompare></costCompare>
         </v-col>
@@ -55,22 +53,23 @@ import banner from '~/components/solutions/banner.vue'
 }
 )
 export default class Production extends Vue {
-private applying:string[]=[
-    'Авиация и ракетостроение',
-    'Строительная печать',
-    'Оборонная промышленность',
-    'Робототехника',
-    'Протезирование',
-    'Автомобилестроение'
-]
-private advantages:string[]=[
-    'Крепление любой оснастки для серийного производства',
-    'Возможность композитной печати в объеме',
-    'Печать без поддержек',
-    'Гладкая поверхность на наклонных гранях',
-    'Скорость печати выше, чем стандартные 3D принтеры',
-    'Прочная трехмерная структура'
-]
+private applying:string[]=[]
+private advantages:string[]=[]
+async mounted(){
+    this.applying.push( this.$tc('Авиация и ракетостроение'),
+    this.$tc('Строительная печать'),
+    this.$tc('Оборонная промышленность'),
+    this.$tc('Робототехника'),
+    this.$tc('Протезирование'),
+    this.$tc('Автомобилестроение'))
+
+    this.advantages.push( this.$tc('Крепление любой оснастки для серийного производства'),
+    this.$tc('Возможность композитной печати в объеме'),
+    this.$tc('Печать без поддержек'),
+    this.$tc('Гладкая поверхность на наклонных гранях'),
+    this.$tc('Скорость печати выше, чем стандартные 3D принтеры'),
+    this.$tc('Прочная трехмерная структура'))
+}
 }
 
 </script>

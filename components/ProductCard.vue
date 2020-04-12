@@ -21,7 +21,7 @@
               nuxt
               :to="localePath(link)"
             >
-              Узнать больше
+              {{$t('Узнать больше')}}
               <v-icon right>mdi-chevron-right</v-icon>
             </v-btn>
           </v-img>
@@ -33,7 +33,7 @@
             v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
           ></p>
           <v-btn color="primary" depressed nuxt :to="localePath(link)">
-            Узнать больше
+            {{$t('Узнать больше')}}
             <v-icon right>mdi-chevron-right</v-icon>
           </v-btn>
         </v-col>
