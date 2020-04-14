@@ -4,7 +4,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           fullsize
-          image="/printers/desktop/series5.jpg"
+          image="/printers/desktop/series5_banner.jpg"
           :title="this.$tc('Новые возможности аддитивного производства с серией 5D принтеров 5хх')"
           link="/printers/series5"
         />

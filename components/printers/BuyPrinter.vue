@@ -71,7 +71,7 @@ Vue.use(VueTheMask)
 export default class BuyPrinter extends Vue {
   @Prop({ type: Object, required: true, default: {} }) variant!: PrinterVariant
 
-  @Prop({ type: String, required: true, default: '' }) price!: number
+  @Prop({ type: String, required: false, default: '' }) price!: string
 
   private orderName: string = ""
   private phoneNumber: string = ""

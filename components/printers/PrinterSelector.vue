@@ -2,9 +2,8 @@
   <v-card>
     <v-container>
       <v-row justify="center" align="center">
-        <v-col cols="12" sm="6" class="text-center">
-         
-          <v-img :src="model.image" />
+        <v-col cols="12" sm="6">
+          <v-img :src="model.image"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
           <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>

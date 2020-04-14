@@ -95,7 +95,7 @@ const config: Configuration = {
       }
     ],
     differentDomains: false,
-    lazy: false,
+    lazy: true,
     langDir: 'locales/',
     defaultLocale: locale,
   },

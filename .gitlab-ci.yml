@@ -15,7 +15,8 @@ extractLocale:
     - npm run extract
   artifacts:
     paths:
-      - ru_extracted.json
+      - ru_components_extracted.json
+      - ru_pages_extracted.json
   only:
     - develop
 
