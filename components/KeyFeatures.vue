@@ -27,6 +27,13 @@
                       <v-icon color="primary">mdi-chevron-right</v-icon>
                       {{ key }}
                     </p>
+                    <v-btn
+                      v-if="index==1"
+                      color="primary"
+                      nuxt
+                      :to="localePath({path: '/printers/special'})"
+
+                    >{{$t('Узнать больше')}}</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
