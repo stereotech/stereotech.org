@@ -53,7 +53,7 @@ import ProductCard from '~/components/ProductCard.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import TestingForm from '~/components/software/TestingForm.vue'
 import DownloadForm from '~/components/software/DownloadForm.vue'
-import { KeyFeature } from '~/types/keyFeature'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
 import { DownloadLink } from '~/types/download'
 
 @Component({
@@ -74,7 +74,8 @@ export default class SteSlicer extends Vue {
   async mounted(){
     this.keyFeatures.push({
       name: this.$tc('Режимы слайсинга'),
-      image: 'software/steslicer/printing_modes.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steslicer/printing_modes.jpg',
       description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
       keys: [this.$tc('Различные режимы слайсинга'),
         this.$tc('Настройки для каждого из режимов слайсинга'),
@@ -82,7 +83,8 @@ export default class SteSlicer extends Vue {
     },
     {
       name: this.$tc('Простота использования'),
-      image: 'software/steslicer/easy_to_use.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steslicer/easy_to_use.jpg',
       description: this.$tc('STE Slicer позволяет подготовить модель к печати за считанные секунды'),
       keys: [this.$tc('Рекомендованный режим с автоматически настроенными значениями'),
         this.$tc('Продвинутый режим с ручным контролем различных настроек'),
@@ -90,7 +92,8 @@ export default class SteSlicer extends Vue {
     },
     {
       name: this.$tc('STE App'),
-      image: 'software/steapp/banner.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steapp/banner.jpg',
       description: this.$tc('Система управления принтерами встроена в STE Steslicer'),
       keys: [this.$tc('Отправка заданий на печать напрямую из слайсера'),
         this.$tc('Автоматический поиск принтеров в сети'),
