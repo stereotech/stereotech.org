@@ -1,6 +1,12 @@
 export interface KeyFeature {
     name: string
-    image: string
+    mediaType: MediaType
+    mediaSource: string
     description: string
     keys: string[]
+}
+
+export enum MediaType {
+    image,
+    video
 }

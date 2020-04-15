@@ -14,10 +14,13 @@
               <v-container fluid>
                 <v-row justify="center" align="center">
                   <v-col cols="12" sm="6">
-                    <v-img :src="item.image" />
+                    <v-img v-if="item.mediaType == 0" :src="item.mediaSource" />
+                    <video v-else-if="item.mediaType == 1" width="350" height="350" autoplay>
+                      <source :src="item.mediaSource">
+                    </video>
                   </v-col>
                   <v-col cols="12" sm="6">
-                    <h3>{{ item.name }}</h3>
+                    <h3 class="font-weight-light">{{ item.name }}</h3>
                     <br />
                     <p>{{ item.description }}</p>
                     <p v-for="(key,index) in item.keys" :key="index">
@@ -37,7 +40,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { KeyFeature } from '~/types/keyFeature'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
 
 @Component
 export default class KeyFeatures extends Vue {

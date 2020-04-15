@@ -53,7 +53,7 @@ import ProductCard from '~/components/ProductCard.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import TestingForm from '~/components/software/TestingForm.vue'
 import DownloadForm from '~/components/software/DownloadForm.vue'
-import { KeyFeature } from '~/types/keyFeature'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
 import { DownloadLink } from '~/types/download'
 
 @Component({
@@ -75,7 +75,8 @@ export default class SteApp extends Vue {
   async mounted(){
     this.keyFeatures.push({
       name: this.$tc('Группировка принтеров'),
-      image: 'software/steapp/group.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steapp/group.jpg',
       description: this.$tc('STE App упрощает работу с группой принтеров, позволяя управлять ими, используя общий интерфейс'),
       keys: [this.$tc('Возможность работы с любого устройства используя Wi-Fi/LAN'),
         this.$tc('Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически'),
@@ -83,13 +84,15 @@ export default class SteApp extends Vue {
     },
     {
       name: this.$tc('Уведомления'),
-      image: 'software/steapp/notification.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steapp/notification.jpg',
       description: this.$tc('Уведомления на смартфон и в браузере подскажут, когда печать будет завершена'),
       keys: [this.$tc('Система уведомлений STE Notice, получайте уведомления при завершении работы принтеров или о событиях требующих вашего внимания')]
     },
     {
       name: this.$tc('Управление'),
-      image: 'software/steapp/group.jpg',
+      mediaType: MediaType.image,
+      mediaSource: 'software/steapp/group.jpg',
       description: '',
       keys: [
         this.$tc('Панель независимого управления принтерами STE Cluster позволяет управлять каждым принтером индивидуально из одного приложения'),
