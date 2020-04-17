@@ -28,7 +28,7 @@
                       {{ key }}
                     </p>
                     <v-btn
-                      v-if="index==1"
+                      v-if="index==1 && title=='8 преимуществ технологии 5D'"
                       color="primary"
                       nuxt
                       :to="localePath({path: '/printers/special'})"

@@ -115,6 +115,9 @@
       <v-col cols="12" lg="10">
         <KeyFeatures :title="this.$tc('8 преимуществ технологии 5D')"  :items="features"/>
       </v-col>
+      <v-col cols="12" lg="10">
+        <KeyFeatures :title="this.$tc('Причины выбрать принтеры Stereotech')" :items="reasonsToUse"/>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -247,6 +250,107 @@ export default class Series5 extends Vue {
       mediaType: MediaType.image,
       mediaSource: '/printers/printingModes 5D tech.jpg',
       description: '5D принтер и программное обеспечение STE Slicer позволяют работать с несколькими режимами печати и комбинировать их. Используйте режимы Классический / Навивка /С изменением направления /По поверхности для решения любого спектра задач.',
+      keys: []
+    }
+  ]
+
+  reasonsToUse: KeyFeature[]=[
+    {
+      name: 'Удобный 5” сенсорный экран ',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/Screen 5 inch.jpg',
+      description: 'Большой и удобный 5 дюймовый цветной сенсорный экран. Мгновенно получайте информацию о текущей печати и управляйте принтером наиболее интуитивным способом - с помощью тапов и свайпов',
+      keys: []
+    },
+    {
+      name: 'Двойной экструдер для печати с растворимыми поддержками',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/doubleExtruder.jpg',
+      description: 'Простой и надежный двойной экструдер способен поддерживать температуру до 320°С и обеспечивает высокое качество печати любой сложности – используйте печать с растворимыми поддержками или абразивные материалы с набором легкозаменяемых принтблоков.',
+      keys: []
+    },
+    {
+      name: 'Принтблоки для печати',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/printblocks.jpg',
+      description: 'Принтеры Stereotech оснащены принтблоками для быстрого и безопасного обслуживания экструдера. В стандартный набор включены 4 принтблока – 2 для печати модельными пластиками, и 2 – для печати техническими, с цельнометаллическим термобарьером',
+      keys: []
+    },
+    {
+      name: 'Производительная электроника',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/STE Board.jpg',
+      description: 'Встроенный компьютер с 64-битным четырёхъядерным процессором ARM Cortex-A53 и оперативной памятью 1ГБ для быстрой, бесшумной (до 50 Дба) и стабильной работы',
+      keys: []
+    },
+    {
+      name: 'Стильный современный дизайн',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/stylish.jpg',
+      description: 'Лаконичный вид, корпус из 4 мм светопропускающего акрила высокого класса и белый цвет – принтер органично впишется в любой интерьер помещения.',
+      keys: []
+    },
+    {
+      name: 'Световая индикация и подсветка',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/indication.jpg',
+      description: 'Шестицветная световая индикация и светодиодная RGBW подсветка рабочей зоны – для приятной и комфортной работы с принтером.',
+      keys: []
+    },
+    {
+      name: 'Закрытая камера и большая область печати',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/child.jpg',
+      description: 'Закрытая камера с системой вентиляции обеспечивает безопасность пользователей, стабильную работу и результат печати. Область печати в модельном ряду принтеров Stereotech достигает 400х310х300 мм',
+      keys: []
+    },
+    {
+      name: 'Компактное расположение катушек с филаментом',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/foto-11.jpg',
+      description: 'Удобное использование, сушка филамента и хранение больших катушкек до 1кг внутри корпуса',
+      keys: []
+    },
+    {
+      name: 'Печать с катушек от 2,5 кг и более',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/withoutPhone',
+      description: 'Используйте катушки с филаментом от 2,5 кг для масштабной печати – просто разместите катушки снаружи принтера и подавайте нить через сервисное окно.',
+      keys: []
+    },
+    {
+      name: 'WiFi, Ethernet и USB',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/WiFi.jpg',
+      description: 'Множество вариантов сетевого и автономного управления – по WiFi, Ethernet и USB',
+      keys: []
+    },
+    {
+      name: 'Надежные брендовые комплектующие',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/raspberry.jpg',
+      description: 'Прочная рама принтера из алюминиевого сплава 6063, точные профильные направляющие Hiwin MGN9, блок питания Meanwell, мощные и надежные вентиляторы Sunon, компьютер Raspberry Pi 3 и другие компоненты принтера от известных брендов – все для надежной и продолжительной работы.',
+      keys: []
+    },
+    {
+      name: 'Удобная система управления STE App',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/easyWork.jpg',
+      description: '3D принтеры Stereotech оснащены системой STE App. С ее помощью управляйте 3D принтерами и процессом печати в единой сети через любое устройство: экран 3D принтера Stereotech, Android приложение для смартфона или планшета, или приложение на ПК. Встроенная система управления с менеджерами помощи в обслуживании – для легкой работы с принтером.',
+      keys: []
+    },
+    {
+      name: 'Высокая точность и разрешение печати',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/permission.jpg',
+      description: 'Используйте возможности принтеров Stereotech –Толщина слоя от 10 мкм позволит создавать по-настоящему детализированные объекты!',
+      keys: []
+    },
+    {
+      name: 'Широкий выбор расходных материалов ',
+      mediaType: MediaType.image,
+      mediaSource: '/printers/10reasons/products.jpg',
+      description: 'Печатающая головка с температурой нагрева до 320°С и подогреваемый рабочий стол с температурой нагрева до 120°С обеспечит печать даже такими конструкционными полимерами, как PC. Принтблоки для модельных и инженерных пластиков позволяют печатать любыми филаментами – от классического PLA до стеклонаполненных и угленаполненных полиуретанов и поликарбонатов.',
       keys: []
     }
   ]
