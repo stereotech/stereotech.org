@@ -34,6 +34,10 @@
                       :to="localePath({path: '/printers/special'})"
 
                     >{{$t('Узнать больше')}}</v-btn>
+                    <p v-if="index==0 && title=='8 преимуществ технологии 5D'">
+                      *Прочность на изгиб литого ABS приведена из источника: 
+                      <a href="http://himcompany.com/">http://himcompany.com</a> 
+                    </p>
                   </v-col>
                 </v-row>
               </v-container>

@@ -22,8 +22,8 @@
             <template v-slot:header>{{attributeGroup.name}}</template>
             <template v-slot:item="{item}">
               <tr>
-                <td class="subheading text-uppercase font-weight-light text-center">{{ item.name }}</td>
-                <td class="subheading text-center">{{ item.text }}</td>
+                <td class="subheading text-uppercase font-weight-light text-center" width="40%">{{ item.name }}</td>
+                <td class="subheading text-center" width="60%">{{ item.text }}</td>
               </tr>
             </template>
           </v-data-table>
