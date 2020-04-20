@@ -6,7 +6,7 @@
           <v-img :src="model.image"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
-          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }} {{price}}₽</h4>
           <p class="title font-weight-light text-center">{{ model.description }}</p>
           <v-radio-group
             v-if="selectExtruder.length > 1"
@@ -85,6 +85,7 @@ import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType } from '~/t
 export default class PrinterSelector extends Vue {
   @Model('change', { type: Object }) model!: PrinterVariant
   @Prop({ type: Array, default: () => { return [] } }) items!: PrinterVariant[]
+  @Prop({type: String, default: " "}) price!: String
 
 
   get selectExtruder (): ExtruderType[] {
@@ -147,7 +148,7 @@ export default class PrinterSelector extends Vue {
   printVolumeVariants: any[] = [
     {
       name: 'Стандартная область печати',
-      description: '200x210x200мм',
+      description: '230x230x150мм',
       value: PrintVolumeType.Standard
     },
     {
@@ -157,7 +158,7 @@ export default class PrinterSelector extends Vue {
     },
     {
       name: 'Увеличенная область печати',
-      description: '300x310x300мм',
+      description: '330x330x250мм',
       value: PrintVolumeType.Extended
     },
     {

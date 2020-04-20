@@ -3,10 +3,9 @@
     <v-row justify="center">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">{{$t('Серия 5хх - инновационные 5D принтеры')}}</h1>
-        <h2>{{$t('от')}} {{ product.price }}</h2>
       </v-col>
       <v-col cols="12" lg="10">
-        <PrinterSelector v-model="currentPrinter" :items="printerItems" />
+        <PrinterSelector v-model="currentPrinter" :items="printerItems" :price="String(currentPrice)"/>
       </v-col>
       <v-col cols="12" lg="10">
         <BenefitsPanel />
@@ -22,90 +21,7 @@
           link="/software/steslicer"
         />
       </v-col>
-      <v-col cols="12" lg="10">
-        <PrinterFeature
-          :title="$tc('STE APP')"
-          :description="$t('приложение для управления процессом печати')"
-          image="/printers/common/cluster1.webp"
-        >
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('управление несколькими 3D и 5D принтерами через единый интерфейс')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('планирование заданий печати')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('резервация принтеров')}}</p>
-        </PrinterFeature>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ColorModes />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <PrinterFeature
-          :title="$t('лаконичный дизайн')"
-          :description="$t('простой, но функциональный')"
-          image="/printers/ste520/design.webp"
-        >
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('полностью закрытая камера')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('низкий уровень шума')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('легкий доступ к материалу печати')}}</p>
-        </PrinterFeature>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <PrinterFeature
-          right-text
-          :title="$t('жесткая алюминиевая рама')"
-          :description="$t('минимум вибраций')"
-          image="/printers/common/frame.webp"
-        >
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('стабильный процесс печати') }}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('точные линейные направляющие')}}</p>
-        </PrinterFeature>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <PrinterFeature
-          :title="$t('производительная электроника')"
-          :description="$t('32-Х БИТНЫЙ МИКРОКОНТРОЛЛЕР')"
-          image="/printers/common/motherboard.webp"
-        >
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('4-Х ЯДЕРНЫЙ 1ГГЦ СОПРОЦЕССОР ДЛЯ СЕТЕВОГО СОЕДИНЕНИЯ И УПРАВЛЕНИЯ ПРОЦЕССОМ ПЕЧАТИ')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('ВНУТРЕННЕЕ ХРАНИЛИЩЕ 8ГБ')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('ДРАЙВЕРЫ ШАГОВЫХ ДВИГАТЕЛЕЙ С ДЕЛЕНИЕМ ШАГА 1/128')}}</p>
-        </PrinterFeature>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <PrinterFeature
-          right-text
-          :title="$t('ДВУХСОПЕЛЬНАЯ ПЕЧАТАЮЩАЯ ГОЛОВКА')"
-          :description="$t('ЭКСТРУДЕР С ПРЯМОЙ ПОДАЧЕЙ ДЛЯ ПЕЧАТИ ЛЮБЫМИ МАТЕРИАЛАМИ')"
-          image="/printers/common/printhead.webp"
-        >
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('МАКСИМАЛЬНАЯ ТЕМПЕРАТУРА 320°C')}}</p>
-          <p
-            class="title text-uppercase font-weight-light"
-          >{{$t('СМЕННЫЕ ПЕЧАТНЫЕ БЛОКИ')}}</p>
-        </PrinterFeature>
-      </v-col>
+
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :attributes="product.attributes" />
       </v-col>
@@ -201,7 +117,7 @@ export default class Series5 extends Vue {
       mediaType: MediaType.image,
       mediaSource: '/printers/strengthDiagram.jpg',
       description: 'Благодаря свойству ориентации полимеров, технология 5Dtech повышает прочность на изгиб и сжатие. Получайте детали:',
-      keys: ['До х4 раз прочнее, чем 3D', 'на 32% прочнее, чем литье']
+      keys: ['До х4 раз прочнее, чем 3D', 'на 32% прочнее, чем литье*']
     },
     {
       name: 'Армированная структура',
