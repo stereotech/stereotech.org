@@ -6,7 +6,7 @@
           <h3 class="title font-weight-light">{{ title }}</h3>
         </v-col>
         <v-col cols="12" sm="10" lg="8">
-          <v-tabs centered v-model="tab">
+          <v-tabs centered center-active v-model="tab">
             <v-tab v-for="(item, index) in items" :key="index">{{item.name}}</v-tab>
           </v-tabs>
           <v-tabs-items v-model="tab">
@@ -16,7 +16,7 @@
                   <v-col cols="12" sm="6">
                     <v-img v-if="item.mediaType == 0" :src="item.mediaSource" />
                     <video v-else-if="item.mediaType == 1" width="350" height="350" autoplay>
-                      <source :src="item.mediaSource">
+                      <source :src="item.mediaSource" />
                     </video>
                   </v-col>
                   <v-col cols="12" sm="6">
@@ -32,11 +32,12 @@
                       color="primary"
                       nuxt
                       :to="localePath({path: '/printers/special'})"
-
                     >{{$t('Узнать больше')}}</v-btn>
                     <p v-if="index==0 && title=='8 преимуществ технологии 5D'">
-                      *Прочность на изгиб литого ABS приведена из источника: 
-                      <a href="http://himcompany.com/">http://himcompany.com</a> 
+                      *Прочность на изгиб литого ABS приведена из источника:
+                      <a
+                        href="http://himcompany.com/"
+                      >http://himcompany.com</a>
                     </p>
                   </v-col>
                 </v-row>

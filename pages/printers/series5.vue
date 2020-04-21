@@ -5,13 +5,20 @@
         <h1 class="font-weight-light">{{$t('Серия 5хх - инновационные 5D принтеры')}}</h1>
       </v-col>
       <v-col cols="12" lg="10">
-        <PrinterSelector v-model="currentPrinter" :items="printerItems" :price="String(currentPrice)"/>
+        <PrinterSelector
+          v-model="currentPrinter"
+          :items="printerItems"
+          :price="String(currentPrice)"
+        />
       </v-col>
       <v-col cols="12" lg="10">
-        <BenefitsPanel />
+        <KeyFeatures :title="this.$tc('Преимущества технологии 5D')" :items="features" />
       </v-col>
       <v-col cols="12" lg="10">
-        <ApplicationsPanel />
+        <KeyFeatures
+          :title="this.$tc('Причины выбрать принтеры Stereotech')"
+          :items="reasonsToUse"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
@@ -27,12 +34,6 @@
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('8 преимуществ технологии 5D')"  :items="features"/>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Причины выбрать принтеры Stereotech')" :items="reasonsToUse"/>
       </v-col>
     </v-row>
   </v-container>
@@ -50,8 +51,8 @@ import PrinterSelector from '~/components/printers/PrinterSelector.vue'
 import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
 import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import {KeyFeature, MediaType} from '~/types/keyFeature'
-import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType} from '~/types/printerVariant'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
+import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
 @Component({
@@ -170,7 +171,7 @@ export default class Series5 extends Vue {
     }
   ]
 
-  reasonsToUse: KeyFeature[]=[
+  reasonsToUse: KeyFeature[] = [
     {
       name: 'Удобный 5” сенсорный экран ',
       mediaType: MediaType.image,
