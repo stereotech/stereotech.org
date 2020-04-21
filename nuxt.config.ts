@@ -188,7 +188,10 @@ const config: Configuration = {
       `
       return client({ query }).then(result => {
         const { data } = result
-        return data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        let routes = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        routes.push('/info', '/info/team', '/info/address', '/info/media')
+        routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
+        return routes
       })
     }
   }
