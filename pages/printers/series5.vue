@@ -12,7 +12,7 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Преимущества технологии 5D')" :items="features" />
+        <KeyFeatures :title="this.$tc('Преимущества технологии 5Dtech')" :items="features" />
       </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
@@ -77,6 +77,7 @@ export default class Series5 extends Vue {
     {
       model: '520 Pro',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -86,6 +87,7 @@ export default class Series5 extends Vue {
     {
       model: '520 Hybrid',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -95,6 +97,7 @@ export default class Series5 extends Vue {
     {
       model: '530 Pro',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -104,6 +107,7 @@ export default class Series5 extends Vue {
     {
       model: '530 Hybrid',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -231,7 +235,7 @@ export default class Series5 extends Vue {
     {
       name: 'Печать с катушек от 2,5 кг и более',
       mediaType: MediaType.image,
-      mediaSource: '/printers/10reasons/withoutPhone',
+      mediaSource: '/printers/10reasons/withoutPhone.jpg',
       description: 'Используйте катушки с филаментом от 2,5 кг для масштабной печати – просто разместите катушки снаружи принтера и подавайте нить через сервисное окно.',
       keys: []
     },
