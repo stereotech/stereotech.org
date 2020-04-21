@@ -31,20 +31,22 @@ export default class Software extends Vue {
     title: string,
     description: string,
     link: string
-  }[] = [
-      {
+  }[] = []
+
+    async mounted(){
+      this.software.push({
         image: '/printers/software/steapp.webp',
         title: 'STE App',
-        description: 'Приложение для управления процессом печати\nПросто.\nГибко.\nЭффективно.',
+        description: this.$tc('Приложение для управления процессом печати\nПросто.\nГибко.\nЭффективно.'),
         link: '/software/steapp'
       },
       {
         image: '/software/steslicer/banner.jpg',
         title: 'STE Slicer',
-        description: 'Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App',
+        description: this.$tc('Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'),
         link: '/software/steslicer'
-      },
-    ]
+      })
+    }
 }
 
 </script>

@@ -8,10 +8,10 @@
         <v-container fluid>
           <v-row no-gutters>
             <v-col cols="12">
-              <v-text-field outlined label="Имя" v-model="name" :rules="nameRules"></v-text-field>
+              <v-text-field outlined :label="this.$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined label="Номер телефона" v-model="phone" v-mask="mask"></v-text-field>
+              <v-text-field outlined :label="this.$tc('Номер телефона')" v-model="phone" v-mask="mask"></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
@@ -30,7 +30,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn :disabled="!valid" depressed color="primary" @click="submit">Отправить</v-btn>
+        <v-btn :disabled="!valid" depressed color="primary" @click="submit">{{$t('Отправить')}}</v-btn>
       </v-card-actions>
     </v-form>
     <small>
@@ -42,7 +42,7 @@
     </small>
     <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
       {{ snackbarText }}
-      <v-btn text @click="snackbar = false">Закрыть</v-btn>
+      <v-btn text @click="snackbar = false">{{$t('Закрыть')}}</v-btn>
     </v-snackbar>
   </DialogForm>
 </template>
@@ -75,12 +75,12 @@ export default class TestingForm extends Vue {
   ]
 
   nameRules = [
-    (v: any) => !!v || 'Имя обязательно',
+    (v: any) => !!v || this.$tc('Имя обязательно'),
   ]
 
   emailRules = [
-    (v: any) => !!v || 'E-mail обязателен',
-    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail не верен'
+    (v: any) => !!v || this.$tc('E-mail обязателен'),
+    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || this.$tc('E-mail не верен')
   ]
 
   private mask: string = "+7(###) ###-####"
@@ -114,7 +114,7 @@ export default class TestingForm extends Vue {
           description: description
         }
       })
-      this.snackbarText = 'Ваш запрос успешно отправлен!'
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
 
@@ -123,7 +123,7 @@ export default class TestingForm extends Vue {
       this.email = ""
       this.interests = []
     } catch (error) {
-      this.snackbarText = 'Произошла ошибка при отправке формы, ' + error
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ') + error
       this.snackbarError = true
       this.snackbar = true
     }

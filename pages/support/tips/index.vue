@@ -4,10 +4,10 @@
       <v-col cols="12" lg="10">
         <h1
           class="display-3 text-uppercase font-weight-light text-center hidden-xs-only"
-        >Советы по использованию</h1>
+        >{{$t('Советы по использованию')}}</h1>
         <h1
           class="headline text-uppercase font-weight-light text-center hidden-sm-and-up"
-        >Советы по использованию</h1>
+        >{{$t('Советы по использованию')}}</h1>
       </v-col>
       <v-col cols="12" sm="6" lg="4" v-for="(manualGroup,index) in manualGroups" :key="index">
         <ManualPanel text :title="manualGroup.name" :manuals="manualGroup.items" />
@@ -42,5 +42,18 @@ export default class Tips extends Vue {
       ]
     }
   ]
+
+  async mounted(){
+    // this.manualGroups.push(    {
+    //   name: this.$store.state.lang.manuals.printers,
+    //   items: [
+    //     {
+    //       name: 'STE 320',
+    //       link: '/support/tips/printers/1-introduction',
+    //       image: 'printers/STE 320/banner.webp'
+    //     }
+    //   ]
+    // })
+  }
 }
 </script>

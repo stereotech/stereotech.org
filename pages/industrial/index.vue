@@ -31,20 +31,21 @@ export default class Industrial extends Vue {
     title: string,
     description: string,
     link: string
-  }[] = [
-      {
+  }[] = []
+    async mounted(){
+      this.printers.push({
         image: '/printers/industrial/series6.jpg',
-        title: 'Серия 6xx',
-        description: 'Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей',
+        title: this.$tc('Серия 6xx'),
+        description: this.$tc('Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей'),
         link: '/industrial/series6'
       },
       {
         image: '/printers/industrial/series8.jpg',
-        title: 'Серия 8xx',
-        description: 'Восьмиосевая установка аддитивного производства на базе промышленного манипулятора для производства прочных композитных деталей',
+        title: this.$tc('Серия 8xx'),
+        description: this.$tc('Восьмиосевая установка аддитивного производства на базе промышленного манипулятора для производства прочных композитных деталей'),
         link: '/industrial/series8'
-      },
-    ]
+      })
+    }
 }
 
 </script>

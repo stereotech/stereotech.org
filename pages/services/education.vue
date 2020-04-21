@@ -21,7 +21,7 @@
     </v-col>
     <v-col cols="12">
       <v-card>
-        <v-card-title>Подробная информация</v-card-title>
+        <v-card-title>{{$t('Подробная информация')}}</v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
@@ -33,12 +33,12 @@
                   href="mailto:msikt@mail.ru?subject=Курсы 3D печати&body=Здравствуйте, вышлите информацию по курсам"
                   color="primary"
                 >
-                  <v-icon left>mdi-email</v-icon>Записаться на курсы
+                  <v-icon left>mdi-email</v-icon>{{$t('Записаться на курсы')}}
                 </v-btn>
               </v-col>
               <v-col cols="12" md="6">
                 <v-btn block large outlined href="tel:+78442248443" color="accent">
-                  Позвонить в учебный центр
+                 {{$t('Позвонить в учебный центр')}}
                   <v-icon right>mdi-phone</v-icon>
                 </v-btn>
               </v-col>

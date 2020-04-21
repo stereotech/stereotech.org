@@ -4,32 +4,32 @@
       <v-col cols="12" lg="10">
         <ProductCard
           fullsize
-          image="/printers/desktop/series5.jpg"
-          title="Новые возможности аддитивного производства с серией 5D принтеров 5хх"
+          image="/printers/desktop/series5_banner.jpg"
+          :title="this.$tc('Новые возможности аддитивного производства с серией 5D принтеров 5хх')"
           link="/printers/series5"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/main/bg1.webp"
-          title="Закажите тестовую деталь"
-          description="Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь"
+          :title="this.$tc('Закажите тестовую деталь')"
+          :description="this.$tc('Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь')"
           link="/resellers"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/printers/desktop/banner1.jpg"
-          title="Настольные принтеры"
-          description="Устройства способные с легкостью изменить и оптимизировать процесс производства"
+          :title="this.$tc('Настольные принтеры')"
+          :description="this.$tc('Устройства способные с легкостью изменить и оптимизировать процесс производства')"
           link="/printers"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/software/steapp/banner.jpg"
-          title="Наше программное обеспечение"
-          :description="'Подготовка к 3D и 5D печати\nУправление процессом печати'"
+          :title="$t('Наше программное обеспечение')"
+          :description="$t('Подготовка к 3D и 5D печати\nУправление процессом печати')"
           link="/software"
         />
       </v-col>

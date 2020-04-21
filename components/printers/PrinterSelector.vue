@@ -1,12 +1,14 @@
 <template>
   <v-card>
     <v-container>
-      <v-row justify="center" align="center">
-        <v-col cols="12" sm="6" class="text-center">
-          <h4 class="display-1 text-uppercase font-weight-light">{{ model.model }}</h4>
-          <v-img :src="model.image" />
+      <v-row justify="center">
+        <v-col cols="12" sm="6">
+          <v-img :src="model.image"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{price}}₽</h4>
+          <p class="title font-weight-light text-center">{{ model.description }}</p>
           <v-radio-group
             v-if="selectExtruder.length > 1"
             @change="changeExtruder"
@@ -84,6 +86,7 @@ import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType } from '~/t
 export default class PrinterSelector extends Vue {
   @Model('change', { type: Object }) model!: PrinterVariant
   @Prop({ type: Array, default: () => { return [] } }) items!: PrinterVariant[]
+  @Prop({ type: String, default: " " }) price!: String
 
 
   get selectExtruder (): ExtruderType[] {
@@ -146,7 +149,7 @@ export default class PrinterSelector extends Vue {
   printVolumeVariants: any[] = [
     {
       name: 'Стандартная область печати',
-      description: '200x210x200мм',
+      description: '230x230x150мм',
       value: PrintVolumeType.Standard
     },
     {
@@ -156,7 +159,7 @@ export default class PrinterSelector extends Vue {
     },
     {
       name: 'Увеличенная область печати',
-      description: '300x310x300мм',
+      description: '330x330x250мм',
       value: PrintVolumeType.Extended
     },
     {
@@ -198,6 +201,51 @@ export default class PrinterSelector extends Vue {
     this.$emit('change', this.items.find(v => (v.extruderType === this.currentExtruderVariant.value
       && v.printVolumeType === this.currentPrintVolume.value
       && v.fiveAxisType === value.value)) || this.items[0])  }
+
+  // async mounted(){
+  //   this.extruderVariants.push({
+  //     name: this.$tc('Один экструдер'),
+  //     description: this.$tc('Надежная печать одним материалом'),
+  //     value: ExtruderType.Single
+  //   },
+  //   {
+  //     name: this.$tc('Два экструдера'),
+  //     description: this.$tc('Печать различными материалами двумя экструдерами'),
+  //     value: ExtruderType.Dual
+  //   })
+
+  //   this.printVolumeVariants.push(  {
+  //     name: this.$tc('Стандартная область печати'),
+  //     description: '200x210x200мм',
+  //     value: PrintVolumeType.Standard
+  //   },
+  //   {
+  //     name: this.$tc('Стандартная область печати, увеличенная по оси Z'),
+  //     description: '200x210x300мм',
+  //     value: PrintVolumeType.StandardLong
+  //   },
+  //   {
+  //     name: this.$tc('Увеличенная область печати'),
+  //     description: '300x310x300мм',
+  //     value: PrintVolumeType.Extended
+  //   },
+  //   {
+  //     name: this.$tc('Увеличенная область печати, удлиненная по оси Z'),
+  //     description: '300x310x400мм',
+  //     value: PrintVolumeType.ExtendedLong
+  //   })
+
+  //   this.fiveAxisVariants.push(    {
+  //     name: this.$tc('5D принтер'),
+  //     description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
+  //     value: FiveAxisType.Normal
+  //   },
+  //   {
+  //     name: this.$tc('Гибридный 5D принтер'),
+  //     description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
+  //     value: FiveAxisType.Hybrid
+  //   })
+  // }    
 }
 
 </script>

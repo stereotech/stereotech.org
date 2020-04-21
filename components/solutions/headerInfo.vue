@@ -3,7 +3,7 @@
     <v-row align="center">
       <v-col cols="6">
         <v-img src="stereotech.jpg"></v-img>
-        <p offset-md="3" class="subtitle">новые возможности Аддитивного производства</p>
+        <p offset-md="3" class="subtitle">{{$t('новые возможности Аддитивного производства')}}</p>
       </v-col>
       <v-col cols="6" class="text center">
         <p class="phoneNumber">+7 (902) 364 84 04</p>

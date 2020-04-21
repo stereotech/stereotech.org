@@ -5,7 +5,7 @@
         <v-col v-if="!rightText" class="text-center" cols="12" sm="6">
           <h4 class="headline text-uppercase font-weight-regular pb-4">{{ title }}</h4>
           <p class="title text-uppercase font-weight-light">{{ description }}</p>
-          <slot />
+          <slot /> 
         </v-col>
         <v-col cols="12" sm="6">
           <v-img :src="image" max-height="500" contain />

@@ -16,10 +16,10 @@
         <v-col class="text-center" cols="12" sm="6">
           <h4
             class="headline text-uppercase font-weight-regular pb-4"
-          >{{ $store.state.lang.printer.common.light.title }}</h4>
+          >{{ $t('интеллектуальная световая индикация')}}</h4>
           <p
             class="title text-uppercase font-weight-light"
-          >{{ $store.state.lang.printer.common.light.description}}</p>
+          >{{ $t('помогает определить завершенную печать, паузу, ошибки, а также найти определенный принтер')}}</p>
           <slot />
         </v-col>
       </v-row>
