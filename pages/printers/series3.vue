@@ -2,22 +2,28 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">{{$t('Серия 3хх - доступные принтеры для профессиональной 3D печати')}}</h1>
+        <h1
+          class="font-weight-light"
+        >{{$t('Серия 3хх - доступные принтеры для профессиональной 3D печати')}}</h1>
       </v-col>
       <v-col cols="12" lg="10">
-        <PrinterSelector v-model="currentPrinter" :items="printerItems" :price="String(currentPrice)"/>
+        <PrinterSelector
+          v-model="currentPrinter"
+          :items="printerItems"
+          :price="String(currentPrice)"
+        />
       </v-col>
       <v-col cols="12" lg="10">
-        <SupportedSlicers />
+        <KeyFeatures
+          :title="this.$tc('Причины выбрать принтеры Stereotech')"
+          :items="reasonsToUse"
+        />
       </v-col>
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :attributes="product.attributes" />
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Причины выбрать принтеры Stereotech')" :items="reasonsToUse"/>
       </v-col>
     </v-row>
   </v-container>
@@ -32,7 +38,7 @@ import FullSpecs from '~/components/printers/FullSpecs.vue'
 import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import {KeyFeature, MediaType} from '~/types/keyFeature'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
@@ -100,7 +106,7 @@ export default class Series3 extends Vue {
       description: 'Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм'
     },
   ]
-  reasonsToUse: KeyFeature[]=[
+  reasonsToUse: KeyFeature[] = [
     {
       name: 'Удобный 5” сенсорный экран ',
       mediaType: MediaType.image,
@@ -246,8 +252,8 @@ export default class Series3 extends Vue {
     this.printerItems[0].description = this.$tc('Стартовый принтер для обучения, производства и разработки с одним экструдером и закрытой камерой')
     this.printerItems[1].description = this.$tc('Продвинутый принтер для обучения, производства и разработки с двумя экструдерами и закрытой камерой')
     this.printerItems[2].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 200x210x300 мм')
-    this.printerItems[3].description= this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x300 мм')
-    this.printerItems[4].description= this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм')
+    this.printerItems[3].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x300 мм')
+    this.printerItems[4].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм')
 
   }
 }
