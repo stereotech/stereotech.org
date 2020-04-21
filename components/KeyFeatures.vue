@@ -3,27 +3,31 @@
     <v-container fluid>
       <v-row justify="center">
         <v-col cols="12" class="text-center">
-          <h3 class="title font-weight-light">{{ title }}</h3>
+          <h1 class="title font-weight-light">{{ title }}</h1>
         </v-col>
         <v-col cols="12" sm="10" lg="8">
-          <v-tabs centered v-model="tab">
+          <v-tabs centered center-active v-model="tab">
             <v-tab v-for="(item, index) in items" :key="index">{{item.name}}</v-tab>
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="(item, index) in items" :key="index">
               <v-container fluid>
-                <v-row justify="center" align="center">
+                <v-row justify="center">
                   <v-col cols="12" sm="6">
-                    <v-img :src="item.image" />
+                    <v-img v-if="item.mediaType == 0" :src="item.mediaSource" />
+                    <video v-else-if="item.mediaType == 1" width="100%" height="100%" autoplay loop>
+                      <source :src="item.mediaSource" />
+                    </video>
                   </v-col>
                   <v-col cols="12" sm="6">
-                    <h3>{{ item.name }}</h3>
+                    <h3 class="font-weight-light">{{ item.name }}</h3>
                     <br />
                     <p>{{ item.description }}</p>
                     <p v-for="(key,index) in item.keys" :key="index">
                       <v-icon color="primary">mdi-chevron-right</v-icon>
                       {{ key }}
                     </p>
+                    <slot />
                   </v-col>
                 </v-row>
               </v-container>
@@ -37,7 +41,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { KeyFeature } from '~/types/keyFeature'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
 
 @Component
 export default class KeyFeatures extends Vue {

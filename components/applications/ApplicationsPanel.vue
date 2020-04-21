@@ -3,7 +3,7 @@
     <v-container fluid grid-list-xs>
       <v-row>
         <v-col cols="12">
-          <h4 class="text-center display-2 font-weight-light">{{ $t('Области применения') }}</h4>
+          <h4 class="text-center display-2 font-weight-light">{{$t('Области применения')}}</h4>
         </v-col>
         <ApplicationsCard
           v-for="(application, index) in applications"
@@ -26,40 +26,20 @@ import ApplicationsCard from '~/components/applications/ApplicationsCard.vue'
   }
 })
 export default class ApplicationsPanel extends Vue {
-  private applications = [
-    {
-      name: this.$store.state.lang.applications.automotive,
-      icon: 'mdi-car'
-    },
-    {
-      name: this.$store.state.lang.applications.prosthetics,
-      icon: 'mdi-seat-legroom-extra'
-    },
-    {
-      name: this.$store.state.lang.applications.robotics,
-      icon: 'mdi-robot-industrial'
-    },
-    {
-      name: this.$store.state.lang.applications.rnd,
-      icon: 'mdi-bank'
-    },
-    {
-      name: this.$store.state.lang.applications.defence,
-      icon: 'mdi-shield'
-    },
-    {
-      name: this.$store.state.lang.applications.building,
-      icon: 'mdi-home-modern'
-    },
-    {
-      name: this.$store.state.lang.applications.drones,
-      icon: 'mdi-quadcopter'
-    },
-    {
-      name: this.$store.state.lang.applications.aerospace,
-      icon: 'mdi-rocket'
-    }
-  ]
+  private applications: any[] = []
+  
+  async mounted(){
+    this.applications.push({name: this.$tc('Автомобилестроение'), icon: 'mdi-car'})
+    this.applications.push({name:this.$tc('Протезирование'), icon: 'mdi-seat-legroom-extra'})
+    this.applications.push({name: this.$tc('Робототехника'), icon: 'mdi-robot-industrial' })
+    this.applications.push({name: this.$tc('Научные исследования и образование'), icon: 'mdi-bank' })
+    this.applications.push({name: this.$tc('Оборонная промышленность'), icon: 'mdi-shield' })
+    this.applications.push({name: this.$tc('Строительство'), icon: 'mdi-home-modern' })
+    this.applications.push({name: this.$tc('Малая авиация'), icon: 'mdi-quadcopter' })
+    this.applications.push({name: this.$tc('Авиация и ракетостроение'), icon: 'mdi-rocket' })
+  }
+
+  
 }
 </script>
 

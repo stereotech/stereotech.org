@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">Руководства пользователя</h1>
+        <h1 class="font-weight-light">{{$t('Руководства пользователя')}}</h1>
       </v-col>
       <v-col cols="12" lg="10" v-for="(manualGroup,index) in manualGroups" :key="index">
         <ManualPanel :title="manualGroup.name" :manuals="manualGroup.items" />

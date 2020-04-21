@@ -4,8 +4,8 @@
       <v-col cols="12" class="text-center">
         <h1
           class="font-weight-light"
-        >Серия 8хх - Восьмиосевой принтер для производства прочных композитных деталей</h1>
-        <h2>Стоимость по запросу</h2>
+        >{{$t('Серия 8хх - Восьмиосевой принтер для производства прочных композитных деталей')}}</h1>
+        <h2>{{$t('Стоимость по запросу')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" />
@@ -32,7 +32,13 @@ export default class Series8 extends Vue {
     printerType: PrinterType.ThreeAxis,
     extruderType: ExtruderType.Dual,
     printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal
+    fiveAxisType: FiveAxisType.Normal,
+    description: 'Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей'
+  }
+
+  async mounted(){
+    this.currentPrinter.model = this.$tc('Серия 8хх')
+    this.currentPrinter.description = this.$tc('Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей')
   }
 }
 

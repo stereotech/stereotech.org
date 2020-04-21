@@ -2,17 +2,17 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">Блог</h1>
+        <h1 class="font-weight-light">{{$t('Блог')}}</h1>
       </v-col>
     </v-row>
 
     <v-row justify="center">
       <v-col cols="auto">
-        <h4 class="font-weight-light text-center">Категории</h4>
+        <h4 class="font-weight-light text-center">{{$t('Категории')}}</h4>
         <v-chip-group color="primary">
-          <v-chip nuxt exact :to="localePath('/blog')">Все темы</v-chip>
-          <v-chip nuxt exact :to="localePath('/blog/news')">Новости</v-chip>
-          <v-chip nuxt exact :to="localePath('/blog/science')">Научная деятельность</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog')">{{$t('Все темы')}}</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/news')">{{$t('Новости')}}</v-chip>
+          <v-chip nuxt exact :to="localePath('/blog/science')">{{$t('Научная деятельность')}}</v-chip>
         </v-chip-group>
       </v-col>
     </v-row>
@@ -41,7 +41,7 @@
       </v-col>
     </v-row>
     <v-col cols="auto" class="text-center">
-      <v-btn depressed color="primary" @click="showMore()">Показать ещё</v-btn>
+      <v-btn depressed color="primary" @click="showMore()">{{$t('Показать ещё')}}</v-btn>
     </v-col>
   </v-container>
 </template>

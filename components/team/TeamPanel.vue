@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row>
         <v-col cols="12">
-          <h4 class="text-center display-2 font-weight-light">{{ $store.state.lang.team.title }}</h4>
+          <h4 class="text-center display-2 font-weight-light">{{$t('Наша команда')}}</h4>
         </v-col>
         <TeamCard
           v-for="(member, index) in team"
@@ -27,38 +27,39 @@ import TeamCard from '~/components/team/TeamCard.vue'
   }
 })
 export default class TeamPanel extends Vue {
-  private team: any[] = [
-    {
-      name: this.$store.state.lang.team.avdeev.name,
+  private team: any[] = []
+  async mounted(){
+    this.team.push({
+      name: this.$tc('Артем Авдеев'),
       image: 'team/p1.jpg',
-      description: this.$store.state.lang.team.avdeev.description
+      description: this.$tc('Генеральный директор')
     },
     {
-      name: this.$store.state.lang.team.drobotov.name,
+      name: this.$tc('Алексей Дроботов'),
       image: 'team/p2.jpg',
-      description: this.$store.state.lang.team.drobotov.description
+      description: this.$tc('Финансовый директор')
     },
     {
-      name: this.$store.state.lang.team.gushchin.name,
+      name: this.$tc('Илья Гущин'),
       image: 'team/p3.jpg',
-      description: this.$store.state.lang.team.gushchin.description
+      description: this.$tc('Ведущий разработчик')
     },
     {
-      name: this.$store.state.lang.team.shvets.name,
+      name: this.$tc('Андрей Швец'),
       image: 'team/p4.jpg',
-      description: this.$store.state.lang.team.shvets.description
+      description: this.$tc('Технический директор')
     },
     {
-      name: this.$store.state.lang.team.martynovich.name,
+      name: this.$tc('Иван Мартынович'),
       image: 'team/p5.jpg',
-      description: this.$store.state.lang.team.martynovich.description
+      description: this.$tc('Специалист 3D печати')
     },
     {
-      name: this.$store.state.lang.team.bitushkova.name,
+      name: this.$tc('Анастасия Битюшкова'),
       image: 'team/p6.jpg',
-      description: this.$store.state.lang.team.bitushkova.description
-    }
-  ]
+      description: this.$tc('Специалист')
+    })
+  }
 }
 </script>
 

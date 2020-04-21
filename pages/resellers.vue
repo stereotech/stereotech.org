@@ -3,18 +3,18 @@
     <v-row justify="center">
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title v-if="$vuetify.breakpoint.xs">Запросить предложение</v-card-title>
-          <v-card-title v-else class="display-3">Запросить предложение</v-card-title>
+          <v-card-title v-if="$vuetify.breakpoint.xs">{{$t('Запросить предложение')}}</v-card-title>
+          <v-card-title v-else class="display-3">{{$t('Запросить предложение')}}</v-card-title>
           <v-card-text>
             <v-container>
               <v-row justify="center" align="center">
                 <v-col cols="12" sm="6">
                   <p
                     class="headline"
-                  >Ниже представлен список дистрибьюторов, готовых к рассмотрению ваших заявок. Если вы нуждаетесь в дополнительной информации, свяжитесь с нами, используя форму ниже.</p>
+                  >{{$t('Ниже представлен список дистрибьюторов, готовых к рассмотрению ваших заявок. Если вы нуждаетесь в дополнительной информации, свяжитесь с нами, используя форму ниже.')}}</p>
                   <QuoteForm
-                    buttonText="Связаться с нами"
-                    title="Связаться с нами"
+                    :buttonText="this.$tc('Связаться с нами')"
+                    :title="this.$tc('Связаться с нами')"
                     subscription
                     equipment
                   />
@@ -32,12 +32,12 @@
       </v-col>
       <v-col cols="12" lg="4">
         <v-card id="dealer-form">
-          <v-card-title>Стать дилером</v-card-title>
+          <v-card-title>{{$t('Стать дилером')}}</v-card-title>
           <v-card-text>
             <v-container>
               <v-row justify="center">
                 <v-col cols="12">
-                  <QuoteForm buttonText="Заполнить форму" title="Запрос для дилеров" dealers />
+                  <QuoteForm :buttonText="this.$tc('Заполнить форму')" :title="this.$tc('Запрос для дилеров')" dealers />
                 </v-col>
               </v-row>
             </v-container>
@@ -61,15 +61,50 @@ import { Seller, SellerType } from '~/types/reseller'
   }
 })
 export default class Resellers extends Vue {
-  addresses: Seller[] = [
-    {
+  addresses: Seller[] = []
+    // {
+    //   name: 'Stereotech',
+    //   logo: 'resellers/stereotech.jpg',
+    //   email: 'store@ste3d.ru',
+    //   website: 'https://ste3d.ru',
+    //   region: 'Волгоградская обл.',
+    //   country: 'Российская Федерация',
+    //   address: 'г. Волгоград, ул. им. Огарева, 2',
+    //   coords: [48.692225, 44.498048],
+    //   type: SellerType.Manufacturer
+    // },
+    // {
+    //   name: 'ATSS Group',
+    //   logo: '/resellers/atss.jpg',
+    //   email: 'info@atssgroup.com',
+    //   website: 'http://atssgroup.com',
+    //   region: 'Москва',
+    //   country: 'Российская Федерация',
+    //   address: 'г. Москва, Волоколамское шоссе, д. 2',
+    //   type: SellerType.Distributor,
+    //   coords: [55.807476, 37.505292]
+    // },
+    // {
+    //   name: 'Capvidia Belgium',
+    //   logo: '/resellers/capvidia.jpg',
+    //   email: 'info@capvidia.com',
+    //   website: 'http://capvidia.com',
+    //   region: 'Левен',
+    //   country: 'Бельгия',
+    //   address: 'Technologielaan 3 B-3001 Leuven',
+    //   type: SellerType.Distributor,
+    //   coords: [50.8540782, 4.727265]
+    // },
+  //]
+  async mounted(){
+    this.addresses.push({
       name: 'Stereotech',
       logo: 'resellers/stereotech.jpg',
       email: 'store@ste3d.ru',
       website: 'https://ste3d.ru',
-      region: 'Волгоградская обл.',
-      country: 'Российская Федерация',
-      address: 'г. Волгоград, ул. им. Огарева, 2',
+      region: this.$tc('Волгоградская обл.'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Волгоград, ул. им. Огарева, 2'),
       coords: [48.692225, 44.498048],
       type: SellerType.Manufacturer
     },
@@ -78,9 +113,9 @@ export default class Resellers extends Vue {
       logo: '/resellers/atss.jpg',
       email: 'info@atssgroup.com',
       website: 'http://atssgroup.com',
-      region: 'Москва',
-      country: 'Российская Федерация',
-      address: 'г. Москва, Волоколамское шоссе, д. 2',
+      region: this.$tc('Москва'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Москва, Волоколамское шоссе, д. 2'),
       type: SellerType.Distributor,
       coords: [55.807476, 37.505292]
     },
@@ -89,13 +124,13 @@ export default class Resellers extends Vue {
       logo: '/resellers/capvidia.jpg',
       email: 'info@capvidia.com',
       website: 'http://capvidia.com',
-      region: 'Левен',
-      country: 'Бельгия',
-      address: 'Technologielaan 3 B-3001 Leuven',
+      region: this.$tc('Левен'),
+      country: this.$tc('Бельгия'),
+      address: this.$tc('Technologielaan 3 B-3001 Leuven'),
       type: SellerType.Distributor,
       coords: [50.8540782, 4.727265]
-    },
-  ]
+    })
+  }
 }
 
 </script>
