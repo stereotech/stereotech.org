@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row justify="center">
         <v-col cols="12" class="text-center">
-          <h3 class="title font-weight-light">{{ title }}</h3>
+          <h1 class="title font-weight-light">{{ title }}</h1>
         </v-col>
         <v-col cols="12" sm="10" lg="8">
           <v-tabs centered center-active v-model="tab">
@@ -12,10 +12,10 @@
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="(item, index) in items" :key="index">
               <v-container fluid>
-                <v-row justify="center" align="center">
+                <v-row justify="center">
                   <v-col cols="12" sm="6">
                     <v-img v-if="item.mediaType == 0" :src="item.mediaSource" />
-                    <video v-else-if="item.mediaType == 1" width="350" height="350" autoplay>
+                    <video v-else-if="item.mediaType == 1" width="100%" height="100%" autoplay loop>
                       <source :src="item.mediaSource" />
                     </video>
                   </v-col>
@@ -27,18 +27,7 @@
                       <v-icon color="primary">mdi-chevron-right</v-icon>
                       {{ key }}
                     </p>
-                    <v-btn
-                      v-if="index==1 && title=='8 преимуществ технологии 5D'"
-                      color="primary"
-                      nuxt
-                      :to="localePath({path: '/printers/special'})"
-                    >{{$t('Узнать больше')}}</v-btn>
-                    <p v-if="index==0 && title=='8 преимуществ технологии 5D'">
-                      *Прочность на изгиб литого ABS приведена из источника:
-                      <a
-                        href="http://himcompany.com/"
-                      >http://himcompany.com</a>
-                    </p>
+                    <slot />
                   </v-col>
                 </v-row>
               </v-container>

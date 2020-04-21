@@ -63,6 +63,7 @@ export default class Series3 extends Vue {
     {
       model: '320 Base',
       image: '/printers/desktop/series3.jpg',
+      buyImage: '/printers/desktop/series3_buy.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Single,
       printVolumeType: PrintVolumeType.Standard,
@@ -72,6 +73,7 @@ export default class Series3 extends Vue {
     {
       model: '320 Pro',
       image: '/printers/desktop/series3.jpg',
+      buyImage: '/printers/desktop/series3_buy.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -81,6 +83,7 @@ export default class Series3 extends Vue {
     {
       model: '320 Plus',
       image: '/printers/desktop/series3.jpg',
+      buyImage: '/printers/desktop/series3_buy.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.StandardLong,
@@ -90,6 +93,7 @@ export default class Series3 extends Vue {
     {
       model: '330 Pro',
       image: '/printers/desktop/series3.jpg',
+      buyImage: '/printers/desktop/series3_buy.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -99,6 +103,7 @@ export default class Series3 extends Vue {
     {
       model: '330 Plus',
       image: '/printers/desktop/series3.jpg',
+      buyImage: '/printers/desktop/series3_buy.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.ExtendedLong,
@@ -166,7 +171,7 @@ export default class Series3 extends Vue {
     {
       name: 'Печать с катушек от 2,5 кг и более',
       mediaType: MediaType.image,
-      mediaSource: '/printers/10reasons/withoutPhone',
+      mediaSource: '/printers/10reasons/withoutPhone.jpg',
       description: 'Используйте катушки с филаментом от 2,5 кг для масштабной печати – просто разместите катушки снаружи принтера и подавайте нить через сервисное окно.',
       keys: []
     },
