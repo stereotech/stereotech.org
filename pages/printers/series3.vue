@@ -19,17 +19,14 @@
           :items="reasonsToUse"
         />
       </v-col>
+      <v-col cols="12" lg="10">
+        <ServiceBenefits/>
+      </v-col>
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :attributes="product.attributes" />
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ServiceBenefits/>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Причины выбрать принтеры Stereotech')" :items="reasonsToUse"/>
       </v-col>
     </v-row>
   </v-container>
