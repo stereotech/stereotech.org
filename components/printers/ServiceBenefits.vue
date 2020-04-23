@@ -24,7 +24,7 @@ serviceBenefits: KeyFeature[]=[
         {
       name:'Бесплатная доставка',
       mediaType: MediaType.image,
-      mediaSource: '/printers/serviceBenefits/',
+      mediaSource: '/printers/serviceBenefits/delivery.jpg',
       description: 'Мы надежно упакуем и бесплатно доставим принтер по РФ до ближайшего к Вам терминала транспортной компании.',
       keys: []
     },
@@ -52,7 +52,7 @@ serviceBenefits: KeyFeature[]=[
     {
       name:'Скидка 28% для сферы образования',
       mediaType: MediaType.image,
-      mediaSource: '/printers/serviceBenefits/',
+      mediaSource: '/printers/serviceBenefits/education.jpg',
       description: 'Предоставляем комплект обучающих материалов и скидку до 28% на 3D принтеры моделей 320 base и 320 pro для образовательных учреждений при покупке по прямому договору.',
       keys: []
     }, 
