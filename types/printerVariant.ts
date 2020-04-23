@@ -1,6 +1,7 @@
 export interface PrinterVariant {
     model: string
     image: string
+    buyImage?: string
     printerType: PrinterType
     extruderType: ExtruderType
     printVolumeType: PrintVolumeType

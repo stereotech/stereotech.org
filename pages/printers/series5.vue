@@ -5,13 +5,20 @@
         <h1 class="font-weight-light">{{$t('Серия 5хх - инновационные 5D принтеры')}}</h1>
       </v-col>
       <v-col cols="12" lg="10">
-        <PrinterSelector v-model="currentPrinter" :items="printerItems" :price="String(currentPrice)"/>
+        <PrinterSelector
+          v-model="currentPrinter"
+          :items="printerItems"
+          :price="String(currentPrice)"
+        />
       </v-col>
       <v-col cols="12" lg="10">
-        <BenefitsPanel />
+        <KeyFeatures :title="this.$tc('Преимущества технологии 5Dtech')" :items="features" />
       </v-col>
       <v-col cols="12" lg="10">
-        <ApplicationsPanel />
+        <KeyFeatures
+          :title="this.$tc('Причины выбрать принтеры Stereotech')"
+          :items="reasonsToUse"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
@@ -54,8 +61,8 @@ import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
 import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import {KeyFeature, MediaType} from '~/types/keyFeature'
-import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType} from '~/types/printerVariant'
+import { KeyFeature, MediaType } from '~/types/keyFeature'
+import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
 @Component({
@@ -81,6 +88,7 @@ export default class Series5 extends Vue {
     {
       model: '520 Pro',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -90,6 +98,7 @@ export default class Series5 extends Vue {
     {
       model: '520 Hybrid',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,
@@ -99,6 +108,7 @@ export default class Series5 extends Vue {
     {
       model: '530 Pro',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -108,6 +118,7 @@ export default class Series5 extends Vue {
     {
       model: '530 Hybrid',
       image: '/printers/desktop/series5.jpg',
+      buyImage: '/printers/desktop/series5_buy.jpg',
       printerType: PrinterType.FiveAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Extended,
@@ -175,7 +186,7 @@ export default class Series5 extends Vue {
     }
   ]
 
-  reasonsToUse: KeyFeature[]=[
+  reasonsToUse: KeyFeature[] = [
     {
       name: 'Удобный 5” сенсорный экран ',
       mediaType: MediaType.image,
@@ -235,7 +246,7 @@ export default class Series5 extends Vue {
     {
       name: 'Печать с катушек от 2,5 кг и более',
       mediaType: MediaType.image,
-      mediaSource: '/printers/10reasons/withoutPhone',
+      mediaSource: '/printers/10reasons/withoutPhone.jpg',
       description: 'Используйте катушки с филаментом от 2,5 кг для масштабной печати – просто разместите катушки снаружи принтера и подавайте нить через сервисное окно.',
       keys: []
     },

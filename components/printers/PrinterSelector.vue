@@ -1,12 +1,13 @@
 <template>
   <v-card>
     <v-container>
-      <v-row justify="center" align="center">
+      <v-row justify="center">
         <v-col cols="12" sm="6">
           <v-img :src="model.image"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
-          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }} {{price}}₽</h4>
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{price}}₽</h4>
           <p class="title font-weight-light text-center">{{ model.description }}</p>
           <v-radio-group
             v-if="selectExtruder.length > 1"
@@ -85,7 +86,7 @@ import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType } from '~/t
 export default class PrinterSelector extends Vue {
   @Model('change', { type: Object }) model!: PrinterVariant
   @Prop({ type: Array, default: () => { return [] } }) items!: PrinterVariant[]
-  @Prop({type: String, default: " "}) price!: String
+  @Prop({ type: String, default: " " }) price!: String
 
 
   get selectExtruder (): ExtruderType[] {

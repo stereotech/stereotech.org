@@ -49,7 +49,7 @@
           </small>
         </v-col>
         <v-col cols="12" md="6">
-          <v-img :src="variant.image" />
+          <v-img :src="variant.buyImage ? variant.buyImage : variant.image" />
         </v-col>
       </v-row>
     </v-container>
