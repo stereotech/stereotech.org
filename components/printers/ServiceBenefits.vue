@@ -45,7 +45,7 @@ serviceBenefits: KeyFeature[]=[
     {
       name:'Обладай инновациями',
       mediaType: MediaType.image,
-      mediaSource: '/printers/serviceBenefits/',
+      mediaSource: '/printers/serviceBenefits/diplomas.jpg',
       description: 'Технологии Stereotech высоко оценили множество экспертов в различных отраслях. Используйте инновации с новой линейкой принтеров серии 5хх!',
       keys: []
     },
