@@ -21,6 +21,9 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
+        <ServiceBenefits/>
+      </v-col>
+      <v-col cols="12" lg="10">
         <ProductCard
           image="/printers/software/steslicer.webp"
           title="STE Slicer"
@@ -50,6 +53,7 @@ import FullSpecs from '~/components/printers/FullSpecs.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
 import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
 import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
+import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import { KeyFeature, MediaType } from '~/types/keyFeature'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
@@ -66,6 +70,7 @@ import gql from 'graphql-tag'
     PrinterSelector,
     BenefitsPanel,
     ApplicationsPanel,
+    ServiceBenefits,
     KeyFeatures
   },
   head: {

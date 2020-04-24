@@ -19,6 +19,9 @@
           :items="reasonsToUse"
         />
       </v-col>
+      <v-col cols="12" lg="10">
+        <ServiceBenefits/>
+      </v-col>
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :attributes="product.attributes" />
       </v-col>
@@ -37,6 +40,7 @@ import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
 import SupportedSlicers from '~/components/printers/SupportedSlicers.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
+import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import { KeyFeature, MediaType } from '~/types/keyFeature'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
@@ -50,6 +54,7 @@ import gql from 'graphql-tag'
     FullSpecs,
     SupportedSlicers,
     PrinterSelector,
+    ServiceBenefits,
     KeyFeatures
   },
   head: {
