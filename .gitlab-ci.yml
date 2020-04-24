@@ -1,4 +1,4 @@
-image: node:10.15.3-stretch-slim
+image: node:10.15.2
 
 stages:
   - build
