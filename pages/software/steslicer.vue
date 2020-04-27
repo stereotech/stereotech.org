@@ -105,7 +105,7 @@ export default class SteSlicer extends Vue {
       icon: 'mdi-download',
       description: this.$tc('Доступно для Windows Vista и выше, 64-бит'),
       version: this.$tc('Версия 0.1.0'),
-      download: 'http://software.stereotech.org/steslicer/stable/latest.version'
+      download: 'http://software.stereotech.org/steslicer/stable/Stereotech%20STE%20Slicer-0.1.0-win64.exe'
     })
   }
  
