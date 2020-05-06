@@ -21,8 +21,10 @@ export enum ExtruderType {
 
 export enum PrintVolumeType {
     Standard,
+    StandardFivaAxis,
     StandardLong,
     Extended,
+    ExtendedFiveAxis,
     ExtendedLong
 }
 
