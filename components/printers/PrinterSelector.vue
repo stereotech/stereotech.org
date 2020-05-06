@@ -167,7 +167,7 @@ export default class PrinterSelector extends Vue {
       description: '300x310x300мм',
       value: PrintVolumeType.Extended
     },
-    
+    {
       name: 'Увеличенная область печати',
       description: '330x330x250мм',
       value: PrintVolumeType.ExtendedFiveAxis
