@@ -1,17 +1,18 @@
 <template>
     <v-container>
-        <slot></slot>
-        <ul>
-            <li 
-                class="font-weight-light"
-                v-for="el in listElements"
-                v-bind:key="el"
-            >
-                <slot name="el" v-bind:el="el">
-                    {{ el }}
-                </slot>
-            </li>
-        </ul>
+            <slot></slot>
+
+            <ul>
+                <li 
+                    class="font-weight-light"
+                    v-for="el in listElements"
+                    v-bind:key="el"
+                >
+                    <slot name="el" v-bind:el="el">
+                        {{ el }}
+                    </slot>
+                </li>
+            </ul>
     </v-container>
 </template>
 
