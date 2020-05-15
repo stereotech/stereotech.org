@@ -1,8 +1,8 @@
 <template>
   <v-card dark color="primary">
-      <p class="text-center" id="str">
+      <h1 class="text-center font-weight-light">
         <slot></slot>
-      </p>
+      </h1>
 
   </v-card>
       
@@ -17,7 +17,7 @@ export default class textStripe extends Vue{
 </script>
 
 <style>
-    #str{
-        font-size: 25pt
-    }
+    /* #str{
+        font-size: 20pt
+    } */
 </style>
