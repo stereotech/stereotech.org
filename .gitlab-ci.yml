@@ -8,9 +8,11 @@ extractLocale:
   stage: build
   cache:
     paths:
-      - node_modules
+      #- node_modules
+      - .npm/
   before_script:
-    - npm install --dev
+    #- npm install --dev
+    - npm ci --cache .npm --prefer-offline
   script:
     - npm run extract
   artifacts:
@@ -43,14 +45,16 @@ pages:
   stage: build
   cache:
     paths:
-      - node_modules
+      #- node_modules
+      - .npm/
   before_script:
     - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
     - cd docs
     - node ./scripts/generate-menu.js
     - cd ..
     - cp -rf docs/static .
-    - npm install --dev
+    - npm ci --cache .npm --prefer-offline
+    #- npm install --dev
   script:
     - npm run generate:pages
   only:
