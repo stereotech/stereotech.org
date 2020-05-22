@@ -71,34 +71,34 @@ import { DownloadLink } from '~/types/download'
 export default class SteSlicer extends Vue {
   keyFeatures: KeyFeature[] = []
   downloadLinks: DownloadLink[] = []
-  async mounted(){
+  async mounted () {
     this.keyFeatures.push({
       name: this.$tc('Режимы слайсинга'),
       mediaType: MediaType.image,
       mediaSource: 'software/steslicer/printing_modes.jpg',
       description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
       keys: [this.$tc('Различные режимы слайсинга'),
-        this.$tc('Настройки для каждого из режимов слайсинга'),
+      this.$tc('Настройки для каждого из режимов слайсинга'),
       ]
     },
-    {
-      name: this.$tc('Простота использования'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steslicer/easy_to_use.jpg',
-      description: this.$tc('STE Slicer позволяет подготовить модель к печати за считанные секунды'),
-      keys: [this.$tc('Рекомендованный режим с автоматически настроенными значениями'),
+      {
+        name: this.$tc('Простота использования'),
+        mediaType: MediaType.image,
+        mediaSource: 'software/steslicer/easy_to_use.jpg',
+        description: this.$tc('STE Slicer позволяет подготовить модель к печати за считанные секунды'),
+        keys: [this.$tc('Рекомендованный режим с автоматически настроенными значениями'),
         this.$tc('Продвинутый режим с ручным контролем различных настроек'),
-      ]
-    },
-    {
-      name: this.$tc('STE App'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steapp/banner.jpg',
-      description: this.$tc('Система управления принтерами встроена в STE Steslicer'),
-      keys: [this.$tc('Отправка заданий на печать напрямую из слайсера'),
+        ]
+      },
+      {
+        name: this.$tc('STE App'),
+        mediaType: MediaType.image,
+        mediaSource: 'software/steapp/banner.jpg',
+        description: this.$tc('Система управления принтерами встроена в STE Steslicer'),
+        keys: [this.$tc('Отправка заданий на печать напрямую из слайсера'),
         this.$tc('Автоматический поиск принтеров в сети'),
-      ]
-    })
+        ]
+      })
 
     this.downloadLinks.push({
       name: this.$tc('Загрузить для Windows x64'),
@@ -108,7 +108,7 @@ export default class SteSlicer extends Vue {
       download: 'http://software.stereotech.org/steslicer/stable/Stereotech%20STE%20Slicer-0.1.0-win64.exe'
     })
   }
- 
+
 }
 
 </script>
