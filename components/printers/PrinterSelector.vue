@@ -150,6 +150,11 @@ export default class PrinterSelector extends Vue {
     {
       name: 'Стандартная область печати',
       description: '230x230x150мм',
+      value: PrintVolumeType.StandardFiveAxis
+    },
+    {
+      name: 'Стандартная область печати',
+      description: '200x210x200мм',
       value: PrintVolumeType.Standard
     },
     {
@@ -159,8 +164,13 @@ export default class PrinterSelector extends Vue {
     },
     {
       name: 'Увеличенная область печати',
-      description: '330x330x250мм',
+      description: '300x310x300мм',
       value: PrintVolumeType.Extended
+    },
+    {
+      name: 'Увеличенная область печати',
+      description: '330x330x250мм',
+      value: PrintVolumeType.ExtendedFiveAxis
     },
     {
       name: 'Увеличенная область печати, удлиненная по оси Z',
