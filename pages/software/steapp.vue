@@ -12,7 +12,10 @@
         <DownloadForm :title="this.$tc('Загрузить STE App')" :links="downloadLinks" />
       </v-col>
       <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Основные приемущества использования STE App')" :items="keyFeatures" />
+        <KeyFeatures
+          :title="this.$tc('Основные приемущества использования STE App')"
+          :items="keyFeatures"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
@@ -72,51 +75,55 @@ export default class SteApp extends Vue {
   downloadLinks: DownloadLink[] = []
   keyFeatures: KeyFeature[] = []
 
-  async mounted(){
+  async mounted () {
     this.keyFeatures.push({
       name: this.$tc('Группировка принтеров'),
       mediaType: MediaType.image,
       mediaSource: 'software/steapp/group.jpg',
       description: this.$tc('STE App упрощает работу с группой принтеров, позволяя управлять ими, используя общий интерфейс'),
       keys: [this.$tc('Возможность работы с любого устройства используя Wi-Fi/LAN'),
-        this.$tc('Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически'),
-        this.$tc('Поддержка 3D и 5D принтеров')]
+      this.$tc('Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически'),
+      this.$tc('Поддержка 3D и 5D принтеров')]
     },
-    {
-      name: this.$tc('Уведомления'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steapp/notification.jpg',
-      description: this.$tc('Уведомления на смартфон и в браузере подскажут, когда печать будет завершена'),
-      keys: [this.$tc('Система уведомлений STE Notice, получайте уведомления при завершении работы принтеров или о событиях требующих вашего внимания')]
-    },
-    {
-      name: this.$tc('Управление'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steapp/group.jpg',
-      description: '',
-      keys: [
-        this.$tc('Панель независимого управления принтерами STE Cluster позволяет управлять каждым принтером индивидуально из одного приложения'),
-        this.$tc('Режим обслуживания принтеров STE ServiceGuide поможет настроить принтер для печати вместе с пошаговыми руководствами'),
-        this.$tc('Система распределенного хранения заданий STE FileNet позволит использовать подключенное USB хранилище для печати на любом из принтеров в кластере')
-      ]
-    })
+      {
+        name: this.$tc('Уведомления'),
+        mediaType: MediaType.image,
+        mediaSource: 'software/steapp/notification.jpg',
+        description: this.$tc('Уведомления на смартфон и в браузере подскажут, когда печать будет завершена'),
+        keys: [this.$tc('Система уведомлений STE Notice, получайте уведомления при завершении работы принтеров или о событиях требующих вашего внимания')]
+      },
+      {
+        name: this.$tc('Управление'),
+        mediaType: MediaType.image,
+        mediaSource: 'software/steapp/group.jpg',
+        description: '',
+        keys: [
+          this.$tc('Панель независимого управления принтерами STE Cluster позволяет управлять каждым принтером индивидуально из одного приложения'),
+          this.$tc('Режим обслуживания принтеров STE ServiceGuide поможет настроить принтер для печати вместе с пошаговыми руководствами'),
+          this.$tc('Система распределенного хранения заданий STE FileNet позволит использовать подключенное USB хранилище для печати на любом из принтеров в кластере')
+        ]
+      })
+
+    this.version = await this.$axios.$get('http://software.stereotech.org/firmware/stable/ste-update.stu.version')
+    this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
 
     this.downloadLinks.push({
-      name:  this.$tc('Загрузить обновление'),
+      name: this.$tc('Загрузить обновление'),
       icon: 'mdi-update',
-      description:  this.$tc('Используйте последнюю версию ПО принтера'),
-      version:  this.$tc('Версия 1.1.0'),
+      description: this.$tc('Используйте последнюю версию ПО принтера'),
+      version: this.$tc('Версия ') + this.version,
       download: 'http://software.stereotech.org/firmware/stable/ste-update.stu'
     },
-     {
-      name:  this.$tc('Загрузить для Android'),
-      icon: 'mdi-android',
-      description:  this.$tc('Приложение для доступа и управления принтером со смартфона'),
-      version:  this.$tc('Версия 1.1.0'),
-      download: 'https://play.google.com/store/apps/details?id=ru.stereotech.steapp'
-    })
+      {
+        name: this.$tc('Загрузить для Android'),
+        icon: 'mdi-android',
+        description: this.$tc('Приложение для доступа и управления принтером со смартфона'),
+        version: this.$tc('Версия ') + this.version,
+        download: 'https://play.google.com/store/apps/details?id=ru.stereotech.steapp'
+      })
   }
 
+  version: string = ''
 }
 
 </script>
