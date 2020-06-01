@@ -100,14 +100,19 @@ export default class SteSlicer extends Vue {
         ]
       })
 
+    this.version = await this.$axios.$get('http://software.stereotech.org/steslicer/stable/latest.version')
+    this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
+
     this.downloadLinks.push({
       name: this.$tc('Загрузить для Windows x64'),
       icon: 'mdi-download',
       description: this.$tc('Доступно для Windows Vista и выше, 64-бит'),
-      version: this.$tc('Версия 0.1.0'),
-      download: 'http://software.stereotech.org/steslicer/stable/Stereotech%20STE%20Slicer-0.1.0-win64.exe'
+      version: this.$tc('Версия ') + this.version,
+      download: `http://software.stereotech.org/steslicer/stable/Stereotech%20STE%20Slicer-${this.version}-win64.exe`
     })
   }
+
+  version: string = ''
 
 }
 

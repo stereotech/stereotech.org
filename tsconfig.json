@@ -29,7 +29,8 @@
       "@nuxt/vue-app",
       "@nuxtjs/vuetify",
       "vue-apollo/types",
-      "nuxt-i18n"
+      "nuxt-i18n",
+      "@nuxtjs/axios"
     ]
   }
 }

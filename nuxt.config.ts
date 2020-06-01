@@ -38,7 +38,7 @@ const config: Configuration = {
   ** Global CSS
   */
   css: [
-    
+
   ],
   /*
   ** Plugins to load before mounting the App
@@ -61,6 +61,7 @@ const config: Configuration = {
   */
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/axios',
     '@nuxtjs/google-analytics',
     [
       '@nuxtjs/yandex-metrika',
