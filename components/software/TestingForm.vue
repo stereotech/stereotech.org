@@ -8,10 +8,10 @@
         <v-container fluid>
           <v-row no-gutters>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
+              <v-text-field outlined :label="$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Номер телефона')" v-model="phone" v-mask="mask"></v-text-field>
+              <v-text-field outlined :label="$tc('Номер телефона')" v-model="phone" v-mask="mask"></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
@@ -75,12 +75,12 @@ export default class TestingForm extends Vue {
   ]
 
   nameRules = [
-    (v: any) => !!v || this.$tc('Имя обязательно'),
+    (v: any) => !!v || 'Имя обязательно'
   ]
 
   emailRules = [
-    (v: any) => !!v || this.$tc('E-mail обязателен'),
-    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || this.$tc('E-mail не верен')
+    (v: any) => !!v || 'E-mail обязателен',
+    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail не верен'
   ]
 
   private mask: string = "+7(###) ###-####"
@@ -96,7 +96,7 @@ export default class TestingForm extends Vue {
   }
 
   private async submit () {
-    let name = 'Запрос в программу тестирования'
+    let name = this.title
     name += ': ' + new Date().toString() + ' Обращение от ' + this.name
     const email = this.email
     const description = this.joinFormData

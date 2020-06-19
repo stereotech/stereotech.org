@@ -5,20 +5,34 @@
         <ProductBanner
           image="/software/steslicer/banner.jpg"
           :title="$t('Уникальное программное обеспечение для 5D печати')"
-          :description="this.$tc('Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.')"
+          :description="$tc('Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.')"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <DownloadForm :title="this.$tc('Загрузить STE Slicer')" :links="downloadLinks" />
+        <v-card>
+          <v-card-title>{{$t('Запросить демо')}}</v-card-title>
+          <v-card-text>
+            <v-container fluid>
+              <v-row justify="center">
+                <v-col cols="12" lg="4">
+                  <TestingForm
+                    :buttonText="$tc('Запросить STE Slicer')"
+                    :title="$tc('Запросить демо STE Slicer')"
+                  />
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-card>
       </v-col>
       <v-col cols="12" lg="10">
-        <KeyFeatures :title="this.$tc('Особенности STE Slicer')" :items="keyFeatures" />
+        <KeyFeatures :title="$tc('Особенности STE Slicer')" :items="keyFeatures" />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/software/steslicer/manual.jpg"
-          :title="this.$tc('Быстрый старт')"
-          :description="this.$tc('Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer')"
+          :title="$tc('Быстрый старт')"
+          :description="$tc('Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer')"
           link="/support/manuals/steslicer"
         />
       </v-col>
@@ -33,8 +47,8 @@
                 </v-col>
                 <v-col cols="12" lg="4">
                   <TestingForm
-                    :buttonText="this.$tc('Запись в программу')"
-                    :title="this.$tc('Предварительное тестирование')"
+                    :buttonText="$tc('Запись в программу')"
+                    :title="$tc('Предварительное тестирование')"
                   />
                 </v-col>
               </v-row>

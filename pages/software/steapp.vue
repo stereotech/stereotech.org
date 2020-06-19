@@ -36,8 +36,8 @@
                 </v-col>
                 <v-col cols="12" lg="4">
                   <TestingForm
-                    :buttonText="this.$tc('Запись в программу')"
-                    :title="this.$tc('Предварительное тестирование')"
+                    :buttonText="$tc('Запись в программу')"
+                    :title="$tc('Предварительное тестирование')"
                   />
                 </v-col>
               </v-row>
