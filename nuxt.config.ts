@@ -134,7 +134,7 @@ const config: Configuration = {
         light: {
           primary: '#0277bd',
           secondary: '#ffffff',
-          accent: '#263238',
+          accent: '#191b38',
           error: '#FF5252',
           info: '#9C27B0',
           success: '#4CAF50',
@@ -143,7 +143,7 @@ const config: Configuration = {
         dark: {
           primary: '#0277bd',
           secondary: '#ffffff',
-          accent: '#263238',
+          accent: '#191b38',
           error: '#FF5252',
           info: '#9C27B0',
           success: '#4CAF50',
