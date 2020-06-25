@@ -28,37 +28,42 @@ import TeamCard from '~/components/team/TeamCard.vue'
 })
 export default class TeamPanel extends Vue {
   private team: any[] = []
-  async mounted(){
+  async mounted () {
     this.team.push({
       name: this.$tc('Артем Авдеев'),
       image: 'team/p1.jpg',
       description: this.$tc('Генеральный директор')
     },
-    {
-      name: this.$tc('Алексей Дроботов'),
-      image: 'team/p2.jpg',
-      description: this.$tc('Финансовый директор')
-    },
-    {
-      name: this.$tc('Илья Гущин'),
-      image: 'team/p3.jpg',
-      description: this.$tc('Ведущий разработчик')
-    },
-    {
-      name: this.$tc('Андрей Швец'),
-      image: 'team/p4.jpg',
-      description: this.$tc('Технический директор')
-    },
-    {
-      name: this.$tc('Иван Мартынович'),
-      image: 'team/p5.jpg',
-      description: this.$tc('Специалист 3D печати')
-    },
-    {
-      name: this.$tc('Анастасия Битюшкова'),
-      image: 'team/p6.jpg',
-      description: this.$tc('Специалист')
-    })
+      {
+        name: this.$tc('Алексей Дроботов'),
+        image: 'team/p2.jpg',
+        description: this.$tc('Финансовый директор')
+      },
+      {
+        name: this.$tc('Илья Гущин'),
+        image: 'team/p3.jpg',
+        description: this.$tc('Ведущий разработчик')
+      },
+      {
+        name: this.$tc('Андрей Швец'),
+        image: 'team/p4.jpg',
+        description: this.$tc('Технический директор')
+      },
+      {
+        name: this.$tc('Анатолий Тулаев'),
+        image: 'team/p7.jpg',
+        description: this.$tc('Директор по развитию')
+      },
+      {
+        name: this.$tc('Иван Мартынович'),
+        image: 'team/p5.jpg',
+        description: this.$tc('Специалист 3D печати')
+      },
+      {
+        name: this.$tc('Анастасия Битюшкова'),
+        image: 'team/p6.jpg',
+        description: this.$tc('Специалист')
+      })
   }
 }
 </script>
