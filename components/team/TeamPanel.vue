@@ -60,9 +60,9 @@ export default class TeamPanel extends Vue {
         description: this.$tc('Специалист 3D печати')
       },
       {
-        name: this.$tc('Анастасия Битюшкова'),
-        image: 'team/p6.jpg',
-        description: this.$tc('Специалист')
+        name: this.$tc('Анастасия Мавлянова'),
+        image: 'team/p7.jpg',
+        description: this.$tc('Специалист по продажам и закупкам')
       })
   }
 }
