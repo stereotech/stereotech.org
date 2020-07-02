@@ -163,6 +163,14 @@
                       <v-btn text icon href="https://instagram.com/ste3d_ru/" target="_blank">
                         <v-icon>mdi-instagram</v-icon>
                       </v-btn>
+                      <v-btn
+                        text
+                        icon
+                        href="https://www.youtube.com/channel/UCgpK6bZ6uaGyIGB2jp-aTUw/"
+                        target="_blank"
+                      >
+                        <v-icon>mdi-youtube</v-icon>
+                      </v-btn>
                     </v-list-item>
                   </v-list>
                 </v-col>
@@ -186,17 +194,19 @@
                     >
                       <v-list-item-title>{{ child.title}}</v-list-item-title>
                     </v-list-item>
-                    <v-list-item v-if="index==3"
-                        href="http://download.stereotech.org/documents/%D0%A0%D0%B5%D0%BA%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D1%8B.pdf"
-                        target="_blank"
+                    <v-list-item
+                      v-if="index==3"
+                      href="http://download.stereotech.org/documents/%D0%A0%D0%B5%D0%BA%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D1%8B.pdf"
+                      target="_blank"
                     >
                       <v-list-item-title>{{$t('Реквизиты')}}</v-list-item-title>
                     </v-list-item>
-                    <v-list-item v-if="index==3"
-                        href="http://download.stereotech.org/documents/2020+%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B+%D0%A1%D0%9E%D0%A3%D0%A2.pdf"
-                        target="_blank"
+                    <v-list-item
+                      v-if="index==3"
+                      href="http://download.stereotech.org/documents/2020+%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B+%D0%A1%D0%9E%D0%A3%D0%A2.pdf"
+                      target="_blank"
                     >
-                        <v-list-item-title>{{$t('Результаты СОУТ')}}</v-list-item-title>
+                      <v-list-item-title>{{$t('Результаты СОУТ')}}</v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-col>
@@ -251,217 +261,217 @@ export default class Layout extends Vue {
     return items.flatMap(x => x.child ? [x, ...x.child] : [x])
   }
 
-  async mounted(){
+  async mounted () {
     this.mainMenu.push(
-    {
-      title: this.$tc("Продукты"),
-      icon: 'mdi-printer-3d',
-      child: [
-        {
-          title: this.$tc('Настольные принтеры'),
-          link: '/printers',
-          icon: '/printers/desktop/series3.jpg',
-          child: [
-            {
-              title: this.$tc('Ceрия 3xx'),
-              link: '/printers/series3',
-              description: this.$tc('Профессиональные 3D принтеры')
-            },
-            {
-              title: this.$tc('Ceрия 5xx'),
-              link: '/printers/series5',
-              description: this.$tc('Инновационные 5D принтеры')
-            },
-            {
-              title: this.$tc('Серия Special'),
-              link: '/printers/special',
-              description: this.$tc('3D и 5D принтеры для особых задач')
-            }
-          ]
-        },
-        {
-          title: this.$tc('Промышленные принтеры'),
-          link: '/industrial',
-          icon: 'printers/industrial/series8.jpg',
-          child: [
-            {
-              title: this.$tc('Ceрия 6xx'),
-              link: '/industrial/series6',
-              description: this.$tc('Шестиосевое устройство на базе промышленного робота')
-            },
-            {
-              title: this.$tc('Ceрия 8xx'),
-              link: '/industrial/series8',
-              description: this.$tc('Восьмиосевое устройство для специальных задач')
-            }
-          ]
-        },
-        {
-          title: this.$tc('Программное обеспечение'),
-          link: '/software',
-          icon: 'printers/software/steapp.webp',
-          child: [
-            {
-              title: 'STE Slicer',
-              link: '/software/steslicer',
-              description: this.$tc('Подготовка к 3D и 5D печати')
-            },
-            {
-              title: 'STE App',
-              link: '/software/steapp',
-              description: this.$tc('Управление процессом печати')
-            },
-          ]
-        },
-      ]
-    },
-    {
-      title: this.$tc('Узнать больше'),
-      icon: 'mdi-post-outline',
-      child: [
-        //{
-        //  title: this.$tc('Решения'),
-        //  link: '/solutions',
-        //  child: [
-        //    {
-        //      title: this.$tc('Обучение'),
-        //      description: this.$tc('Изучение основ 3D печати'),
-        //      link: '/solutions/education'
-        //    },
-        //    {
-        //      title: this.$tc('Производство'),
-        //      description: this.$tc('Изделия для конечного использования'),
-        //      link: '/solutions/production'
-        //    },
-        //    {
-        //      title: this.$tc('Сервис 3D печати'),
-        //      description: this.$tc('Услуги 3D печати и прототипирования'),
-        //      link: '/solutions/services'
-        //    },
-        //    {
-        //      title: this.$tc('Прототипирование'),
-        //      description: this.$tc('Разработка устройств'),
-        //      link: '/solutions/prototyping'
-        //    },
-        //  ]
-        //},
-        {
-          title: this.$tc('Блог'),
-          link: '/blog',
-          child: [
-            //{
-            //  title: this.$tc('Анонсы'),
-            //  description: this.$tc('Все важные мероприятия с нашим участием'),
-            //  link: '/blog/events'
-            //},
-            {
-              title: this.$tc('Новости'),
-              description: this.$tc('Последние новости о нашей компании'),
-              link: '/blog/news'
-            },
-            //{
-            //  title: this.$tc('Примеры использования'),
-            //  description: this.$tc('Истории успеха наших партнеров'),
-            //  link: '/blog/applications'
-            //},
-            //{
-            //  title: this.$tc('Статьи'),
-            //  description: this.$tc('Подробные исследования и руководства'),
-            //  link: '/blog/whitepapers'
-            //},
-            {
-              title: this.$tc('Научная деятельность'),
-              description: '',
-              link: '/blog/science'
-            },
-          ]
-        }
-      ]
-    },
-{
-      title: this.$tc('Поддержка'),
-      icon: 'mdi-face-agent',
-      child: [
+      {
+        title: this.$tc("Продукты"),
+        icon: 'mdi-printer-3d',
+        child: [
+          {
+            title: this.$tc('Настольные принтеры'),
+            link: '/printers',
+            icon: '/printers/desktop/series3.jpg',
+            child: [
+              {
+                title: this.$tc('Ceрия 3xx'),
+                link: '/printers/series3',
+                description: this.$tc('Профессиональные 3D принтеры')
+              },
+              {
+                title: this.$tc('Ceрия 5xx'),
+                link: '/printers/series5',
+                description: this.$tc('Инновационные 5D принтеры')
+              },
+              {
+                title: this.$tc('Серия Special'),
+                link: '/printers/special',
+                description: this.$tc('3D и 5D принтеры для особых задач')
+              }
+            ]
+          },
+          {
+            title: this.$tc('Промышленные принтеры'),
+            link: '/industrial',
+            icon: 'printers/industrial/series8.jpg',
+            child: [
+              {
+                title: this.$tc('Ceрия 6xx'),
+                link: '/industrial/series6',
+                description: this.$tc('Шестиосевое устройство на базе промышленного робота')
+              },
+              {
+                title: this.$tc('Ceрия 8xx'),
+                link: '/industrial/series8',
+                description: this.$tc('Восьмиосевое устройство для специальных задач')
+              }
+            ]
+          },
+          {
+            title: this.$tc('Программное обеспечение'),
+            link: '/software',
+            icon: 'printers/software/steapp.webp',
+            child: [
+              {
+                title: 'STE Slicer',
+                link: '/software/steslicer',
+                description: this.$tc('Подготовка к 3D и 5D печати')
+              },
+              {
+                title: 'STE App',
+                link: '/software/steapp',
+                description: this.$tc('Управление процессом печати')
+              },
+            ]
+          },
+        ]
+      },
+      {
+        title: this.$tc('Узнать больше'),
+        icon: 'mdi-post-outline',
+        child: [
+          //{
+          //  title: this.$tc('Решения'),
+          //  link: '/solutions',
+          //  child: [
+          //    {
+          //      title: this.$tc('Обучение'),
+          //      description: this.$tc('Изучение основ 3D печати'),
+          //      link: '/solutions/education'
+          //    },
+          //    {
+          //      title: this.$tc('Производство'),
+          //      description: this.$tc('Изделия для конечного использования'),
+          //      link: '/solutions/production'
+          //    },
+          //    {
+          //      title: this.$tc('Сервис 3D печати'),
+          //      description: this.$tc('Услуги 3D печати и прототипирования'),
+          //      link: '/solutions/services'
+          //    },
+          //    {
+          //      title: this.$tc('Прототипирование'),
+          //      description: this.$tc('Разработка устройств'),
+          //      link: '/solutions/prototyping'
+          //    },
+          //  ]
+          //},
+          {
+            title: this.$tc('Блог'),
+            link: '/blog',
+            child: [
+              //{
+              //  title: this.$tc('Анонсы'),
+              //  description: this.$tc('Все важные мероприятия с нашим участием'),
+              //  link: '/blog/events'
+              //},
+              {
+                title: this.$tc('Новости'),
+                description: this.$tc('Последние новости о нашей компании'),
+                link: '/blog/news'
+              },
+              //{
+              //  title: this.$tc('Примеры использования'),
+              //  description: this.$tc('Истории успеха наших партнеров'),
+              //  link: '/blog/applications'
+              //},
+              //{
+              //  title: this.$tc('Статьи'),
+              //  description: this.$tc('Подробные исследования и руководства'),
+              //  link: '/blog/whitepapers'
+              //},
+              {
+                title: this.$tc('Научная деятельность'),
+                description: '',
+                link: '/blog/science'
+              },
+            ]
+          }
+        ]
+      },
+      {
+        title: this.$tc('Поддержка'),
+        icon: 'mdi-face-agent',
+        child: [
 
-        {
-          title: this.$tc('Руководства пользователя'),
-          link: '/support/manuals',
-          child: [
-            {
-              title: this.$tc('Принтеры 3хх серии'),
-              link: '/support/manuals/ste320'
-            },
-            //{
-            //  title: this.$tc('Принтеры 5хх серии'),
-            //  link: '/support/manuals/ste520'
-            //},
-            {
-              title: this.$tc('Слайсер STE Slicer'),
-              link: '/support/manuals/steslicer'
-            },
-            {
-              title: this.$tc('Система управления STE App'),
-              link: '/support/manuals/steapp'
-            }
-          ]
-        },
-        //{
-        //  title: this.$tc('Советы по использованию'),
-        //  link: '/support/tips',
-        //  child: [
-        //    {
-        //      title: this.$tc('Принтеры'),
-        //      link: '/support/tips/printers'
-        //    },
-        //    {
-        //      title: this.$tc('Программное обеспечение'),
-        //      link: '/support/tips/software'
-        //    },
-        //    {
-        //      title: this.$tc('Материалы'),
-        //      link: '/support/tips/materials'
-        //    },
-        //    {
-        //      title: this.$tc('Печать'),
-        //      link: '/support/tips/printing'
-        //    }
-        //  ]
-        //},
-        {
-          title: this.$tc('Связаться с нами'),
-          link: '/support'
-        },
-      ]
-    },
-    {
-      title: this.$tc('О нас'),
-      icon: 'mdi-information',
-      child: [
-        {
-          title: this.$tc('О Stereotech'),
-          link: '/info',
-          child: [
-            {
-              title: this.$tc('Команда'),
-              link: '/info/team'
-            },
-            //{
-            //  title: this.$tc('Награды'),
-            //  link: '/info/awards'
-            //},
-            {
-              title: this.$tc('Адреса'),
-              link: '/info/address'
-            },
-            {
-              title: this.$tc('СМИ о нас'),
-              link: '/info/media'
-            }
-          ]
-        }
-      ]
+          {
+            title: this.$tc('Руководства пользователя'),
+            link: '/support/manuals',
+            child: [
+              {
+                title: this.$tc('Принтеры 3хх серии'),
+                link: '/support/manuals/ste320'
+              },
+              //{
+              //  title: this.$tc('Принтеры 5хх серии'),
+              //  link: '/support/manuals/ste520'
+              //},
+              {
+                title: this.$tc('Слайсер STE Slicer'),
+                link: '/support/manuals/steslicer'
+              },
+              {
+                title: this.$tc('Система управления STE App'),
+                link: '/support/manuals/steapp'
+              }
+            ]
+          },
+          //{
+          //  title: this.$tc('Советы по использованию'),
+          //  link: '/support/tips',
+          //  child: [
+          //    {
+          //      title: this.$tc('Принтеры'),
+          //      link: '/support/tips/printers'
+          //    },
+          //    {
+          //      title: this.$tc('Программное обеспечение'),
+          //      link: '/support/tips/software'
+          //    },
+          //    {
+          //      title: this.$tc('Материалы'),
+          //      link: '/support/tips/materials'
+          //    },
+          //    {
+          //      title: this.$tc('Печать'),
+          //      link: '/support/tips/printing'
+          //    }
+          //  ]
+          //},
+          {
+            title: this.$tc('Связаться с нами'),
+            link: '/support'
+          },
+        ]
+      },
+      {
+        title: this.$tc('О нас'),
+        icon: 'mdi-information',
+        child: [
+          {
+            title: this.$tc('О Stereotech'),
+            link: '/info',
+            child: [
+              {
+                title: this.$tc('Команда'),
+                link: '/info/team'
+              },
+              //{
+              //  title: this.$tc('Награды'),
+              //  link: '/info/awards'
+              //},
+              {
+                title: this.$tc('Адреса'),
+                link: '/info/address'
+              },
+              {
+                title: this.$tc('СМИ о нас'),
+                link: '/info/media'
+              }
+            ]
+          }
+        ]
 
-    })
+      })
   }
   private readonly mainMenu: MenuItem[] = [
     // {
