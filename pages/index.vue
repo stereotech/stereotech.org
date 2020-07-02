@@ -36,6 +36,9 @@
       <v-col cols="12" lg="10">
         <LatestPosts />
       </v-col>
+      <v-col cols="12" lg="10">
+        <YoutubeChannel />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -47,6 +50,7 @@ import SoftwareBanner from '~/components/software/SoftwareBanner.vue'
 import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
 import LatestPosts from '~/components/LatestPosts.vue'
+import YoutubeChannel from '~/components/YoutubeChannel.vue'
 
 @Component({
   components: {
@@ -54,7 +58,8 @@ import LatestPosts from '~/components/LatestPosts.vue'
     SoftwareBanner,
     LatestPosts,
     ProductBanner,
-    ProductCard
+    ProductCard,
+    YoutubeChannel
   }
 })
 export default class Index extends Vue {

@@ -20,6 +20,9 @@
       <v-col cols="12" lg="10">
         <LatestPosts />
       </v-col>
+      <v-col cols="12" lg="10">
+        <YoutubeChannel />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -29,12 +32,14 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
 import LatestPosts from '~/components/LatestPosts.vue'
+import YoutubeChannel from '~/components/YoutubeChannel.vue'
 
 @Component({
   components: {
     ProductCard,
     LatestPosts,
-    ProductBanner
+    ProductBanner,
+    YoutubeChannel
   },
   head: {
     title: 'Настольные принтеры'
@@ -48,21 +53,21 @@ export default class Printers extends Vue {
     link: string
   }[] = []
 
-    async mounted(){
-      this.printers.push({image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3xx'),
-        description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
-        link: '/printers/series3'})
+  async mounted () {
+    this.printers.push({      image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3xx'),
+      description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
+      link: '/printers/series3'    })
 
-      this.printers.push({ image: '/printers/desktop/series5.jpg',
-        title: this.$tc('Серия 5xx'),
-        description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
-        link: '/printers/series5'})  
+    this.printers.push({      image: '/printers/desktop/series5.jpg',
+      title: this.$tc('Серия 5xx'),
+      description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
+      link: '/printers/series5'    })
 
-      this.printers.push({image: '/printers/desktop/special.jpg',
-        title: this.$tc('Специальная серия'),
-        description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
-        link: '/printers/special'})  
-    }
+    this.printers.push({      image: '/printers/desktop/special.jpg',
+      title: this.$tc('Специальная серия'),
+      description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
+      link: '/printers/special'    })
+  }
 }
 
 </script>
