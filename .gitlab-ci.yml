@@ -20,8 +20,9 @@ extractLocale:
       - ru_extracted.json
   only:
     - develop
+    - master
 
-buildNuxt: 
+buildNuxt:
   stage: build
   cache:
     paths:
@@ -37,7 +38,7 @@ buildNuxt:
     #- npm install --dev
   script:
     - npm run generate
-  only: 
+  only:
     - master
   artifacts:
     paths:
@@ -62,12 +63,11 @@ pages:
   only:
     - develop
 
-
 deployRelease:
   stage: deploy
   before_script:
     - apt-get update -qq && apt-get install -y -qq lftp
-  script: 
+  script:
     - lftp -e "set ftp:ssl-allow no; open $URL_EN; user $LOGIN_EN $PASS; mirror -X .* -X .*/ --parallel=10 --reverse --verbose --delete public/ ./"
-  only: 
+  only:
     - master
