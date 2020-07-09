@@ -5,7 +5,7 @@
         <ProductCard
           fullsize
           image="/printers/desktop/series5_banner.jpg"
-          :title="this.$tc('Новые возможности аддитивного производства с серией 5D принтеров 5хх')"
+          :title="this.$tc('Печать изделий с прочностью металла')"
           link="/printers/series5"
         />
       </v-col>
