@@ -473,7 +473,7 @@ export default class Layout extends Vue {
 
       })
   }
-  private readonly mainMenu: MenuItem[] = [
+  private mainMenu: MenuItem[] = [
     // {
     //   title: "Продукты",
     //   icon: 'mdi-printer-3d',
