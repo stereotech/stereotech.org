@@ -273,12 +273,12 @@ export default class Layout extends Vue {
             icon: '/printers/desktop/series3.jpg',
             child: [
               {
-                title: this.$tc('Ceрия 3хх'),
+                title: this.$tc('Серия 3хх'),
                 link: '/printers/series3',
                 description: this.$tc('Профессиональные 3D принтеры')
               },
               {
-                title: this.$tc('Ceрия 5хх'),
+                title: this.$tc('Серия 5хх'),
                 link: '/printers/series5',
                 description: this.$tc('Инновационные 5D принтеры')
               },
@@ -295,12 +295,12 @@ export default class Layout extends Vue {
             icon: 'printers/industrial/series8.jpg',
             child: [
               {
-                title: this.$tc('Сeрия 6хх'),
+                title: this.$tc('Серия 6хх'),
                 link: '/industrial/series6',
                 description: this.$tc('Шестиосевое устройство на базе промышленного робота')
               },
               {
-                title: this.$tc('Сeрия 8хх'),
+                title: this.$tc('Серия 8хх'),
                 link: '/industrial/series8',
                 description: this.$tc('Восьмиосевое устройство для специальных задач')
               }
