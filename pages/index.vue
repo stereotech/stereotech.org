@@ -37,7 +37,7 @@
         <LatestPosts />
       </v-col>
       <v-col cols="12" lg="10">
-        <YoutubeChannel />
+        <YoutubeChannel :title="$t('Наш канал на Youtube')"/>
       </v-col>
     </v-row>
   </v-container>
