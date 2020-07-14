@@ -54,12 +54,12 @@ export default class Printers extends Vue {
   }[] = []
 
   async mounted () {
-    this.printers.push({      image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3xx'),
+    this.printers.push({      image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
       description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
       link: '/printers/series3'    })
 
     this.printers.push({      image: '/printers/desktop/series5.jpg',
-      title: this.$tc('Серия 5xx'),
+      title: this.$tc('Серия 5хх'),
       description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
       link: '/printers/series5'    })
 

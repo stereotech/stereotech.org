@@ -6,6 +6,7 @@ const components_report = VueI18NExtract.createI18NReport('./components/**/*.?(v
 const components_items = VueI18NExtract.parseVueFiles('./components/**/*.?(vue)')
 const pages_report = VueI18NExtract.createI18NReport('./pages/**/*.?(vue)', './locales/*.?(json)')
 const items = VueI18NExtract.parseVueFiles('./pages/**/*.?(vue)')
+const layouts_items = VueI18NExtract.parseVueFiles('./layouts/*.?(vue)')
 fs.readFile('locales/ru.json', (e, data) => {
     let lang = JSON.parse(data)
     components_items.forEach(item => {
@@ -15,6 +16,12 @@ fs.readFile('locales/ru.json', (e, data) => {
         }
     });
     items.forEach(item => {
+        const missing = pages_report.missingKeys.find(m => (m.path === item.path) && (m.language === 'ru'))
+        if (missing) {
+            lang[item.path] = item.path
+        }
+    });
+    layouts_items.forEach(item => {
         const missing = pages_report.missingKeys.find(m => (m.path === item.path) && (m.language === 'ru'))
         if (missing) {
             lang[item.path] = item.path
