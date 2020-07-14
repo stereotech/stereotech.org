@@ -79,7 +79,7 @@ export default class QuoteForm extends Vue {
   subscribe: boolean = true
 
   async mounted(){
-    this.interests.push(this.$tc('Серия 3xx'), this.$tc('Серия 5xx'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
+    this.interests.push(this.$tc('Серия 3хх'), this.$tc('Серия 5хх'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
   }
   interests: string[] = [
     // 'Серия 3xx',
