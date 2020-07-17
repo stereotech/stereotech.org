@@ -29,7 +29,7 @@ buildNuxt:
       #- node_modules
       - .npm/
   before_script:
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
+    - git clone --depth=1 https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
     - cd docs
     - node ./scripts/generate-menu.js
     - cd ..
@@ -51,7 +51,7 @@ pages:
       #- node_modules
       - .npm/
   before_script:
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
+    - git clone --depth=1 https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/stereotech/misc/products-documentation.git docs
     - cd docs
     - node ./scripts/generate-menu.js
     - cd ..
