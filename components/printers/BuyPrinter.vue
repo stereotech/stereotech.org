@@ -6,7 +6,6 @@
           <h2>{{$t('Заказ')}}</h2>
           <h3 class="text-uppercase">{{ variant.model }}</h3>
           <h3>{{ price }}</h3>
-
           <v-form v-model="valid">
             <v-text-field
               v-model="orderName"
@@ -77,7 +76,7 @@ export default class BuyPrinter extends Vue {
   private phoneNumber: string = ""
   private email: string = ""
   private companyName: string = ""
-  private mask: string = "+7(###) ###-####"
+  private mask: string = "+7 ### ###-##-##"
   private valid: boolean = false
   private snackbar: boolean = false
   private snackbarText: string = ''
@@ -103,17 +102,45 @@ export default class BuyPrinter extends Vue {
     try {
       //@ts-ignore
       const token = await this.$recaptcha.execute('login')
-      await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $order: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $order)
-      }`,
-        variables: {
-          name: name,
-          email: email,
-          order: order
-        }
-      })
+      let companyId = 0
+      if (this.companyName !== "") {
+        let company = await fetch(`https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.company.add.json?
+        fields[TITLE]=${this.companyName}&
+        fields[ASSIGNED_BY_ID]=142`) //Avdeeva
+        let result = await company.json()
+        companyId = result.result
+      }
+      let convertedPhone = this.phoneNumber.replace('+', '%2B')
+      let contactRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.contact.add.json?
+        fields[NAME]=${this.orderName}&
+        fields[EMAIL][0][VALUE]=${this.email}&
+        fields[EMAIL][0][VALUE_TYPE]=WORK&
+        fields[PHONE][0][VALUE]=${convertedPhone}&
+        fields[PHONE][0][VALUE_TYPE]=WORK&
+        fields[ASSIGNED_BY_ID]=142`
+
+      if (companyId > 0) {
+        contactRequest += `&fields[COMPANY_ID]=${companyId}`
+      }
+
+      let contact = await fetch(contactRequest)
+      let result = await contact.json()
+      let contactId = result.result
+
+      let dealRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.deal.add.json?
+        fields[TITLE]=Заказ ${this.variant.model} c stereotech.org&
+        fields[OPPORTUNITY]=${this.price}&
+        fields[ASSIGNED_BY_ID]=142&
+        fields[STAGE_ID]=NEW&
+        fields[CONTACT_ID]=${contactId}&
+        params[REGISTER_SONET_EVENT]=Y`
+
+      if (companyId > 0) {
+        dealRequest += `&fields[COMPANY_ID]=${companyId}`
+      }
+
+      let deal = await fetch(dealRequest)
+
       this.snackbarText = 'Ваш запрос успешно отправлен!'
       this.snackbarError = false
       this.snackbar = true
