@@ -20,7 +20,7 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <ServiceBenefits/>
+        <ServiceBenefits />
       </v-col>
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :attributes="product.attributes" />
@@ -28,6 +28,7 @@
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
+      <v-col cols="12" lg="10"></v-col>
     </v-row>
   </v-container>
 </template>
@@ -264,7 +265,7 @@ export default class Series3 extends Vue {
     this.printerItems[2].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 200x210x300 мм')
     this.printerItems[3].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x300 мм')
     this.printerItems[4].description = this.$tc('Продвинутый принтер с двумя экструдерами и зоной печати 300x310x400 мм')
-    
+
     this.reasonsToUse[0].name = this.$tc('Удобный 5” сенсорный экран')
     this.reasonsToUse[0].description = this.$tc('Большой и удобный 5 дюймовый цветной сенсорный экран. Мгновенно получайте информацию о текущей печати и управляйте принтером наиболее интуитивным способом - с помощью тапов и свайпов')
     this.reasonsToUse[1].name = this.$tc('Двойной экструдер для печати с растворимыми поддержками')
