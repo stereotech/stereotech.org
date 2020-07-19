@@ -133,9 +133,9 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
     <v-footer height="auto" color="primary" dark>
       <v-container>
         <v-row>

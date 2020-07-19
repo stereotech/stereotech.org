@@ -4,6 +4,7 @@
     "module": "esnext",
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "noImplicitAny": false,
     "lib": [
       "esnext",
       "esnext.asynciterable",
