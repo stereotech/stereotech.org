@@ -127,7 +127,7 @@ export default class BuyPrinter extends Vue {
       let result = await contact.json()
       let contactId = result.result
 
-      let dealRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.deal.add.json?
+      let dealRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.lead.add.json?
         fields[TITLE]=Заказ ${this.variant.model} c stereotech.org&
         fields[OPPORTUNITY]=${this.price}&
         fields[ASSIGNED_BY_ID]=142&
