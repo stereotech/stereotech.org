@@ -11,7 +11,12 @@
               <v-text-field outlined :label="this.$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Номер телефона')" v-model="phone" v-mask="mask"></v-text-field>
+              <v-text-field
+                outlined
+                :label="this.$tc('Номер телефона')"
+                v-model="phone"
+                v-mask="mask"
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
@@ -30,7 +35,11 @@
               ></v-checkbox>
             </v-col>
             <v-col cols="12" v-if="subscription">
-              <v-switch v-model="subscribe" :label="this.$tc('Подписаться на рассылку')" color="primary"></v-switch>
+              <v-switch
+                v-model="subscribe"
+                :label="this.$tc('Подписаться на рассылку')"
+                color="primary"
+              ></v-switch>
             </v-col>
           </v-row>
         </v-container>
@@ -78,7 +87,7 @@ export default class QuoteForm extends Vue {
   interestIn: string[] = []
   subscribe: boolean = true
 
-  async mounted(){
+  async mounted () {
     this.interests.push(this.$tc('Серия 3хх'), this.$tc('Серия 5хх'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
   }
   interests: string[] = [
@@ -89,12 +98,12 @@ export default class QuoteForm extends Vue {
   ]
 
   nameRules = [
-    (v: any) => !!v || this.$tc('Имя обязательно'),
+    (v: any) => !!v || 'Имя обязательно',
   ]
 
   emailRules = [
-    (v: any) => !!v || this.$tc('E-mail обязателен'),
-    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || this.$tc('E-mail не верен')
+    (v: any) => !!v || 'E-mail обязателен',
+    (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail не верен'
   ]
 
   private mask: string = "+7(###) ###-####"
