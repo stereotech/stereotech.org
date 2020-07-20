@@ -124,13 +124,12 @@ const config: Configuration = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    treeShake: false,
     materialIcons: false,
+    lang: {
+      locales: { ru },
+      current: 'ru'
+    },
     theme: {
-      dark: false,
-      disable: false,
-      default: false,
-      options: {},
       themes: {
         light: {
           primary: '#0277bd',
@@ -194,16 +193,6 @@ const config: Configuration = {
         routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
         return routes
       })
-    }
-  },
-  build: {
-    extend (config, { isDev, isClient }) {
-
-      config.node = {
-        fs: 'empty'
-      }
-
-      // ....
     }
   }
 }
