@@ -26,7 +26,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="secondary" text app clipped-left>
+    <v-app-bar color="secondary" app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-avatar size="36px" class="mr-2">
         <img src="ste-logo.png" alt="Logo" />
@@ -133,9 +133,9 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-main>
+    <v-content>
       <nuxt />
-    </v-main>
+    </v-content>
     <v-footer height="auto" color="primary" dark>
       <v-container>
         <v-row>
