@@ -86,7 +86,7 @@ export default class QuoteForm extends Vue {
   company: string = ''
   interestIn: string[] = []
   subscribe: boolean = true
-
+  subscribeStr: string = ''
   async mounted () {
     this.interests.push(this.$tc('Серия 3хх'), this.$tc('Серия 5хх'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
   }
@@ -120,6 +120,11 @@ export default class QuoteForm extends Vue {
     return str
   }
 
+  private isSubscribeToStr() {
+    
+    return this.subscribe? 'да' :'нет'
+ 
+  }
   private async submit () {
     let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
     name += ': ' + new Date().toString() + ' Обращение от ' + this.name
@@ -128,6 +133,43 @@ export default class QuoteForm extends Vue {
     try {
       //@ts-ignore
       const token = await this.$recaptcha.execute('login')
+      let companyId = 0;
+      if (this.company !== ""){
+        let company = await fetch(`https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.company.add.json?
+        fields[TITLE]=${this.company}&
+        fields[ASSIGNED_BY_ID]=142`) //Avdeeva
+        let result = await company.json()
+        companyId = result.result
+      }
+       let contactRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.contact.add.json?
+        fields[NAME]=${this.name}&
+        fields[EMAIL][0][VALUE]=${this.email}&
+        fields[EMAIL][0][VALUE_TYPE]=WORK&
+        fields[PHONE][0][VALUE]=${this.phone}&
+        fields[PHONE][0][VALUE_TYPE]=WORK&
+        fields[ASSIGNED_BY_ID]=142`
+
+      if (companyId > 0) {
+        contactRequest += `&fields[COMPANY_ID]=${companyId}`
+      }
+
+      let contact = await fetch(contactRequest)
+      let result = await contact.json()
+      let contactId = result.result
+
+      let dealRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.lead.add.json?
+        fields[TITLE]=Запрос информации c stereotech.org&
+        fields[COMMENTS]=Заинтересован в ${this.interestIn}, подписка на новости: ${this.isSubscribeToStr()}&
+        fields[ASSIGNED_BY_ID]=142&
+        fields[STAGE_ID]=NEW&
+        fields[CONTACT_ID]=${contactId}&
+        params[REGISTER_SONET_EVENT]=Y`
+
+      if (companyId > 0) {
+        dealRequest += `&fields[COMPANY_ID]=${companyId}`
+      }
+
+      let deal = await fetch(dealRequest)
       await this.$apollo.mutate({
         mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
       {
