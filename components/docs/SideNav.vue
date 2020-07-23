@@ -1,6 +1,13 @@
 <template>
   <v-card>
     <v-list nav v-model="item">
+      <v-list-item v-if="downloadLink" :href="downloadLink" target="_blank">
+        <v-list-item-icon>
+          <v-icon>mdi-download</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>{{ $store.state.lang.manuals.download }}</v-list-item-title>
+      </v-list-item>
+      <v-divider v-if="downloadLink"></v-divider>
       <template v-for="(group, index) in list">
         <v-list-item :key="`title-${index}`">
           <v-list-item-title class="title">{{ group.title }}</v-list-item-title>
@@ -22,13 +29,6 @@
           >{{ content.name }}</v-list-item>
         </template>
       </template>
-      <v-divider v-if="downloadLink"></v-divider>
-      <v-list-item v-if="downloadLink" :href="downloadLink" target="_blank">
-        <v-list-item-icon>
-          <v-icon>mdi-download</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{ $store.state.lang.manuals.download }}</v-list-item-title>
-      </v-list-item>
     </v-list>
   </v-card>
 </template>
