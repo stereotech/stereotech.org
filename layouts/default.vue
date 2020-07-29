@@ -401,6 +401,10 @@ export default class Layout extends Vue {
                 title: this.$tc('Принтеры 3хх серии'),
                 link: '/support/manuals/ste320'
               },
+              {
+                title: this.$tc('Принтеры 5хх серии'),
+                link: '/support/manuals/ste520'
+              },
               //{
               //  title: this.$tc('Принтеры 5хх серии'),
               //  link: '/support/manuals/ste520'
