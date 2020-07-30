@@ -129,7 +129,52 @@ export default class Resellers extends Vue {
       address: this.$tc('Technologielaan 3 B-3001 Leuven'),
       type: SellerType.Distributor,
       coords: [50.8540782, 4.727265]
-    })
+    },
+    {
+      name: '3DSYSTEMPRO',
+      logo: '/resellers/systempro.jpg',
+      email: 'info@3dsystem.pro',
+      website: 'www.3dsystem.pro',
+      region: this.$tc('Казань'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Казань, ул. Петербургская, д. 50, корп. 23, пилон III, оф. 310, Технопарк "ИДЕЯ"'),
+      type: SellerType.Diler,
+      coords: [55.781028, 49.131333]
+    },
+    {
+      name: '3DSYSTEMPRO',
+      logo: '/resellers/systempro.jpg',
+      email: 'info@3dsystem.pro',
+      website: 'www.3dsystem.pro',
+      region: this.$tc('Санкт-Петербург'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Санкт-Петербург, Лиговский проспект, д. 92Г, оф. 29'),
+      type: SellerType.Diler,
+      coords: [59.920357, 30.356122]
+    },
+    {
+      name: '3DSYSTEMPRO',
+      logo: '/resellers/systempro.jpg',
+      email: 'info@3dsystem.pro',
+      website: 'www.3dsystem.pro',
+      region: this.$tc('Москва'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Москва, Березовая аллея д. 5А, стр. 7, офис 8'),
+      type: SellerType.Diler,
+      coords: [55.853708, 37.609937]
+    },
+    {
+      name: 'STUDIA3D',
+      logo: '/resellers/studia3d.jpg',
+      email: '3dprint@studia3d.com',
+      website: 'www.studia3d.com',
+      region: this.$tc('Москва'),
+      country: this.$tc('Российская Федерация'),
+      address: this.$tc('г. Москва, ул. Золоторожский Вал, 11с27'),
+      type: SellerType.Diler,
+      coords: [55.749076, 37.700568]
+    }
+    )
   }
 }
 
