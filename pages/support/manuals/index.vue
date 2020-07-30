@@ -30,10 +30,15 @@ export default class Manuals extends Vue {
       name: this.$store.state.lang.manuals.printers,
       items: [
         {
-          name: 'STE 320',
+          name: 'Series 3xx',
           link: '/support/manuals/ste320',
-          image: 'printers/STE 320/banner.webp'
-        }
+          image: 'printers/desktop/series3.jpg'
+        },
+        {
+          name: 'Series 5xx',
+          link: '/support/manuals/ste520',
+          image: 'printers/desktop/series5.jpg'
+        },
       ]
     },
     {
