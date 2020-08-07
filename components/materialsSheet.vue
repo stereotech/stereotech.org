@@ -1,6 +1,6 @@
 <template>
   <v-card>
-      <v-data-table :headers="tableHeaders" >
+      <v-data-table :headers="tableHeaders" :items="tableData">
 
       </v-data-table>
   </v-card>
@@ -34,14 +34,14 @@ private async getSheetData(){
         this.tableHeaders = []
     }
     console.log(this.tableHeaders)
-    const items = rows.map((r, index) => {
-        const entries = new Map(r.map(v => {
+    this.tableData = rows.map(r => {
+        const entries = new Map(r.map((v, index) => {
             return [this.tableHeaders[index].value, v]
         }))
         const item = Object.fromEntries(entries)
         return item
     })
-    console.log(items)
+    console.log(this.tableData)
 
 }
 
