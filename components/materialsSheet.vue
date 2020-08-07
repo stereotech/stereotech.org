@@ -14,7 +14,8 @@
       <v-data-table :headers="tableHeaders" 
         :items="tableData" 
         :dense="true" 
-        :search="search">
+        :search="search"
+        :mobile-breakpoint="0">
 
       </v-data-table>
   </v-card>
@@ -45,7 +46,7 @@ private async getSheetData(){
                 dashCounter++
             }
         }
-        if (dashCounter >= (rows.length-3)){
+        if (dashCounter >= 15){
             removes.push(i)
         }
     }
