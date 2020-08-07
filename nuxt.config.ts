@@ -54,7 +54,7 @@ const config: Configuration = {
   plugins: [
     '~/plugins/init',
     '~/plugins/htmlparser',
-    '~/plugins/vue-the-mask'
+    '~/plugins/vue-the-mask',
   ],
   /*
   ** Nuxt.js modules
