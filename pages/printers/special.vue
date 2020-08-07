@@ -8,10 +8,10 @@
         <h2>{{$tc('от 399000')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter :variant="currentPrinter" />
-      </v-col>
-      <v-col cols="12" lg="10">
         <materialsSheet />
+      </v-col>      
+      <v-col cols="12" lg="10">
+        <BuyPrinter :variant="currentPrinter" />
       </v-col>
     </v-row>
   </v-container>

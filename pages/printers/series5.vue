@@ -36,10 +36,10 @@
         <FullSpecs :attributes="product.attributes" />
       </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
+        <materialsSheet />
       </v-col>
       <v-col cols="12" lg="10">
-        <materialsSheet />
+        <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
     </v-row>
   </v-container>

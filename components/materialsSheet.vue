@@ -1,6 +1,6 @@
 <template>
   <v-card>
-      <v-data-table :headers="tableHeaders" :items="tableData">
+      <v-data-table :headers="tableHeaders" :items="tableData" :dense="true">
 
       </v-data-table>
   </v-card>
