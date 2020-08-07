@@ -10,6 +10,9 @@
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" />
       </v-col>
+      <v-col cols="12" lg="10">
+        <materialsSheet />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -17,12 +20,14 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
+import materialsSheet from '~/components/materialsSheet.vue'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
 @Component({
   components: {
-    BuyPrinter
+    BuyPrinter,
+    materialsSheet
   }
 })
 export default class Special extends Vue {
