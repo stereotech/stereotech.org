@@ -28,7 +28,9 @@
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
-      <v-col cols="12" lg="10"></v-col>
+      <v-col cols="12" lg="10">
+        <materialsSheet />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -44,6 +46,7 @@ import PrinterSelector from '~/components/printers/PrinterSelector.vue'
 import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import { KeyFeature, MediaType } from '~/types/keyFeature'
+import materialsSheet from '~/components/materialsSheet.vue'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
 
@@ -56,7 +59,8 @@ import gql from 'graphql-tag'
     SupportedSlicers,
     PrinterSelector,
     ServiceBenefits,
-    KeyFeatures
+    KeyFeatures, 
+    materialsSheet
   },
   head: {
     title: 'Серия 3хх'

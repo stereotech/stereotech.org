@@ -27,6 +27,7 @@
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/yandex-metrika": "^1.0.3",
+    "@types/gapi": "0.0.39",
     "apollo-fetch": "^0.7.0",
     "degit": "^2.2.2",
     "front-matter": "^3.0.2",
