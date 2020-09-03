@@ -6,6 +6,7 @@ export interface Seller {
     region: string
     country: string
     address: string
+    phone?: string
     coords: number[]
     type: SellerType
 }
