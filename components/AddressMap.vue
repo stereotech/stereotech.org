@@ -32,7 +32,7 @@
         </v-row>
         <v-row justify="center">
           <template v-for="(address, index) in addresses">
-            <v-col cols="12" md="6" :key="index">
+            <v-col cols="12" md="8" :key="index">
               <v-card class="mx-auto" outlined>
                 <v-list-item three-line>
                   <v-list-item-content>
@@ -63,6 +63,25 @@
                   >
                     <v-icon>mdi-email</v-icon>
                   </v-btn>
+                  <template v-if="address.phone">
+                    <v-btn
+                      v-if="!$vuetify.breakpoint.xs"
+                      text
+                      color="primary"
+                      :href="`tel:${address.phone}`"
+                      target="_blank"
+                    >{{ address.phone }}</v-btn>
+                    <v-btn
+                      v-else
+                      icon
+                      text
+                      color="primary"
+                      :href="`tel:${address.phone}`"
+                      target="_blank"
+                    >
+                      <v-icon>mdi-phone</v-icon>
+                    </v-btn>
+                  </template>
                   <v-btn
                     text
                     color="primary"
