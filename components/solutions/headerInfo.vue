@@ -7,7 +7,7 @@
       </v-col>
       <v-col cols="6" class="text center">
         <p class="phoneNumber">+7 (902) 364 84 04</p>
-        <p class="email">info@ste3d.ru</p>
+        <p class="email">info@5dtech.pro</p>
       </v-col>
     </v-row>
   </v-container>

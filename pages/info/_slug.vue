@@ -53,8 +53,8 @@ export default class AboutStereotech extends Vue {
     {
       name: 'Stereotech',
       logo: '/resellers/stereotech.jpg',
-      email: 'info@ste3d.ru',
-      website: 'https://ste3d.ru',
+      email: 'info@5dtech.pro',
+      website: 'https://5dtech.pro',
       region: 'Волгоградская область',
       country: 'Российская Федерация',
       address: 'г. Волгоград, ул. Огарева, д. 2',
