@@ -44,7 +44,7 @@
                   <h4 class="text-h4">{{ region.region }}</h4>
                 </v-col>
                 <template v-for="(address, index) in groupedAddress.get(region.region)">
-                  <v-col cols="12" md="8" lg="6" :key="`address-${index}`">
+                  <v-col cols="12" md="8" :key="`address-${index}`">
                     <v-card class="mx-auto" outlined>
                       <v-list-item two-line>
                         <v-list-item-content>

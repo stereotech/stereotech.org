@@ -153,14 +153,14 @@
                     <v-list-item href="tel:+79023648404">
                       <v-list-item-title>+79023648404</v-list-item-title>
                     </v-list-item>
-                    <v-list-item href="mailto:info@ste3d.ru" target="_blank">
-                      <v-list-item-title>info@ste3d.ru</v-list-item-title>
+                    <v-list-item href="mailto:info@5dtech.pro" target="_blank">
+                      <v-list-item-title>info@5dtech.pro</v-list-item-title>
                     </v-list-item>
                     <v-list-item>
-                      <v-btn text icon href="https://vk.com/ste3d_ru" target="_blank">
+                      <v-btn text icon href="https://vk.com/5dtechpro" target="_blank">
                         <v-icon>mdi-vk</v-icon>
                       </v-btn>
-                      <v-btn text icon href="https://instagram.com/ste3d_ru/" target="_blank">
+                      <v-btn text icon href="https://instagram.com/5dtechpro/" target="_blank">
                         <v-icon>mdi-instagram</v-icon>
                       </v-btn>
                       <v-btn
