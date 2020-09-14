@@ -37,7 +37,11 @@
             <v-container>
               <v-row justify="center">
                 <v-col cols="12">
-                  <QuoteForm :buttonText="this.$tc('Заполнить форму')" :title="this.$tc('Запрос для дилеров')" dealers />
+                  <QuoteForm
+                    :buttonText="this.$tc('Заполнить форму')"
+                    :title="this.$tc('Запрос для дилеров')"
+                    dealers
+                  />
                 </v-col>
               </v-row>
             </v-container>
@@ -62,118 +66,90 @@ import { Seller, SellerType } from '~/types/reseller'
 })
 export default class Resellers extends Vue {
   addresses: Seller[] = []
-    // {
-    //   name: 'Stereotech',
-    //   logo: 'resellers/stereotech.jpg',
-    //   email: 'store@ste3d.ru',
-    //   website: 'https://ste3d.ru',
-    //   region: 'Волгоградская обл.',
-    //   country: 'Российская Федерация',
-    //   address: 'г. Волгоград, ул. им. Огарева, 2',
-    //   coords: [48.692225, 44.498048],
-    //   type: SellerType.Manufacturer
-    // },
-    // {
-    //   name: 'ATSS Group',
-    //   logo: '/resellers/atss.jpg',
-    //   email: 'info@atssgroup.com',
-    //   website: 'http://atssgroup.com',
-    //   region: 'Москва',
-    //   country: 'Российская Федерация',
-    //   address: 'г. Москва, Волоколамское шоссе, д. 2',
-    //   type: SellerType.Distributor,
-    //   coords: [55.807476, 37.505292]
-    // },
-    // {
-    //   name: 'Capvidia Belgium',
-    //   logo: '/resellers/capvidia.jpg',
-    //   email: 'info@capvidia.com',
-    //   website: 'http://capvidia.com',
-    //   region: 'Левен',
-    //   country: 'Бельгия',
-    //   address: 'Technologielaan 3 B-3001 Leuven',
-    //   type: SellerType.Distributor,
-    //   coords: [50.8540782, 4.727265]
-    // },
-  //]
-  async mounted(){
+  async mounted () {
     this.addresses.push({
       name: 'Stereotech',
       logo: 'resellers/stereotech.jpg',
       email: 'store@ste3d.ru',
       website: 'https://ste3d.ru',
-      region: this.$tc('Волгоградская обл.'),
+      region: this.$tc('ЮФО'),
       country: this.$tc('Российская Федерация'),
       address: this.$tc('г. Волгоград, ул. им. Огарева, 2'),
       coords: [48.692225, 44.498048],
-      type: SellerType.Manufacturer
+      type: SellerType.Manufacturer,
+      phone: '+79023648404'
     },
-    {
-      name: 'ATSS Group',
-      logo: '/resellers/atss.jpg',
-      email: 'info@atssgroup.com',
-      website: 'http://atssgroup.com',
-      region: this.$tc('Москва'),
-      country: this.$tc('Российская Федерация'),
-      address: this.$tc('г. Москва, Волоколамское шоссе, д. 2'),
-      type: SellerType.Distributor,
-      coords: [55.807476, 37.505292]
-    },
-    {
-      name: 'Capvidia Belgium',
-      logo: '/resellers/capvidia.jpg',
-      email: 'info@capvidia.com',
-      website: 'http://capvidia.com',
-      region: this.$tc('Левен'),
-      country: this.$tc('Бельгия'),
-      address: this.$tc('Technologielaan 3 B-3001 Leuven'),
-      type: SellerType.Distributor,
-      coords: [50.8540782, 4.727265]
-    },
-    {
-      name: '3DSYSTEMPRO',
-      logo: '/resellers/systempro.jpg',
-      email: 'info@3dsystem.pro',
-      website: 'www.3dsystem.pro',
-      region: this.$tc('Казань'),
-      country: this.$tc('Российская Федерация'),
-      address: this.$tc('г. Казань, ул. Петербургская, д. 50, корп. 23, пилон III, оф. 310, Технопарк "ИДЕЯ"'),
-      type: SellerType.Diler,
-      coords: [55.781028, 49.131333]
-    },
-    {
-      name: '3DSYSTEMPRO',
-      logo: '/resellers/systempro.jpg',
-      email: 'info@3dsystem.pro',
-      website: 'www.3dsystem.pro',
-      region: this.$tc('Санкт-Петербург'),
-      country: this.$tc('Российская Федерация'),
-      address: this.$tc('г. Санкт-Петербург, Лиговский проспект, д. 92Г, оф. 29'),
-      type: SellerType.Diler,
-      coords: [59.920357, 30.356122]
-    },
-    {
-      name: '3DSYSTEMPRO',
-      logo: '/resellers/systempro.jpg',
-      email: 'info@3dsystem.pro',
-      website: 'www.3dsystem.pro',
-      region: this.$tc('Москва'),
-      country: this.$tc('Российская Федерация'),
-      address: this.$tc('г. Москва, Березовая аллея д. 5А, стр. 7, офис 8'),
-      type: SellerType.Diler,
-      coords: [55.853708, 37.609937]
-    },
-    {
-      name: 'STUDIA3D',
-      logo: '/resellers/studia3d.jpg',
-      email: '3dprint@studia3d.com',
-      website: 'www.studia3d.com',
-      region: this.$tc('Москва'),
-      country: this.$tc('Российская Федерация'),
-      address: this.$tc('г. Москва, ул. Золоторожский Вал, 11с27'),
-      type: SellerType.Diler,
-      coords: [55.749076, 37.700568]
-    }
+      {
+        name: 'ATSS Group',
+        logo: '/resellers/atss.jpg',
+        email: 'info@atssgroup.com',
+        website: 'http://atssgroup.com',
+        region: this.$tc('ЦФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Москва, Волоколамское шоссе, д. 2'),
+        type: SellerType.Distributor,
+        coords: [55.807476, 37.505292],
+        phone: '+79265517333'
+      },
+      {
+        name: 'Capvidia Belgium',
+        logo: '/resellers/capvidia.jpg',
+        email: 'info@capvidia.com',
+        website: 'http://capvidia.com',
+        region: this.$tc('Бельгия'),
+        country: this.$tc('Страны Европейского союза'),
+        address: this.$tc('Technologielaan 3 B-3001 Leuven'),
+        type: SellerType.Distributor,
+        coords: [50.8540782, 4.727265]
+      },
+      {
+        name: '3DSYSTEMPRO',
+        logo: '/resellers/systempro.jpg',
+        email: 'info@3dsystem.pro',
+        website: 'www.3dsystem.pro',
+        region: this.$tc('ПФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Казань, ул. Петербургская, д. 50, корп. 23, пилон III, оф. 310, Технопарк "ИДЕЯ"'),
+        type: SellerType.Diler,
+        coords: [55.781028, 49.131333],
+        phone: '88006001710'
+      },
+      {
+        name: '3DSYSTEMPRO',
+        logo: '/resellers/systempro.jpg',
+        email: 'info@3dsystem.pro',
+        website: 'www.3dsystem.pro',
+        region: this.$tc('СЗФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Санкт-Петербург, Лиговский проспект, д. 92Г, оф. 29'),
+        type: SellerType.Diler,
+        coords: [59.920357, 30.356122],
+        phone: '88006001710'
+      },
+      {
+        name: '3DSYSTEMPRO',
+        logo: '/resellers/systempro.jpg',
+        email: 'info@3dsystem.pro',
+        website: 'www.3dsystem.pro',
+        region: this.$tc('ЦФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Москва, Березовая аллея д. 5А, стр. 7, офис 8'),
+        type: SellerType.Diler,
+        coords: [55.853708, 37.609937],
+        phone: '88006001710'
+      },
+      {
+        name: 'STUDIA3D',
+        logo: '/resellers/studia3d.jpg',
+        email: '3dprint@studia3d.com',
+        website: 'www.studia3d.com',
+        region: this.$tc('ЦФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Москва, ул. Золоторожский Вал, 11с27'),
+        type: SellerType.Diler,
+        coords: [55.749076, 37.700568],
+        phone: '+74959262651'
+      }
     )
   }
 }
