@@ -5,13 +5,12 @@
       <v-form v-model="valid">
         <v-text-field
           outlined
-          v-model="firstName"
+          v-model="name"
           :rules="[v => !!v || this.$tc('Требуется имя')]"
-          :label="this.$tc('Имя')"
+          :label="this.$tc('ФИО')"
           required
         ></v-text-field>
 
-        <v-text-field outlined v-model="lastName" :label="this.$tc('Фамилия')"></v-text-field>
         <v-text-field outlined v-model="phoneNumber" v-mask="mask" :label="this.$tc('Телефон')"></v-text-field>
 
         <v-text-field
@@ -87,11 +86,10 @@ export default class ContactForm extends Vue {
   private mask: string = "+7(###) ###-####"
   private valid: boolean = false
   private isEnable: boolean = false
-  private firstName: string = ""
-  private lastName: string = ""
+  private name: string = ""
   private phoneNumber: string = ""
   private email: string = ""
-  private description: string = ""
+  private problemDescription: string = ""
   private apealTheme: string = ""
   private problemType: string = ""
   private serialNumber: string = ""
@@ -135,43 +133,38 @@ export default class ContactForm extends Vue {
   //   }
   // }
 
-  private get joinFormData () {
-    const str = `
-      Имя обратившегося: ${this.firstName} ${this.lastName},
-      Телефон: ${this.phoneNumber},
-      E-Mail: ${this.email},
-      Тема бращения: ${this.apealTheme},
-      Вид обращения: ${this.problemType},
-      Серийный номер устройства: ${this.serialNumber},
-      Описание проблемы: ${this.description}
-    `
-    return str
-  }
+  // private get joinFormData () {
+  //   const str = `
+  //     Имя обратившегося: ${this.firstName} ${this.lastName},
+  //     Телефон: ${this.phoneNumber},
+  //     E-Mail: ${this.email},
+  //     Тема обращения: ${this.apealTheme},
+  //     Вид обращения: ${this.problemType},
+  //     Серийный номер устройства: ${this.serialNumber},
+  //     Описание проблемы: ${this.description}
+  //   `
+  //   return str
+  // }
+  private description = `Тема обращения: ${this.apealTheme}, Вид обращения: ${this.problemType}, Серийный номер устройства: ${this.serialNumber}, Описание проблемы: ${this.problemDescription}`
 
   private async submit () {
-    const name = 'Техническая поддержка: ' + new Date().toString() + ' Обращение от ' + this.firstName + ' ' + this.lastName + ''
-    const email = this.email
-    const description = this.joinFormData
+
     try {
       //@ts-ignore
-      const token = await this.$recaptcha.execute('login')
-      await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $description)
-      }`,
-        variables: {
-          name: name,
-          email: email,
-          description: description
-        }
-      })
+      let megaplan = new MegaplanApi()
+      await megaplan.authenticate()
+     // let company: any = null
+      let isCompany = false
+      let clientId = ''
+      let contact = await megaplan.createClient(this.name, this.phoneNumber, this.email, '' , this.description)
+      clientId = contact.id
+      let callToDo = await megaplan.createCallToDo(isCompany, clientId)
+      let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
 
-      this.firstName = ""
-      this.lastName = ""
+      this.name = ""
       this.phoneNumber = ""
       this.email = ""
       this.apealTheme = ""
