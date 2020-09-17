@@ -16,13 +16,14 @@
                 :label="this.$tc('Номер телефона')"
                 v-model="phone"
                 v-mask="mask"
+                :rules="phoneRules"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Компания')" v-model="company"></v-text-field>
+              <v-text-field outlined :label="this.$tc('Компания')" v-model="companyName"></v-text-field>
             </v-col>
             <v-col cols="12" v-if="equipment">
               <v-checkbox
@@ -66,6 +67,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import DialogForm from '~/components/DialogForm.vue'
 import gql from 'graphql-tag'
+import { MegaplanApi } from '~/types/megaplan/base'
 
 @Component({
   components: {
@@ -73,6 +75,11 @@ import gql from 'graphql-tag'
   }
 })
 export default class QuoteForm extends Vue {
+  @Prop({ type: String, default: 'button text' }) buttonText!: string
+  @Prop({ type: String, default: 'Title' }) title!: string
+  @Prop({ type: Boolean, default: false }) equipment!: boolean
+  @Prop({ type: Boolean, default: false }) subscription!: boolean
+  @Prop({ type: Boolean, default: false }) dealers!: boolean
   private snackbar: boolean = false
   private snackbarText: string = ''
   private snackbarError: boolean = false
@@ -83,7 +90,7 @@ export default class QuoteForm extends Vue {
   name: string = ''
   phone: string = ''
   email: string = ''
-  company: string = ''
+  companyName: string = ''
   interestIn: string[] = []
   subscribe: boolean = true
   subscribeStr: string = ''
@@ -106,6 +113,9 @@ export default class QuoteForm extends Vue {
     (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail не верен'
   ]
 
+  phoneRules = [
+    (v: any) => !!v || 'Номер телефона обязателен'
+  ]
   private mask: string = "+7(###) ###-####"
 
   private get joinFormData () {
@@ -113,7 +123,7 @@ export default class QuoteForm extends Vue {
       Имя обратившегося: ${this.name},
       Телефон: ${this.phone},
       E-Mail: ${this.email},
-      Компания: ${this.company},
+      Компания: ${this.companyName},
       Интерес в: ${this.interestIn},
       Подписка на новости: ${this.subscribe}
     `
@@ -125,62 +135,34 @@ export default class QuoteForm extends Vue {
     return this.subscribe? 'да' :'нет'
  
   }
+
+  private description = this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : ''
+
   private async submit () {
-    let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
-    name += ': ' + new Date().toString() + ' Обращение от ' + this.name
-    const email = this.email
-    const description = this.joinFormData
+    // let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
+    // name += ': ' + new Date().toString() + ' Обращение от ' + this.name
+    // const email = this.email
+    // const description = this.joinFormData
     try {
       //@ts-ignore
-      const token = await this.$recaptcha.execute('login')
-      let companyId = 0;
-      if (this.company !== ""){
-        let company = await fetch(`https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.company.add.json?
-        fields[TITLE]=${this.company}&
-        fields[ASSIGNED_BY_ID]=142`) //Avdeeva
-        let result = await company.json()
-        companyId = result.result
+      let megaplan = new MegaplanApi()
+      await megaplan.authenticate()
+      let company: any = null
+      let isCompany = false
+      let clientId = ''
+      if (this.companyName && this.companyName !== '') {
+        company = await megaplan.createCompany(this.companyName, this.description)
       }
-       let contactRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.contact.add.json?
-        fields[NAME]=${this.name}&
-        fields[EMAIL][0][VALUE]=${this.email}&
-        fields[EMAIL][0][VALUE_TYPE]=WORK&
-        fields[PHONE][0][VALUE]=${this.phone}&
-        fields[PHONE][0][VALUE_TYPE]=WORK&
-        fields[ASSIGNED_BY_ID]=142`
-
-      if (companyId > 0) {
-        contactRequest += `&fields[COMPANY_ID]=${companyId}`
+      let contact = await megaplan.createClient(this.name, this.phone, this.email, company ? company.id : '' , this.description)
+      if (company) {
+        isCompany = true
+        clientId = company.id
+      } else{
+        clientId = contact.id
       }
+      let callToDo = await megaplan.createCallToDo(isCompany, clientId)
+      let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
 
-      let contact = await fetch(contactRequest)
-      let result = await contact.json()
-      let contactId = result.result
-
-      let dealRequest = `https://stereotech.bitrix24.ru/rest/1/jh7j5uxr0f5rcdm8/crm.lead.add.json?
-        fields[TITLE]=Запрос информации c stereotech.org&
-        fields[COMMENTS]=Заинтересован в ${this.interestIn}, подписка на новости: ${this.isSubscribeToStr()}&
-        fields[ASSIGNED_BY_ID]=142&
-        fields[STAGE_ID]=NEW&
-        fields[CONTACT_ID]=${contactId}&
-        params[REGISTER_SONET_EVENT]=Y`
-
-      if (companyId > 0) {
-        dealRequest += `&fields[COMPANY_ID]=${companyId}`
-      }
-
-      let deal = await fetch(dealRequest)
-      await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $description)
-      }`,
-        variables: {
-          name: name,
-          email: email,
-          description: description
-        }
-      })
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
@@ -188,7 +170,7 @@ export default class QuoteForm extends Vue {
       this.name = ""
       this.phone = ""
       this.email = ""
-      this.company = ""
+      this.companyName = ""
       this.interests = []
       this.subscribe = true
 
@@ -201,11 +183,7 @@ export default class QuoteForm extends Vue {
     }
   }
 
-  @Prop({ type: String, default: 'button text' }) buttonText!: string
-  @Prop({ type: String, default: 'Title' }) title!: string
-  @Prop({ type: Boolean, default: false }) equipment!: boolean
-  @Prop({ type: Boolean, default: false }) subscription!: boolean
-  @Prop({ type: Boolean, default: false }) dealers!: boolean
+
 }
 
 </script>
