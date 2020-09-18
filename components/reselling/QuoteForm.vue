@@ -136,7 +136,10 @@ export default class QuoteForm extends Vue {
  
   }
 
-  private description = this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : ''
+  private get description(){
+    const str = this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : ''
+    return str
+  } 
 
   private async submit () {
     // let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
