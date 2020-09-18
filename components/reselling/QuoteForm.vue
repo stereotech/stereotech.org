@@ -137,7 +137,7 @@ export default class QuoteForm extends Vue {
   }
 
   private get description(){
-    const str = this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : ''
+    const str = !this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : 'Запрос на дилерство'
     return str
   } 
 
