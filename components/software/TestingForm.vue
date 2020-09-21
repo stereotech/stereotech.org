@@ -51,6 +51,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import DialogForm from '~/components/DialogForm.vue'
 import gql from 'graphql-tag'
+import { MegaplanApi } from '~/types/megaplan/base'
 
 @Component({
   components: {
@@ -85,35 +86,37 @@ export default class TestingForm extends Vue {
 
   private mask: string = "+7(###) ###-####"
 
-  private get joinFormData () {
-    const str = `
-      Имя обратившегося: ${this.name},
-      Телефон: ${this.phone},
-      E-Mail: ${this.email},
-      Интерес в: ${this.interestIn},
-    `
+  private get description () {
+    const str = `Интерес в: ${this.interestIn}`
     return str
   }
 
   private async submit () {
-    let name = this.title
-    name += ': ' + new Date().toString() + ' Обращение от ' + this.name
-    const email = this.email
-    const description = this.joinFormData
+    //let name = this.title
+    //name += ': ' + new Date().toString() + ' Обращение от ' + this.name
+    //const email = this.email
     try {
       //@ts-ignore
-      const token = await this.$recaptcha.execute('login')
-      await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $description)
-      }`,
-        variables: {
-          name: name,
-          email: email,
-          description: description
-        }
-      })
+      // const token = await this.$recaptcha.execute('login')
+      // await this.$apollo.mutate({
+      //   mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
+      // {
+      //     contactus(name: $name, email: $email, enquiry: $description)
+      // }`,
+      //   variables: {
+      //     name: name,
+      //     email: email,
+      //     description: description
+      //   }
+      // })
+      let megaplan = new MegaplanApi()
+      await megaplan.authenticate()
+      let isCompany = false
+      let clientId = ''
+      let contact = await megaplan.createClient(this.name, this.phone, this.email, '' , this.description)
+      clientId = contact.id
+      let callToDo = await megaplan.createCallToDo(isCompany, clientId)
+      let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
