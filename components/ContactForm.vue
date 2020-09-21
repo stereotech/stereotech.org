@@ -5,14 +5,13 @@
       <v-form v-model="valid">
         <v-text-field
           outlined
-          v-model="firstName"
+          v-model="name"
           :rules="[v => !!v || this.$tc('Требуется имя')]"
-          :label="this.$tc('Имя')"
+          :label="this.$tc('ФИО')"
           required
         ></v-text-field>
 
-        <v-text-field outlined v-model="lastName" :label="this.$tc('Фамилия')"></v-text-field>
-        <v-text-field outlined v-model="phoneNumber" v-mask="mask" :label="this.$tc('Телефон')"></v-text-field>
+        <v-text-field outlined v-model="phoneNumber" v-mask="mask" :label="this.$tc('Телефон')" required></v-text-field>
 
         <v-text-field
           outlined
@@ -22,7 +21,7 @@
           required
         ></v-text-field>
 
-        <v-textarea outlined v-model="description" :label="this.$tc('Описание проблемы')"></v-textarea>
+        <v-textarea outlined v-model="problemDescription" :label="this.$tc('Описание проблемы')"></v-textarea>
 
         <v-select
           outlined
@@ -36,8 +35,8 @@
           outlined
           v-model="problemType"
           :disabled="!isEnable"
-          :rules="[v => !!v || this.$tc('Вид проблемы не указан')]"
-          :items="items"
+          :rules="[v => !!v && apealTheme!=='Услуги' || this.$tc('Вид проблемы не указан')]"
+          :items="problemItems"
           :label="this.$tc('Вид проблемы')"
         ></v-select>
 
@@ -76,6 +75,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import VueTheMask from 'vue-the-mask'
 import gql from 'graphql-tag'
+import { MegaplanApi } from '~/types/megaplan/base'
 
 Vue.use(VueTheMask)
 @Component
@@ -87,93 +87,81 @@ export default class ContactForm extends Vue {
   private mask: string = "+7(###) ###-####"
   private valid: boolean = false
   private isEnable: boolean = false
-  private firstName: string = ""
-  private lastName: string = ""
+  private name: string = ""
   private phoneNumber: string = ""
   private email: string = ""
-  private description: string = ""
+  private problemDescription: string = ""
   private apealTheme: string = ""
   private problemType: string = ""
   private serialNumber: string = ""
-  private apealThemeItems: String[] = ['STE 520', 'STE 320', 'STE App', 'STE Slicer', 'Услуги']
+  private apealThemeItems: String[] = []
   private items: string[] = []
-  // private showProblemTypeItems (apealThemeItem: string) {
-  //   let items: string[]
-  //   if (apealThemeItem === 'Услуги') {
-  //     this.isEnable = false
-  //     return
-  //   }
-  //   else if (apealThemeItem === 'STE 520' || apealThemeItem === 'STE 320') {
-  //     items = ['Не могу запустить печать',
-  //       'Результаты печати неудовлетворительны',
-  //       'Нужна помощь со встроенным ПО',
-  //       'Что-то сломалось',
-  //       'Отсутствуют детали',
-  //       'Другое']
-  //     this.isEnable = true
-  //     return items
-  //   }
-  //   else if (apealThemeItem === 'STE App') {
-  //     items = [
-  //       'Ошибки на экране принтера',
-  //       'Ошибки в приложении на смартфоне',
-  //       'Ошибки в браузере',
-  //       'Другое'
-  //     ]
-  //     this.isEnable = true
-  //     return items
-  //   }
-  //   else if (apealThemeItem === 'STE Slicer') {
-  //     items = [
-  //       'Проблемы с установкой',
-  //       'Проблемы с созданием профиля принтера',
-  //       'Проблемы с подготовкой на печать',
-  //       'Другое'
-  //     ]
-  //     this.isEnable = true
-  //     return items
-  //   }
-  // }
-
-  private get joinFormData () {
-    const str = `
-      Имя обратившегося: ${this.firstName} ${this.lastName},
-      Телефон: ${this.phoneNumber},
-      E-Mail: ${this.email},
-      Тема бращения: ${this.apealTheme},
-      Вид обращения: ${this.problemType},
-      Серийный номер устройства: ${this.serialNumber},
-      Описание проблемы: ${this.description}
-    `
-    return str
+  get problemItems(): string[] {
+   if (this.apealTheme === 'Услуги') {
+      this.items = []
+      this.isEnable = false
+    }
+    else if (this.apealTheme === 'STE 520' || this.apealTheme === 'STE 320') {
+      this.items = ['Не могу запустить печать',
+        'Результаты печати неудовлетворительны',
+        'Нужна помощь со встроенным ПО',
+        'Что-то сломалось',
+        'Отсутствуют детали',
+        'Другое']
+      this.isEnable = true
+    }
+    else if (this.apealTheme === 'STE App') {
+      this.items = [
+        'Ошибки на экране принтера',
+        'Ошибки в приложении на смартфоне',
+        'Ошибки в браузере',
+        'Другое'
+      ]
+      this.isEnable = true
+    }
+    else if (this.apealTheme === 'STE Slicer') {
+      this.items = [
+        'Проблемы с установкой',
+        'Проблемы с созданием профиля принтера',
+        'Проблемы с подготовкой на печать',
+        'Другое'
+      ]
+      this.isEnable = true
+    }
+    return this.items
   }
 
+  private get description(){
+    const str = `
+    Тема обращения: ${this.apealTheme}, 
+    Вид обращения: ${this.problemType}, 
+    Серийный номер устройства: ${this.serialNumber}, 
+    Описание проблемы: ${this.problemDescription}`
+
+    return str
+  } 
+
   private async submit () {
-    const name = 'Техническая поддержка: ' + new Date().toString() + ' Обращение от ' + this.firstName + ' ' + this.lastName + ''
-    const email = this.email
-    const description = this.joinFormData
+
     try {
       //@ts-ignore
-      const token = await this.$recaptcha.execute('login')
-      await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $description)
-      }`,
-        variables: {
-          name: name,
-          email: email,
-          description: description
-        }
-      })
+      let megaplan = new MegaplanApi()
+      await megaplan.authenticate()
+     // let company: any = null
+      let isCompany = false
+      let clientId = ''
+      let contact = await megaplan.createClient(this.name, this.phoneNumber, this.email, '' , this.description)
+      clientId = contact.id
+      let callToDo = await megaplan.createCallToDo(isCompany, clientId)
+      let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
 
-      this.firstName = ""
-      this.lastName = ""
+      this.name = ""
       this.phoneNumber = ""
       this.email = ""
+      this.problemDescription = ""
       this.apealTheme = ""
       this.problemType = ""
       this.serialNumber = ""
@@ -187,41 +175,7 @@ export default class ContactForm extends Vue {
 
   async mounted(){
     this.apealThemeItems.push('STE 520', 'STE 320', 'STE App', 'STE Slicer', this.$tc('Услуги'))
-
-    if (this.apealTheme === this.$tc('Услуги')) {
-      this.isEnable = false
-      return
-    }
-    else if (this.apealTheme === 'STE 520' || this.apealTheme === 'STE 320') {
-      this.items.push(this.$tc('Не могу запустить печать'),
-        this.$tc('Результаты печати неудовлетворительны'),
-        this.$tc('Нужна помощь со встроенным ПО'),
-        this.$tc('Что-то сломалось'),
-        this.$tc('Отсутствуют детали'),
-        this.$tc('Другое'))
-      this.isEnable = true
-      return this.items
-    }
-    else if (this.apealTheme === 'STE App') {
-      this.items.push(
-        this.$tc('Ошибки на экране принтера'),
-        this.$tc('Ошибки в приложении на смартфоне'),
-        this.$tc('Ошибки в браузере'),
-        this.$tc('Другое')
-      )
-      this.isEnable = true
-      return this.items
-    }
-    else if (this.apealTheme === 'STE Slicer') {
-      this.items.push  (this.$tc('Проблемы с установкой'),
-        this.$tc('Проблемы с созданием профиля принтера'),
-        this.$tc('Проблемы с подготовкой на печать'),
-        this.$tc('Другое'))
-
-      this.isEnable = true
-      return this.items
-    }
-  
+   // await this.problemItems
 
   }
 }
