@@ -2,17 +2,21 @@
   <v-card>
     <v-container>
       <v-row justify="center">
+        <v-col cols="12">
+          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
+          <p class="title font-weight-light text-center">{{ model.description }}</p>
+        </v-col>
+        
         <v-col cols="12" sm="6">
           <v-img :src="model.image"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
-          <h4 class="display-1 text-uppercase font-weight-light text-center">{{ model.model }}</h4>
-          <h4 class="display-1 text-uppercase font-weight-light text-center">{{price}}₽</h4>
-          <p class="title font-weight-light text-center">{{ model.description }}</p>
+
           <v-radio-group
             v-if="selectExtruder.length > 1"
             @change="changeExtruder"
             v-model="currentExtruderVariant"
+            dense
           >
             <v-radio
               v-for="(variant, index) in getExtruderVariants"
@@ -23,8 +27,8 @@
               <template v-slot:label>
                 <v-list-item>
                   <v-list-item-content>
-                    <p class="subtitle-1">{{variant.name}}</p>
-                    <p class="body-2">{{ variant.description }}</p>
+                    <v-list-item-title >{{variant.name}}</v-list-item-title>
+                    <v-list-item-subtitle >{{ variant.description }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </template>
@@ -34,6 +38,7 @@
             v-if="selectVolume.length > 1"
             @change="changeVolume"
             v-model="currentPrintVolume"
+            dense
           >
             <v-radio
               v-for="(variant, index) in getPrintVolumeVariants"
@@ -44,8 +49,9 @@
               <template v-slot:label>
                 <v-list-item>
                   <v-list-item-content>
-                    <p class="subtitle-1">{{variant.name}}</p>
-                    <p class="body-2">{{ variant.description }}</p>
+
+                    <v-list-item-title >{{variant.name}}</v-list-item-title>
+                    <v-list-item-subtitle >{{ variant.description }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </template>
@@ -55,6 +61,7 @@
             v-if="selectFiveAxis.length > 1"
             @change="changeFiveAxis"
             v-model="currentFiveAxisType"
+            dense
           >
             <v-radio
               v-for="(variant, index) in getFiveAxisVariants"
@@ -65,8 +72,9 @@
               <template v-slot:label>
                 <v-list-item>
                   <v-list-item-content>
-                    <p class="subtitle-1">{{variant.name}}</p>
-                    <p class="body-2">{{ variant.description }}</p>
+
+                    <v-list-item-title >{{variant.name}}</v-list-item-title>
+                    <v-list-item-subtitle >{{ variant.description }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </template>
@@ -158,11 +166,6 @@ export default class PrinterSelector extends Vue {
       value: PrintVolumeType.Standard
     },
     {
-      name: 'Стандартная область печати, увеличенная по оси Z',
-      description: '200x210x300мм',
-      value: PrintVolumeType.StandardLong
-    },
-    {
       name: 'Увеличенная область печати',
       description: '300x310x300мм',
       value: PrintVolumeType.Extended
@@ -171,11 +174,6 @@ export default class PrinterSelector extends Vue {
       name: 'Увеличенная область печати',
       description: '330x330x250мм',
       value: PrintVolumeType.ExtendedFiveAxis
-    },
-    {
-      name: 'Увеличенная область печати, удлиненная по оси Z',
-      description: '300x310x400мм',
-      value: PrintVolumeType.ExtendedLong
     }
   ]
 
