@@ -36,12 +36,14 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
+
 @Component({
   components: {
   }
 })
 export default class FullSpecs extends Vue {
   @Prop({ type: Array, required: true, default: () => { return [] } }) attributes!: any[]
+
 }
 
 </script>
