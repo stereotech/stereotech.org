@@ -92,6 +92,39 @@ export class MegaplanApi {
         return response.data
     }
 
+    async createDeal(company: any, contact: any, description: string, cost: number){
+        let url = `${apiRoute}/deal`
+        //let deadlineDate = new Date(deadline)
+        let request: any = {
+            program: {
+                id: "16", 
+                contentType: "Program"
+            },
+            manager: {
+                id: "1000005",
+                contentType: "Employee"
+            },
+            contractor: {
+                contentType: company ? 'ContractorCompany' : 'ContractorHuman',
+                id: company? company.id : contact.id
+            },
+            description, 
+            name: 'Обращение',
+            cost: {
+                contentType: "Money",
+                value: cost,
+                currency: 'RUB'
+            }
+        }
+        let response = await (await fetch(url + this.authenication, {
+            method: 'POST',
+            body: JSON.stringify(request)
+        })).json() as Response<any>
+
+        return response.data
+
+    }
+
     async createCallToDo (isCompany: boolean, id: string) {
         let url = `${apiRoute}/todo`
         let date = new Date()

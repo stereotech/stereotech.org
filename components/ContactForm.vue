@@ -150,10 +150,11 @@ export default class ContactForm extends Vue {
      // let company: any = null
       let isCompany = false
       let clientId = ''
-      let contact = await megaplan.createClient(this.name, this.phoneNumber, this.email, '' , this.description)
+      let contact = await megaplan.createClient(this.name, this.phoneNumber, this.email, '' , '')
       clientId = contact.id
       let callToDo = await megaplan.createCallToDo(isCompany, clientId)
       let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
+      let deal = await megaplan.createDeal('', contact, this.description, 0)
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
