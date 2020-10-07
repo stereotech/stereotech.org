@@ -2,10 +2,14 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1
-          class="font-weight-light"
-        >{{$t('Серия 6хх - Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей')}}</h1>
-        <h2>{{$t('Стоимость по запросу')}}</h2>
+        <h1 class="font-weight-light">
+          {{
+            $t(
+              "Серия 6хх - Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей"
+            )
+          }}
+        </h1>
+        <h2>{{ $t("Стоимость по запросу") }}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter :variant="currentPrinter" />
@@ -26,19 +30,16 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series6 extends Vue {
-  currentPrinter: PrinterVariant = {
-    model: 'Серия 6хх',
-    image: '/printers/industrial/series6.jpg',
-    printerType: PrinterType.ThreeAxis,
-    extruderType: ExtruderType.Dual,
-    printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal,
-    description: 'Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей'
-  }
-
-  async mounted(){
-    this.currentPrinter.model = this.$tc('Серия 6хх')
-    this.currentPrinter.description = this.$tc('Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей')
+  get currentPrinter (): PrinterVariant {
+    return {
+      model: this.$tc('Серия 6хх'),
+      image: '/printers/industrial/series6.jpg',
+      printerType: PrinterType.ThreeAxis,
+      extruderType: ExtruderType.Dual,
+      printVolumeType: PrintVolumeType.Standard,
+      fiveAxisType: FiveAxisType.Normal,
+      description: this.$tc('Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей')
+    }
   }
 }
 
