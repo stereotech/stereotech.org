@@ -65,9 +65,9 @@ import { Seller, SellerType } from '~/types/reseller'
   }
 })
 export default class Resellers extends Vue {
-  addresses: Seller[] = []
-  async mounted () {
-    this.addresses.push({
+  get addresses(): Seller[] {
+    return [
+    {
       name: 'Stereotech',
       logo: 'resellers/stereotech.jpg',
       email: 'store@5dtech.pro',
@@ -162,8 +162,9 @@ export default class Resellers extends Vue {
         type: SellerType.Diler,
         phone: '+79993154420'
       }
-    )
+    ]
   }
+
 }
 
 </script>

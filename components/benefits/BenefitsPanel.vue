@@ -24,18 +24,18 @@ import BenefitsCard from '~/components/benefits/BenefitsCard.vue'
   }
 })
 export default class BenefitsPanel extends Vue {
-  private benefits: any[] = []
-  async mounted(){
-    this.benefits.push({title: this.$tc('Быстрее'), image: 'benefits/faster.webp',
-    description: this.$tc('Сокращение времени печати изделия за счет отказа от поддержек')})
-
-    this.benefits.push({title: this.$tc('Качественнее'), image: 'benefits/quality.webp',
-    description: this.$tc('Повышение качества поверхности за счет печати под наклоном')})
-
-    this.benefits.push({title: this.$tc('Прочнее'), image: 'benefits/stronger.webp',
-    description: this.$tc('Строится прочная объемная структура изделия вместо послойной')})
-
+  get benefits(): {
+    title: string,
+    image: string,
+    description: string
+  } [] {
+    return [
+      {title: this.$tc('Быстрее'), image: 'benefits/faster.webp', description: this.$tc('Сокращение времени печати изделия за счет отказа от поддержек')},
+      {title: this.$tc('Качественнее'), image: 'benefits/quality.webp', description: this.$tc('Повышение качества поверхности за счет печати под наклоном')},
+      {title: this.$tc('Прочнее'), image: 'benefits/stronger.webp', description: this.$tc('Строится прочная объемная структура изделия вместо послойной')}
+    ]
   }
+
 }
 </script>
 
