@@ -26,19 +26,21 @@ import ApplicationsCard from '~/components/applications/ApplicationsCard.vue'
   }
 })
 export default class ApplicationsPanel extends Vue {
-  private applications: any[] = []
-  
-  async mounted(){
-    this.applications.push({name: this.$tc('Автомобилестроение'), icon: 'mdi-car'})
-    this.applications.push({name:this.$tc('Протезирование'), icon: 'mdi-seat-legroom-extra'})
-    this.applications.push({name: this.$tc('Робототехника'), icon: 'mdi-robot-industrial' })
-    this.applications.push({name: this.$tc('Научные исследования и образование'), icon: 'mdi-bank' })
-    this.applications.push({name: this.$tc('Оборонная промышленность'), icon: 'mdi-shield' })
-    this.applications.push({name: this.$tc('Строительство'), icon: 'mdi-home-modern' })
-    this.applications.push({name: this.$tc('Малая авиация'), icon: 'mdi-quadcopter' })
-    this.applications.push({name: this.$tc('Авиация и ракетостроение'), icon: 'mdi-rocket' })
-  }
-
+  get applications(): {
+    name: string,
+    icon: string
+  } [] {
+    return [
+      {name: this.$tc('Автомобилестроение'), icon: 'mdi-car'},
+      {name:this.$tc('Протезирование'), icon: 'mdi-seat-legroom-extra'},
+      {name: this.$tc('Робототехника'), icon: 'mdi-robot-industrial' },
+      {name: this.$tc('Научные исследования и образование'), icon: 'mdi-bank' },
+      {name: this.$tc('Оборонная промышленность'), icon: 'mdi-shield' },
+      {name: this.$tc('Строительство'), icon: 'mdi-home-modern' },
+      {name: this.$tc('Малая авиация'), icon: 'mdi-quadcopter' },
+      {name: this.$tc('Авиация и ракетостроение'), icon: 'mdi-rocket' }
+    ]
+  }  
   
 }
 </script>

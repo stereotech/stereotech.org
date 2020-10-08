@@ -43,17 +43,5 @@ export default class Tips extends Vue {
     }
   ]
 
-  async mounted(){
-    // this.manualGroups.push(    {
-    //   name: this.$store.state.lang.manuals.printers,
-    //   items: [
-    //     {
-    //       name: 'STE 320',
-    //       link: '/support/tips/printers/1-introduction',
-    //       image: 'printers/STE 320/banner.webp'
-    //     }
-    //   ]
-    // })
-  }
 }
 </script>

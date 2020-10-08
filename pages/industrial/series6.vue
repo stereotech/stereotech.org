@@ -26,20 +26,22 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series6 extends Vue {
-  currentPrinter: PrinterVariant = {
-    model: 'Серия 6хх',
-    image: '/printers/industrial/series6.jpg',
-    printerType: PrinterType.ThreeAxis,
-    extruderType: ExtruderType.Dual,
-    printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal,
-    description: 'Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей'
+  get currentPrinter(): PrinterVariant[]  {
+    return [
+      {
+        model: this.$tc('Серия 6хх'),
+        image: '/printers/industrial/series6.jpg',
+        printerType: PrinterType.ThreeAxis,
+        extruderType: ExtruderType.Dual,
+        printVolumeType: PrintVolumeType.Standard,
+        fiveAxisType: FiveAxisType.Normal,
+        description: this.$tc('Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей')
+      }
+    ]
+    
   }
 
-  async mounted(){
-    this.currentPrinter.model = this.$tc('Серия 6хх')
-    this.currentPrinter.description = this.$tc('Шестиосевая машина АП на базе промышленного манипулятора для производства полимерных деталей')
-  }
+ 
 }
 
 </script>

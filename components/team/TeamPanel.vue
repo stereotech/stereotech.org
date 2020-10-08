@@ -27,9 +27,12 @@ import TeamCard from '~/components/team/TeamCard.vue'
   }
 })
 export default class TeamPanel extends Vue {
-  private team: any[] = []
-  async mounted () {
-    this.team.push({
+  get team(): {
+    name: string,
+    image: string,
+    description: string
+  }[] {
+    return[{
       name: this.$tc('Артем Авдеев'),
       image: 'team/p1.jpg',
       description: this.$tc('Генеральный директор')
@@ -63,7 +66,7 @@ export default class TeamPanel extends Vue {
         name: this.$tc('Анастасия Мавлянова'),
         image: 'team/p8.jpg',
         description: this.$tc('Специалист по продажам и закупкам')
-      })
+      }]
   }
 }
 </script>
