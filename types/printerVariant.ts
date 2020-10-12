@@ -1,3 +1,5 @@
+import { LocaleMessage } from 'vue-i18n';
+
 export interface PrinterVariant {
     model: string
     image: string
@@ -6,7 +8,7 @@ export interface PrinterVariant {
     extruderType: ExtruderType
     printVolumeType: PrintVolumeType
     fiveAxisType: FiveAxisType
-    description: string
+    description: string | LocaleMessage
 }
 
 export enum PrinterType {
