@@ -92,6 +92,11 @@ const config: Configuration = {
         code: 'ru',
         name: 'Русский',
         file: 'ru.json',
+      },
+      {
+        code: 'de',
+        name: '',
+        file: 'de.json'
       }
     ],
     differentDomains: false,
