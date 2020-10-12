@@ -94,15 +94,15 @@ export default class QuoteForm extends Vue {
   interestIn: string[] = []
   subscribe: boolean = true
   subscribeStr: string = ''
-  async mounted () {
-    this.interests.push(this.$tc('Серия 3хх'), this.$tc('Серия 5хх'), this.$tc('Серия Special'), this.$tc('Промышленые принтеры'))
+
+  get interests(): string[] {
+    return [
+      this.$tc('Серия 3хх'), 
+      this.$tc('Серия 5хх'), 
+      this.$tc('Серия Special'), 
+      this.$tc('Промышленые принтеры')
+    ]
   }
-  interests: string[] = [
-    // 'Серия 3xx',
-    // 'Серия 5xx',
-    // 'Серия Special',
-    // 'Промышленые принтеры',
-  ]
 
   nameRules = [
     (v: any) => !!v || 'Имя обязательно',

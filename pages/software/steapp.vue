@@ -72,11 +72,27 @@ import { DownloadLink } from '~/types/download'
   }
 })
 export default class SteApp extends Vue {
-  downloadLinks: DownloadLink[] = []
-  keyFeatures: KeyFeature[] = []
-
-  async mounted () {
-    this.keyFeatures.push({
+  get downloadLinks(): DownloadLink[] {
+    return [
+      {
+      name: this.$tc('Загрузить обновление'),
+      icon: 'mdi-update',
+      description: this.$tc('Используйте последнюю версию ПО принтера'),
+      version: this.$tc('Версия ') + this.version,
+      download: 'http://software.stereotech.org/firmware/stable/ste-update.stu'
+    },
+      {
+        name: this.$tc('Загрузить для Android'),
+        icon: 'mdi-android',
+        description: this.$tc('Приложение для доступа и управления принтером со смартфона'),
+        version: this.$tc('Версия ') + this.version,
+        download: 'https://play.google.com/store/apps/details?id=ru.stereotech.steapp'
+      }
+    ]
+  }
+  get keyFeatures(): KeyFeature[] {
+    return [
+      {
       name: this.$tc('Группировка принтеров'),
       mediaType: MediaType.image,
       mediaSource: 'software/steapp/group.jpg',
@@ -102,25 +118,15 @@ export default class SteApp extends Vue {
           this.$tc('Режим обслуживания принтеров STE ServiceGuide поможет настроить принтер для печати вместе с пошаговыми руководствами'),
           this.$tc('Система распределенного хранения заданий STE FileNet позволит использовать подключенное USB хранилище для печати на любом из принтеров в кластере')
         ]
-      })
+      }
+    ]
+  }
+
+  async mounted () {
 
     this.version = await this.$axios.$get('http://software.stereotech.org/firmware/stable/ste-update.stu.version')
     this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
 
-    this.downloadLinks.push({
-      name: this.$tc('Загрузить обновление'),
-      icon: 'mdi-update',
-      description: this.$tc('Используйте последнюю версию ПО принтера'),
-      version: this.$tc('Версия ') + this.version,
-      download: 'http://software.stereotech.org/firmware/stable/ste-update.stu'
-    },
-      {
-        name: this.$tc('Загрузить для Android'),
-        icon: 'mdi-android',
-        description: this.$tc('Приложение для доступа и управления принтером со смартфона'),
-        version: this.$tc('Версия ') + this.version,
-        download: 'https://play.google.com/store/apps/details?id=ru.stereotech.steapp'
-      })
   }
 
   version: string = ''

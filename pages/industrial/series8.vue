@@ -44,6 +44,7 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series8 extends Vue {
+<<<<<<< HEAD
   get currentPrinter (): PrinterVariant {
     return {
       model: this.$tc('Серия 8хх'),
@@ -56,6 +57,20 @@ export default class Series8 extends Vue {
     }
   }
   get features (): KeyFeature[] {
+=======
+  get currentPrinter(): PrinterVariant {
+    return {
+        model: this.$tc('Серия 8хх'),
+        image: '/printers/industrial/series8.jpg',
+        printerType: PrinterType.ThreeAxis,
+        extruderType: ExtruderType.Dual,
+        printVolumeType: PrintVolumeType.Standard,
+        fiveAxisType: FiveAxisType.Normal,
+        description: this.$tc('Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей')
+    }
+  }
+  get features(): KeyFeature[] {
+>>>>>>> develop
     return [
       {
         name: this.$tc('Прочность изделий'),
