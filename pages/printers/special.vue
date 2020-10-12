@@ -31,18 +31,19 @@ import gql from 'graphql-tag'
   }
 })
 export default class Special extends Vue {
-  currentPrinter: PrinterVariant = {
-    model: 'Серия Special',
-    image: '/printers/desktop/special.jpg',
-    printerType: PrinterType.ThreeAxis,
-    extruderType: ExtruderType.Dual,
-    printVolumeType: PrintVolumeType.Standard,
-    fiveAxisType: FiveAxisType.Normal,
-    description: ''
+  get currentPrinter(): PrinterVariant {
+    return {
+      model: this.$tc('Серия Special'),
+      image: '/printers/desktop/special.jpg',
+      printerType: PrinterType.ThreeAxis,
+      extruderType: ExtruderType.Dual,
+      printVolumeType: PrintVolumeType.Standard,
+      fiveAxisType: FiveAxisType.Normal,
+      description: ''
+    }
+
   }
-  async mounted () {
-    this.currentPrinter.model = this.$tc('Серия Special')
-  }
+
 }
 
 </script>
