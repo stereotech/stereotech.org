@@ -26,14 +26,14 @@ import ProductCard from '~/components/ProductCard.vue'
   }
 })
 export default class Industrial extends Vue {
-  printers: {
+  get printers(): {
     image: string,
     title: string,
     description: string,
     link: string
-  }[] = []
-    async mounted(){
-      this.printers.push({
+  }[] {
+    return [
+      {
         image: '/printers/industrial/series6.jpg',
         title: this.$tc('Серия 6хх'),
         description: this.$tc('Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей'),
@@ -44,8 +44,10 @@ export default class Industrial extends Vue {
         title: this.$tc('Серия 8хх'),
         description: this.$tc('Восьмиосевая установка аддитивного производства на базе промышленного манипулятора для производства прочных композитных деталей'),
         link: '/industrial/series8'
-      })
-    }
+      }
+    ]
+  }
+
 }
 
 </script>

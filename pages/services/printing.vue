@@ -20,8 +20,9 @@
           <v-container>
             <v-row>
               <v-col cols="12" md="6">
-                <v-btn block large outlined href="mailto:print@ste3d.ru" color="primary">
-                  <v-icon left>mdi-email</v-icon>{{$t('По Email')}} - print@ste3d.ru
+                <v-btn block large outlined href="mailto:print@5dtech.pro" color="primary">
+                  <v-icon left>mdi-email</v-icon>
+                  {{$t('По Email')}} - print@5dtech.pro
                 </v-btn>
               </v-col>
               <v-col cols="12" md="6">
