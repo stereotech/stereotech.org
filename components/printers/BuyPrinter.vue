@@ -3,13 +3,13 @@
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" md="6" class="text-center">
-          <h2>{{$t('Заказ')}}</h2>
+          <h2>{{ $t("Заказ") }}</h2>
           <h3 class="text-uppercase">{{ variant.model }}</h3>
           <h3>{{ price }}</h3>
           <v-form v-model="valid">
             <v-text-field
               v-model="orderName"
-              :rules="[v => !!v || this.$tc('Требуется ФИО')]"
+              :rules="[(v) => !!v || this.$tc('Требуется ФИО')]"
               :label="this.$tc('ФИО')"
               required
               outlined
@@ -17,7 +17,11 @@
 
             <v-text-field
               v-model="email"
-              :rules="[v => !!v || this.$tc('Требуется E-mail'), v => /.+@.+\..+/.test(v) || this.$tc('Введенный E-mail неверен')]"
+              :rules="[
+                (v) => !!v || this.$tc('Требуется E-mail'),
+                (v) =>
+                  /.+@.+\..+/.test(v) || this.$tc('Введенный E-mail неверен'),
+              ]"
               :label="this.$tc('Почта')"
               required
               outlined
@@ -27,24 +31,32 @@
               v-model="phoneNumber"
               v-mask="mask"
               :label="this.$tc('Номер телефона')"
-              :rules="[v => !!v || this.$tc('Требуется номер телефона')]"
+              :rules="[(v) => !!v || this.$tc('Требуется номер телефона')]"
               outlined
             ></v-text-field>
 
-            <v-text-field v-model="companyName" :label="this.$tc('Название компании')" outlined></v-text-field>
+            <v-text-field
+              v-model="companyName"
+              :label="this.$tc('Название компании')"
+              outlined
+            ></v-text-field>
 
-            <v-btn :disabled="!valid" color="primary" @click="submit()" large>{{$t("Заказать")}}</v-btn>
+            <v-btn :disabled="!valid" color="primary" @click="submit()" large>{{
+              $t("Заказать")
+            }}</v-btn>
           </v-form>
-          <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
+          <v-snackbar
+            v-model="snackbar"
+            :color="snackbarError ? 'error' : 'success'"
+          >
             {{ snackbarText }}
-            <v-btn text @click="snackbar = false">{{$t('Закрыть')}}</v-btn>
+            <v-btn text @click="snackbar = false">{{ $t("Закрыть") }}</v-btn>
           </v-snackbar>
           <small>
             This site is protected by reCAPTCHA and the Google
-            <a
-              href="https://policies.google.com/privacy"
-            >Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms">Terms of Service</a>
+            apply.
           </small>
         </v-col>
         <v-col cols="12" md="6">
@@ -60,7 +72,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import VueTheMask from 'vue-the-mask'
 import gql from 'graphql-tag'
 import { Model } from '~/types/model'
-import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType } from '~/types/printerVariant'
+import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import { MegaplanApi } from '~/types/megaplan/base'
 Vue.use(VueTheMask)
 
@@ -69,7 +81,20 @@ Vue.use(VueTheMask)
   }
 })
 export default class BuyPrinter extends Vue {
-  @Prop({ type: Object, required: true, default: {} }) variant!: PrinterVariant
+  @Prop({
+    type: Object, required: true, default: (): PrinterVariant => {
+      return {
+        model: '',
+        image: '',
+        printerType: PrinterType.ThreeAxis,
+        extruderType: ExtruderType.Single,
+        printVolumeType: PrintVolumeType.Standard,
+        fiveAxisType: FiveAxisType.Normal,
+        description: '',
+        buyImage: ''
+      }
+    }
+  }) variant!: PrinterVariant
 
   @Prop({ type: String, required: false, default: '' }) price!: string
 
@@ -98,7 +123,7 @@ export default class BuyPrinter extends Vue {
   private description = `Модель: ${this.variant.model}, Цена: ${this.price}`
   private async submit () {
 
-    try{
+    try {
       let megaplan = new MegaplanApi()
       await megaplan.authenticate()
       let company: any = null
@@ -108,11 +133,11 @@ export default class BuyPrinter extends Vue {
         company = await megaplan.createCompany(this.companyName, this.description)
       }
 
-      let contact = await megaplan.createClient(this.orderName, this.phoneNumber, this.email, company ? company.id : '' , this.description)
+      let contact = await megaplan.createClient(this.orderName, this.phoneNumber, this.email, company ? company.id : '', this.description)
       if (company) {
         isCompany = true
         clientId = company.id
-      } else{
+      } else {
         clientId = contact.id
       }
       let callToDo = await megaplan.createCallToDo(isCompany, clientId)
@@ -127,7 +152,7 @@ export default class BuyPrinter extends Vue {
       this.email = ""
       this.companyName = ""
 
-    } catch (error){
+    } catch (error) {
       this.snackbarText = 'Произошла ошибка при отправке формы, ' + error
       this.snackbarError = true
       this.snackbar = true
