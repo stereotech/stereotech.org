@@ -154,13 +154,13 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: 'Один экструдер',
-        description: 'Надежная печать одним материалом',
+        name: this.$tc('Один экструдер'),
+        description: this.$tc('Надежная печать одним материалом'),
         value: ExtruderType.Single
       },
       {
-        name: 'Два экструдера',
-        description: 'Печать различными материалами двумя экструдерами',
+        name: this.$tc('Два экструдера'),
+        description: this.$tc('Печать различными материалами двумя экструдерами'),
         value: ExtruderType.Dual
       }
     ]
@@ -187,22 +187,22 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: 'Стандартная область печати',
+        name: this.$tc('Стандартная область печати'),
         description: '230x230x150мм',
         value: PrintVolumeType.StandardFiveAxis
       },
       {
-        name: 'Стандартная область печати',
+        name: this.$tc('Стандартная область печати'),
         description: '200x210x200мм',
         value: PrintVolumeType.Standard
       },
       {
-        name: 'Увеличенная область печати',
+        name: this.$tc('Увеличенная область печати'),
         description: '300x310x300мм',
         value: PrintVolumeType.Extended
       },
       {
-        name: 'Увеличенная область печати',
+        name: this.$tc('Увеличенная область печати'),
         description: '330x330x250мм',
         value: PrintVolumeType.ExtendedFiveAxis
       }
@@ -216,13 +216,13 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: '5D принтер',
-        description: 'Пятиосевой принтер без дополнительных устройств',
+        name: this.$tc('5D принтер'),
+        description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
         value: FiveAxisType.Normal
       },
       {
-        name: 'Гибридный 5D принтер',
-        description: 'Пятиосевой принтер с закрепляемой платформой',
+        name: this.$tc('Гибридный 5D принтер'),
+        description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
         value: FiveAxisType.Hybrid
       }
     ]
