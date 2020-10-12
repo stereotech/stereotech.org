@@ -8,7 +8,12 @@
         <v-container fluid>
           <v-row no-gutters>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
+              <v-text-field
+                outlined
+                :label="this.$tc('Имя')"
+                v-model="name"
+                :rules="nameRules"
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
@@ -20,10 +25,19 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
+              <v-text-field
+                outlined
+                label="E-mail"
+                v-model="email"
+                :rules="emailRules"
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined :label="this.$tc('Компания')" v-model="companyName"></v-text-field>
+              <v-text-field
+                outlined
+                :label="this.$tc('Компания')"
+                v-model="companyName"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" v-if="equipment">
               <v-checkbox
@@ -46,19 +60,19 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn :disabled="!valid" depressed color="primary" @click="submit">{{$t('Отправить')}}</v-btn>
+        <v-btn :disabled="!valid" depressed color="primary" @click="submit">{{
+          $t("Отправить")
+        }}</v-btn>
       </v-card-actions>
     </v-form>
     <small>
       This site is protected by reCAPTCHA and the Google
-      <a
-        href="https://policies.google.com/privacy"
-      >Privacy Policy</a> and
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
       <a href="https://policies.google.com/terms">Terms of Service</a> apply.
     </small>
     <v-snackbar v-model="snackbar" :color="snackbarError ? 'error' : 'success'">
       {{ snackbarText }}
-      <v-btn text @click="snackbar = false">{{$t('Закрыть')}}</v-btn>
+      <v-btn text @click="snackbar = false">{{ $t("Закрыть") }}</v-btn>
     </v-snackbar>
   </DialogForm>
 </template>
@@ -95,11 +109,11 @@ export default class QuoteForm extends Vue {
   subscribe: boolean = true
   subscribeStr: string = ''
 
-  get interests(): string[] {
+  get interests (): string[] {
     return [
-      this.$tc('Серия 3хх'), 
-      this.$tc('Серия 5хх'), 
-      this.$tc('Серия Special'), 
+      this.$tc('Серия 3хх'),
+      this.$tc('Серия 5хх'),
+      this.$tc('Серия Special'),
       this.$tc('Промышленые принтеры')
     ]
   }
@@ -130,16 +144,16 @@ export default class QuoteForm extends Vue {
     return str
   }
 
-  private isSubscribeToStr() {
-    
-    return this.subscribe? 'да' :'нет'
- 
+  private isSubscribeToStr () {
+
+    return this.subscribe ? 'да' : 'нет'
+
   }
 
-  private get description(){
+  private get description () {
     const str = !this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : 'Запрос на дилерство'
     return str
-  } 
+  }
 
   private async submit () {
     // let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
@@ -156,11 +170,11 @@ export default class QuoteForm extends Vue {
       if (this.companyName && this.companyName !== '') {
         company = await megaplan.createCompany(this.companyName, this.description)
       }
-      let contact = await megaplan.createClient(this.name, this.phone, this.email, company ? company.id : '' , this.description)
+      let contact = await megaplan.createClient(this.name, this.phone, this.email, company ? company.id : '', this.description)
       if (company) {
         isCompany = true
         clientId = company.id
-      } else{
+      } else {
         clientId = contact.id
       }
       let callToDo = await megaplan.createCallToDo(isCompany, clientId)
@@ -174,7 +188,7 @@ export default class QuoteForm extends Vue {
       this.phone = ""
       this.email = ""
       this.companyName = ""
-      this.interests = []
+      this.interestIn = []
       this.subscribe = true
 
       this.dialog = false
