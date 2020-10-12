@@ -5,10 +5,9 @@ import { Module } from '@nuxt/types'
 
 const docsServerModule: Module = async function (moduleOptions) {
     const isDev = this.options.dev
-    const isGenerate = this.options._generate
-    const isStart = this.options._start
-    const isBuild = this.options._build
-    const runServer = isDev || isGenerate || isStart
+    const isGenerate = this.options.generate
+    const isBuild = this.options.build
+    const runServer = isDev || isGenerate
 
     const options: DocsServerOptions = {
         port: 3001,
