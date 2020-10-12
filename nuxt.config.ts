@@ -1,4 +1,4 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import { createApolloFetch } from 'apollo-fetch'
 import ru from 'vuetify/src/locale/ru'
 
@@ -7,7 +7,7 @@ const domain = process.env.NUXT_ENV_DOMAIN || 'https://5dtech.pro'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
 const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
-const config: Configuration = {
+const config: NuxtConfig = {
   head: {
     title: '5D Additive Manufacturing',
     titleTemplate: 'Stereotech - %s',
