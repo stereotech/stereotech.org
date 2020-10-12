@@ -94,8 +94,11 @@ export default class ContactForm extends Vue {
   private apealTheme: string = ""
   private problemType: string = ""
   private serialNumber: string = ""
-  private apealThemeItems: String[] = []
+  //private apealThemeItems: String[] = []
   private items: string[] = []
+  get apealThemeItems(): string[] {
+    return ['STE 520', 'STE 320', 'STE App', 'STE Slicer', this.$tc('Услуги')]
+  }
   get problemItems(): string[] {
    if (this.apealTheme === 'Услуги') {
       this.items = []
@@ -174,11 +177,6 @@ export default class ContactForm extends Vue {
     }
   }
 
-  async mounted(){
-    this.apealThemeItems.push('STE 520', 'STE 320', 'STE App', 'STE Slicer', this.$tc('Услуги'))
-   // await this.problemItems
-
-  }
 }
 
 

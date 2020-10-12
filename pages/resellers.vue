@@ -65,13 +65,13 @@ import { Seller, SellerType } from '~/types/reseller'
   }
 })
 export default class Resellers extends Vue {
-  addresses: Seller[] = []
-  async mounted () {
-    this.addresses.push({
+  get addresses(): Seller[] {
+    return [
+    {
       name: 'Stereotech',
       logo: 'resellers/stereotech.jpg',
-      email: 'store@ste3d.ru',
-      website: 'https://ste3d.ru',
+      email: 'store@5dtech.pro',
+      website: 'https://5dtech.pro',
       region: this.$tc('ЮФО'),
       country: this.$tc('Российская Федерация'),
       address: this.$tc('г. Волгоград, ул. им. Огарева, 2'),
@@ -149,9 +149,22 @@ export default class Resellers extends Vue {
         type: SellerType.Diler,
         coords: [55.749076, 37.700568],
         phone: '+74959262651'
+      },
+      {
+        name: 'Stereotech',
+        logo: 'resellers/stereotech.jpg',
+        email: 'tolmachev@5dtech.pro',
+        website: 'https://5dtech.pro',
+        region: this.$tc('СФО'),
+        country: this.$tc('Российская Федерация'),
+        address: this.$tc('г. Красноярск ул. Алексеева, 49'),
+        coords: [56.047882, 92.907764],
+        type: SellerType.Diler,
+        phone: '+79993154420'
       }
-    )
+    ]
   }
+
 }
 
 </script>

@@ -26,15 +26,14 @@ import ProductCard from '~/components/ProductCard.vue'
   }
 })
 export default class Software extends Vue {
-  software: {
+  get software(): {
     image: string,
     title: string,
     description: string,
     link: string
-  }[] = []
-
-    async mounted(){
-      this.software.push({
+  }[] {
+    return [
+      {
         image: '/printers/software/steapp.webp',
         title: 'STE App',
         description: this.$tc('Приложение для управления процессом печати\nПросто.\nГибко.\nЭффективно.'),
@@ -45,8 +44,10 @@ export default class Software extends Vue {
         title: 'STE Slicer',
         description: this.$tc('Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'),
         link: '/software/steslicer'
-      })
-    }
+      }
+    ]
+  }
+
 }
 
 </script>

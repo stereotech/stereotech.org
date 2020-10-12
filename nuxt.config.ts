@@ -1,9 +1,9 @@
 import { Configuration } from '@nuxt/types'
-import ru from 'vuetify/src/locale/ru'
 import { createApolloFetch } from 'apollo-fetch'
+import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
-const domain = process.env.NUXT_ENV_DOMAIN || 'https://ste3d.ru'
+const domain = process.env.NUXT_ENV_DOMAIN || 'https://5dtech.pro'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
 const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
@@ -95,7 +95,7 @@ const config: Configuration = {
       },
       {
         code: 'de',
-        name: '',
+        name: 'Deutsche',
         file: 'de.json'
       }
     ],
