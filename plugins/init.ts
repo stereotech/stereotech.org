@@ -11,14 +11,17 @@ const initPlugin: Plugin = async ({ $docs, isDev, env, req, app, store: { commit
             if (hostParts[0] === 'www') { return redirect(301, 'https://nuxtjs.org' + req.url) }
 
             if (isDev) {
+
                 commit('setLocale', hostParts[0])
             }
         }
     } else {
-        commit('setLocale', env.LOCALE)
+        commit('setLocale', app.i18n.locale)
     }
     try {
-        await dispatch('getLangData', state.locale)
+        console.log(app.i18n.locale)
+        commit('setLocale', app.i18n.locale)
+        await dispatch('getLangData', app.i18n.locale)
         commit('setFilled')
     } catch (e) {
         console.error('Error on filling the store, please run the docs server.') // eslint-disable-line no-console
