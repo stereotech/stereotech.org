@@ -1,23 +1,7 @@
 import { Plugin } from '@nuxt/types'
 
 const initPlugin: Plugin = async ({ $docs, isDev, env, req, app, store: { commit, state, dispatch }, redirect }) => {
-    if (state.filled) {
-        return
-    }
 
-    if (req) {
-        const hostParts = (req.headers.host || '').replace('.org', '').split('.')
-        if (hostParts.length === 2) {
-            if (hostParts[0] === 'www') { return redirect(301, 'https://nuxtjs.org' + req.url) }
-
-            if (isDev) {
-
-                commit('setLocale', hostParts[0])
-            }
-        }
-    } else {
-        commit('setLocale', app.i18n.locale)
-    }
     try {
         console.log(app.i18n.locale)
         commit('setLocale', app.i18n.locale)
