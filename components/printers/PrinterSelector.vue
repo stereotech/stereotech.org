@@ -238,8 +238,25 @@ export default class PrinterSelector extends Vue {
     ]
   }
 
-  currentFiveAxisType: any = null
-  currentPrintVolume: any = null
+  currentFiveAxisType: {
+    name: string,
+    description: string,
+    value: FiveAxisType
+  } = {
+    name: '',
+    description: '',
+    value : FiveAxisType.Normal
+  }
+  
+  currentPrintVolume: {
+    name: string,
+    description: string,
+    value: PrintVolumeType
+  } = {
+    name: '',
+    description: '',
+    value: PrintVolumeType.Standard
+  }
 
   changeExtruder (value: any) {
     this.$emit('change', this.items.find(v => (v.extruderType === value.value
