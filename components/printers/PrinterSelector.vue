@@ -139,6 +139,8 @@ export default class PrinterSelector extends Vue {
 
   get selectFiveAxis (): FiveAxisType[] {
     let fiveAxisValues: FiveAxisType[] = []
+    if (!this.currentPrintVolume)
+      return fiveAxisValues
     this.items.filter(v => !(this.selectVolume.length > 1) || v.printVolumeType === this.currentPrintVolume.value).forEach(v => {
       if (fiveAxisValues.indexOf(v.fiveAxisType) < 0) {
         fiveAxisValues.push(v.fiveAxisType)
@@ -178,7 +180,15 @@ export default class PrinterSelector extends Vue {
     return this.fiveAxisVariants.filter(v => this.selectFiveAxis.indexOf(v.value) >= 0)
   }
 
-  currentExtruderVariant: any = this.getExtruderVariants[0]
+  currentExtruderVariant: {
+    name: string,
+    description: string,
+    value: ExtruderType
+  } = {
+      name: '',
+      description: '',
+      value: ExtruderType.Single
+    }
 
   get printVolumeVariants (): {
     name: string,
@@ -228,8 +238,8 @@ export default class PrinterSelector extends Vue {
     ]
   }
 
-  currentFiveAxisType: any = this.fiveAxisVariants[0]
-  currentPrintVolume: any = this.printVolumeVariants[0]
+  currentFiveAxisType: any = null
+  currentPrintVolume: any = null
 
   changeExtruder (value: any) {
     this.$emit('change', this.items.find(v => (v.extruderType === value.value
