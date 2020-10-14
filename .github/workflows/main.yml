@@ -38,10 +38,9 @@ jobs:
       - name: Load docs
         uses: actions/checkout@v2
         with: 
-          repository: stereotech/Products-Documentations
+          repository: stereotech/User-Manuals
           path: docs
           ref: master
-          token: ${{ secrets.PRODUCTS_DOCUMENTATION_TOKEN }}
       
       - name: Prepare docs
         run: |
