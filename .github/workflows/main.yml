@@ -41,7 +41,7 @@ jobs:
           repository: stereotech/Products-Documentations
           path: docs
           ref: master
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PRODUCTS_DOCUMENTATION_TOKEN }}
       
       - name: Prepare docs
         run: |
