@@ -77,3 +77,4 @@ jobs:
           local_source_dir: "public"
           dist_target_dir: "./"
           delete: "true"
+          other_flags: "--parallel=10"
