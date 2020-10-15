@@ -68,11 +68,10 @@ jobs:
         with:
           name: public
           path: public
-          
-      - uses: sebastianpopp/ftp-action@v2.0.0
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: public
+        
+      - name: Install lftp
+        run: apt-get update -qq && apt-get install -y -qq lftp
+      
+      - name: Upload files
+        run: lftp -e "set ftp:ssl-allow no; open ${{ secrets.FTP_SERVER }}; user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}; mirror -X .* -X .*/ --parallel=10 --reverse --verbose --delete public/ ./"
       
