@@ -58,3 +58,19 @@ jobs:
         with:
           name: public
           path: public
+          
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2.0.5 
+        with:
+          name: public
+          path: public
+          
+      - uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: public
+      
