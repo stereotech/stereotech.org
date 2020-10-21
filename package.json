@@ -30,6 +30,7 @@
     "@types/gapi": "0.0.39",
     "apollo-fetch": "^0.7.0",
     "degit": "^2.2.2",
+    "dotenv": "^8.2.0",
     "front-matter": "^3.0.2",
     "glob": "^7.1.6",
     "marked": "^0.7.0",
