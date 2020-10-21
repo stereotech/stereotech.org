@@ -30,7 +30,7 @@ const sendEmailPlugin: Plugin = (context, inject) => {
     inject('sendEmail', (options: sendEmailOptions) => {
 
         Email.send({
-            SecureToken: '97c1c3bb-3f64-4510-b50c-c9001b9d6f8f',
+            SecureToken: process.env.SECURE_TOKEN,
             To: options.to,
             From: options.from,
             Subject: options.subject,
