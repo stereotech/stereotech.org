@@ -25,7 +25,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-const url = 'https://sheets.googleapis.com/v4/spreadsheets/***REMOVED***/values/sheet!A1:W?key=***REMOVED***'
+
+
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.MATERIAL_TABLE_ID}/values/sheet!A1:W?key=${process.env.MATERIAL_TABLE_KEY}`
 
 @Component
 export default class materialsSheet extends Vue {

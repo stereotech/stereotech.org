@@ -1,3 +1,5 @@
+require('dotenv').config()
+console.log(process.env.SITE_KEY)
 import { NuxtConfig } from '@nuxt/types'
 import { createApolloFetch } from 'apollo-fetch'
 import ru from 'vuetify/src/locale/ru'
@@ -17,7 +19,7 @@ const config: NuxtConfig = {
       { hid: 'description', name: 'description', content: 'Stereotech - 5D Additive Manufacturing' },
       { name: 'msapplication-TileColor', content: '#0277bd' },
       { name: 'theme-color', content: '#0277bd' },
-      { name: 'yandex-verification', content: '***REMOVED***' }
+      { name: 'yandex-verification', content: process.env.YANDEX_VER || ''}
 
     ]
   },
@@ -71,7 +73,7 @@ const config: NuxtConfig = {
       }
     ],
     ['vue-yandex-maps/nuxt', {
-      apiKey: '***REMOVED***',
+      apiKey: process.env.API_KEY,
       lang: 'ru_RU',
       version: '2.1'
     }],
@@ -113,7 +115,8 @@ const config: NuxtConfig = {
   },
   env: {
     LOCALE: locale,
-    DOMAIN: domain
+    DOMAIN: domain,
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',
@@ -171,7 +174,7 @@ const config: NuxtConfig = {
   },
   recaptcha: {
     /* reCAPTCHA options */
-    siteKey: '***REMOVED***',
+    siteKey: process.env.SITE_KEY,
     version: 3,
     hideBadge: true
   },
