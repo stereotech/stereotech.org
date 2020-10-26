@@ -17,7 +17,17 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: node:12.18.2
-
+    env:
+      MEGAPLAN_LOGIN: ${{ secrets.MEGAPLAN_LOGIN }}
+      MEGAPLAN_PASS: ${{ secrets.MEGAPLAN_PASS }}
+      VIDEO_KEY: ${{ secrets.VIDEO_KEY }}
+      SECURE_TOKEN: ${{ secrets.SECURE_TOKEN }}
+      YANDEX_VER: ${{ secrets.YANDEX_VER }}
+      API_KEY: ${{ secrets.API_KEY }}
+      SITE_KEY: ${{ secrets.SITE_KEY }}
+      BITRIX_SEC: ${{ secrets.BITRIX_SEC }}
+      MATERIAL_TABLE_ID: ${{ secrets.MATERIAL_TABLE_ID }}
+      MATERIAL_TABLE_KEY: ${{ secrets.MATERIAL_TABLE_KEY }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
