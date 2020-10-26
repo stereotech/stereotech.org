@@ -1,3 +1,4 @@
+require('dotenv').config()
 import { NuxtConfig } from '@nuxt/types'
 import { createApolloFetch } from 'apollo-fetch'
 import ru from 'vuetify/src/locale/ru'
@@ -17,7 +18,7 @@ const config: NuxtConfig = {
       { hid: 'description', name: 'description', content: 'Stereotech - 5D Additive Manufacturing' },
       { name: 'msapplication-TileColor', content: '#0277bd' },
       { name: 'theme-color', content: '#0277bd' },
-      { name: 'yandex-verification', content: '***REMOVED***' }
+      { name: 'yandex-verification', content: process.env.YANDEX_VER || '' }
 
     ]
   },
@@ -71,7 +72,7 @@ const config: NuxtConfig = {
       }
     ],
     ['vue-yandex-maps/nuxt', {
-      apiKey: '***REMOVED***',
+      apiKey: process.env.API_KEY,
       lang: 'ru_RU',
       version: '2.1'
     }],
@@ -113,7 +114,18 @@ const config: NuxtConfig = {
   },
   env: {
     LOCALE: locale,
-    DOMAIN: domain
+    DOMAIN: domain,
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    VIDEO_KEY: process.env.VIDEO_KEY || '',
+    MEGAPLAN_LOGIN: process.env.MEGAPLAN_LOGIN || '',
+    MEGAPLAN_PASS: process.env.MEGAPLAN_PASS || '',
+    SECURE_TOKEN: process.env.SECURE_TOKEN || '',
+    YANDEX_VER: process.env.YANDEX_VER || '',
+    API_KEY: process.env.API_KEY || '',
+    SITE_KEY: process.env.SITE_KEY || '',
+    BITRIX_SEC: process.env.BITRIX_SEC || '',
+    MATERIAL_TABLE_ID: process.env.MATERIAL_TABLE_ID || '',
+    MATERIAL_TABLE_KEY: process.env.MATERIAL_TABLE_KEY || ''
   },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',
@@ -171,7 +183,7 @@ const config: NuxtConfig = {
   },
   recaptcha: {
     /* reCAPTCHA options */
-    siteKey: '***REMOVED***',
+    siteKey: process.env.SITE_KEY,
     version: 3,
     hideBadge: true
   },

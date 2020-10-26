@@ -39,7 +39,7 @@ export default class Feedback extends Vue {
       "b24form"
     );
     //@ts-ignore
-    b24form({ id: "3", lang: "ru", sec: "***REMOVED***", type: "inline" });
+    b24form({ id: "3", lang: "ru", sec: process.env.BITRIX_SEC, type: "inline" });
   }
 }
 </script>

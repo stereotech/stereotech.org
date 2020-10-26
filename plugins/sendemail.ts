@@ -29,7 +29,7 @@ const sendEmailPlugin: Plugin = (context, inject) => {
     inject('sendEmail', (options: sendEmailOptions) => {
 
         Email.send({
-            SecureToken: '***REMOVED***',
+            SecureToken: process.env.SECURE_TOKEN,
             To: options.to,
             From: options.from,
             Subject: options.subject,

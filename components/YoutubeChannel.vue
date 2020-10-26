@@ -4,7 +4,9 @@
       <v-container fluid>
         <v-row justify="center" align="center">
           <v-col cols="12" class="text-center">
-            <h4 class="display-1 text-uppercase font-weight-light">{{title}}</h4>
+            <h4 class="display-1 text-uppercase font-weight-light">
+              {{ title }}
+            </h4>
           </v-col>
         </v-row>
         <v-row justify="center" align="center">
@@ -73,10 +75,11 @@ export default class YoutubeChannel extends Vue {
   private async getVideo () {
     let response
     if (this.playlistId == '') {
-      response = await fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgpK6bZ6uaGyIGB2jp-aTUw&maxResults=10&order=date&key=***REMOVED***')
+
+      response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgpK6bZ6uaGyIGB2jp-aTUw&maxResults=10&order=date&key=${process.env.VIDEO_KEY}`)
     }
     else {
-      response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.playlistId}&key=***REMOVED***`)
+      response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.playlistId}&key=${process.env.VIDEO_KEY}`)
     }
     this.video = await response.json()
     //console.log(this.video.items)
@@ -85,7 +88,7 @@ export default class YoutubeChannel extends Vue {
   }
 
   async mounted () {
-    await this.getVideo()
+    this.getVideo()
   }
 }
 

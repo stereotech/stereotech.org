@@ -11,8 +11,8 @@ export class MegaplanApi {
 
     async authenticate () {
         const formData = new FormData();
-        formData.append('username', '***REMOVED***')
-        formData.append('password', '***REMOVED***')
+        formData.append('username', process.env.MEGAPLAN_LOGIN || '') 
+        formData.append('password', process.env.MEGAPLAN_PASS || '') 
         formData.append('grant_type', 'password')
 
         let response = await (await fetch(`${apiRoute}/auth/access_token`, {

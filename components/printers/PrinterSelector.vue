@@ -139,6 +139,8 @@ export default class PrinterSelector extends Vue {
 
   get selectFiveAxis (): FiveAxisType[] {
     let fiveAxisValues: FiveAxisType[] = []
+    if (!this.currentPrintVolume)
+      return fiveAxisValues
     this.items.filter(v => !(this.selectVolume.length > 1) || v.printVolumeType === this.currentPrintVolume.value).forEach(v => {
       if (fiveAxisValues.indexOf(v.fiveAxisType) < 0) {
         fiveAxisValues.push(v.fiveAxisType)
@@ -154,13 +156,13 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: 'Один экструдер',
-        description: 'Надежная печать одним материалом',
+        name: this.$tc('Один экструдер'),
+        description: this.$tc('Надежная печать одним материалом'),
         value: ExtruderType.Single
       },
       {
-        name: 'Два экструдера',
-        description: 'Печать различными материалами двумя экструдерами',
+        name: this.$tc('Два экструдера'),
+        description: this.$tc('Печать различными материалами двумя экструдерами'),
         value: ExtruderType.Dual
       }
     ]
@@ -178,7 +180,15 @@ export default class PrinterSelector extends Vue {
     return this.fiveAxisVariants.filter(v => this.selectFiveAxis.indexOf(v.value) >= 0)
   }
 
-  currentExtruderVariant: any = this.getExtruderVariants[0]
+  currentExtruderVariant: {
+    name: string,
+    description: string,
+    value: ExtruderType
+  } = {
+      name: '',
+      description: '',
+      value: ExtruderType.Single
+    }
 
   get printVolumeVariants (): {
     name: string,
@@ -187,22 +197,22 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: 'Стандартная область печати',
+        name: this.$tc('Стандартная область печати'),
         description: '230x230x150мм',
         value: PrintVolumeType.StandardFiveAxis
       },
       {
-        name: 'Стандартная область печати',
+        name: this.$tc('Стандартная область печати'),
         description: '200x210x200мм',
         value: PrintVolumeType.Standard
       },
       {
-        name: 'Увеличенная область печати',
+        name: this.$tc('Увеличенная область печати'),
         description: '300x310x300мм',
         value: PrintVolumeType.Extended
       },
       {
-        name: 'Увеличенная область печати',
+        name: this.$tc('Увеличенная область печати'),
         description: '330x330x250мм',
         value: PrintVolumeType.ExtendedFiveAxis
       }
@@ -216,20 +226,37 @@ export default class PrinterSelector extends Vue {
   }[] {
     return [
       {
-        name: '5D принтер',
-        description: 'Пятиосевой принтер без дополнительных устройств',
+        name: this.$tc('5D принтер'),
+        description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
         value: FiveAxisType.Normal
       },
       {
-        name: 'Гибридный 5D принтер',
-        description: 'Пятиосевой принтер с закрепляемой платформой',
+        name: this.$tc('Гибридный 5D принтер'),
+        description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
         value: FiveAxisType.Hybrid
       }
     ]
   }
 
-  currentFiveAxisType: any = this.fiveAxisVariants[0]
-  currentPrintVolume: any = this.printVolumeVariants[0]
+  currentFiveAxisType: {
+    name: string,
+    description: string,
+    value: FiveAxisType
+  } = {
+    name: '',
+    description: '',
+    value : FiveAxisType.Normal
+  }
+  
+  currentPrintVolume: {
+    name: string,
+    description: string,
+    value: PrintVolumeType
+  } = {
+    name: '',
+    description: '',
+    value: PrintVolumeType.Standard
+  }
 
   changeExtruder (value: any) {
     this.$emit('change', this.items.find(v => (v.extruderType === value.value
