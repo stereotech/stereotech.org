@@ -1,5 +1,4 @@
-//97c1c3bb-3f64-4510-b50c-c9001b9d6f8f
-//a86ec5b6-dff4-4c87-ad6f-8e7cdc50698e
+
 
 import './../assets/smtp.js'
 declare let Email: any

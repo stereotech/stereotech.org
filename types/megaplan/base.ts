@@ -34,7 +34,7 @@ export class MegaplanApi {
             body: JSON.stringify({
                 name: companyName,
                 description: description,
-                status: {id:"1000001", contentType:"ContractorStatus"}
+                status: { id: "1000001", contentType: "ContractorStatus" }
             })
         })).json() as Response<any>
         return response.data
@@ -69,7 +69,7 @@ export class MegaplanApi {
             }
         } else {
             request.description = description
-            request.status = {id:"1000001", contentType:"ContractorStatus"}
+            request.status = { id: "1000001", contentType: "ContractorStatus" }
         }
         if (phone && phone !== '') {
             request.contactInfo.push({
@@ -92,12 +92,12 @@ export class MegaplanApi {
         return response.data
     }
 
-    async createDeal(company: any, contact: any, description: string, cost: number){
+    async createDeal (company: any, contact: any, description: string, cost: number) {
         let url = `${apiRoute}/deal`
         //let deadlineDate = new Date(deadline)
         let request: any = {
             program: {
-                id: "16", 
+                id: "16",
                 contentType: "Program"
             },
             manager: {
@@ -106,9 +106,9 @@ export class MegaplanApi {
             },
             contractor: {
                 contentType: company ? 'ContractorCompany' : 'ContractorHuman',
-                id: company? company.id : contact.id
+                id: company ? company.id : contact.id
             },
-            description, 
+            description,
             name: 'Обращение',
             cost: {
                 contentType: "Money",
@@ -131,15 +131,17 @@ export class MegaplanApi {
         let response = await (await fetch(url + this.authenication, {
             method: 'POST',
             body: JSON.stringify({
-                contentType:"Todo",
-                name:"Звонок  ",
-                category:{id:"1",contentType:"TodoCategory"},
-                when:{contentType:"IntervalDates",
-                    from:{contentType:"DateOnly",year:date.getFullYear(),month:date.getMonth(),day:date.getDate()},
-                    to:{contentType:"DateOnly", year:date.getFullYear(),month:date.getMonth(),day:date.getDate()}},
-                responsible:{id:"1000005", contentType:"Employee"},
-                participants:[
-                    {subject:{contentType:`Contractor${isCompany?'Company':'Human'}`, id}}
+                contentType: "Todo",
+                name: "Звонок  ",
+                category: { id: "1", contentType: "TodoCategory" },
+                when: {
+                    contentType: "IntervalDates",
+                    from: { contentType: "DateOnly", year: date.getFullYear(), month: date.getMonth(), day: date.getDate() },
+                    to: { contentType: "DateOnly", year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
+                },
+                responsible: { id: "1000005", contentType: "Employee" },
+                participants: [
+                    { subject: { contentType: `Contractor${isCompany ? 'Company' : 'Human'}`, id } }
                 ]
             })
         })).json() as Response<any>
@@ -152,15 +154,17 @@ export class MegaplanApi {
         let response = await (await fetch(url + this.authenication, {
             method: 'POST',
             body: JSON.stringify({
-                contentType:"Todo",
-                name:"Отправить email ",
-                category:{id:"6",contentType:"TodoCategory"},
-                when:{contentType:"IntervalDates",
-                    from:{contentType:"DateOnly",year:date.getFullYear(),month:date.getMonth(),day:date.getDate()},
-                    to:{contentType:"DateOnly",year:date.getFullYear(),month:date.getMonth(),day:date.getDate()}},
-                responsible:{id:"1000005",contentType:"Employee"},
-                participants:[
-                    {subject:{contentType:`Contractor${isCompany?'Company':'Human'}`, id}}
+                contentType: "Todo",
+                name: "Отправить email ",
+                category: { id: "6", contentType: "TodoCategory" },
+                when: {
+                    contentType: "IntervalDates",
+                    from: { contentType: "DateOnly", year: date.getFullYear(), month: date.getMonth(), day: date.getDate() },
+                    to: { contentType: "DateOnly", year: date.getFullYear(), month: date.getMonth(), day: date.getDate() }
+                },
+                responsible: { id: "1000005", contentType: "Employee" },
+                participants: [
+                    { subject: { contentType: `Contractor${isCompany ? 'Company' : 'Human'}`, id } }
                 ]
             })
         })).json() as Response<any>
