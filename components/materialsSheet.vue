@@ -41,7 +41,6 @@ export default class materialsSheet extends Vue {
     const response = await fetch(url)
 
     const rows: string[][] = (await response.json()).values
-    console.log(rows.length)
     for (var i = 1; i < rows[0].length; i++) {
       let dashCounter: number = 0
       for (let j = 0; j < rows.length; j++) {
