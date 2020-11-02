@@ -124,6 +124,21 @@ export default class BuyPrinter extends Vue {
   private async submit () {
 
     try {
+      const name = 'Заказ: ' + new Date().toString() + ' Обращение от ' + this.orderName + ' '
+      const email = this.email
+      const order = this.joinFormData
+      await this.$apollo.mutate({
+        mutation: gql`mutation ($name: String!, $email: String!, $order: String!)
+      {
+          contactus(name: $name, email: $email, enquiry: $order)
+      }`,
+        variables: {
+          name: name,
+          email: email,
+          order: order
+        }
+      })
+
       let megaplan = new MegaplanApi()
       await megaplan.authenticate()
       let company: any = null
