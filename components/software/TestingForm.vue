@@ -92,23 +92,24 @@ export default class TestingForm extends Vue {
   }
 
   private async submit () {
-    //let name = this.title
-    //name += ': ' + new Date().toString() + ' Обращение от ' + this.name
-    //const email = this.email
+    let name = this.title
+    name += ': ' + new Date().toString() + ' Обращение от ' + this.name
+    const email = this.email
+    const description = this.description
     try {
       //@ts-ignore
-      // const token = await this.$recaptcha.execute('login')
-      // await this.$apollo.mutate({
-      //   mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      // {
-      //     contactus(name: $name, email: $email, enquiry: $description)
-      // }`,
-      //   variables: {
-      //     name: name,
-      //     email: email,
-      //     description: description
-      //   }
-      // })
+      const token = await this.$recaptcha.execute('login')
+      await this.$apollo.mutate({
+        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
+      {
+          contactus(name: $name, email: $email, enquiry: $description)
+      }`,
+        variables: {
+          name: name,
+          email: email,
+          description: description
+        }
+      })
       let megaplan = new MegaplanApi()
       await megaplan.authenticate()
       let isCompany = false

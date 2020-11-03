@@ -156,10 +156,21 @@ export default class QuoteForm extends Vue {
   }
 
   private async submit () {
-    // let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
-    // name += ': ' + new Date().toString() + ' Обращение от ' + this.name
-    // const email = this.email
-    // const description = this.joinFormData
+    let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
+    name += ': ' + new Date().toString() + ' Обращение от ' + this.name
+    const email = this.email
+    const description = this.joinFormData
+     await this.$apollo.mutate({
+        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
+      {
+          contactus(name: $name, email: $email, enquiry: $description)
+      }`,
+        variables: {
+          name: name,
+          email: email,
+          description: description
+        }
+      })
     try {
       //@ts-ignore
       let megaplan = new MegaplanApi()
