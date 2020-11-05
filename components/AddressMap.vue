@@ -8,7 +8,7 @@
               <client-only>
                 <yandex-map
                   :coords="[54.720026, 30.997946]"
-                  style="width: 100%; height: 100%;"
+                  style="width: 100%; height: 100%"
                   :controls="['zoomControl', 'typeSelector']"
                   zoom="5"
                 >
@@ -21,7 +21,7 @@
                       :hint-content="`${address.name} | ${address.address}`"
                     >
                       <v-card slot="balloon">
-                        <v-card-title>{{ address.name}}</v-card-title>
+                        <v-card-title>{{ address.name }}</v-card-title>
                       </v-card>
                     </ymap-marker>
                   </template>
@@ -38,18 +38,26 @@
                 <h2 class="text-h2">{{ country }}</h2>
               </v-col>
             </v-row>
-            <template v-for="(region, regionInd) in regionsByCountry.get(country)">
+            <template
+              v-for="(region, regionInd) in regionsByCountry.get(country)"
+            >
               <v-row justify="center" :key="`region-${country}-${regionInd}`">
                 <v-col cols="12" md="8">
                   <h4 class="text-h4">{{ region.region }}</h4>
                 </v-col>
-                <template v-for="(address, index) in groupedAddress.get(region.region)">
+                <template
+                  v-for="(address, index) in groupedAddress.get(region.region)"
+                >
                   <v-col cols="12" md="8" :key="`address-${index}`">
                     <v-card class="mx-auto" outlined>
                       <v-list-item two-line>
                         <v-list-item-content>
-                          <v-list-item-title class="headline">{{ address.name }}</v-list-item-title>
-                          <v-list-item-subtitle>{{ address.address }}</v-list-item-subtitle>
+                          <v-list-item-title class="headline">{{
+                            address.name
+                          }}</v-list-item-title>
+                          <v-list-item-subtitle>{{
+                            address.address
+                          }}</v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-avatar
@@ -67,7 +75,8 @@
                           color="primary"
                           :href="`mailto:${address.email}`"
                           target="_blank"
-                        >{{ address.email }}</v-btn>
+                          >{{ address.email }}</v-btn
+                        >
                         <v-btn
                           v-else
                           icon
@@ -85,7 +94,8 @@
                             color="primary"
                             :href="`tel:${address.phone}`"
                             target="_blank"
-                          >{{ address.phone }}</v-btn>
+                            >{{ address.phone }}</v-btn
+                          >
                           <v-btn
                             v-else
                             icon
@@ -102,7 +112,10 @@
                           color="primary"
                           :href="address.website"
                           target="_blank"
-                        >{{ address.website.replace(/https?:\/\//g, '') }}</v-btn>
+                          >{{
+                            address.website.replace(/https?:\/\//g, "")
+                          }}</v-btn
+                        >
                       </v-card-actions>
                     </v-card>
                   </v-col>
@@ -126,14 +139,7 @@ export default class AddressMap extends Vue {
   @Prop({ type: Array, default: () => { return [] } }) addresses!: Seller[]
 
   @Watch('addresses') OnAddressesChanged () {
-    this.groupedAddress = this.groupBy(this.addresses, address => address.region)
-    const regions: { country: string, region: string }[] = []
-    this.addresses.forEach(ad => {
-      if (regions.filter(r => r.region === ad.region).length === 0) {
-        regions.push({ country: ad.country, region: ad.region })
-      }
-    })
-    this.regionsByCountry = this.groupBy(regions, region => region.country)
+    this.loadData()
   }
 
   groupedAddress: Map<string, Seller[]> | null = null
@@ -155,6 +161,21 @@ export default class AddressMap extends Vue {
       }
     });
     return map;
+  }
+
+  mounted () {
+    this.loadData()
+  }
+
+  loadData () {
+    this.groupedAddress = this.groupBy(this.addresses, address => address.region)
+    const regions: { country: string, region: string }[] = []
+    this.addresses.forEach(ad => {
+      if (regions.filter(r => r.region === ad.region).length === 0) {
+        regions.push({ country: ad.country, region: ad.region })
+      }
+    })
+    this.regionsByCountry = this.groupBy(regions, region => region.country)
   }
 }
 
