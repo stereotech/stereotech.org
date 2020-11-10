@@ -34,6 +34,10 @@ export class MegaplanApi {
             body: JSON.stringify({
                 name: companyName,
                 description: description,
+                tags: [{
+                    contentType: "Tag",
+                    id: "1000040"
+                }],
                 status: { id: "1000001", contentType: "ContractorStatus" }
             })
         })).json() as Response<any>
@@ -69,6 +73,10 @@ export class MegaplanApi {
             }
         } else {
             request.description = description
+            request.tags = [{
+                contentType: "Tag",
+                id: "1000040"
+            }],
             request.status = { id: "1000001", contentType: "ContractorStatus" }
         }
         if (phone && phone !== '') {

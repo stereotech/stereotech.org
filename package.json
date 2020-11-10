@@ -29,6 +29,7 @@
     "@nuxtjs/yandex-metrika": "^1.0.3",
     "@types/gapi": "0.0.39",
     "apollo-fetch": "^0.7.0",
+    "country-json": "^1.1.0",
     "degit": "^2.2.2",
     "dotenv": "^8.2.0",
     "front-matter": "^3.0.2",

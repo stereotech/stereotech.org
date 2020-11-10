@@ -29,7 +29,6 @@
 
             <v-text-field
               v-model="phoneNumber"
-              v-mask="mask"
               :label="this.$tc('Номер телефона')"
               :rules="[(v) => !!v || this.$tc('Требуется номер телефона')]"
               outlined
@@ -102,7 +101,6 @@ export default class BuyPrinter extends Vue {
   private phoneNumber: string = ""
   private email: string = ""
   private companyName: string = ""
-  private mask: string = "+7 ### ###-##-##"
   private valid: boolean = false
   private snackbar: boolean = false
   private snackbarText: string = ''

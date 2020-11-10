@@ -15,12 +15,18 @@
                 :rules="nameRules"
               ></v-text-field>
             </v-col>
+            <v-autocomplete
+              outlined
+              v-model="country"
+              :items="countries"
+              item-text="country"
+              :label="this.$tc('Страна')"
+            ></v-autocomplete>
             <v-col cols="12">
               <v-text-field
                 outlined
                 :label="this.$tc('Номер телефона')"
                 v-model="phone"
-                v-mask="mask"
                 :rules="phoneRules"
               ></v-text-field>
             </v-col>
@@ -38,6 +44,9 @@
                 :label="this.$tc('Компания')"
                 v-model="companyName"
               ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-textarea outlined v-model="comment" :label="this.$tc('Комментарий')"></v-textarea>
             </v-col>
             <v-col cols="12" v-if="equipment">
               <v-checkbox
@@ -102,13 +111,16 @@ export default class QuoteForm extends Vue {
   valid: boolean = false
 
   name: string = ''
+  country: string = ''
   phone: string = ''
   email: string = ''
   companyName: string = ''
+  comment: string = ''
   interestIn: string[] = []
   subscribe: boolean = true
   subscribeStr: string = ''
 
+  private countries: any[] = require('country-json/src/country-by-name.json')
   get interests (): string[] {
     return [
       this.$tc('Серия 3хх'),
