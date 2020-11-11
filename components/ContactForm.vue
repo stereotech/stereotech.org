@@ -10,8 +10,14 @@
           :label="this.$tc('ФИО')"
           required
         ></v-text-field>
-
-        <v-text-field outlined v-model="phoneNumber" v-mask="mask" :label="this.$tc('Телефон')" required></v-text-field>
+        <v-autocomplete
+          outlined
+          v-model="country"
+          :items="countries"
+          item-text="country"
+          :label="this.$tc('Страна')"
+        ></v-autocomplete>
+        <v-text-field outlined v-model="phoneNumber" :label="this.$tc('Телефон')" required></v-text-field>
 
         <v-text-field
           outlined
@@ -84,18 +90,21 @@ export default class ContactForm extends Vue {
   private snackbarText: string = ''
   private snackbarError: boolean = false
   private dataString: string = ""
-  private mask: string = "+7(###) ###-####"
   private valid: boolean = false
   private isEnable: boolean = false
   private name: string = ""
   private phoneNumber: string = ""
   private email: string = ""
+  private country: string = ""
   private problemDescription: string = ""
   private apealTheme: string = ""
   private problemType: string = ""
   private serialNumber: string = ""
   //private apealThemeItems: String[] = []
   private items: string[] = []
+
+  private countries: any[] = require('country-json/src/country-by-name.json')
+
   get apealThemeItems(): string[] {
     return ['STE 520', 'STE 320', 'STE App', 'STE Slicer', this.$tc('Услуги')]
   }

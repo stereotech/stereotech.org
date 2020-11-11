@@ -11,7 +11,7 @@
               <v-text-field outlined :label="$tc('Имя')" v-model="name" :rules="nameRules"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field outlined :label="$tc('Номер телефона')" v-model="phone" v-mask="mask"></v-text-field>
+              <v-text-field outlined :label="$tc('Номер телефона')" v-model="phone"></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field outlined label="E-mail" v-model="email" :rules="emailRules"></v-text-field>
@@ -84,7 +84,6 @@ export default class TestingForm extends Vue {
     (v: any) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail не верен'
   ]
 
-  private mask: string = "+7(###) ###-####"
 
   private get description () {
     const str = `Интерес в: ${this.interestIn}`
