@@ -276,20 +276,23 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="6" lg="3">
-            <a href="http://sk.ru/" target="_blank">
+            <a href="https://navigator.sk.ru/orn/1122828" target="_blank">
               <v-img
                 height="64"
                 contain
-                :src="`http://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
+                :src="`https://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
               />
             </a>
           </v-col>
           <v-col cols="6" lg="3">
-            <a href="http://fasie.ru/" target="_blank">
+            <a
+              href="http://fasie.ru/press/fund/volgogradskaya-kompaniya-stereotek-razrabotala-5d-printer-dlya-pechati-raskhodnykh-chastey-promoboru/"
+              target="_blank"
+            >
               <v-img
                 height="64"
                 contain
-                src="http://fasie.ru/local/templates/.default/markup/img/footer_logo_fasie.png"
+                src="https://online.fasie.ru/images/logo.png"
               />
             </a>
           </v-col>
