@@ -512,7 +512,6 @@ export default class Layout extends Vue {
       window.replainSettings = {
         id: process.env.REPLAIN_CHAT_ID
       }
-
       let element = document.getElementById(this.elementId);
       if (element) {
         //@ts-ignore
