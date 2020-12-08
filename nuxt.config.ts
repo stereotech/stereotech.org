@@ -125,7 +125,8 @@ const config: NuxtConfig = {
     SITE_KEY: process.env.SITE_KEY || '',
     BITRIX_SEC: process.env.BITRIX_SEC || '',
     MATERIAL_TABLE_ID: process.env.MATERIAL_TABLE_ID || '',
-    MATERIAL_TABLE_KEY: process.env.MATERIAL_TABLE_KEY || ''
+    MATERIAL_TABLE_KEY: process.env.MATERIAL_TABLE_KEY || '',
+    REPLAIN_CHAT_ID: process.env.REPLAIN_CHAT_ID || ''
   },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',

@@ -313,7 +313,8 @@ export interface MenuItem {
   child?: MenuItem[]
 }
 
-@Component
+@Component({
+})
 export default class Layout extends Vue {
 
   private get currentYear () {
@@ -499,8 +500,29 @@ export default class Layout extends Vue {
     window.location.href = lang.path
   }
 
+  elementId = 'replain-script'
+
   get lang () {
     return this.$i18n.locale
+  }
+
+  mounted () {
+    if (process.client) {
+      //@ts-ignore
+      window.replainSettings = {
+        id: process.env.REPLAIN_CHAT_ID
+      }
+
+      let element = document.getElementById(this.elementId);
+      if (element) {
+        //@ts-ignore
+        element.parentNode.removeChild(element);
+      }
+      let reScript = document.createElement('script')
+      reScript.setAttribute('src', 'https://widget.replain.cc/dist/client.js')
+      reScript.setAttribute('id', this.elementId)
+      document.head.appendChild(reScript)
+    }
   }
 
 
