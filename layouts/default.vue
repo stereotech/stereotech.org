@@ -45,13 +45,23 @@
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <v-avatar size="36px" class="mr-2">
+      <v-avatar size="36px" class="mx-1">
         <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
-        <nuxt-link :to="localePath('/')">
-          <span class="font-weight-medium accent--text">Stereo</span>
-          <span class="font-weight-medium ml-n1">tech</span>
+        <nuxt-link to="/">
+        <span
+          :class="`font-weight-medium ${
+            $vuetify.theme.dark ? 'white--text' : 'accent--text'
+          }`"
+          >Stereo</span
+        >
+        <span
+          :class="`font-weight-medium ml-n1 ${
+            $vuetify.theme.dark ? 'grey--text' : 'primary--text'
+          }`"
+          >tech</span
+        >
         </nuxt-link>
       </v-toolbar-title>
 
@@ -527,3 +537,9 @@ export default class Layout extends Vue {
 
 }
 </script>
+
+<style scoped>
+.nuxt-link-active {
+  color: rgba(0, 0, 0, 0);
+}
+</style>
