@@ -174,8 +174,9 @@ export default class AddressMap extends Vue {
     return map;
   }
 
-  private mapCoords (coords: { value: string }[]) {
-    return coords.map(c => c.value)
+  private mapCoords (coords: { lat: number, lng: number }[]) {
+    //return coords.map(c => {c.lat, c.lng})
+    return Object.values(coords)
   }
 }
 

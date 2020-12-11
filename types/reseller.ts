@@ -7,7 +7,7 @@ export interface Seller {
     country: string
     address: string
     phone?: string
-    coords: { value: string }[]
+    coords: { lat: number, lng: number }[]
     type: SellerType
 }
 
