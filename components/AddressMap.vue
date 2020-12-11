@@ -8,7 +8,7 @@
               <client-only>
                 <yandex-map
                   :coords="[54.720026, 30.997946]"
-                  style="width: 100%; height: 100%;"
+                  style="width: 100%; height: 100%"
                   :controls="['zoomControl', 'typeSelector']"
                   zoom="5"
                 >
@@ -17,11 +17,11 @@
                       :key="index"
                       :marker-id="index"
                       marker-type="placemark"
-                      :coords="coordsToFloat(address.coords)"
+                      :coords="mapCoords(address.coords)"
                       :hint-content="`${address.name} | ${address.address}`"
                     >
                       <v-card slot="balloon">
-                        <v-card-title>{{ address.name}}</v-card-title>
+                        <v-card-title>{{ address.name }}</v-card-title>
                       </v-card>
                     </ymap-marker>
                   </template>
@@ -38,26 +38,37 @@
                 <h2 class="text-h2">{{ country }}</h2>
               </v-col>
             </v-row>
-            <template v-for="(region, regionInd) in regionsByCountry.get(country)">
+            <template
+              v-for="(region, regionInd) in regionsByCountry.get(country)"
+            >
               <v-row justify="center" :key="`region-${country}-${regionInd}`">
                 <v-col cols="12" md="8">
                   <h4 class="text-h4">{{ region.region }}</h4>
                 </v-col>
-                <template v-for="(address, index) in groupedAddress.get(region.region)">
+                <template
+                  v-for="(address, index) in groupedAddress.get(region.region)"
+                >
                   <v-col cols="12" md="8" :key="`address-${index}`">
                     <v-card class="mx-auto" outlined>
                       <v-list-item two-line>
                         <v-list-item-content>
-                          <v-list-item-title class="headline">{{ address.name }}</v-list-item-title>
-                          <v-list-item-subtitle>{{ address.address }}</v-list-item-subtitle>
+                          <v-list-item-title class="headline">{{
+                            address.name
+                          }}</v-list-item-title>
+                          <v-list-item-subtitle>{{
+                            address.address
+                          }}</v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-avatar
                           tile
                           :size="$vuetify.breakpoint.xs ? 48 : 80"
-                          color="grey"
+                          color="white"
                         >
-                          <v-img :src="address.logo" />
+                          <v-img
+                            v-if="address.logo"
+                            :src="`https://api2.stereotech.org/${address.logo.path}`"
+                          ></v-img>
                         </v-list-item-avatar>
                       </v-list-item>
                       <v-card-actions>
@@ -67,7 +78,8 @@
                           color="primary"
                           :href="`mailto:${address.email}`"
                           target="_blank"
-                        >{{ address.email }}</v-btn>
+                          >{{ address.email }}</v-btn
+                        >
                         <v-btn
                           v-else
                           icon
@@ -85,7 +97,8 @@
                             color="primary"
                             :href="`tel:${address.phone}`"
                             target="_blank"
-                          >{{ address.phone }}</v-btn>
+                            >{{ address.phone }}</v-btn
+                          >
                           <v-btn
                             v-else
                             icon
@@ -102,7 +115,10 @@
                           color="primary"
                           :href="address.website"
                           target="_blank"
-                        >{{ address.website.replace(/https?:\/\//g, '') }}</v-btn>
+                          >{{
+                            address.website.replace(/https?:\/\//g, "")
+                          }}</v-btn
+                        >
                       </v-card-actions>
                     </v-card>
                   </v-col>
@@ -132,6 +148,7 @@ export default class AddressMap extends Vue {
       if (regions.filter(r => r.region === ad.region).length === 0) {
         regions.push({ country: ad.country, region: ad.region })
       }
+      const coords = ad.coords
     })
     this.regionsByCountry = this.groupBy(regions, region => region.country)
   }
@@ -157,10 +174,8 @@ export default class AddressMap extends Vue {
     return map;
   }
 
-  private coordsToFloat(arr: string[]){
-    let arrFloat: number[]
-    arrFloat = arr.map(Number)
-    return arrFloat
+  private mapCoords (coords: { value: string }[]) {
+    return coords.map(c => c.value)
   }
 }
 

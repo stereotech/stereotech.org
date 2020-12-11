@@ -3,15 +3,23 @@
     <v-row justify="center">
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title v-if="$vuetify.breakpoint.xs">{{$t('Запросить предложение')}}</v-card-title>
-          <v-card-title v-else class="display-3">{{$t('Запросить предложение')}}</v-card-title>
+          <v-card-title v-if="$vuetify.breakpoint.xs">{{
+            $t("Запросить предложение")
+          }}</v-card-title>
+          <v-card-title v-else class="display-3">{{
+            $t("Запросить предложение")
+          }}</v-card-title>
           <v-card-text>
             <v-container>
               <v-row justify="center" align="center">
                 <v-col cols="12" sm="6">
-                  <p
-                    class="headline"
-                  >{{$t('Ниже представлен список дистрибьюторов, готовых к рассмотрению ваших заявок. Если вы нуждаетесь в дополнительной информации, свяжитесь с нами, используя форму ниже.')}}</p>
+                  <p class="headline">
+                    {{
+                      $t(
+                        "Ниже представлен список дистрибьюторов, готовых к рассмотрению ваших заявок. Если вы нуждаетесь в дополнительной информации, свяжитесь с нами, используя форму ниже."
+                      )
+                    }}
+                  </p>
                   <QuoteForm
                     :buttonText="this.$tc('Связаться с нами')"
                     :title="this.$tc('Связаться с нами')"
@@ -28,11 +36,11 @@
         </v-card>
       </v-col>
       <v-col cols="12" lg="10">
-        <AddressMap :addresses="getDealersData().entries" :height="500" />
+        <AddressMap :addresses="adresses" :height="500" />
       </v-col>
       <v-col cols="12" lg="4">
         <v-card id="dealer-form">
-          <v-card-title>{{$t('Стать дилером')}}</v-card-title>
+          <v-card-title>{{ $t("Стать дилером") }}</v-card-title>
           <v-card-text>
             <v-container>
               <v-row justify="center">
@@ -66,17 +74,19 @@ import { Seller, SellerType } from '~/types/reseller'
 })
 export default class Resellers extends Vue {
 
-  private async getDealersData(){
+  adresses: any[] = []
+
+  private async getDealersData () {
     let data
     let response = await fetch('https://api2.stereotech.org/api/collections/get/dealers?token=8b518a32222992717e27e1361a2260')
-    .then(collection => {data = collection.json(); return data})
-    .then(data => console.log(data));
-    // console.log(data)
+    data = await response.json()
+    console.log(data)
+    this.adresses = data.entries
     // return data
   }
 
 
-  // get addresses(): Seller[] { 
+  // get addresses(): Seller[] {
   //   return [
   //   {
   //     name: 'Stereotech',
@@ -175,8 +185,8 @@ export default class Resellers extends Vue {
   //     }
   //   ]
   // }
-  async mounted(){
-    //await this.getDealersData()
+  async mounted () {
+    await this.getDealersData()
   }
 }
 

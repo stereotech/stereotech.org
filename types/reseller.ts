@@ -1,13 +1,13 @@
 export interface Seller {
     name: string
-    logo: string
+    logo: { path: string }
     email: string
     website: string
     region: string
     country: string
     address: string
     phone?: string
-    coords: number[]
+    coords: { value: string }[]
     type: SellerType
 }
 
