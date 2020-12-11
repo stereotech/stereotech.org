@@ -12,7 +12,7 @@ export interface Seller {
 }
 
 export enum SellerType {
-    Manufacturer,
-    Distributor,
-    Diler
+    Manufacturer = 'Manufacturer',
+    Distributor = 'Distributor',
+    Diler = 'Diler'
 }

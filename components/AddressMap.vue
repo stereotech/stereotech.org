@@ -17,7 +17,7 @@
                       :key="index"
                       :marker-id="index"
                       marker-type="placemark"
-                      :coords="address.coords"
+                      :coords="coordsToFloat(address.coords)"
                       :hint-content="`${address.name} | ${address.address}`"
                     >
                       <v-card slot="balloon">
@@ -155,6 +155,12 @@ export default class AddressMap extends Vue {
       }
     });
     return map;
+  }
+
+  private coordsToFloat(arr: string[]){
+    let arrFloat: number[]
+    arrFloat = arr.map(Number)
+    return arrFloat
   }
 }
 
