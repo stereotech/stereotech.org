@@ -59,7 +59,7 @@ export default class AboutStereotech extends Vue {
       country: 'Российская Федерация',
       address: 'г. Волгоград, ул. Огарева, д. 2',
       type: SellerType.Manufacturer,
-      coords: [{ value: '48.692225' }, { value: ' 44.498048' }]
+      coords: { lat: 48.692225,  lng: 44.498048}
     },
     {
       name: 'ATSS Group',
@@ -70,7 +70,7 @@ export default class AboutStereotech extends Vue {
       country: 'Российская Федерация',
       address: 'г. Москва, Волоколамское шоссе, д. 2',
       type: SellerType.Distributor,
-      coords: [{ value: '55.807476' }, { value: ' 37.505292' }]
+      coords: { lat: 55.807476, lng: 37.505292}
     },
     {
       name: 'Capvidia Belgium',
@@ -81,7 +81,7 @@ export default class AboutStereotech extends Vue {
       country: 'Бельгия',
       address: 'Technologielaan 3 B-3001 Leuven',
       type: SellerType.Distributor,
-      coords: [{ value: '50.8540782' }, { value: ' 4.727265' }]
+      coords: { lat: 50.8540782, lng: 4.727265}
     },
   ]
 }
