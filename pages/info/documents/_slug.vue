@@ -41,13 +41,23 @@ import { Document } from '~/types/documents'
 
 @Component
 export default class DocumentPage extends Vue {
-  @Prop() documents!: Document[]
+  documents!: Document[]
 
   get currentDocument (): Document {
+    if (this.documents.length < 1) {
+
+    }
     return this.documents.find(d => d._id === this.$route.params.slug) || {
       _id: '',
       title: 'Документ не найден'
     }
+  }
+
+  async mounted () {
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/documents?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    this.documents = data.entries
   }
 }
 

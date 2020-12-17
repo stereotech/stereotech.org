@@ -24,7 +24,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="9">
-        <nuxt-child :documents="documents"></nuxt-child>
+        <nuxt-child></nuxt-child>
       </v-col>
     </v-row>
   </v-container>
