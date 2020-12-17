@@ -210,6 +210,12 @@ const config: NuxtConfig = {
         let routes = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
         routes.push('/info', '/info/team', '/info/address', '/info/media')
         routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
+
+        fetch(`https://api2.stereotech.org/api/collections/get/documents?token=${process.env.COCKPIT_TOKEN}`).then(res => {
+          res.json().then(v => {
+            routes.push(v.entries.map(e => e._id))
+          })
+        })
         return routes
       })
     }
