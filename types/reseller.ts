@@ -1,18 +1,18 @@
 export interface Seller {
     name: string
-    logo: string
+    logo: { path: string }
     email: string
     website: string
     region: string
     country: string
     address: string
     phone?: string
-    coords: number[]
+    coords: { lat: number, lng: number }
     type: SellerType
 }
 
 export enum SellerType {
-    Manufacturer,
-    Distributor,
-    Diler
+    Manufacturer = 'Manufacturer',
+    Distributor = 'Distributor',
+    Diler = 'Diler'
 }

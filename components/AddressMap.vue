@@ -17,7 +17,7 @@
                       :key="index"
                       :marker-id="index"
                       marker-type="placemark"
-                      :coords="address.coords"
+                      :coords="mapCoords(address.coords)"
                       :hint-content="`${address.name} | ${address.address}`"
                     >
                       <v-card slot="balloon">
@@ -63,9 +63,12 @@
                         <v-list-item-avatar
                           tile
                           :size="$vuetify.breakpoint.xs ? 48 : 80"
-                          color="grey"
+                          color="white"
                         >
-                          <v-img :src="address.logo" />
+                          <v-img
+                            v-if="address.logo"
+                            :src="`https://api2.stereotech.org/${address.logo.path}`"
+                          ></v-img>
                         </v-list-item-avatar>
                       </v-list-item>
                       <v-card-actions>
@@ -139,7 +142,15 @@ export default class AddressMap extends Vue {
   @Prop({ type: Array, default: () => { return [] } }) addresses!: Seller[]
 
   @Watch('addresses') OnAddressesChanged () {
-    this.loadData()
+    this.groupedAddress = this.groupBy(this.addresses, address => address.region)
+    const regions: { country: string, region: string }[] = []
+    this.addresses.forEach(ad => {
+      if (regions.filter(r => r.region === ad.region).length === 0) {
+        regions.push({ country: ad.country, region: ad.region })
+      }
+      const coords = ad.coords
+    })
+    this.regionsByCountry = this.groupBy(regions, region => region.country)
   }
 
   groupedAddress: Map<string, Seller[]> | null = null
@@ -163,19 +174,9 @@ export default class AddressMap extends Vue {
     return map;
   }
 
-  mounted () {
-    this.loadData()
-  }
-
-  loadData () {
-    this.groupedAddress = this.groupBy(this.addresses, address => address.region)
-    const regions: { country: string, region: string }[] = []
-    this.addresses.forEach(ad => {
-      if (regions.filter(r => r.region === ad.region).length === 0) {
-        regions.push({ country: ad.country, region: ad.region })
-      }
-    })
-    this.regionsByCountry = this.groupBy(regions, region => region.country)
+  private mapCoords (coords: { lat: number, lng: number }) {
+    //return coords.map(c => {c.lat, c.lng})
+    return Object.values(coords)
   }
 }
 
