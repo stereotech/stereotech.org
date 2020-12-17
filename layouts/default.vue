@@ -250,24 +250,6 @@
                     >
                       <v-list-item-title>{{ child.title }}</v-list-item-title>
                     </v-list-item>
-                    <v-list-item
-                      v-if="index == 3"
-                      href="http://download.stereotech.org/documents/%D0%A0%D0%B5%D0%BA%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D1%8B.pdf"
-                      target="_blank"
-                    >
-                      <v-list-item-title>{{
-                        $t("Реквизиты")
-                      }}</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item
-                      v-if="index == 3"
-                      href="http://download.stereotech.org/documents/2020+%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B+%D0%A1%D0%9E%D0%A3%D0%A2.pdf"
-                      target="_blank"
-                    >
-                      <v-list-item-title>{{
-                        $t("Результаты СОУТ")
-                      }}</v-list-item-title>
-                    </v-list-item>
                   </v-list>
                 </v-col>
               </v-row>
@@ -461,6 +443,10 @@ export default class Layout extends Vue {
                 link: '/info/media'
               }
             ]
+          },
+          {
+            title: this.$tc('Документы'),
+            link: '/info/documents'
           }
         ]
 
