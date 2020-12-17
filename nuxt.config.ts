@@ -213,7 +213,7 @@ const config: NuxtConfig = {
 
         fetch(`https://api2.stereotech.org/api/collections/get/documents?token=${process.env.COCKPIT_TOKEN}`).then(res => {
           res.json().then(v => {
-            routes.push(v.entries.map(e => e._id))
+            routes.push(`/info/documents/${v.entries.map(e => e._id)}`)
           })
         })
         return routes
