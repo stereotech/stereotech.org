@@ -9,7 +9,6 @@ const rootPath = process.env.NUXT_ENV_ROOT || '/'
 const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
 const config: NuxtConfig = {
-  target: 'static',
   head: {
     title: '5D Additive Manufacturing',
     titleTemplate: 'Stereotech - %s',
