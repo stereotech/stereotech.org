@@ -8,11 +8,6 @@ const domain = process.env.NUXT_ENV_DOMAIN || 'https://5dtech.pro'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
 const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
-async function fetchDocRoutes () {
-  const response = await fetch(`https://api2.stereotech.org/api/collections/get/documents?token=${process.env.COCKPIT_TOKEN}`)
-  return await response.json()
-}
-
 const config: NuxtConfig = {
   head: {
     title: '5D Additive Manufacturing',
@@ -210,13 +205,10 @@ const config: NuxtConfig = {
           }
         }
       `
-      return fetchDocRoutes().then(async (v) => {
-        let mapped = v.entries.map(e => `/info/documents/${e._id}`)
-        let routes: string[] = []
-        routes.push(...mapped)
-        const result = await client({ query })
+      return client({ query }).then((result) => {
         const { data } = result
-        mapped = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        const mapped = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        let routes
         routes.push(...mapped)
         routes.push('/info', '/info/team', '/info/address', '/info/media')
         routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
