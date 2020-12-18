@@ -29,6 +29,7 @@ jobs:
       MATERIAL_TABLE_ID: ${{ secrets.MATERIAL_TABLE_ID }}
       MATERIAL_TABLE_KEY: ${{ secrets.MATERIAL_TABLE_KEY }}
       REPLAIN_CHAT_ID: ${{ secrets.REPLAIN_CHAT_ID }}
+      COCKPIT_TOKEN: ${{ secrets.COCKPIT_TOKEN }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
