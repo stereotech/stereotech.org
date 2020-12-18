@@ -208,7 +208,7 @@ const config: NuxtConfig = {
       return client({ query }).then((result) => {
         const { data } = result
         const mapped = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
-        let routes
+        let routes: string[] = []
         routes.push(...mapped)
         routes.push('/info', '/info/team', '/info/address', '/info/media')
         routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
