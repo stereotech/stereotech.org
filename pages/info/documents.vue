@@ -11,7 +11,7 @@
               v-for="document in documents"
               :key="document._id"
               nuxt
-              :to="`/info/documents/${document._id}`"
+              :to="`/info/documents/${document._id}/`"
             >
               <v-list-item-icon>
                 <v-icon>mdi-file-document-edit-outline</v-icon>
