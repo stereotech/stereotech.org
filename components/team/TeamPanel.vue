@@ -27,6 +27,19 @@ import TeamCard from '~/components/team/TeamCard.vue'
   }
 })
 export default class TeamPanel extends Vue {
+
+  // private team: {
+  //   name: string,
+  //   image: string,
+  //   description: string
+  // }[]
+  // private async getTeam() {
+  //   let data
+  //   let response = await fetch(`https://api2.stereotech.org/api/collections/get/team?token=${process.env.COCKPIT_TOKEN}`)
+  //   data = await response.json()
+  //   this.adresses = data.entries
+  // }
+
   get team(): {
     name: string,
     image: string,
