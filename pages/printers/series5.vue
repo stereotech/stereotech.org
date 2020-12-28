@@ -42,7 +42,7 @@
       </v-col>
 
       <v-col cols="12" lg="10" v-if="product">
-        <FullSpecs :attributes="product.attributes" />
+        <FullSpecs :specXd="spec5d" />
       </v-col>
       <v-col cols="12" lg="10">
         <materialsSheet />
@@ -92,6 +92,14 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series5 extends Vue {
+  private spec5d: any[] = []
+  private async getFulSpec5() {
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    //console.log(data)
+    this.spec5d = data.entries.filter(v => /^5/.test(v.model))
+  }
   get printerItems (): PrinterVariant[] {
     return [
       {
@@ -342,7 +350,7 @@ export default class Series5 extends Vue {
     this.product = result.data.product
     this.product.price = Number(this.product.price)
     this.currentPrinter = this.printerItems[0]
-
+    await this.getFulSpec5()
   }
 }
 

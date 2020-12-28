@@ -24,8 +24,8 @@
       <v-col cols="12" lg="10">
         <ServiceBenefits />
       </v-col>
-      <v-col cols="12" lg="10" v-if="product">
-        <FullSpecs :attributes="product.attributes" />
+      <v-col cols="12" lg="10" v-if="spec3d">
+        <FullSpecs :specXd="spec3d" />
       </v-col>
       <v-col cols="12" lg="10">
         <materialsSheet />
@@ -69,6 +69,15 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series3 extends Vue {
+
+  private spec3d: any[] = []
+  private async getFulSpec3() {
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    //console.log(data)
+    this.spec3d = data.entries.filter(v => /^3/.test(v.model))
+  }
   get printerItems (): PrinterVariant[] {
     return [
       {
@@ -237,6 +246,7 @@ export default class Series3 extends Vue {
   }
 
   async mounted () {
+    
     const result = await this.$apollo.query({
       query: gql`query {
          product(id: "677") {
@@ -268,6 +278,9 @@ export default class Series3 extends Vue {
     this.product = result.data.product
     this.product.price = Number(this.product.price)
     this.currentPrinter = this.printerItems[0]
+
+    await this.getFulSpec3()
+
   }
 }
 
