@@ -107,7 +107,6 @@ export default class Series5 extends Vue {
     let data1
     let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`)
     data1 = await response1.json()
-    console.log(data1)
     this.features = data1.entries
   }
 

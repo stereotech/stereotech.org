@@ -6,7 +6,7 @@
     </v-card-text>
   </v-card> -->
   <div v-html="information">
-    
+
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default class InformationViewer extends Vue {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/singletons/get/Media?token=${process.env.COCKPIT_TOKEN}`)
     data = await response.json()
-    //console.log(data)
+
     this.information = data.media
   }
 
