@@ -19,7 +19,7 @@
                     <video v-else-if="item.mediaType == 1" width="100%" height="100%" autoplay loop>
                       <source :src="item.mediaSource" />
                     </video> -->
-                      <div v-html="item.mediaSource.replace(/\/storage/gm, 'https://api2.stereotech.org/storage').replace(/img /gm, 'img style=\" max-width: 300px\"')" ></div>
+                      <div v-html="item.mediaSource.replace(/\/storage/gm, 'https://api2.stereotech.org/storage').replace(/img /gm, mediaStyle)" ></div>
                   </v-col>
                   <v-col cols="12" sm="6" lg="4">
                     <h3 class="font-weight-light">{{ item.name }}</h3>
@@ -49,7 +49,7 @@ import { KeyFeature, MediaType } from '~/types/keyFeature'
 export default class KeyFeatures extends Vue {
   @Prop({ type: String, default: 'Title' }) title!: string
   @Prop({ type: Array, default: () => { return [] } }) items!: any[]
-
+  mediaStyle :any = 'img style=\" max-width: 300px \"'
   tab: any = null
 }
 
