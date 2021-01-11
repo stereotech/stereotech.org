@@ -32,11 +32,6 @@
                     <h3 class="font-weight-light">{{ item.name }}</h3>
                     <br />
                     <p>{{ item.description }}</p>
-                    <p v-for="(key, index) in item.keys" :key="index">
-                      <v-icon color="primary">mdi-chevron-right</v-icon>
-                      {{ key.value.key }}
-                    </p>
-                    <slot />
                   </v-col>
                 </v-row>
               </v-container>

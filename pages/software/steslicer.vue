@@ -5,12 +5,16 @@
         <ProductBanner
           image="/software/steslicer/banner.jpg"
           :title="$t('Уникальное программное обеспечение для 5D печати')"
-          :description="$tc('Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.')"
+          :description="
+            $tc(
+              'Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.'
+            )
+          "
         />
       </v-col>
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title>{{$t('Запросить демо')}}</v-card-title>
+          <v-card-title>{{ $t("Запросить демо") }}</v-card-title>
           <v-card-text>
             <v-container fluid>
               <v-row justify="center">
@@ -26,24 +30,39 @@
         </v-card>
       </v-col>
       <v-col cols="12" lg="10">
-        <KeyFeatures :title="$tc('Особенности STE Slicer')" :items="keyFeatures" />
+        <KeyFeatures
+          :title="$tc('Особенности STE Slicer')"
+          :items="keyFeatures"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/software/steslicer/manual.jpg"
           :title="$tc('Быстрый старт')"
-          :description="$tc('Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer')"
+          :description="
+            $tc(
+              'Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer'
+            )
+          "
           link="/support/manuals/steslicer"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title>{{$t('Программа предварительного тестирования')}}</v-card-title>
+          <v-card-title>{{
+            $t("Программа предварительного тестирования")
+          }}</v-card-title>
           <v-card-text>
             <v-container fluid>
               <v-row justify="center">
                 <v-col cols="12">
-                  <p>{{$t('Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения')}}</p>
+                  <p>
+                    {{
+                      $t(
+                        "Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения"
+                      )
+                    }}
+                  </p>
                 </v-col>
                 <v-col cols="12" lg="4">
                   <TestingForm
@@ -83,17 +102,17 @@ import { DownloadLink } from '~/types/download'
   }
 })
 export default class SteSlicer extends Vue {
-  get keyFeatures(): KeyFeature[] {
+  get keyFeatures (): KeyFeature[] {
     return [
       {
-      name: this.$tc('Режимы слайсинга'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steslicer/printing_modes.jpg',
-      description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
-      keys: [this.$tc('Различные режимы слайсинга'),
-      this.$tc('Настройки для каждого из режимов слайсинга'),
-      ]
-    },
+        name: this.$tc('Режимы слайсинга'),
+        mediaType: MediaType.image,
+        mediaSource: 'software/steslicer/printing_modes.jpg',
+        description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
+        keys: [this.$tc('Различные режимы слайсинга'),
+        this.$tc('Настройки для каждого из режимов слайсинга'),
+        ]
+      },
       {
         name: this.$tc('Простота использования'),
         mediaType: MediaType.image,
@@ -114,20 +133,9 @@ export default class SteSlicer extends Vue {
       }
     ]
   }
-  get downloadLinks(): DownloadLink[] {
-    return [
-      {
-        name: this.$tc('Загрузить для Windows x64'),
-        icon: 'mdi-download',
-        description: this.$tc('Доступно для Windows Vista и выше, 64-бит'),
-        version: this.$tc('Версия ') + this.version,
-        download: `http://software.stereotech.org/steslicer/stable/Stereotech%20STE%20Slicer-${this.version}-win64.exe`
-      }
-    ]
-  }
+
   async mounted () {
-    this.version = await this.$axios.$get('http://software.stereotech.org/steslicer/stable/latest.version')
-    this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
+
 
   }
 
