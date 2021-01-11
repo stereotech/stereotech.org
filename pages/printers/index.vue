@@ -6,10 +6,19 @@
           fullsize
           image="/printers/desktop/banner.jpg"
           :title="$tc('Принтеры, открывающие новые возможности')"
-          :description="$tc('Настольные 3D и 5D принтеры, повышающие эффективность производства и способные решить задачи, недоступные другим 3D принтерам')"
+          :description="
+            $tc(
+              'Настольные 3D и 5D принтеры, повышающие эффективность производства и способные решить задачи, недоступные другим 3D принтерам'
+            )
+          "
         />
       </v-col>
-      <v-col cols="12" lg="10" v-for="(printer, index) in printers" :key="index">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="(printer, index) in printers"
+        :key="index"
+      >
         <ProductCard
           :image="printer.image"
           :title="printer.title"
@@ -46,24 +55,30 @@ import YoutubeChannel from '~/components/YoutubeChannel.vue'
   }
 })
 export default class Printers extends Vue {
-  get printers(): {
+  get printers (): {
     image: string,
     title: string,
     description: string,
     link: string
   }[] {
     return [
-      {      image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
-      description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
-      link: '/printers/series3'    },
-      {      image: '/printers/desktop/series5.jpg',
-      title: this.$tc('Серия 5хх'),
-      description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
-      link: '/printers/series5'    },
-      {      image: '/printers/desktop/special.jpg',
-      title: this.$tc('Специальная серия'),
-      description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
-      link: '/printers/special'    }
+      {
+        image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
+        description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
+        link: '/printers/series3'
+      },
+      {
+        image: '/printers/desktop/series5.jpg',
+        title: this.$tc('Серия 5хх'),
+        description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
+        link: '/printers/series5'
+      },
+      {
+        image: '/printers/desktop/special.jpg',
+        title: this.$tc('Специальная серия'),
+        description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
+        link: '/printers/special'
+      }
     ]
   }
 

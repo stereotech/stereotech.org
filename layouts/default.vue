@@ -72,7 +72,7 @@
               <v-container>
                 <v-row justify="center">
                   <template v-for="(childItem, childIndex) in menuItem.child">
-                    <v-col cols="4" :key="childIndex">
+                    <v-col cols="6" :key="childIndex">
                       <v-list dense nav class="primary--text">
                         <v-list-item
                           nuxt
@@ -363,6 +363,29 @@ export default class Layout extends Vue {
                 title: this.$tc('Серия 8хх'),
                 link: '/industrial/series8',
                 description: this.$tc('Восьмиосевое устройство для специальных задач')
+              }
+            ]
+          },
+          {
+            title: this.$tc('Материалы для печати'),
+            link: '/materials',
+            icon: '/materials/proto.jpg',
+            child: [
+              {
+                title: 'Sealant',
+                link: '/materials/sealant'
+              },
+              {
+                title: 'Fiberpart',
+                link: '/materials/fiberpart'
+              },
+              {
+                title: 'Enduse',
+                link: '/materials/induse'
+              },
+              {
+                title: 'Proto',
+                link: '/materials/proto'
               }
             ]
           },
