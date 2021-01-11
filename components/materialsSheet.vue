@@ -11,14 +11,16 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table
-      :headers="tableHeaders"
-      :items="tableData"
-      :dense="true"
-      :search="search"
-      :mobile-breakpoint="0"
-      fixed-header
-    ></v-data-table>
+    <v-card-text>
+      <v-data-table
+        :headers="tableHeaders"
+        :items="tableData"
+        :dense="true"
+        :search="search"
+        :mobile-breakpoint="0"
+        fixed-header
+      ></v-data-table>
+    </v-card-text>
   </v-card>
 </template>
 

@@ -391,7 +391,7 @@ export default class Layout extends Vue {
               },
               {
                 title: 'Enduse',
-                link: '/materials/induse'
+                link: '/materials/enduse'
               },
               {
                 title: 'Proto',
@@ -537,8 +537,13 @@ export default class Layout extends Vue {
 }
 </script>
 
-<style scoped>
+<style>
 .nuxt-link-exact-active {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nuxt-link-active {
   color: #ffffff;
   text-decoration: none;
 }
