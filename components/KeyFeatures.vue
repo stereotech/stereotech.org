@@ -77,7 +77,7 @@ export default class KeyFeatures extends Vue {
         }
       });
     }
-    link = link.replace(/\/storage/gm, 'https://api2.stereotech.org/storage').replaceAll(' ', '-')
+    link = link.replace(/\/storage/gm, 'https://api2.stereotech.org/storage').replace(/\s/gm, '-')
     return link
   }
 }
