@@ -56,7 +56,7 @@ import { KeyFeature, MediaType } from '~/types/keyFeature'
 export default class KeyFeatures extends Vue {
   @Prop({ type: String, default: 'Title' }) title!: string
   @Prop({ type: Array, default: () => { return [] } }) items!: any[]
-
+  mediaStyle: any = 'img style=\" max-width: 300px \"'
   tab: any = null
 
   link (item: any): string {
