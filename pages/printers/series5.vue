@@ -42,7 +42,7 @@
       </v-col>
 
       <v-col cols="12" lg="10" v-if="product">
-        <FullSpecs :attributes="product.attributes" />
+        <FullSpecs :specXd="spec5d" />
       </v-col>
       <v-col cols="12" lg="10">
         <materialsSheet />
@@ -92,6 +92,30 @@ import gql from 'graphql-tag'
   }
 })
 export default class Series5 extends Vue {
+  private spec5d: any[] = []
+  private features: any[] = []
+  private reasonsToUse: any[] = []
+  private async getFulSpec5() {
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    //console.log(data)
+    this.spec5d = data.entries.filter(v => /^5/.test(v.model))
+  }
+
+  private async getFeatures(){
+    let data1
+    let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`)
+    data1 = await response1.json()
+    this.features = data1.entries
+  }
+
+  private async getReasonsToUse(){
+    let data2
+    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`)
+    data2 = await response2.json()
+    this.reasonsToUse = data2.entries
+  }
   get printerItems (): PrinterVariant[] {
     return [
       {
@@ -137,169 +161,6 @@ export default class Series5 extends Vue {
     ]
   }
 
-  get features (): KeyFeature[] {
-    return [
-      {
-        name: this.$tc('Прочность изделий'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/strengthDiagram.jpg',
-        description: this.$tc('Благодаря свойству ориентации полимеров, технология 5Dtech повышает прочность на изгиб и сжатие. Получайте детали:'),
-        keys: [this.$tc('До х4 раз прочнее, чем 3D'), this.$tc('на 32% прочнее, чем литье*')]
-      },
-      {
-        name: this.$tc('Армированная структура'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/3dStructure.jpg',
-        description: this.$tc('Благодаря объемной, а не послойной укладке нитей, технология 5Dtech армирует структуру изделия. Используйте это преимущество при печати непрерывными волокнами и создавайте беспрецедентно прочные квазиизотропные изделия.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Печать без поддержек'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/dd.jpg',
-        description: this.$tc('Благодаря многоосевой кинематике, технология 5Dtech  позволяет либо полностью обойтись, либо существенно сократить поддержки под нависающими элементами изделия, что повышает скорость производства, сокращает время на постобработку и обеспечивает экономию материала до 70%.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Высокая скорость'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/speed.jpg',
-        description: this.$tc('За счет оптимизации путей перемещения (более длинных участков заполнения, на которых принтер успевает набрать заданную скорость) скорость 5D печати выше до 2 раз, по сравнению с 3D печатью.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Печать по любой поверхности'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/printingOnRig.jpg',
-        description: this.$tc('В отличие от классической 3D печати, технология 5Dtech может печатать на любой поверхности. Используйте специальную оснастку для серийного производства изделий или заготовку, которая станет частью будущего изделия – теперь Вы можете создавать композитные детали с металлическим армированием.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Простота использования'),
-        mediaType: MediaType.video,
-        mediaSource: '/printers/Stereotech STE Slicer 2020-04-13 12-28-09.mp4',
-        description: this.$tc('Алгоритмы технологии 5Dtech обеспечивают автоматическую подготовку деталей к многоосевой печати, в отличие от промышленных решений, где требуется сложная ручная CAM подготовка управляющей программы. Печатать также просто, как на обычном 3D принтере.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Без ограничений'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/CAD mesh model.jpg',
-        description: this.$tc('Используйте привычные программы для CAD моделирования. Программное обеспечение STE Slicer работает с общим форматом для 3D печати – STL, в отличие от промышленных решений, которые работают только с проприетарными форматами CAD моделей при подготовке к многоосевой печати.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Широкий набор возможностей'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/printingModes 5D tech.jpg',
-        description: this.$tc('5D принтер и программное обеспечение STE Slicer позволяют работать с несколькими режимами печати и комбинировать их. Используйте режимы Классический / Навивка /С изменением направления /По поверхности для решения любого спектра задач.'),
-        keys: []
-      }
-    ]
-  }
-
-  get reasonsToUse (): KeyFeature[] {
-    return [
-      {
-        name: this.$tc('Удобный 5” сенсорный экран '),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/Screen 5 inch.jpg',
-        description: this.$tc('Большой и удобный 5 дюймовый цветной сенсорный экран. Мгновенно получайте информацию о текущей печати и управляйте принтером наиболее интуитивным способом - с помощью тапов и свайпов'),
-        keys: []
-      },
-      {
-        name: this.$tc('Двойной экструдер для печати с растворимыми поддержками'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/doubleExtruder.jpg',
-        description: this.$tc('Простой и надежный двойной экструдер способен поддерживать температуру до 320°С и обеспечивает высокое качество печати любой сложности – используйте печать с растворимыми поддержками или абразивные материалы с набором легкозаменяемых принтблоков.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Принтблоки для печати'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/printblocks.jpg',
-        description: this.$tc('Принтеры Stereotech оснащены принтблоками для быстрого и безопасного обслуживания экструдера. В стандартный набор включены 4 принтблока – 2 для печати модельными пластиками, и 2 – для печати техническими, с цельнометаллическим термобарьером'),
-        keys: []
-      },
-      {
-        name: this.$tc('Производительная электроника'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/STE Board.jpg',
-        description: this.$tc('Встроенный компьютер с 64-битным четырёхъядерным процессором ARM Cortex-A53 и оперативной памятью 1ГБ для быстрой, бесшумной (до 50 Дба) и стабильной работы'),
-        keys: []
-      },
-      {
-        name: this.$tc('Стильный современный дизайн'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/stylish.jpg',
-        description: this.$tc('Лаконичный вид, корпус из 4 мм светопропускающего акрила высокого класса и белый цвет – принтер органично впишется в любой интерьер помещения.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Световая индикация и подсветка'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/indication.jpg',
-        description: this.$tc('Шестицветная световая индикация и светодиодная RGBW подсветка рабочей зоны – для приятной и комфортной работы с принтером.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Закрытая камера и большая область печати'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/child.jpg',
-        description: this.$tc('Закрытая камера с системой вентиляции обеспечивает безопасность пользователей, стабильную работу и результат печати. Область печати в модельном ряду принтеров Stereotech достигает 400х310х300 мм'),
-        keys: []
-      },
-      {
-        name: this.$tc('Компактное расположение катушек с филаментом'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/foto-11.jpg',
-        description: this.$tc('Удобное использование, сушка филамента и хранение больших катушкек до 1кг внутри корпуса'),
-        keys: []
-      },
-      {
-        name: this.$tc('Печать с катушек от 2,5 кг и более'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/withoutPhone.jpg',
-        description: this.$tc('Используйте катушки с филаментом от 2,5 кг для масштабной печати – просто разместите катушки снаружи принтера и подавайте нить через сервисное окно.'),
-        keys: []
-      },
-      {
-        name: 'WiFi, Ethernet и USB',
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/WiFi.jpg',
-        description: this.$tc('Множество вариантов сетевого и автономного управления – по WiFi, Ethernet и USB'),
-        keys: []
-      },
-      {
-        name: this.$tc('Надежные брендовые комплектующие'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/raspberry.jpg',
-        description: this.$tc('Прочная рама принтера из алюминиевого сплава 6063, точные профильные направляющие Hiwin MGN9, блок питания Meanwell, мощные и надежные вентиляторы Sunon, компьютер Raspberry Pi 3 и другие компоненты принтера от известных брендов – все для надежной и продолжительной работы.'),
-        keys: []
-      },
-      {
-        name: this.$tc('Удобная система управления STE App'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/easyWork.jpg',
-        description: '3D принтеры Stereotech оснащены системой STE App. С ее помощью управляйте 3D принтерами и процессом печати в единой сети через любое устройство: экран 3D принтера Stereotech, Android приложение для смартфона или планшета, или приложение на ПК. Встроенная система управления с менеджерами помощи в обслуживании – для легкой работы с принтером.',
-        keys: []
-      },
-      {
-        name: this.$tc('Высокая точность и разрешение печати'),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/permission.jpg',
-        description: this.$tc('Используйте возможности принтеров Stereotech –Толщина слоя от 10 мкм позволит создавать по-настоящему детализированные объекты!'),
-        keys: []
-      },
-      {
-        name: this.$tc('Широкий выбор расходных материалов '),
-        mediaType: MediaType.image,
-        mediaSource: '/printers/10reasons/products.jpg',
-        description: this.$tc('Печатающая головка с температурой нагрева до 320°С и подогреваемый рабочий стол с температурой нагрева до 120°С обеспечит печать даже такими конструкционными полимерами, как PC. Принтблоки для модельных и инженерных пластиков позволяют печатать любыми филаментами – от классического PLA до стеклонаполненных и угленаполненных полиуретанов и поликарбонатов.'),
-        keys: []
-      }
-    ]
-  }
   currentPrinter: PrinterVariant | null = null
 
   product: any = {}
@@ -342,7 +203,9 @@ export default class Series5 extends Vue {
     this.product = result.data.product
     this.product.price = Number(this.product.price)
     this.currentPrinter = this.printerItems[0]
-
+    await this.getFulSpec5()
+    await this.getFeatures()
+    await this.getReasonsToUse()
   }
 }
 

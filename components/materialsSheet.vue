@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      {{$t('Поддерживаемые материалы для печати')}}
+      {{ $t("Поддерживаемые материалы для печати") }}
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -11,14 +11,16 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table
-      :headers="tableHeaders"
-      :items="tableData"
-      :dense="true"
-      :search="search"
-      :mobile-breakpoint="0"
-      fixed-header
-    ></v-data-table>
+    <v-card-text>
+      <v-data-table
+        :headers="tableHeaders"
+        :items="tableData"
+        :dense="true"
+        :search="search"
+        :mobile-breakpoint="0"
+        fixed-header
+      ></v-data-table>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -66,7 +68,7 @@ export default class materialsSheet extends Vue {
     } else {
       this.tableHeaders = []
     }
-    //console.log(this.tableHeaders)
+
     this.tableData = newRows.map(r => {
       const entries = new Map(r.map((v, index) => {
         return [this.tableHeaders[index].value, v]
@@ -74,7 +76,7 @@ export default class materialsSheet extends Vue {
       const item = Object.fromEntries(entries)
       return item
     })
-    //console.log(this.tableData)
+
 
   }
 

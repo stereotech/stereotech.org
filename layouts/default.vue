@@ -49,19 +49,19 @@
         <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
-        <nuxt-link to="/">
-        <span
-          :class="`font-weight-medium ${
-            $vuetify.theme.dark ? 'white--text' : 'accent--text'
-          }`"
-          >Stereo</span
-        >
-        <span
-          :class="`font-weight-medium ml-n1 ${
-            $vuetify.theme.dark ? 'grey--text' : 'primary--text'
-          }`"
-          >tech</span
-        >
+        <nuxt-link no-prefetch :to="localePath('/')">
+          <span
+            :class="`font-weight-medium ${
+              $vuetify.theme.dark ? 'white--text' : 'accent--text'
+            }`"
+            >Stereo</span
+          >
+          <span
+            :class="`font-weight-medium ml-n1 ${
+              $vuetify.theme.dark ? 'grey--text' : 'primary--text'
+            }`"
+            >tech</span
+          >
         </nuxt-link>
       </v-toolbar-title>
 
@@ -82,7 +82,7 @@
               <v-container>
                 <v-row justify="center">
                   <template v-for="(childItem, childIndex) in menuItem.child">
-                    <v-col cols="4" :key="childIndex">
+                    <v-col cols="6" :key="childIndex">
                       <v-list dense nav class="primary--text">
                         <v-list-item
                           nuxt
@@ -363,6 +363,29 @@ export default class Layout extends Vue {
             ]
           },
           {
+            title: this.$tc('Материалы для печати'),
+            link: '/materials',
+            icon: '/materials/proto.jpg',
+            child: [
+              {
+                title: 'Sealant',
+                link: '/materials/sealant'
+              },
+              {
+                title: 'Fiberpart',
+                link: '/materials/fiberpart'
+              },
+              {
+                title: 'Enduse',
+                link: '/materials/enduse'
+              },
+              {
+                title: 'Proto',
+                link: '/materials/proto'
+              }
+            ]
+          },
+          {
             title: this.$tc('Программное обеспечение'),
             link: '/software',
             icon: 'printers/software/steapp.webp',
@@ -524,8 +547,14 @@ export default class Layout extends Vue {
 }
 </script>
 
-<style scoped>
+<style>
+.nuxt-link-exact-active {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .nuxt-link-active {
-  color: rgba(0, 0, 0, 0);
+  color: #ffffff;
+  text-decoration: none;
 }
 </style>

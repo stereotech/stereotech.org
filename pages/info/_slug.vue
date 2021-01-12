@@ -49,41 +49,18 @@ export default class AboutStereotech extends Vue {
     return this.$route.params.slug == 'media'
   }
 
-  addresses: Seller[] = [
-    {
-      name: 'Stereotech',
-      logo: { path: '/resellers/stereotech.jpg' },
-      email: 'info@5dtech.pro',
-      website: 'https://5dtech.pro',
-      region: 'Волгоградская область',
-      country: 'Российская Федерация',
-      address: 'г. Волгоград, ул. Огарева, д. 2',
-      type: SellerType.Manufacturer,
-      coords: { lat: 48.692225,  lng: 44.498048}
-    },
-    {
-      name: 'ATSS Group',
-      logo: { path: '/resellers/atss.jpg' },
-      email: 'info@atssgroup.com',
-      website: 'http://atssgroup.com',
-      region: 'Москва',
-      country: 'Российская Федерация',
-      address: 'г. Москва, Волоколамское шоссе, д. 2',
-      type: SellerType.Distributor,
-      coords: { lat: 55.807476, lng: 37.505292}
-    },
-    {
-      name: 'Capvidia Belgium',
-      logo: { path: '/resellers/capvidia.jpg' },
-      email: 'info@capvidia.com',
-      website: 'http://capvidia.com',
-      region: 'Левен',
-      country: 'Бельгия',
-      address: 'Technologielaan 3 B-3001 Leuven',
-      type: SellerType.Distributor,
-      coords: { lat: 50.8540782, lng: 4.727265}
-    },
-  ]
+  addresses: Seller[] = []
+
+  private async getAddresses() {
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/addresses?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    this.addresses = data.entries
+  }
+
+  async mounted(){
+    await this.getAddresses()
+  }
 }
 
 </script>

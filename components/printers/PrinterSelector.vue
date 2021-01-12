@@ -26,12 +26,15 @@
               :key="index"
               :value="variant"
               color="primary"
+              class="text-truncate"
             >
               <template v-slot:label>
-                <v-list-item>
+                <v-list-item class="text-truncate">
                   <v-list-item-content>
-                    <v-list-item-title>{{ variant.name }}</v-list-item-title>
-                    <v-list-item-subtitle>{{
+                    <v-list-item-title class="text-truncate">{{
+                      variant.name
+                    }}</v-list-item-title>
+                    <v-list-item-subtitle class="text-truncate">{{
                       variant.description
                     }}</v-list-item-subtitle>
                   </v-list-item-content>
