@@ -26,12 +26,15 @@
               :key="index"
               :value="variant"
               color="primary"
+              class="text-truncate"
             >
               <template v-slot:label>
-                <v-list-item>
+                <v-list-item class="text-truncate">
                   <v-list-item-content>
-                    <v-list-item-title>{{ variant.name }}</v-list-item-title>
-                    <v-list-item-subtitle>{{
+                    <v-list-item-title class="text-truncate">{{
+                      variant.name
+                    }}</v-list-item-title>
+                    <v-list-item-subtitle class="text-truncate">{{
                       variant.description
                     }}</v-list-item-subtitle>
                   </v-list-item-content>
@@ -243,20 +246,20 @@ export default class PrinterSelector extends Vue {
     description: string,
     value: FiveAxisType
   } = {
-    name: '',
-    description: '',
-    value : FiveAxisType.Normal
-  }
-  
+      name: '',
+      description: '',
+      value: FiveAxisType.Normal
+    }
+
   currentPrintVolume: {
     name: string,
     description: string,
     value: PrintVolumeType
   } = {
-    name: '',
-    description: '',
-    value: PrintVolumeType.Standard
-  }
+      name: '',
+      description: '',
+      value: PrintVolumeType.Standard
+    }
 
   changeExtruder (value: any) {
     this.$emit('change', this.items.find(v => (v.extruderType === value.value
