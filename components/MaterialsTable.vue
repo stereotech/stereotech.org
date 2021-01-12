@@ -31,8 +31,11 @@ import { Material, MaterialSpec, MaterialSpecValue } from '~/types/materials.ts'
 
 @Component
 export default class MaterialsTable extends Vue {
+
   @Prop({ type: String, default: 'Title' }) title!: string
-  @Prop({ type: Array, default: () => { return [] } }) materialSpecValues!: MaterialSpecValue[]
+  @Prop({ type: Array, default: () => { return [] } }) materials!: Material[]
+  @Prop({ type: Array, default: () => { return [] } }) specs!: MaterialSpec[]
+
 
   get tableHeaders (): {
     text: string,
@@ -59,7 +62,7 @@ export default class MaterialsTable extends Vue {
           value: 'description'
         }
       ]
-    this.techSpecs.forEach(s => {
+    this.specs.forEach(s => {
       headers.push({
         text: `${s.name}, ${s.unit}`,
         value: s._id
@@ -70,33 +73,17 @@ export default class MaterialsTable extends Vue {
   private search: string = ""
 
   get tableData (): any {
-    let data = []
-    this.materials.forEach(m => {
+    let data: any[] = []
+    data = this.materials.map(m => {
       let item: any = m
-
+      m.tech_specs.forEach(s => {
+        if (s.spec) {
+          item[s.spec._id || ''] = s.value
+        }
+      })
+      return item
     })
     return data
-  }
-
-  get materials (): Material[] {
-    let materials: Material[] = []
-    this.materialSpecValues.forEach(v => {
-      if (!materials.includes(v.material)) {
-        materials.push(v.material)
-      }
-    })
-    return materials
-  }
-
-  get techSpecs (): MaterialSpec[] {
-    let specs: MaterialSpec[] = []
-    this.materialSpecValues.forEach(v => {
-      if (!specs.includes(v.spec)) {
-        specs.push(v.spec)
-      }
-    })
-    console.log(specs)
-    return specs
   }
 
 }

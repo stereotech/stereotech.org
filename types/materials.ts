@@ -5,6 +5,7 @@ export interface Material {
     description?: string
     _id: string
     our_brand: boolean
+    tech_specs: MaterialSpecValue[]
 }
 
 export interface MaterialSpec {
@@ -14,13 +15,6 @@ export interface MaterialSpec {
 }
 
 export interface MaterialSpecValue {
-    material: Material
-    spec: MaterialSpec
+    spec?: MaterialSpec
     value?: string
-}
-
-export interface MaterialEntry {
-    _id: string
-    display: string
-    link: string
 }
