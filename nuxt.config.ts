@@ -126,6 +126,7 @@ const config: NuxtConfig = {
     BITRIX_SEC: process.env.BITRIX_SEC || '',
     MATERIAL_TABLE_ID: process.env.MATERIAL_TABLE_ID || '',
     MATERIAL_TABLE_KEY: process.env.MATERIAL_TABLE_KEY || '',
+    REPLAIN_CHAT_ID: process.env.REPLAIN_CHAT_ID || '',
     COCKPIT_TOKEN: process.env.COCKPIT_TOKEN || ''
   },
   manifest: {
@@ -204,9 +205,11 @@ const config: NuxtConfig = {
           }
         }
       `
-      return client({ query }).then(result => {
+      return client({ query }).then((result) => {
         const { data } = result
-        let routes = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        const mapped = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
+        let routes: string[] = []
+        routes.push(...mapped)
         routes.push('/info', '/info/team', '/info/address', '/info/media')
         routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
         return routes

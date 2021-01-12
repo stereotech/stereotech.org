@@ -108,7 +108,7 @@ export default class PrinterSelector extends Vue {
         model: '',
         image: '',
         printerType: PrinterType.ThreeAxis,
-        extruderType: ExtruderType.Single,
+        extruderType: ExtruderType.Dual,
         printVolumeType: PrintVolumeType.Standard,
         fiveAxisType: FiveAxisType.Normal,
         description: '',
@@ -190,7 +190,7 @@ export default class PrinterSelector extends Vue {
   } = {
       name: '',
       description: '',
-      value: ExtruderType.Single
+      value: ExtruderType.Dual
     }
 
   get printVolumeVariants (): {

@@ -45,7 +45,7 @@
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <v-avatar size="36px" class="mr-2">
+      <v-avatar size="36px" class="mx-1">
         <img src="ste-logo.png" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
@@ -260,24 +260,6 @@
                     >
                       <v-list-item-title>{{ child.title }}</v-list-item-title>
                     </v-list-item>
-                    <v-list-item
-                      v-if="index == 3"
-                      href="http://download.stereotech.org/documents/%D0%A0%D0%B5%D0%BA%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D1%8B.pdf"
-                      target="_blank"
-                    >
-                      <v-list-item-title>{{
-                        $t("Реквизиты")
-                      }}</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item
-                      v-if="index == 3"
-                      href="http://download.stereotech.org/documents/2020+%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B+%D0%A1%D0%9E%D0%A3%D0%A2.pdf"
-                      target="_blank"
-                    >
-                      <v-list-item-title>{{
-                        $t("Результаты СОУТ")
-                      }}</v-list-item-title>
-                    </v-list-item>
                   </v-list>
                 </v-col>
               </v-row>
@@ -286,20 +268,23 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="6" lg="3">
-            <a href="http://sk.ru/" target="_blank">
+            <a href="https://navigator.sk.ru/orn/1122828" target="_blank">
               <v-img
                 height="64"
                 contain
-                :src="`http://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
+                :src="`https://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
               />
             </a>
           </v-col>
           <v-col cols="6" lg="3">
-            <a href="http://fasie.ru/" target="_blank">
+            <a
+              href="http://fasie.ru/press/fund/volgogradskaya-kompaniya-stereotek-razrabotala-5d-printer-dlya-pechati-raskhodnykh-chastey-promoboru/"
+              target="_blank"
+            >
               <v-img
                 height="64"
                 contain
-                src="http://fasie.ru/local/templates/.default/markup/img/footer_logo_fasie.png"
+                src="https://online.fasie.ru/images/logo.png"
               />
             </a>
           </v-col>
@@ -320,7 +305,8 @@ export interface MenuItem {
   child?: MenuItem[]
 }
 
-@Component
+@Component({
+})
 export default class Layout extends Vue {
 
   private get currentYear () {
@@ -494,6 +480,10 @@ export default class Layout extends Vue {
                 link: '/info/media'
               }
             ]
+          },
+          {
+            title: this.$tc('Документы'),
+            link: '/info/documents'
           }
         ]
 
@@ -529,8 +519,28 @@ export default class Layout extends Vue {
     window.location.href = lang.path
   }
 
+  elementId = 'replain-script'
+
   get lang () {
     return this.$i18n.locale
+  }
+
+  mounted () {
+    if (process.client) {
+      //@ts-ignore
+      window.replainSettings = {
+        id: process.env.REPLAIN_CHAT_ID
+      }
+      let element = document.getElementById(this.elementId);
+      if (element) {
+        //@ts-ignore
+        element.parentNode.removeChild(element);
+      }
+      let reScript = document.createElement('script')
+      reScript.setAttribute('src', 'https://widget.replain.cc/dist/client.js')
+      reScript.setAttribute('id', this.elementId)
+      document.head.appendChild(reScript)
+    }
   }
 
 

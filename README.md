@@ -1,4 +1,4 @@
-# ste-promo
+# stereotech.org
 
 > Stereotech - 5D Additive Manufacturing
 

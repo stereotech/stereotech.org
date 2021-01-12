@@ -9,6 +9,7 @@ on:
     branches: [master, develop]
   pull_request:
     branches: [master, develop]
+  repository_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,6 +29,8 @@ jobs:
       BITRIX_SEC: ${{ secrets.BITRIX_SEC }}
       MATERIAL_TABLE_ID: ${{ secrets.MATERIAL_TABLE_ID }}
       MATERIAL_TABLE_KEY: ${{ secrets.MATERIAL_TABLE_KEY }}
+      REPLAIN_CHAT_ID: ${{ secrets.REPLAIN_CHAT_ID }}
+      COCKPIT_TOKEN: ${{ secrets.COCKPIT_TOKEN }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -76,14 +79,13 @@ jobs:
       - uses: actions/download-artifact@v2.0.5
         with:
           name: public
-          path: public
 
       - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
           ftp_host: ${{ secrets.FTP_SERVER }}
           ftp_username: ${{ secrets.FTP_USERNAME }}
           ftp_password: ${{ secrets.FTP_PASSWORD }}
-          local_source_dir: "public"
+          local_source_dir: "./"
           dist_target_dir: "./"
           delete: "true"
           other_flags: "--parallel=10"
