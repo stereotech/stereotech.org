@@ -26,7 +26,7 @@
           >
             <v-card-title
               class="hidden-sm-and-down display-1 font-weight-light text-break"
-              v-html="post.name"
+              v-html="post.postName"
             ></v-card-title>
             <v-card-title class="hidden-md-and-up font-weight-light text-break" v-html="post.postName"></v-card-title>
           </v-img>
@@ -55,11 +55,14 @@ import { Context } from '@nuxt/types'
     // let client = context.app.apolloProvider.defaultClient
 
     const id = context.params.id
+    let subLink = "https:\/\/api2.stereotech.org\/storage"
+    let imageWidth = "img style=\" max-width: 800px \""
     let post
     let data
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/blog?token=${process.env.COCKPIT_TOKEN}`)
     data = await response.json()
     post = data.entries.filter(v => v._id==id)[0]
+    post.description = post.description.replace(/\/storage/gm, subLink).replace(/img/gm, imageWidth)
     console.log(post)
     // let result = await client.query({
     //   query: gql`query($id: ID!){
