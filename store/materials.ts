@@ -54,7 +54,7 @@ export const actions: ActionTree<MaterialsState, RootState> = {
         commit('setSpecs', techSpecs)
         let specs = await (await fetch(`https://api2.stereotech.org/api/collections/get/filament_to_spec_description?token=${process.env.COCKPIT_TOKEN}`)).json()
         specs = specs.entries
-        specs.forEach(s => {
+        specs.forEach((s: { filament: { _id: string; }; spec_description: { _id: string; }; value: any; }) => {
             let material = materials.find(m => m._id === s.filament._id)
             if (material) {
                 if (!material.tech_specs) {
