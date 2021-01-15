@@ -45,7 +45,11 @@
         <FullSpecs :specXd="spec5d" />
       </v-col>
       <v-col cols="12" lg="10">
-        <materialsSheet />
+        <MaterialsTable
+          title="Сравнение материалов"
+          :materials="ourBrandMaterials"
+          :specs="specs"
+         />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
         <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
@@ -68,9 +72,14 @@ import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
 import { KeyFeature, MediaType } from '~/types/keyFeature'
-import materialsSheet from '~/components/materialsSheet.vue'
+import MaterialsTable from '~/components/MaterialsTable.vue'
+//import materialsSheet from '~/components/materialsSheet.vue'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
+import { Material, MaterialSpec } from '~/types/materials'
+import { namespace } from 'vuex-class'
+
+const materials = namespace('materials')
 
 @Component({
   components: {
@@ -85,13 +94,19 @@ import gql from 'graphql-tag'
     ApplicationsPanel,
     ServiceBenefits,
     KeyFeatures,
-    materialsSheet
+    MaterialsTable
+    //materialsSheet
   },
   head: {
     title: 'Серия 5xx'
   }
 })
 export default class Series5 extends Vue {
+
+  @materials.State filled!: boolean
+  @materials.Action loadMaterialsData!: any
+  @materials.Getter ourBrandMaterials!: any
+  @materials.Getter specs!: MaterialSpec[]
   private spec5d: any[] = []
   private features: any[] = []
   private reasonsToUse: any[] = []
@@ -206,7 +221,11 @@ export default class Series5 extends Vue {
     await this.getFulSpec5()
     await this.getFeatures()
     await this.getReasonsToUse()
+    if (!this.filled) {
+      await this.loadMaterialsData()
+    }
   }
+  
 }
 
 </script>

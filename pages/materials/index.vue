@@ -16,7 +16,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
-          title="Сравление материалов"
+          title="Сравнение материалов"
           :materials="ourBrandMaterials"
           :specs="specs"
         />
