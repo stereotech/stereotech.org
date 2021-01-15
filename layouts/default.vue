@@ -329,11 +329,6 @@ export default class Layout extends Vue {
             icon: '/printers/desktop/series3.jpg',
             child: [
               {
-                title: this.$tc('Серия 3хх'),
-                link: '/printers/series3',
-                description: this.$tc('Профессиональные 3D принтеры')
-              },
-              {
                 title: this.$tc('Серия 5хх'),
                 link: '/printers/series5',
                 description: this.$tc('Инновационные 5D принтеры')
