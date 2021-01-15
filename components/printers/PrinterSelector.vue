@@ -90,6 +90,11 @@
               </template>
             </v-radio>
           </v-radio-group>
+          <v-col class="text-center text-sm-left">
+            <v-btn color="primary" @click="$vuetify.goTo('#buyPrinterForm')">{{$t("Заказать")}}</v-btn>
+
+            <v-btn color="accent" nuxt :to="localePath('/resellers')">{{$t("Где купить")}}</v-btn>
+          </v-col>
         </v-col>
       </v-row>
     </v-container>
