@@ -365,7 +365,7 @@ export default class Layout extends Vue {
           {
             title: this.$tc('Материалы для печати'),
             link: '/materials',
-            icon: '/materials/proto.jpg',
+            icon: '/materials/sealant.jpg',
             child: [
               {
                 title: 'Sealant',
