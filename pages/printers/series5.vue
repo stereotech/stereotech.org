@@ -115,7 +115,7 @@ export default class Series5 extends Vue {
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
     data = await response.json()
     //console.log(data)
-    this.spec5d = data.entries.filter(v => /^5/.test(v.model))
+    this.spec5d = data.entries.filter(v => /^5\d0 hybrid/i.test(v.model))
   }
 
   private async getFeatures(){
