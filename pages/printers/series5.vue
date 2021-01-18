@@ -54,6 +54,13 @@
       <v-col cols="12" lg="10" v-if="currentPrinter">
         <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
+      <v-col cols="12" lg="10">
+        <ProductCard
+          image='/materials/sealant.jpg'
+          title='Материалы для печати'
+          link="/materials"
+        />
+      </v-col>
     </v-row>
   </v-container>
 </template>
