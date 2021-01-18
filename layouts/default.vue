@@ -364,19 +364,23 @@ export default class Layout extends Vue {
             child: [
               {
                 title: 'Sealant',
-                link: '/materials/sealant'
+                link: '/materials/sealant',
+                description: this.$tc('Серия эластичных материалов для изготовления уплотнений, прокладок и гибких элементов')
               },
               {
                 title: 'Fiberpart',
-                link: '/materials/fiberpart'
+                link: '/materials/fiberpart',
+                description: this.$tc('Серия высокопрочных материалов, наполненных рубленым волокном')
               },
               {
                 title: 'Enduse',
-                link: '/materials/enduse'
+                link: '/materials/enduse',
+                description: this.$tc('Серия материалов, применимых для деталей конечного использования')
               },
               {
                 title: 'Proto',
-                link: '/materials/proto'
+                link: '/materials/proto',
+                description: this.$tc('Серия материалов для функциональных моделей и макетов')
               }
             ]
           },
