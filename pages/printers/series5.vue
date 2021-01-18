@@ -133,16 +133,16 @@ export default class Series5 extends Vue {
   }
   get printerItems (): PrinterVariant[] {
     return [
-      {
-        model: '520 Pro',
-        image: '/printers/desktop/series5.jpg',
-        buyImage: '/printers/desktop/series5_buy.jpg',
-        printerType: PrinterType.FiveAxis,
-        extruderType: ExtruderType.Dual,
-        printVolumeType: PrintVolumeType.StandardFiveAxis,
-        fiveAxisType: FiveAxisType.Normal,
-        description: this.$tc('Пятиосевой принтер для печати прочных деталей')
-      },
+      // {
+      //   model: '520 Pro',
+      //   image: '/printers/desktop/series5.jpg',
+      //   buyImage: '/printers/desktop/series5_buy.jpg',
+      //   printerType: PrinterType.FiveAxis,
+      //   extruderType: ExtruderType.Dual,
+      //   printVolumeType: PrintVolumeType.StandardFiveAxis,
+      //   fiveAxisType: FiveAxisType.Normal,
+      //   description: this.$tc('Пятиосевой принтер для печати прочных деталей')
+      // },
       {
         model: '520 Hybrid',
         image: '/printers/desktop/series5.jpg',
@@ -153,16 +153,16 @@ export default class Series5 extends Vue {
         fiveAxisType: FiveAxisType.Hybrid,
         description: this.$tc('Универсальный принтер для решения уникальных задач')
       },
-      {
-        model: '530 Pro',
-        image: '/printers/desktop/series5.jpg',
-        buyImage: '/printers/desktop/series5_buy.jpg',
-        printerType: PrinterType.FiveAxis,
-        extruderType: ExtruderType.Dual,
-        printVolumeType: PrintVolumeType.ExtendedFiveAxis,
-        fiveAxisType: FiveAxisType.Normal,
-        description: this.$tc('Пятиосевой принтер для печати прочных деталей с зоной печати 330x330x250 мм')
-      },
+      // {
+      //   model: '530 Pro',
+      //   image: '/printers/desktop/series5.jpg',
+      //   buyImage: '/printers/desktop/series5_buy.jpg',
+      //   printerType: PrinterType.FiveAxis,
+      //   extruderType: ExtruderType.Dual,
+      //   printVolumeType: PrintVolumeType.ExtendedFiveAxis,
+      //   fiveAxisType: FiveAxisType.Normal,
+      //   description: this.$tc('Пятиосевой принтер для печати прочных деталей с зоной печати 330x330x250 мм')
+      // },
       {
         model: '530 Hybrid',
         image: '/printers/desktop/series5.jpg',
