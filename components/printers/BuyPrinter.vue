@@ -40,7 +40,7 @@
               outlined
             ></v-text-field>
 
-            <v-btn :disabled="!valid" color="primary" @click="submit()" large>{{
+            <v-btn :disabled="!valid" color="primary" @click="submit1()" large>{{
               $t("Заказать")
             }}</v-btn>
           </v-form>
@@ -119,6 +119,36 @@ export default class BuyPrinter extends Vue {
   }
 
   private description = `Модель: ${this.variant.model}, Цена: ${this.price}`
+
+  private async submit1(){
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/buyPrinterForm?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        form: {
+          ИмяЗаказчика: `${this.orderName}`,
+          Телефон: `${this.phoneNumber}`,
+          Email: `${this.email}`,
+          НазваниеКомпании: `${this.companyName}`,
+          Модель: `${this.variant.model}`,
+          Цена: `${this.price}`
+        }
+      })
+    })
+    if(response.ok){
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
+      this.snackbarError = false
+      this.snackbar = true
+    }
+    else{
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
+      this.snackbarError = true
+      this.snackbar = true
+    }
+  }
+
   private async submit () {
 
     try {

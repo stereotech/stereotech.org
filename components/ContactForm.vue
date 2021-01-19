@@ -155,7 +155,7 @@ export default class ContactForm extends Vue {
 
   private async submit1(){
 
-    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/contactForm?token=${process.env.COCKPIT_TOKEN}`,{
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/techSupport?token=${process.env.COCKPIT_TOKEN}`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
