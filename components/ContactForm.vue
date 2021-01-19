@@ -58,7 +58,7 @@
           :disabled="!valid"
           color="primary"
           class="mr-4"
-          @click="submit()"
+          @click="submit1()"
           large
         >{{$t('Отправить запрос')}}</v-btn>
       </v-form>
@@ -152,6 +152,39 @@ export default class ContactForm extends Vue {
 
     return str
   } 
+
+  private async submit1(){
+
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/contactForm?token=${process.env.COCKPIT_TOKEN}`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        form: {
+          ФИО: `${this.name}`,
+          Email: `${this.email}`,
+          Телефон: `${this.phoneNumber}`,
+          Страна: `${this.country}`,
+          ТемаОбращения: `${this.apealTheme}`, 
+          ВидОбращения: `${this.problemType}`, 
+          СерийныйНомерУстройства: `${this.serialNumber}`, 
+          ОписаниеПроблемы: `${this.problemDescription}`
+        }
+      })
+    })
+    console.log(response)
+    if(response.ok){
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
+      this.snackbarError = false
+      this.snackbar = true
+    }
+    else{
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
+      this.snackbarError = true
+      this.snackbar = true
+    }
+  }
 
   private async submit () {
     const name = 'Техническая поддержка: ' + new Date().toString() + ' Обращение от ' + this.name + ''
