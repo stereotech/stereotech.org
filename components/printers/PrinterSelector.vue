@@ -11,8 +11,10 @@
           </p>
         </v-col>
 
-        <v-col cols="12" sm="6">
-          <v-img :src="`https://api2.stereotech.org/${model.image.path}`"></v-img>
+        <v-col cols="12" sm="6" v-if="model.image">
+          <v-img
+            :src="`https://api2.stereotech.org/${model.image.path}`"
+          ></v-img>
         </v-col>
         <v-col cols="12" sm="6">
           <v-radio-group
@@ -91,9 +93,13 @@
             </v-radio>
           </v-radio-group>
           <v-col class="text-center text-sm-left">
-            <v-btn color="primary" @click="$vuetify.goTo('#buyPrinterForm')">{{$t("Заказать")}}</v-btn>
+            <v-btn color="primary" @click="$vuetify.goTo('#buyPrinterForm')">{{
+              $t("Заказать")
+            }}</v-btn>
 
-            <v-btn color="accent" nuxt :to="localePath('/resellers')">{{$t("Где купить")}}</v-btn>
+            <v-btn color="accent" nuxt :to="localePath('/resellers')">{{
+              $t("Где купить")
+            }}</v-btn>
           </v-col>
         </v-col>
       </v-row>
@@ -111,13 +117,17 @@ export default class PrinterSelector extends Vue {
     type: Object, default: (): any => {
       return {
         model: '',
-        image: '',
+        image: {
+          path: ''
+        },
         printerType: PrinterType.ThreeAxis,
         extruderType: ExtruderType.Dual,
         printVolumeType: PrintVolumeType.Standard,
         fiveAxisType: FiveAxisType.Normal,
         description: '',
-        buyImage: ''
+        buyImage: {
+          path: ''
+        }
       }
     }
   }) model!: any

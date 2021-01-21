@@ -2,8 +2,12 @@ import { LocaleMessage } from 'vue-i18n';
 
 export interface PrinterVariant {
     model: string
-    image: string
-    buyImage?: string
+    image: {
+        path: string
+    } | string
+    buyImage?: {
+        path: string
+    } | string
     printerType: PrinterType
     extruderType: ExtruderType
     printVolumeType: PrintVolumeType
