@@ -12,7 +12,7 @@
         </v-col>
 
         <v-col cols="12" sm="6">
-          <v-img :src="model.image"></v-img>
+          <v-img :src="`https://api2.stereotech.org/${model.image.path}`"></v-img>
         </v-col>
         <v-col cols="12" sm="6">
           <v-radio-group
@@ -108,7 +108,7 @@ import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterTyp
 @Component
 export default class PrinterSelector extends Vue {
   @Model('change', {
-    type: Object, default: (): PrinterVariant => {
+    type: Object, default: (): any => {
       return {
         model: '',
         image: '',
@@ -120,8 +120,8 @@ export default class PrinterSelector extends Vue {
         buyImage: ''
       }
     }
-  }) model!: PrinterVariant
-  @Prop({ type: Array, default: () => { return [] } }) items!: PrinterVariant[]
+  }) model!: any
+  @Prop({ type: Array, default: () => { return [] } }) items!: any[]
   @Prop({ type: String, default: " " }) price!: String
 
 

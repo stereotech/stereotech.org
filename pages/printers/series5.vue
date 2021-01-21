@@ -114,9 +114,12 @@ export default class Series5 extends Vue {
   @materials.Action loadMaterialsData!: any
   @materials.Getter ourBrandMaterials!: any
   @materials.Getter specs!: MaterialSpec[]
+  currentPrinter: any = {}
+  product: any = {}
   private spec5d: any[] = []
   private features: any[] = []
   private reasonsToUse: any[] = []
+  private printerItems: any[] = []
   private async getFulSpec5() {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
@@ -138,93 +141,57 @@ export default class Series5 extends Vue {
     data2 = await response2.json()
     this.reasonsToUse = data2.entries
   }
-  get printerItems (): PrinterVariant[] {
-    return [
-      // {
-      //   model: '520 Pro',
-      //   image: '/printers/desktop/series5.jpg',
-      //   buyImage: '/printers/desktop/series5_buy.jpg',
-      //   printerType: PrinterType.FiveAxis,
-      //   extruderType: ExtruderType.Dual,
-      //   printVolumeType: PrintVolumeType.StandardFiveAxis,
-      //   fiveAxisType: FiveAxisType.Normal,
-      //   description: this.$tc('Пятиосевой принтер для печати прочных деталей')
-      // },
-      {
-        model: '520 Hybrid',
-        image: '/printers/desktop/series5.jpg',
-        buyImage: '/printers/desktop/series5_buy.jpg',
-        printerType: PrinterType.FiveAxis,
-        extruderType: ExtruderType.Dual,
-        printVolumeType: PrintVolumeType.StandardFiveAxis,
-        fiveAxisType: FiveAxisType.Hybrid,
-        description: this.$tc('Универсальный принтер для решения уникальных задач')
-      },
-      // {
-      //   model: '530 Pro',
-      //   image: '/printers/desktop/series5.jpg',
-      //   buyImage: '/printers/desktop/series5_buy.jpg',
-      //   printerType: PrinterType.FiveAxis,
-      //   extruderType: ExtruderType.Dual,
-      //   printVolumeType: PrintVolumeType.ExtendedFiveAxis,
-      //   fiveAxisType: FiveAxisType.Normal,
-      //   description: this.$tc('Пятиосевой принтер для печати прочных деталей с зоной печати 330x330x250 мм')
-      // },
-      {
-        model: '530 Hybrid',
-        image: '/printers/desktop/series5.jpg',
-        buyImage: '/printers/desktop/series5_buy.jpg',
-        printerType: PrinterType.FiveAxis,
-        extruderType: ExtruderType.Dual,
-        printVolumeType: PrintVolumeType.ExtendedFiveAxis,
-        fiveAxisType: FiveAxisType.Hybrid,
-        description: this.$tc('Универсальный принтер для решения уникальных задач с зоной печати в режиме 3D 300x310x300 мм')
-      }
-    ]
+
+  private async getPrinterItems(){
+    let printData
+    let response3 = await fetch(`https://api2.stereotech.org/api/collections/get/printersForSelling?token=${process.env.COCKPIT_TOKEN}`)
+    printData = await response3.json()
+    this.printerItems = printData.entries
+    this.currentPrinter = this.printerItems.filter(v=> /^520 hybrid/i.test(v.model))[0]
+    console.log(this.currentPrinter)
   }
 
-  currentPrinter: PrinterVariant | null = null
-
-  product: any = {}
-
   get currentPrice (): number {
-    const base = this.product ? this.product.price : 129000
-    const currentOption = this.product && this.currentPrinter ? this.product.options[0].product_option_value.find((o: any) => o.name === (this.currentPrinter ? this.currentPrinter.model : '')).price : 0
-    return base + currentOption
+    // const base = this.product ? this.product.price : 129000
+    // const currentOption = this.product && this.currentPrinter ? this.product.options[0].product_option_value.find((o: any) => o.name === (this.currentPrinter ? this.currentPrinter.model : '')).price : 0
+    // return base + currentOption
+    return this.product ? this.product.price : this.currentPrinter.price
   }
 
   async mounted () {
-    const result = await this.$apollo.query({
-      query: gql`query {
-         product(id: "676") {
-            product_id,
-            name,
-            price,
-            options {
-              product_option_id,
-              name,
-              product_option_value {
-                product_option_value_id,
-                name,
-                price
-              }
-            }
-            attributes {
-              attribute_group_id,
-              name,
-              attribute {
-                name,
-                attribute_id,
-                text
-              }
-            }
-         }
-      }
-      `
-    })
-    this.product = result.data.product
-    this.product.price = Number(this.product.price)
-    this.currentPrinter = this.printerItems[0]
+    // const result = await this.$apollo.query({
+    //   query: gql`query {
+    //      product(id: "676") {
+    //         product_id,
+    //         name,
+    //         price,
+    //         options {
+    //           product_option_id,
+    //           name,
+    //           product_option_value {
+    //             product_option_value_id,
+    //             name,
+    //             price
+    //           }
+    //         }
+    //         attributes {
+    //           attribute_group_id,
+    //           name,
+    //           attribute {
+    //             name,
+    //             attribute_id,
+    //             text
+    //           }
+    //         }
+    //      }
+    //   }
+    //   `
+    // })
+    // this.product = result.data.product
+    // this.product.price = Number(this.product.price)
+    // this.currentPrinter = this.printerItems[0]
+    await this.getPrinterItems()
+    console.log(this.currentPrinter)
     await this.getFulSpec5()
     await this.getFeatures()
     await this.getReasonsToUse()
