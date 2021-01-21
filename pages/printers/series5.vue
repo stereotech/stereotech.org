@@ -49,15 +49,19 @@
           title="Сравнение материалов"
           :materials="ourBrandMaterials"
           :specs="specs"
-         />
+        />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
-        <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" :price="String(currentPrice)" />
+        <BuyPrinter
+          id="buyPrinterForm"
+          :variant="currentPrinter"
+          :price="String(currentPrice)"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
-          image='/materials/sealant.jpg'
-          title='Материалы для печати'
+          image="/materials/sealant.jpg"
+          title="Материалы для печати"
           link="/materials"
         />
       </v-col>
@@ -120,7 +124,7 @@ export default class Series5 extends Vue {
   private features: any[] = []
   private reasonsToUse: any[] = []
   private printerItems: any[] = []
-  private async getFulSpec5() {
+  private async getFulSpec5 () {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
     data = await response.json()
@@ -128,27 +132,26 @@ export default class Series5 extends Vue {
     this.spec5d = data.entries.filter(v => /^5\d0 hybrid/i.test(v.model))
   }
 
-  private async getFeatures(){
+  private async getFeatures () {
     let data1
     let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`)
     data1 = await response1.json()
     this.features = data1.entries
   }
 
-  private async getReasonsToUse(){
+  private async getReasonsToUse () {
     let data2
     let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`)
     data2 = await response2.json()
     this.reasonsToUse = data2.entries
   }
 
-  private async getPrinterItems(){
+  private async getPrinterItems () {
     let printData
     let response3 = await fetch(`https://api2.stereotech.org/api/collections/get/printersForSelling?token=${process.env.COCKPIT_TOKEN}`)
     printData = await response3.json()
     this.printerItems = printData.entries
-    this.currentPrinter = this.printerItems.filter(v=> /^520 hybrid/i.test(v.model))[0]
-    console.log(this.currentPrinter)
+    this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
   }
 
   get currentPrice (): number {
@@ -191,7 +194,6 @@ export default class Series5 extends Vue {
     // this.product.price = Number(this.product.price)
     // this.currentPrinter = this.printerItems[0]
     await this.getPrinterItems()
-    console.log(this.currentPrinter)
     await this.getFulSpec5()
     await this.getFeatures()
     await this.getReasonsToUse()
@@ -199,7 +201,7 @@ export default class Series5 extends Vue {
       await this.loadMaterialsData()
     }
   }
-  
+
 }
 
 </script>
