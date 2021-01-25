@@ -17,7 +17,7 @@
           ></v-img>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-radio-group
+          <!-- <v-radio-group
             v-if="selectExtruder.length > 1"
             @change="changeExtruder"
             v-model="currentExtruderVariant"
@@ -43,7 +43,7 @@
                 </v-list-item>
               </template>
             </v-radio>
-          </v-radio-group>
+          </v-radio-group> -->
           <v-radio-group
             v-if="selectVolume.length > 1"
             @change="changeVolume"
@@ -68,7 +68,7 @@
               </template>
             </v-radio>
           </v-radio-group>
-          <v-radio-group
+          <!-- <v-radio-group
             v-if="selectFiveAxis.length > 1"
             @change="changeFiveAxis"
             v-model="currentFiveAxisType"
@@ -91,7 +91,7 @@
                 </v-list-item>
               </template>
             </v-radio>
-          </v-radio-group>
+          </v-radio-group> -->
           <v-col class="text-center text-sm-left">
             <v-btn color="primary" @click="$vuetify.goTo('#buyPrinterForm')">{{
               $t("Заказать")
@@ -167,36 +167,36 @@ export default class PrinterSelector extends Vue {
     return fiveAxisValues
   }
 
-  get extruderVariants (): {
-    name: string,
-    description: string,
-    value: ExtruderType
-  }[] {
-    return [
-      {
-        name: this.$tc('Один экструдер'),
-        description: this.$tc('Надежная печать одним материалом'),
-        value: ExtruderType.Single
-      },
-      {
-        name: this.$tc('Два экструдера'),
-        description: this.$tc('Печать различными материалами двумя экструдерами'),
-        value: ExtruderType.Dual
-      }
-    ]
-  }
+  // get extruderVariants (): {
+  //   name: string,
+  //   description: string,
+  //   value: ExtruderType
+  // }[] {
+  //   return [
+  //     {
+  //       name: this.$tc('Один экструдер'),
+  //       description: this.$tc('Надежная печать одним материалом'),
+  //       value: ExtruderType.Single
+  //     },
+  //     {
+  //       name: this.$tc('Два экструдера'),
+  //       description: this.$tc('Печать различными материалами двумя экструдерами'),
+  //       value: ExtruderType.Dual
+  //     }
+  //   ]
+  // }
 
-  get getExtruderVariants () {
-    return this.extruderVariants.filter(v => this.selectExtruder.indexOf(v.value) >= 0)
-  }
+  // get getExtruderVariants () {
+  //   return this.extruderVariants.filter(v => this.selectExtruder.indexOf(v.value) >= 0)
+  // }
 
   get getPrintVolumeVariants () {
     return this.printVolumeVariants.filter(v => this.selectVolume.indexOf(v.value) >= 0)
   }
 
-  get getFiveAxisVariants () {
-    return this.fiveAxisVariants.filter(v => this.selectFiveAxis.indexOf(v.value) >= 0)
-  }
+  // get getFiveAxisVariants () {
+  //   return this.fiveAxisVariants.filter(v => this.selectFiveAxis.indexOf(v.value) >= 0)
+  // }
 
   currentExtruderVariant: {
     name: string,
@@ -237,24 +237,24 @@ export default class PrinterSelector extends Vue {
     ]
   }
 
-  get fiveAxisVariants (): {
-    name: string,
-    description: string,
-    value: FiveAxisType
-  }[] {
-    return [
-      {
-        name: this.$tc('5D принтер'),
-        description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
-        value: FiveAxisType.Normal
-      },
-      {
-        name: this.$tc('Гибридный 5D принтер'),
-        description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
-        value: FiveAxisType.Hybrid
-      }
-    ]
-  }
+  // get fiveAxisVariants (): {
+  //   name: string,
+  //   description: string,
+  //   value: FiveAxisType
+  // }[] {
+  //   return [
+  //     {
+  //       name: this.$tc('5D принтер'),
+  //       description: this.$tc('Пятиосевой принтер без дополнительных устройств'),
+  //       value: FiveAxisType.Normal
+  //     },
+  //     {
+  //       name: this.$tc('Гибридный 5D принтер'),
+  //       description: this.$tc('Пятиосевой принтер с закрепляемой платформой'),
+  //       value: FiveAxisType.Hybrid
+  //     }
+  //   ]
+  // }
 
   currentFiveAxisType: {
     name: string,
@@ -263,7 +263,7 @@ export default class PrinterSelector extends Vue {
   } = {
       name: '',
       description: '',
-      value: FiveAxisType.Normal
+      value: FiveAxisType.Hybrid
     }
 
   currentPrintVolume: {

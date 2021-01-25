@@ -152,13 +152,14 @@ export default class Series5 extends Vue {
     printData = await response3.json()
     this.printerItems = printData.entries
     this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
+    console.log(this.currentPrinter)
   }
 
   get currentPrice (): number {
     // const base = this.product ? this.product.price : 129000
     // const currentOption = this.product && this.currentPrinter ? this.product.options[0].product_option_value.find((o: any) => o.name === (this.currentPrinter ? this.currentPrinter.model : '')).price : 0
     // return base + currentOption
-    return this.product ? this.product.price : this.currentPrinter.price
+    return this.currentPrinter.price
   }
 
   async mounted () {
