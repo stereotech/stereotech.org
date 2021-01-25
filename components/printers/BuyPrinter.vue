@@ -65,11 +65,7 @@
         <v-col cols="12" md="6">
           <v-img
             :src="
-              variant.buyImage
-                ? variant.buyImage.path
-                : variant.image
-                ? variant.image.path
-                : ''
+              imgStr
             "
           />
         </v-col>
@@ -121,6 +117,29 @@ export default class BuyPrinter extends Vue {
   private snackbar: boolean = false
   private snackbarText: string = ''
   private snackbarError: boolean = false
+
+  private get imgStr(){
+    if(this.variant.image){
+      if(typeof this.variant.image === 'object'){
+        return "https://api2.stereotech.org/" + this.variant.image.path 
+      }
+      else if(typeof this.variant.image === 'string'){
+        return this.variant.image
+      }
+    }
+    else if(this.variant.buyImage){
+      if(typeof this.variant.buyImage === 'object'){
+        return "https://api2.stereotech.org/" + this.variant.buyImage.path 
+      }
+      else if(typeof this.variant.buyImage === 'string'){
+        return this.variant.buyImage
+      }
+    }
+    else{
+      return ''
+    }
+  }
+
 
   private get joinFormData () {
     const str = `
