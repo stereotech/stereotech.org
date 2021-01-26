@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card v-if="variant">
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" md="6" class="text-center">
@@ -40,9 +40,13 @@
               outlined
             ></v-text-field>
 
-            <v-btn :disabled="!valid" color="primary" @click="submit()" large>{{
-              $t("Заказать")
-            }}</v-btn>
+            <v-btn
+              :disabled="!valid"
+              color="primary"
+              @click="submit1()"
+              large
+              >{{ $t("Заказать") }}</v-btn
+            >
           </v-form>
           <v-snackbar
             v-model="snackbar"
@@ -59,7 +63,11 @@
           </small>
         </v-col>
         <v-col cols="12" md="6">
-          <v-img :src="variant.buyImage ? variant.buyImage : variant.image" />
+          <v-img
+            :src="
+              imgStr
+            "
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -84,13 +92,17 @@ export default class BuyPrinter extends Vue {
     type: Object, required: true, default: (): PrinterVariant => {
       return {
         model: '',
-        image: '',
+        image: {
+          path: ''
+        },
         printerType: PrinterType.ThreeAxis,
         extruderType: ExtruderType.Single,
         printVolumeType: PrintVolumeType.Standard,
         fiveAxisType: FiveAxisType.Normal,
         description: '',
-        buyImage: ''
+        buyImage: {
+          path: ''
+        }
       }
     }
   }) variant!: PrinterVariant
@@ -106,6 +118,29 @@ export default class BuyPrinter extends Vue {
   private snackbarText: string = ''
   private snackbarError: boolean = false
 
+  private get imgStr(){
+    if(this.variant.image){
+      if(typeof this.variant.image === 'object'){
+        return "https://api2.stereotech.org/" + this.variant.image.path 
+      }
+      else if(typeof this.variant.image === 'string'){
+        return this.variant.image
+      }
+    }
+    else if(this.variant.buyImage){
+      if(typeof this.variant.buyImage === 'object'){
+        return "https://api2.stereotech.org/" + this.variant.buyImage.path 
+      }
+      else if(typeof this.variant.buyImage === 'string'){
+        return this.variant.buyImage
+      }
+    }
+    else{
+      return ''
+    }
+  }
+
+
   private get joinFormData () {
     const str = `
       Имя заказчика: ${this.orderName},
@@ -119,6 +154,36 @@ export default class BuyPrinter extends Vue {
   }
 
   private description = `Модель: ${this.variant.model}, Цена: ${this.price}`
+
+  private async submit1 () {
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/buyPrinterForm?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        form: {
+          ИмяЗаказчика: `${this.orderName}`,
+          Телефон: `${this.phoneNumber}`,
+          Email: `${this.email}`,
+          НазваниеКомпании: `${this.companyName}`,
+          Модель: `${this.variant.model}`,
+          Цена: `${this.price}`
+        }
+      })
+    })
+    if (response.ok) {
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
+      this.snackbarError = false
+      this.snackbar = true
+    }
+    else {
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
+      this.snackbarError = true
+      this.snackbar = true
+    }
+  }
+
   private async submit () {
 
     try {

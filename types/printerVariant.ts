@@ -2,8 +2,12 @@ import { LocaleMessage } from 'vue-i18n';
 
 export interface PrinterVariant {
     model: string
-    image: string
-    buyImage?: string
+    image: {
+        path: string
+    } | string
+    buyImage?: {
+        path: string
+    } | string
     printerType: PrinterType
     extruderType: ExtruderType
     printVolumeType: PrintVolumeType
@@ -12,25 +16,25 @@ export interface PrinterVariant {
 }
 
 export enum PrinterType {
-    ThreeAxis,
-    FiveAxis
+    ThreeAxis = 'ThreeAxis',
+    FiveAxis = 'FiveAxis'
 }
 
 export enum ExtruderType {
-    Single,
-    Dual
+    Single = 'Single',
+    Dual = 'Dual'
 }
 
 export enum PrintVolumeType {
-    Standard,
-    StandardFiveAxis,
-    StandardLong,
-    Extended,
-    ExtendedFiveAxis,
-    ExtendedLong
+    Standard = 'Standard',
+    StandardFiveAxis = 'StandardFiveAxis',
+    StandardLong = 'StandardLong',
+    Extended = 'Extended',
+    ExtendedFiveAxis = 'ExtendedFiveAxis',
+    ExtendedLong = 'ExtendedLong'
 }
 
 export enum FiveAxisType {
-    Normal,
-    Hybrid
+    Normal = 'Normal',
+    Hybrid = 'Hybrid'
 }

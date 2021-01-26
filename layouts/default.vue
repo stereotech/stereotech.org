@@ -329,11 +329,6 @@ export default class Layout extends Vue {
             icon: '/printers/desktop/series3.jpg',
             child: [
               {
-                title: this.$tc('Серия 3хх'),
-                link: '/printers/series3',
-                description: this.$tc('Профессиональные 3D принтеры')
-              },
-              {
                 title: this.$tc('Серия 5хх'),
                 link: '/printers/series5',
                 description: this.$tc('Инновационные 5D принтеры')
@@ -365,23 +360,27 @@ export default class Layout extends Vue {
           {
             title: this.$tc('Материалы для печати'),
             link: '/materials',
-            icon: '/materials/proto.jpg',
+            icon: '/materials/sealant.jpg',
             child: [
               {
                 title: 'Sealant',
-                link: '/materials/sealant'
+                link: '/materials/sealant',
+                description: this.$tc('Серия эластичных материалов для изготовления уплотнений, прокладок и гибких элементов')
               },
               {
                 title: 'Fiberpart',
-                link: '/materials/fiberpart'
+                link: '/materials/fiberpart',
+                description: this.$tc('Серия высокопрочных материалов, наполненных рубленым волокном')
               },
               {
                 title: 'Enduse',
-                link: '/materials/enduse'
+                link: '/materials/enduse',
+                description: this.$tc('Серия материалов, применимых для деталей конечного использования')
               },
               {
                 title: 'Proto',
-                link: '/materials/proto'
+                link: '/materials/proto',
+                description: this.$tc('Серия материалов для функциональных моделей и макетов')
               }
             ]
           },

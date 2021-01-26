@@ -62,11 +62,11 @@ export default class Printers extends Vue {
     link: string
   }[] {
     return [
-      {
-        image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
-        description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
-        link: '/printers/series3'
-      },
+      // {
+      //   image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
+      //   description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
+      //   link: '/printers/series3'
+      // },
       {
         image: '/printers/desktop/series5.jpg',
         title: this.$tc('Серия 5хх'),

@@ -31,7 +31,7 @@
         <materialsSheet />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
-        <BuyPrinter :variant="currentPrinter" :price="String(currentPrice)" />
+        <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
     </v-row>
   </v-container>

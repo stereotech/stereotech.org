@@ -69,7 +69,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn :disabled="!valid" depressed color="primary" @click="submit">{{
+        <v-btn :disabled="!valid" depressed color="primary" @click="submit1">{{
           $t("Отправить")
         }}</v-btn>
       </v-card-actions>
@@ -165,6 +165,34 @@ export default class QuoteForm extends Vue {
   private get description () {
     const str = !this.dealers ? `Заинтересован(а) в: ${this.interestIn}, Подписка на новости: ${this.subscribe}` : 'Запрос на дилерство'
     return str
+  }
+
+  private async submit1(){
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/quoteForm?token=${process.env.COCKPIT_TOKEN}`,{
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        form: {
+          ФИО: `${this.name}`,
+          Телефон: `${this.phone}`,
+          Email: `${this.email}`,
+          Компания: `${this.companyName}`,
+          Подробности: `${this.description}`
+        }
+      })
+    })
+    if(response.ok){
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
+      this.snackbarError = false
+      this.snackbar = true
+    }
+    else{
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
+      this.snackbarError = true
+      this.snackbar = true
+    }
   }
 
   private async submit () {

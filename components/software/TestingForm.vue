@@ -30,7 +30,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn :disabled="!valid" depressed color="primary" @click="submit">{{$t('Отправить')}}</v-btn>
+        <v-btn :disabled="!valid" depressed color="primary" @click="submit1">{{$t('Отправить')}}</v-btn>
       </v-card-actions>
     </v-form>
     <small>
@@ -88,6 +88,33 @@ export default class TestingForm extends Vue {
   private get description () {
     const str = `Интерес в: ${this.interestIn}`
     return str
+  }
+
+  private async submit1(){
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/testingForm?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        form: {
+          ФИО: `${this.name}`,
+          Email: `${this.email}`,
+          Телефон: `${this.phone}`,
+          Заинтересован: `${this.description}`
+        }
+      })
+    })
+    if(response.ok){
+      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
+      this.snackbarError = false
+      this.snackbar = true
+    }
+    else{
+      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
+      this.snackbarError = true
+      this.snackbar = true
+    }
   }
 
   private async submit () {
