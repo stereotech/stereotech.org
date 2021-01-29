@@ -78,7 +78,13 @@ export default class Resellers extends Vue {
 
   private async getDealersData () {
     let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/dealers?token=${process.env.COCKPIT_TOKEN}`)
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/dealers?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      })      
+    })
     data = await response.json()
     this.adresses = data.entries
     // return data

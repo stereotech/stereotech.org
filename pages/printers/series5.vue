@@ -134,25 +134,43 @@ export default class Series5 extends Vue {
 
   private async getFeatures () {
     let data1
-    let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`)
+    let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      })
+    })
     data1 = await response1.json()
     this.features = data1.entries
   }
 
   private async getReasonsToUse () {
     let data2
-    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`)
+    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`,{
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      })
+    })
     data2 = await response2.json()
     this.reasonsToUse = data2.entries
   }
 
   private async getPrinterItems () {
     let printData
-    let response3 = await fetch(`https://api2.stereotech.org/api/collections/get/printersForSelling?token=${process.env.COCKPIT_TOKEN}`)
+    let response3 = await fetch(`https://api2.stereotech.org/api/collections/get/printersForSelling?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      })
+    })
     printData = await response3.json()
     this.printerItems = printData.entries
     this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
-    console.log(this.currentPrinter)
+    //console.log(this.currentPrinter)
   }
 
   get currentPrice (): number {
