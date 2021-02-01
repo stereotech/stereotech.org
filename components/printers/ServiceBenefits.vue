@@ -76,7 +76,13 @@ export default class ServiceBenefits extends Vue{
   serviceBenefits: any[] = []
   private async getServiceBenefits(){
     let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/serviceBenefits?token=${process.env.COCKPIT_TOKEN}`)
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/serviceBenefits?token=${process.env.COCKPIT_TOKEN}`,{
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      })      
+    })
     data = await response.json()
     this.serviceBenefits = data.entries
   }

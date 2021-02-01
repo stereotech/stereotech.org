@@ -46,7 +46,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
-          title="Сравнение материалов"
+          :title="this.$tc('Сравнение материалов')"
           :materials="ourBrandMaterials"
           :specs="specs"
         />
@@ -61,7 +61,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           image="/materials/sealant.jpg"
-          title="Материалы для печати"
+          :title="this.$tc('Материалы для печати')"
           link="/materials"
         />
       </v-col>
