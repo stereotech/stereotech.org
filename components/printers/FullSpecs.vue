@@ -13,7 +13,7 @@
           <v-data-table
             :headers="getTableHeaders"
             :items="tableData"
-            :items-per-page="25"
+            :items-per-page="100"
           >
           </v-data-table>
         </v-col>
