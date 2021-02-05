@@ -8,7 +8,11 @@
         <h2>{{$tc('от 399000')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
-        <materialsSheet />
+        <MaterialsTable
+          title="Сравнение материалов"
+          :materials="ourBrandMaterials"
+          :specs="specs"
+        />
       </v-col>      
       <v-col cols="12" lg="10">
         <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" />
@@ -20,17 +24,25 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
-import materialsSheet from '~/components/materialsSheet.vue'
+import MaterialsTable from '~/components/MaterialsTable.vue'
 import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
 import gql from 'graphql-tag'
+import { Material, MaterialSpec } from '~/types/materials'
+import { namespace } from 'vuex-class'
+
+const materials = namespace('materials')
 
 @Component({
   components: {
     BuyPrinter,
-    materialsSheet
+    MaterialsTable
   }
 })
 export default class Special extends Vue {
+  @materials.State filled!: boolean
+  @materials.Action loadMaterialsData!: any
+  @materials.Getter ourBrandMaterials!: any
+  @materials.Getter specs!: MaterialSpec[]
   get currentPrinter(): PrinterVariant {
     return {
       model: this.$tc('Серия Special'),
@@ -42,6 +54,12 @@ export default class Special extends Vue {
       description: ''
     }
 
+  }
+
+  async mounted(){
+    if (!this.filled) {
+      await this.loadMaterialsData()
+    }
   }
 
 }
