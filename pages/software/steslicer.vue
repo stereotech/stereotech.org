@@ -102,41 +102,26 @@ import { DownloadLink } from '~/types/download'
   }
 })
 export default class SteSlicer extends Vue {
-  get keyFeatures (): KeyFeature[] {
-    return [
-      {
-        name: this.$tc('Режимы слайсинга'),
-        mediaType: MediaType.image,
-        mediaSource: 'software/steslicer/printing_modes.jpg',
-        description: this.$tc('STE Slicer поддерживает работу как с 3D, так и с 5D принтерами Stereotech'),
-        keys: [this.$tc('Различные режимы слайсинга'),
-        this.$tc('Настройки для каждого из режимов слайсинга'),
-        ]
-      },
-      {
-        name: this.$tc('Простота использования'),
-        mediaType: MediaType.image,
-        mediaSource: 'software/steslicer/easy_to_use.jpg',
-        description: this.$tc('STE Slicer позволяет подготовить модель к печати за считанные секунды'),
-        keys: [this.$tc('Рекомендованный режим с автоматически настроенными значениями'),
-        this.$tc('Продвинутый режим с ручным контролем различных настроек'),
-        ]
-      },
-      {
-        name: this.$tc('STE App'),
-        mediaType: MediaType.image,
-        mediaSource: 'software/steapp/banner.jpg',
-        description: this.$tc('Система управления принтерами встроена в STE Steslicer'),
-        keys: [this.$tc('Отправка заданий на печать напрямую из слайсера'),
-        this.$tc('Автоматический поиск принтеров в сети'),
-        ]
-      }
-    ]
+
+  keyFeatures: any[] = []
+
+  public async getSlicerFeatures(){
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/slicerFeatures?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      }) 
+    })
+    data = await response.json()
+    this.keyFeatures = data.entries
   }
+
 
   async mounted () {
 
-
+    await this.getSlicerFeatures()
   }
 
   version: string = ''
