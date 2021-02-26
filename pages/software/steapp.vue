@@ -90,42 +90,25 @@ export default class SteApp extends Vue {
       }
     ]
   }
-  get keyFeatures(): KeyFeature[] {
-    return [
-      {
-      name: this.$tc('Группировка принтеров'),
-      mediaType: MediaType.image,
-      mediaSource: 'software/steapp/group.jpg',
-      description: this.$tc('STE App упрощает работу с группой принтеров, позволяя управлять ими, используя общий интерфейс'),
-      keys: [this.$tc('Возможность работы с любого устройства используя Wi-Fi/LAN'),
-      this.$tc('Система распределения заданий между принтерами, позволяет создать задачи, распределяемые между принтерами автоматически'),
-      this.$tc('Поддержка 3D и 5D принтеров')]
-    },
-      {
-        name: this.$tc('Уведомления'),
-        mediaType: MediaType.image,
-        mediaSource: 'software/steapp/notification.jpg',
-        description: this.$tc('Уведомления на смартфон и в браузере подскажут, когда печать будет завершена'),
-        keys: [this.$tc('Система уведомлений STE Notice, получайте уведомления при завершении работы принтеров или о событиях требующих вашего внимания')]
-      },
-      {
-        name: this.$tc('Управление'),
-        mediaType: MediaType.image,
-        mediaSource: 'software/steapp/group.jpg',
-        description: '',
-        keys: [
-          this.$tc('Панель независимого управления принтерами STE Cluster позволяет управлять каждым принтером индивидуально из одного приложения'),
-          this.$tc('Режим обслуживания принтеров STE ServiceGuide поможет настроить принтер для печати вместе с пошаговыми руководствами'),
-          this.$tc('Система распределенного хранения заданий STE FileNet позволит использовать подключенное USB хранилище для печати на любом из принтеров в кластере')
-        ]
-      }
-    ]
-  }
 
+  keyFeatures: any[] = []
+  public async getSteAppFeatures(){
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/steappBenefits?token=${process.env.COCKPIT_TOKEN}`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lang: this.$i18n.locale
+      }) 
+    })
+    data = await response.json()
+    this.keyFeatures = data.entries
+  }
   async mounted () {
 
     this.version = await this.$axios.$get('http://software.stereotech.org/firmware/stable/ste-update.stu.version')
     this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
+    await this.getSteAppFeatures()
 
   }
 
