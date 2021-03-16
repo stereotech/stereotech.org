@@ -47,7 +47,7 @@
     "vue-inputmask": "^0.2.1",
     "vue-property-decorator": "^8.3.0",
     "vue-the-mask": "^0.11.1",
-    "vue-yandex-maps": "^0.9.0",
+    "vue-yandex-maps": "^0.10.0",
     "vuex-class": "^0.3.2",
     "vuex-persistedstate": "^2.5.4"
   },
