@@ -27,6 +27,13 @@
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
+          image="/materials/sealant.jpg"
+          :title="this.$tc('Материалы для печати')"
+          link="/materials"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <ProductCard
           image="/software/steapp/banner.jpg"
           :title="$t('Наше программное обеспечение')"
           :description="$t('Подготовка к 3D и 5D печати\nУправление процессом печати')"
