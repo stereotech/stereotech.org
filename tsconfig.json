@@ -33,5 +33,9 @@
       "nuxt-i18n",
       "@nuxtjs/axios"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "docs"
+  ]
 }
