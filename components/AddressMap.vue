@@ -184,7 +184,7 @@ export default class AddressMap extends Vue {
   private balloonTemplate(elId: string){
     console.log(elId)
     return `<div>
-      <button onclick="document.getElementById('${elId}').scrollIntoView({block: \'center\', behavior: \'smooth\'});" type="button" class="v-btn  v-btn--depressed theme--light v-size--small primary"><span class="v-btn__content">Подробнее</span></button>
+      <button onclick="document.getElementById('${elId}').scrollIntoView({block: \'center\', behavior: \'smooth\'});" type="button" class="v-btn  v-btn--depressed theme--light v-size--small primary"><span class="v-btn__content">${this.$t('Подробнее')}</span></button>
     </div>`
   }
 

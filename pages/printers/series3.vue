@@ -27,9 +27,6 @@
       <v-col cols="12" lg="10" v-if="spec3d">
         <FullSpecs :specXd="spec3d" />
       </v-col>
-      <v-col cols="12" lg="10">
-        <materialsSheet />
-      </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
         <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" :price="String(currentPrice)" />
       </v-col>
