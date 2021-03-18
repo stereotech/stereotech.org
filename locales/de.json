@@ -141,6 +141,7 @@
   "Новости": "Nachrichten",
   "Научная деятельность": "Wissenschaftliche Tätigkeit",
   "Показать ещё": "Mehr anzeigen",
+  "Доступные материалы для печати":"Verfügbare Printmaterialien",
   "Печать изделий с прочностью металла": "Druckprodukte mit der Stärke von Metall",
   "Закажите тестовую деталь": "Bestellen Sie ein testteil",
   "Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь": "Um Ihr Problem am besten zu lösen, empfehlen wir Ihnen, ein testteil zu bestellen",
@@ -378,5 +379,6 @@
   "Принтеры Stereotech меньше, чем за 2 месяца окупятся на Вашем производстве по сравнению с использованием стороннего сервиса по 3D печати.": "Stereotech-Drucker zahlen sich in Weniger als 2 Monaten in Ihrer Produktion aus, verglichen mit einem 3D-Druckdienst eines Drittanbieters.",
   "Бесплатная техническая поддержка": "Kostenloser technischer Support",
   "Есть вопросы по использованию? Решим их в месте с бесплатной годовой технической поддержкой Stereotech на все модели серии 3хх и 5хх.": "Haben Sie Fragen zur Verwendung? Wir lösen Sie an Ort und Stelle mit dem kostenlosen jährlichen technischen Support von Stereotech für alle Modelle der Serie 3xxx und 5xxxx.",
-  "Подробнее":"Mehr wissen"
+  "Подробнее":"Mehr wissen",
+  "Сравнить материалы":"Materialien vergleichen"
 }
