@@ -4,7 +4,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           fullsize
-          image="/materials/banner.jpg"
+          :image="require('~/static/materials/banner.jpg?webp')"
           :title="this.$tc('Доступные материалы для печати')"
         >
           <v-btn
