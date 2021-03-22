@@ -1,6 +1,24 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
+      <v-col cols="12" lg="10">
+        <ProductCard
+          fullsize
+          image="/materials/banner.jpg"
+          :title="this.$tc('Доступные материалы для печати')"
+        >
+          <v-btn
+           
+            color="accent"
+            class="mt-2"
+            depressed
+            @click="$vuetify.goTo('#materialsTable')"
+          >
+            {{$t('Сравнить материалы')}}
+            <v-icon right>mdi-chevron-right</v-icon>
+          </v-btn>
+        </ProductCard>
+      </v-col>
       <v-col
         cols="12"
         lg="10"
@@ -16,6 +34,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
+          id="materialsTable"
           title="Сравнение материалов"
           :materials="ourBrandMaterials"
           :specs="specs"
@@ -39,7 +58,7 @@ const materials = namespace('materials')
   components: {
     ProductCard,
     ProductBanner,
-    MaterialsTable
+    MaterialsTable,
   },
   head: {
     title: 'Материалы для печати'

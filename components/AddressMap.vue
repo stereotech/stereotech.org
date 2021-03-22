@@ -19,9 +19,11 @@
                       marker-type="placemark"
                       :coords="mapCoords(address.coords)"
                       :hint-content="`${address.name} | ${address.address}`"
+                      :balloon-template="balloonTemplate(address._id)"
                     >
                       <v-card slot="balloon">
                         <v-card-title>{{ address.name }}</v-card-title>
+                        <v-btn>1233</v-btn>
                       </v-card>
                     </ymap-marker>
                   </template>
@@ -31,7 +33,7 @@
           </v-col>
         </v-row>
 
-        <template v-if="regionsByCountry">
+        <template v-if="regionsByCountry" id="a">
           <template v-for="(country, countryInd) in regionsByCountry.keys()">
             <v-row justify="center" :key="`title-${countryInd}`">
               <v-col cols="12" md="8">
@@ -49,7 +51,7 @@
                   v-for="(address, index) in groupedAddress.get(region.region)"
                 >
                   <v-col cols="12" md="8" :key="`address-${index}`">
-                    <v-card class="mx-auto" outlined>
+                    <v-card class="mx-auto" outlined :id="`${address._id}`">
                       <v-list-item two-line>
                         <v-list-item-content>
                           <v-list-item-title class="headline">{{
@@ -177,6 +179,18 @@ export default class AddressMap extends Vue {
   private mapCoords (coords: { lat: number, lng: number }) {
     //return coords.map(c => {c.lat, c.lng})
     return Object.values(coords)
+  }
+
+  private balloonTemplate(elId: string){
+    console.log(elId)
+    return `<div>
+      <button onclick="document.getElementById('${elId}').scrollIntoView({block: \'center\', behavior: \'smooth\'});" type="button" class="v-btn  v-btn--depressed theme--light v-size--small primary"><span class="v-btn__content">${this.$t('Подробнее')}</span></button>
+    </div>`
+  }
+
+  goToCard(){
+    //return this.$vuetify.goTo('#dealer-form')
+    return alert("hello")
   }
 }
 

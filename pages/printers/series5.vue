@@ -45,10 +45,10 @@
         <FullSpecs :specXd="spec5d" />
       </v-col>
       <v-col cols="12" lg="10">
-        <MaterialsTable
-          title="Сравнение материалов"
-          :materials="ourBrandMaterials"
-          :specs="specs"
+        <ProductCard
+          image="/materials/sealant.jpg"
+          :title="this.$tc('Материалы для печати')"
+          link="/materials"
         />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
@@ -56,13 +56,6 @@
           id="buyPrinterForm"
           :variant="currentPrinter"
           :price="String(currentPrice)"
-        />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ProductCard
-          image="/materials/sealant.jpg"
-          :title="this.$tc('Материалы для печати')"
-          link="/materials"
         />
       </v-col>
     </v-row>

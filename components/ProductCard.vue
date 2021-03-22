@@ -13,17 +13,20 @@
               class="display-1 font-weight-light"
             >{{ title }}</h4>
 
-            <v-btn
-              v-if="fullsize && $vuetify.breakpoint.smAndUp"
-              color="accent"
-              class="mt-2"
-              depressed
-              nuxt
-              :to="localePath(link)"
-            >
-              {{$t('Узнать больше')}}
-              <v-icon right>mdi-chevron-right</v-icon>
-            </v-btn>
+            <slot v-if="fullsize && $vuetify.breakpoint.smAndUp">
+              <v-btn
+                v-if="fullsize && $vuetify.breakpoint.smAndUp"
+                color="accent"
+                class="mt-2"
+                depressed
+                nuxt
+                :to="localePath(link)"
+              >
+                {{$t('Узнать больше')}}
+                <v-icon right>mdi-chevron-right</v-icon>
+              </v-btn>
+            </slot>
+
           </v-img>
         </v-col>
         <v-col cols="12" :sm="fullsize ? 12 : 6" :class="`text-center ${hidden}`">
@@ -32,10 +35,12 @@
             class="subtitle-1 font-weight-light"
             v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
           ></p>
-          <v-btn color="primary" depressed nuxt :to="localePath(link)">
-            {{$t('Узнать больше')}}
-            <v-icon right>mdi-chevron-right</v-icon>
-          </v-btn>
+          <slot>
+            <v-btn color="primary" depressed nuxt :to="localePath(link)">
+              {{$t('Узнать больше')}}
+              <v-icon right>mdi-chevron-right</v-icon>
+            </v-btn>
+          </slot>
         </v-col>
       </v-row>
     </v-container>
@@ -48,6 +53,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class ProductCard extends Vue {
   @Prop({ type: String, default: '' }) title!: string
+  @Prop({ type: String, default: '' }) buttonText!: string
   @Prop({ type: String, default: '' }) image!: string
   @Prop({ type: String, default: '' }) description!: string
   @Prop({ type: String, default: '' }) link!: string

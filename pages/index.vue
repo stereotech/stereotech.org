@@ -4,7 +4,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           fullsize
-          image="/printers/desktop/series5_banner.jpg"
+          :image="require('~/static/printers/desktop/series5_banner.jpg?webp')"
           :title="this.$tc('Печать изделий с прочностью металла')"
           link="/printers/series5"
         />
@@ -13,7 +13,11 @@
         <ProductCard
           image="/main/bg1.webp"
           :title="this.$tc('Закажите тестовую деталь')"
-          :description="this.$tc('Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь')"
+          :description="
+            this.$tc(
+              'Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь'
+            )
+          "
           link="/resellers"
         />
       </v-col>
@@ -21,15 +25,28 @@
         <ProductCard
           image="/printers/desktop/banner1.jpg"
           :title="this.$tc('Настольные принтеры')"
-          :description="this.$tc('Устройства способные с легкостью изменить и оптимизировать процесс производства')"
+          :description="
+            this.$tc(
+              'Устройства способные с легкостью изменить и оптимизировать процесс производства'
+            )
+          "
           link="/printers"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <ProductCard
+          image="/materials/sealant.jpg"
+          :title="this.$tc('Материалы для печати')"
+          link="/materials"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
           image="/software/steapp/banner.jpg"
           :title="$t('Наше программное обеспечение')"
-          :description="$t('Подготовка к 3D и 5D печати\nУправление процессом печати')"
+          :description="
+            $t('Подготовка к 3D и 5D печати\nУправление процессом печати')
+          "
           link="/software"
         />
       </v-col>

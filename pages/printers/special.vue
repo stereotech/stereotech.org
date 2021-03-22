@@ -6,14 +6,7 @@
           class="font-weight-light"
         >{{$t('Серия Special - Серия 3D и 5D принтеров для композитной печати с непрерывным волокном')}}</h1>
         <h2>{{$tc('от 399000')}}</h2>
-      </v-col>
-      <v-col cols="12" lg="10">
-        <MaterialsTable
-          title="Сравнение материалов"
-          :materials="ourBrandMaterials"
-          :specs="specs"
-        />
-      </v-col>      
+      </v-col>    
       <v-col cols="12" lg="10">
         <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" />
       </v-col>

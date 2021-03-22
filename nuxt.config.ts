@@ -50,7 +50,8 @@ const config: NuxtConfig = {
     ['~/modules/docs/', { port: 3001 }],
     '~/modules/crawler/',
     '~/modules/static/',
-    '~/modules/components/'
+    '~/modules/components/',
+    '@aceforth/nuxt-optimized-images'
   ],
   plugins: [
     '~/plugins/init',
@@ -188,6 +189,10 @@ const config: NuxtConfig = {
     siteKey: process.env.SITE_KEY,
     version: 3,
     hideBadge: true
+  },
+  optimizedImages: {
+    optimizeImages: true,
+    optimizeImagesInDev: true
   },
   /*
   ** Build configuration
