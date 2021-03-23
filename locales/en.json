@@ -87,6 +87,7 @@
   "E-mail обязателен": "E-mail is required",
   "E-mail не верен": "E-mail is not correct",
   "Программное обеспечение": "Software",
+  "Принтеры":"Printers",
   "Использовать другой софт нельзя": "You can't use other software",
   "Нет данных": "No data",
   "Собственная разработка. Работает с любой CAD": "Own development. Works with any CAD",
@@ -380,5 +381,6 @@
   "Бесплатная техническая поддержка": "Free technical support",
   "Есть вопросы по использованию? Решим их в месте с бесплатной годовой технической поддержкой Stereotech на все модели серии 3хх и 5хх.": "Any questions about usage? We will solve them in a place with free annual Stereotech technical support for all models of the 3xx and 5xx series.",
   "Подробнее":"Details",
-  "Сравнить материалы":"Compare materials"
+  "Сравнить материалы":"Compare materials",
+  "Поиск":"Search"
 }
