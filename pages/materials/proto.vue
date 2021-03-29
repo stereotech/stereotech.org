@@ -8,6 +8,11 @@
           :specs="specs"
         />
       </v-col>
+      <v-col cols="12" lg="10">
+        <PrintingParameters
+          :parameters="printParameters"
+        />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -15,14 +20,17 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import MaterialsTable from '~/components/MaterialsTable.vue'
+import PrintingParameters from '~/components/PrintingParameters.vue'
 import { Material, MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
 const materials = namespace('materials')
+const printParameters = namespace('printParameters')
 
 @Component({
   components: {
-    MaterialsTable
+    MaterialsTable,
+    PrintingParameters
   }
 })
 export default class ProtoFilament extends Vue {
@@ -32,13 +40,25 @@ export default class ProtoFilament extends Vue {
   @materials.Getter ourBrandMaterialsBySku!: any
   @materials.Getter specs!: MaterialSpec[]
 
+  @printParameters.State loaded!: boolean
+  @printParameters.Action loadPrintParameters!: any
+
+  @printParameters.Getter printParametersBySku!: any
+
   get materials () {
     return this.ourBrandMaterialsBySku('5DTPR')
   }
 
+  get printParameters(){
+    return this.printParametersBySku('5DTPR')
+  }  
+
   async mounted () {
     if (!this.filled) {
       await this.loadMaterialsData()
+    }
+    if(!this.loaded){
+      await this.loadPrintParameters()
     }
   }
 }
