@@ -50,6 +50,7 @@ export default class SealantFilament extends Vue {
   }
 
   get printParameters(){
+    //console.log(this.printParametersBySku('5DTSL'))
     return this.printParametersBySku('5DTSL')
   }
 

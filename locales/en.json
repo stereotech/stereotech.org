@@ -382,5 +382,14 @@
   "Есть вопросы по использованию? Решим их в месте с бесплатной годовой технической поддержкой Stereotech на все модели серии 3хх и 5хх.": "Any questions about usage? We will solve them in a place with free annual Stereotech technical support for all models of the 3xx and 5xx series.",
   "Подробнее":"Details",
   "Сравнить материалы":"Compare materials",
-  "Поиск":"Search"
+  "Поиск":"Search",
+  "sku":"Vendor code",
+  "name":"Name",
+  "printTemperature":"Printing temperature",
+  "threeDTemperature":"3D module temperature",
+  "blowing":"Model blowing",
+  "speed":"Printing speed",
+  "flow":"Plastic flow",
+  "layerHeight":"Min. layer height",
+  "Сортировать по":"Sort by"
 }
