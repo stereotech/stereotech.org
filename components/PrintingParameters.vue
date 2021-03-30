@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-data-iterator :items="parameters" :items-per-page="itemsPerPage" :page="page" hide-default-footer>
+    <v-data-iterator :items="parameters" :items-per-page="itemsPerPage" :page="page" :search="search" hide-default-footer>
       <template v-slot:header>
         <v-toolbar dark color="primary" class="mb-1">
           <v-text-field
@@ -14,7 +14,7 @@
           ></v-text-field>
           <template v-if="$vuetify.breakpoint.mdAndUp">
             <v-spacer></v-spacer>
-            <v-select
+            <!-- <v-select
               v-model="sortBy"
               flat
               solo-inverted
@@ -22,7 +22,7 @@
               :items="Object.keys(parameters[0]).filter(v=>!v.startsWith('_'))"
               prepend-inner-icon="mdi-magnify"
               label="Сортировать по"
-            ></v-select>
+            ></v-select> -->
             <v-spacer></v-spacer>
             <v-btn-toggle v-model="sortDesc" mandatory>
               <v-btn large depressed color="blue" :value="false">
@@ -97,7 +97,7 @@
           <v-spacer></v-spacer>
 
           <span class="mr-4 grey--text">
-            Page {{ page }} of {{ numberOfPages }}
+            Page {{ page }} of {{ numberOfPages() }}
           </span>
           <v-btn
             fab

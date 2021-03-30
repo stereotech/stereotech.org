@@ -42,7 +42,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrintingParameters
-          :parameters="allPrinterParameters"
+          :parameters="allPrintParameters"
         />
       </v-col>
     </v-row>
@@ -82,7 +82,7 @@ export default class materialsPage extends Vue {
   @printParameters.Action loadPrintParameters!: any
 
   @printParameters.Getter printParametersBySku!: any
-  @printParameters.Getter allPrinterParameters!: any
+  @printParameters.Getter allPrintParameters!: any
 
   get materialsSeries (): {
     image: string,
