@@ -1,39 +1,55 @@
 <template>
   <v-container fluid>
-    <v-data-iterator :items="parameters" :items-per-page="itemsPerPage" :page="page" :search="search" hide-default-footer>
+    <v-data-iterator :items="parameters" 
+      :items-per-page="itemsPerPage" 
+      :page="page" 
+      :search="search" 
+      hide-default-footer
+      :sort-by="sortBy"
+      :sort-desc="sortDesc"
+    >
       <template v-slot:header>
-        <v-toolbar dark color="primary" class="mb-1">
-          <v-text-field
-            v-model="search"
-            clearable
-            flat
-            solo-inverted
-            hide-details
-            prepend-inner-icon="mdi-magnify"
-            label="Поиск"
-          ></v-text-field>
-          <template v-if="$vuetify.breakpoint.mdAndUp">
-            <v-spacer></v-spacer>
-            <!-- <v-select
-              v-model="sortBy"
-              flat
-              solo-inverted
-              hide-details
-              :items="Object.keys(parameters[0]).filter(v=>!v.startsWith('_'))"
-              prepend-inner-icon="mdi-magnify"
-              label="Сортировать по"
-            ></v-select> -->
-            <v-spacer></v-spacer>
-            <v-btn-toggle v-model="sortDesc" mandatory>
-              <v-btn large depressed color="blue" :value="false">
-                <v-icon>mdi-arrow-up</v-icon>
-              </v-btn>
-              <v-btn large depressed color="blue" :value="true">
-                <v-icon>mdi-arrow-down</v-icon>
-              </v-btn>
-            </v-btn-toggle>
-          </template>
-        </v-toolbar>
+        <v-container class="mb-1">
+          <v-card dark color="primary">
+            <v-card-title>{{$t('Параметры печати')}}</v-card-title>
+            <v-card-text>
+              <v-row justify="center">
+                <v-col cols="12" sm="4">
+                  <v-text-field
+                    v-model="search"
+                    clearable
+                    flat
+                    solo-inverted
+                    hide-details
+                    prepend-inner-icon="mdi-magnify"
+                    :label="$t('Поиск')"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-select
+                    v-model="sortBy"
+                    flat
+                    solo-inverted
+                    hide-details
+                    :items="sortKeys"
+                    prepend-inner-icon="mdi-magnify"
+                    :label="$t('Сортировать по')"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-btn-toggle v-model="sortDesc" mandatory>
+                    <v-btn large depressed color="blue" :value="false">
+                      <v-icon>mdi-arrow-up</v-icon>
+                    </v-btn>
+                    <v-btn large depressed color="blue" :value="true">
+                      <v-icon>mdi-arrow-down</v-icon>
+                    </v-btn>
+                  </v-btn-toggle>                  
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-container>
       </template>
       <template v-slot:default="props">
         <v-row>
@@ -53,11 +69,11 @@
                 <v-list-item
                   v-for="(k, index) in Object.keys(item).filter(
                     (v) => !v.startsWith('_')
-                  )"
+                  ).filter(v=> v!= 'name')"
                   :key="index"
                 >
-                  <v-list-item-content>{{ $t(`${k}`) }}</v-list-item-content>
-                  <v-list-item-content class="align-end">
+                  <v-list-item-content :class="{ 'blue--text': sortBy === k }">{{ $t(`${k}`) }}</v-list-item-content>
+                  <v-list-item-content class="align-end" :class="{ 'blue--text': sortBy === k }">
                     {{ item[k] }}
                   </v-list-item-content>
                 </v-list-item>
@@ -131,12 +147,19 @@ export default class PrintingParameters extends Vue {
   parameters!: any[];
 
   private search: string = ""
-  private sortBy: string = "name"
+  private sortBy: string = ""
   private sortDesc: boolean = false
   private itemsPerPageArray: number[]=[1, 2, 3, 4, 8, 12]
   private itemsPerPage: number = 3
   private page: number = 1
-  //private filter: {},
+  get sortKeys(): any[]{
+    if (this.parameters[0]) {
+return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v => {return {text: this.$tc(`${v}`), value: v}})
+
+    } else {
+      return []
+    }
+      }
 
   private  updateItemsPerPage (number) {
     this.itemsPerPage = number
@@ -153,6 +176,9 @@ export default class PrintingParameters extends Vue {
         if (this.page - 1 >= 1) this.page -= 1
   }
 
+// async beforeMount(){
+
+// }
 
 }
 </script>

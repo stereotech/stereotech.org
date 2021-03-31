@@ -391,5 +391,6 @@
   "speed":"Printing speed",
   "flow":"Plastic flow",
   "layerHeight":"Min. layer height",
-  "Сортировать по":"Sort by"
+  "Сортировать по":"Sort by",
+  "Параметры печати":"Printing parameters"
 }

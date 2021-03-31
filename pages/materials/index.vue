@@ -33,16 +33,16 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <MaterialsTable
-          id="materialsTable"
-          title="Сравнение материалов"
-          :materials="ourBrandMaterials"
-          :specs="specs"
+        <PrintingParameters
+          :parameters="allPrintParameters"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <PrintingParameters
-          :parameters="allPrintParameters"
+        <MaterialsTable
+          id="materialsTable"
+          title="Технические характеристики"
+          :materials="ourBrandMaterials"
+          :specs="specs"
         />
       </v-col>
     </v-row>
