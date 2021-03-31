@@ -32,7 +32,13 @@ export const getters: GetterTree<PrintParametersState, RootState> = {
 export const actions: ActionTree<PrintParametersState, RootState> = {
     async loadPrintParameters ({commit}){
         let data: {entries: PrintParameter[]}
-        let response = await fetch(`https://api2.stereotech.org/api/collections/get/printingParameters?token=${process.env.COCKPIT_TOKEN}`)
+        let response = await fetch(`https://api2.stereotech.org/api/collections/get/printingParameters?token=${process.env.COCKPIT_TOKEN}`, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              lang: this.$i18n.locale
+            }) 
+        })
         data = await response.json()
         const printParameters:PrintParameter[] = data.entries
         commit('setPrintParameters', printParameters)
