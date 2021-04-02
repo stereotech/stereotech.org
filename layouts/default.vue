@@ -275,6 +275,7 @@
                 :src="`https://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
               />
             </a>
+            <h6 class="text-center">Исследования осуществляются при грантовой поддержке Фонда «Сколково»</h6>
           </v-col>
           <v-col cols="6" lg="3">
             <a
