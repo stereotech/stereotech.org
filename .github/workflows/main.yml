@@ -89,3 +89,22 @@ jobs:
           dist_target_dir: "./"
           delete: "true"
           other_flags: "--parallel=10"
+          
+  deployNext:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: contains( github.ref, 'develop')
+    steps:
+      - uses: actions/download-artifact@v2.0.5
+        with:
+          name: public
+
+      - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          ftp_host: ${{ secrets.FTP_NEXT_SERVER }}
+          ftp_username: ${{ secrets.FTP_NEXT_USERNAME }}
+          ftp_password: ${{ secrets.FTP_NEXT_PASSWORD }}
+          local_source_dir: "./"
+          dist_target_dir: "./"
+          delete: "true"
+          other_flags: "--parallel=10"
