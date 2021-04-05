@@ -21,10 +21,10 @@
                       :hint-content="`${address.name} | ${address.address}`"
                       :balloon-template="balloonTemplate(address._id)"
                     >
-                      <v-card slot="balloon">
+                      <!-- <v-card slot="balloon">
                         <v-card-title>{{ address.name }}</v-card-title>
                         <v-btn>1233</v-btn>
-                      </v-card>
+                      </v-card> -->
                     </ymap-marker>
                   </template>
                 </yandex-map>
@@ -188,10 +188,6 @@ export default class AddressMap extends Vue {
     </div>`
   }
 
-  goToCard(){
-    //return this.$vuetify.goTo('#dealer-form')
-    return alert("hello")
-  }
 }
 
 </script>

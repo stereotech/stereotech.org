@@ -46,7 +46,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
-          image="/materials/sealant.jpg"
+          :image="require('~/static/materials/sealant.jpg?webp')"
           :title="this.$tc('Материалы для печати')"
           link="/materials"
         />

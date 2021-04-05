@@ -4,7 +4,7 @@
       <v-col cols="12" lg="10">
         <ProductBanner
           fullsize
-          image="/printers/desktop/banner.jpg"
+          :image="require('~/static/printers/desktop/banner.jpg?webp')"
           :title="$tc('Принтеры, открывающие новые возможности')"
           :description="
             $tc(

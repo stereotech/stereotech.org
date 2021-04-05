@@ -16,10 +16,12 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import materialsSheet from '~/components/materialsSheet.vue'
+import PrintingParameters from '~/components/PrintingParameters.vue'
 
 @Component({
   components: {
-    materialsSheet
+    materialsSheet,
+    PrintingParameters
   },
   head: {
     title: 'Используемые полимерные материалы'

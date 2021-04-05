@@ -1,32 +1,57 @@
 <template>
-  <v-container fluid>
-    <v-row justify="center">
-      <v-col lg="8">
-        <ContactForm />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-card >
+    <SupportBanner
+      :title="this.$tc('Руководства пользователя')"
+    />
+    <v-card-text>
+      <v-container fluid>
+        <v-row justify="center">
+          <v-col
+            v-for="(category, index) in manualCategories"
+            :key="index"
+            cols="12"
+            md="3"
+          >
+            <v-card :to="``" nuxt>
+              <v-card-title>{{ category.title }}</v-card-title>
+              <v-card-text>
+                <v-img :src="category.image"></v-img>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row> 
+      </v-container>       
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import ContactForm from '~/components/ContactForm.vue'
+import { Vue, Component } from "vue-property-decorator";
+import SupportBanner from "~/components/SupportBanner.vue"
 
 @Component({
-  head: {
-    title: 'Техническая поддержка'
-  },
-  components: {
-    ContactForm
+  components:{
+    SupportBanner
   }
 })
 export default class Support extends Vue {
-  async mounted () {
-    //@ts-ignore
-    await this.$recaptcha.init()
+  get manualCategories() {
+    return [
+      {
+        title: this.$t("Принтеры"),
+        image: "support/series5.jpg",
+      },
+      {
+        title: this.$t("Программное обеспечение"),
+        image: "support/steslicer.jpg",
+      },
+    ];
+  }
+
+  async mounted(){
+    
   }
 }
-
 </script>
 
 <style>

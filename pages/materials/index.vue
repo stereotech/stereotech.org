@@ -4,7 +4,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           fullsize
-          image="/materials/banner.jpg"
+          :image="require('~/static/materials/banner.jpg?webp')"
           :title="this.$tc('Доступные материалы для печати')"
         >
           <v-btn
@@ -33,9 +33,14 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
+        <PrintingParameters
+          :parameters="allPrintParameters"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
         <MaterialsTable
           id="materialsTable"
-          title="Сравнение материалов"
+          title="Технические характеристики"
           :materials="ourBrandMaterials"
           :specs="specs"
         />
@@ -49,16 +54,19 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
 import MaterialsTable from '~/components/MaterialsTable.vue'
+import PrintingParameters from '~/components/PrintingParameters.vue'
 import { Material, MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
 const materials = namespace('materials')
+const printParameters = namespace('printParameters')
 
 @Component({
   components: {
     ProductCard,
     ProductBanner,
     MaterialsTable,
+    PrintingParameters
   },
   head: {
     title: 'Материалы для печати'
@@ -69,6 +77,12 @@ export default class materialsPage extends Vue {
   @materials.Action loadMaterialsData!: any
   @materials.Getter ourBrandMaterials!: any
   @materials.Getter specs!: MaterialSpec[]
+
+  @printParameters.State loaded!: boolean
+  @printParameters.Action loadPrintParameters!: any
+
+  @printParameters.Getter printParametersBySku!: any
+  @printParameters.Getter allPrintParameters!: any
 
   get materialsSeries (): {
     image: string,
@@ -105,6 +119,9 @@ export default class materialsPage extends Vue {
   async mounted () {
     if (!this.filled) {
       await this.loadMaterialsData()
+    }
+    if(!this.loaded){
+      await this.loadPrintParameters()
     }
   }
 }

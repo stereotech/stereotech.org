@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
+    "skipLibCheck": true,
     "lib": [
       "esnext",
       "esnext.asynciterable",
@@ -31,7 +32,8 @@
       "@nuxtjs/vuetify",
       "vue-apollo/types",
       "nuxt-i18n",
-      "@nuxtjs/axios"
+      "@nuxtjs/axios",
+      "@nuxt/content"
     ]
   },
   "exclude": [

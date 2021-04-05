@@ -47,9 +47,9 @@ const config: NuxtConfig = {
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
-    ['~/modules/docs/', { port: 3001 }],
-    '~/modules/crawler/',
-    '~/modules/static/',
+    // ['~/modules/docs/', { port: 3001 }],
+    // '~/modules/crawler/',
+    // '~/modules/static/',
     '~/modules/components/',
     '@aceforth/nuxt-optimized-images'
   ],
@@ -81,6 +81,7 @@ const config: NuxtConfig = {
     '@nuxtjs/robots',
     '@nuxtjs/apollo',
     '@nuxtjs/recaptcha',
+    '@nuxt/content',
     'nuxt-i18n'
   ],
   i18n: {
