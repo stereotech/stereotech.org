@@ -7,12 +7,12 @@
       <v-container fluid>
         <v-row justify="center">
           <v-col
-            v-for="(category, index) in manualCategories"
+            v-for="(category, index) in categories"
             :key="index"
             cols="12"
             md="3"
           >
-            <v-card :to="``" nuxt>
+            <v-card :to="localePath(`/support/${categoryPath(category.path.split('/'))}`)" nuxt>
               <v-card-title>{{ category.title }}</v-card-title>
               <v-card-text>
                 <v-img :src="category.image"></v-img>
@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import { IContentDocument } from "@nuxt/content/types/content";
 import { Vue, Component } from "vue-property-decorator";
 import SupportBanner from "~/components/SupportBanner.vue"
 
@@ -35,20 +36,15 @@ import SupportBanner from "~/components/SupportBanner.vue"
   }
 })
 export default class Support extends Vue {
-  get manualCategories() {
-    return [
-      {
-        title: this.$t("Принтеры"),
-        image: "support/series5.jpg",
-      },
-      {
-        title: this.$t("Программное обеспечение"),
-        image: "support/steslicer.jpg",
-      },
-    ];
+
+  private categoryPath(arr: any[]){
+    return arr[arr.length-2]
   }
 
+  categories: IContentDocument | IContentDocument[] = []
+
   async mounted(){
+    this.categories = await this.$content(`user-manuals/${this.$i18n.locale}`, {deep: true}).where({extension: '.json'}).fetch()
     
   }
 }
