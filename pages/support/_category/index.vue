@@ -13,8 +13,10 @@
                    md="4"
                   >
                     <v-list>
-                        <h3 class="text-center">{{manual.title}}</h3>
-                        <v-list-item v-for="(child, i) in manual.children" :key="i">
+                        <v-list-item :to="localePath(`/support/${$route.params.category}/${manual.link}`)" nuxt>
+                            <v-list-item-title class="text-center font-weight-bold" >{{manual.title}}</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item v-for="(child, i) in manual.children" :key="i" :to="localePath(`/support/${$route.params.category}/${getSectionPath(child.path)}`)" nuxt>
                             <v-list-item-title v-text="child.title" class="text-center"></v-list-item-title>
                         </v-list-item>
                     </v-list>
@@ -35,18 +37,26 @@ import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
         SupportBanner
     }
 })
-export default class extends Vue{
+export default class Category extends Vue{
 
     content: IContentDocument | IContentDocument[] = []
 
-    covers: {title: string, children: IContentDocument[]}[] = []
+    covers: {title: string, link: string, children: IContentDocument[]}[] = []
 
     bannerData: IContentDocument = {dir:'', path:'', extension:'', slug:'', createdAt: new Date(), updatedAt: new Date()}
+
+    private getSectionPath(arr: string): string{
+        return arr.split('/').slice(-2).join('/')
+    }
+
+    private section(arr: string[]){
+        return arr[arr.length-2]
+    }
 
     async mounted(){
         this.content = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}`, {deep:true}).without('body').fetch()
         this.bannerData = this.content.find(i => i.extension === '.json' && i.slug === 'home')
-        this.covers = this.content.filter(i => i.slug === '!cover').map(v=>{return {title:v.title, children:this.content.filter(c=>c.dir==v.dir&&c.slug!=='!cover')}})
+        this.covers = this.content.filter(i => i.slug === '!cover').map(v=>{return {title:v.title, link:v.path.split('/').slice(-2)[0],children:this.content.filter(c=>c.dir==v.dir&&c.slug!=='!cover')}})
         //console.log(covers)
         
     }

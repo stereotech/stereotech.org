@@ -84,6 +84,11 @@ const config: NuxtConfig = {
     '@nuxt/content',
     'nuxt-i18n'
   ],
+  content:{
+    markdown:{
+      tocDepth: 2
+    }
+  },
   i18n: {
     locales: [
       {
