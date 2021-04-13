@@ -1,18 +1,25 @@
 <template>
   <v-container>
-      <article>
-          <nuxt-content :document="page" />
-      </article>
-      <v-col cols="12"> 
-          <v-btn v-if="prevNext[0]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[0].slug}`)" nuxt>
-            <v-icon right>mdi-chevron-left</v-icon>
-            {{prevNext[0].title}}
-          </v-btn>
-          <v-btn v-if="prevNext[1]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[1].slug}`)" nuxt>
-            {{prevNext[1].title}}
-            <v-icon right>mdi-chevron-right</v-icon>
-          </v-btn>
-      </v-col>
+      <v-row justify="center">
+        <v-col cols="12">
+            <article>
+                <nuxt-content :document="page" />
+            </article>
+        </v-col>
+        <v-col cols="12" sm="6"> 
+            <v-btn color="primary" v-if="prevNext[0]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[0].slug}`)" nuxt>
+                <v-icon right>mdi-chevron-left</v-icon>
+                {{prevNext[0].title}}
+            </v-btn>
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-col cols="12" sm="6" align-self="end">    
+            <v-btn class="float-sm-right" color="primary" v-if="prevNext[1]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[1].slug}`)" nuxt>
+                {{prevNext[1].title}}
+                <v-icon right>mdi-chevron-right</v-icon>
+            </v-btn>
+        </v-col>
+      </v-row>
   </v-container>
 </template>
 
@@ -31,7 +38,7 @@ export default class Section extends Vue{
         // if(this.$route.hash){
         //     await this.$vuetify.goTo(this.$route.hash)
         // }
-       this.prevNext = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}`, {deep:true}).only(['title', 'slug']).surround(this.$route.params.file).fetch()
+       this.prevNext = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}`, {deep:true}).only(['title', 'slug']).where({slug: {$ne:'!cover'}}).surround(this.$route.params.file).fetch()
        // const [prev, next] = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}/${this.$route.params.file}`).surround(`${this.$route.params.file}`).fetch()
     }
 }
