@@ -2,7 +2,7 @@
   <v-card >
     <SupportBanner
       :title="this.$tc('Руководства пользователя')"
-    />
+    />   
     <v-card-text>
       <v-container fluid>
         <v-row justify="center">
@@ -45,7 +45,6 @@ export default class Support extends Vue {
 
   async mounted(){
     this.categories = await this.$content(`user-manuals/${this.$i18n.locale}`, {deep: true}).where({extension: '.json'}).fetch()
-    
   }
 }
 </script>

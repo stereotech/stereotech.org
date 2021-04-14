@@ -87,7 +87,8 @@ const config: NuxtConfig = {
   content:{
     markdown:{
       tocDepth: 2
-    }
+    },
+    fullTextSearchFields: ['text']
   },
   i18n: {
     locales: [

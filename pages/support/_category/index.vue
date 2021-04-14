@@ -3,6 +3,9 @@
       <SupportBanner 
         :title="$tc(`${bannerData.title}`)"
       />
+      <v-card-title>
+          <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+      </v-card-title>
       <v-card-text>
           <v-container fluid>
               <v-row justify="center"> 
@@ -39,6 +42,17 @@ import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
 })
 export default class Category extends Vue{
 
+    get getBreadcrumbsItems(){
+        return [
+        {
+            text: this.$t('Поддержка'), disabled: false,exact: true, nuxt: true, to: '/support'
+        },
+        {
+            text: this.bannerData.title, disabled: true, exact: true, nuxt: true, to:this.$route.fullPath
+        }]
+    }
+
+    
     content: IContentDocument | IContentDocument[] = []
 
     covers: {title: string, link: string, children: IContentDocument[]}[] = []

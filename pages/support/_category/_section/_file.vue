@@ -2,9 +2,12 @@
   <v-container>
       <v-row justify="center">
         <v-col cols="12">
-            <article>
+            <v-card>
+                <v-card-title>
+                    <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+                </v-card-title>
                 <nuxt-content :document="page" />
-            </article>
+            </v-card>
         </v-col>
         <v-col cols="12" sm="6"> 
             <v-btn color="primary" v-if="prevNext[0]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[0].slug}`)" nuxt>
@@ -29,17 +32,42 @@ import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
 
 @Component
 export default class Section extends Vue{
+
+    get getBreadcrumbsItems(){
+        return [
+        {
+            text: this.$t('Поддержка'), disabled: false,exact: true, nuxt: true, to: '/support'
+        },
+        {
+            text: this.categoryText, disabled: false,exact: true, nuxt: true, to:`/support/${this.$route.params.category}`
+        },
+        {
+            text: this.mainFileText, disabled: false,exact: true, nuxt: true, to:`/support/${this.$route.params.category}/${this.$route.params.section}`
+        },
+        {
+            text:this.fileTitle.title, disabled: false,exact: true, nuxt: true, to:this.$route.fullPath 
+        }]
+    }
+    category: IContentDocument | IContentDocument[] = []
+    categoryText: string = ''
+    sectionFiles: IContentDocument | IContentDocument[] = []
+    mainFileText: string = ''
     page: IContentDocument | IContentDocument[] = []  
+    fileTitle: any = {}  
     prevNext: IContentDocument | IContentDocument[] = []
 
     async mounted(){
         
         this.page = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}/${this.$route.params.file}`, {deep:true}).fetch()
+        this.fileTitle = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}/${this.$route.params.file}`).only(['title']).fetch()
         // if(this.$route.hash){
         //     await this.$vuetify.goTo(this.$route.hash)
         // }
        this.prevNext = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}`, {deep:true}).only(['title', 'slug']).where({slug: {$ne:'!cover'}}).surround(this.$route.params.file).fetch()
-       // const [prev, next] = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}/${this.$route.params.file}`).surround(`${this.$route.params.file}`).fetch()
+        this.category = await this.$content(`user-manuals/${this.$i18n.locale}/${this.$route.params.category}`).where({extension: '.json'}).only(['title']).fetch()
+        this.categoryText = this.category[0].title
+        this.sectionFiles = await this.$content(`/user-manuals/${this.$i18n.locale}/${this.$route.params.category}/${this.$route.params.section}`, {deep:true}).without('body').fetch()
+        this.mainFileText = this.sectionFiles.find(i=> i.slug === '!cover').title
     }
 }
 </script>
