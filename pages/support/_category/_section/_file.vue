@@ -1,36 +1,46 @@
 <template>
   <v-container>
       <v-row justify="center">
-        <v-col cols="12">
+        <v-col cols="12" sm="3">
+            <ManualSideNav :manualHeaders="page.toc" />
+        </v-col>
+        <v-col cols="12" sm="9">
             <v-card>
                 <v-card-title>
                     <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
                 </v-card-title>
                 <nuxt-content :document="page" />
+                <v-row justify="center"> 
+                    <v-col cols="12" sm="6"> 
+                        <v-btn color="primary" v-if="prevNext[0]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[0].slug}`)" nuxt>
+                            <v-icon right>mdi-chevron-left</v-icon>
+                            {{prevNext[0].title}}
+                        </v-btn>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                    <v-col cols="12" sm="6" align-self="end">    
+                        <v-btn class="float-sm-right" color="primary" v-if="prevNext[1]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[1].slug}`)" nuxt>
+                            {{prevNext[1].title}}
+                            <v-icon right>mdi-chevron-right</v-icon>
+                        </v-btn>
+                    </v-col> 
+                </v-row>               
             </v-card>
         </v-col>
-        <v-col cols="12" sm="6"> 
-            <v-btn color="primary" v-if="prevNext[0]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[0].slug}`)" nuxt>
-                <v-icon right>mdi-chevron-left</v-icon>
-                {{prevNext[0].title}}
-            </v-btn>
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col cols="12" sm="6" align-self="end">    
-            <v-btn class="float-sm-right" color="primary" v-if="prevNext[1]" :to="localePath(`/support/${this.$route.params.category}/${this.$route.params.section}/${prevNext[1].slug}`)" nuxt>
-                {{prevNext[1].title}}
-                <v-icon right>mdi-chevron-right</v-icon>
-            </v-btn>
-        </v-col>
-      </v-row>
+       </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { IContentDocument } from "~/node_modules/@nuxt/content/types/content";
+import ManualSideNav from "~/components/docs/ManualSideNav.vue"
 
-@Component
+@Component({
+    components: {
+        ManualSideNav
+    }
+})
 export default class Section extends Vue{
 
     get getBreadcrumbsItems(){
