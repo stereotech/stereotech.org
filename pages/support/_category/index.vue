@@ -3,9 +3,12 @@
       <SupportBanner 
         :title="$tc(`${bannerData.title}`)"
       />
-      <v-card-title>
-          <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
-      </v-card-title>
+        <v-card-title v-if="$vuetify.breakpoint.xs">
+            <v-breadcrumbs divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+        </v-card-title>
+        <v-card-title v-else>
+            <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+        </v-card-title>
       <v-card-text>
           <v-container fluid>
               <v-row justify="center"> 

@@ -2,13 +2,17 @@
   <v-container>
       <v-row justify="center">
         <v-col cols="12" sm="3">
-            <ManualSideNav :manualHeaders="page.toc" />
+            <ManualSideNav class="sideNavPos" :manualHeaders="page.toc" />
         </v-col>
         <v-col cols="12" sm="9">
             <v-card>
-                <v-card-title>
+                <v-card-title v-if="$vuetify.breakpoint.xs">
+                    <v-breadcrumbs divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+                </v-card-title>
+                <v-card-title v-else>
                     <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
                 </v-card-title>
+                <v-container fluid>
                 <nuxt-content :document="page" />
                 <v-row justify="center"> 
                     <v-col cols="12" sm="6"> 
@@ -24,7 +28,8 @@
                             <v-icon right>mdi-chevron-right</v-icon>
                         </v-btn>
                     </v-col> 
-                </v-row>               
+                </v-row>   
+                </v-container>            
             </v-card>
         </v-col>
        </v-row>
@@ -83,6 +88,11 @@ export default class Section extends Vue{
 </script>
 
 <style>
+    .sideNavPos {
+        position: sticky;
+        top: 10%;
+    }
+
     .nuxt-content h1 {
     font-size: 6rem !important;
     line-height: 6rem;

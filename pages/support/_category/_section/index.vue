@@ -1,9 +1,12 @@
 <template>
   <v-container>
       <v-card>
-        <v-card-title>
+        <v-card-title v-if="$vuetify.breakpoint.xs">
+            <v-breadcrumbs divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
+        </v-card-title>
+        <v-card-title v-else>
             <v-breadcrumbs large divider=">" :items="getBreadcrumbsItems"></v-breadcrumbs>
-        </v-card-title> 
+        </v-card-title>
         <v-row justify="center">
             <v-col cols="12">
                 <h2 class="text-center">{{mainFile.title}}</h2>

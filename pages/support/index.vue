@@ -10,7 +10,7 @@
             v-for="(category, index) in categories"
             :key="index"
             cols="12"
-            md="3"
+            md="4"
           >
             <v-card :to="localePath(`/support/${categoryPath(category.path.split('/'))}`)" nuxt>
               <v-card-title>{{ category.title }}</v-card-title>
