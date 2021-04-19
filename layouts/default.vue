@@ -185,13 +185,6 @@
           </v-btn>
         </template>
         <v-list nav>
-          <!--<v-list-item
-            v-for="locale in locales"
-            :key="locale.locale"
-            @click="currentLang = locale.locale"
-          >
-            <v-list-item-title>{{ locale.text }}</v-list-item-title>
-          </v-list-item>-->
           <v-list-item
             v-for="locale in $i18n.locales"
             :key="locale.code"
