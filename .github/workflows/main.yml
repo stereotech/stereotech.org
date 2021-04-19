@@ -48,20 +48,6 @@ jobs:
       - name: Run npm preparation script
         run: npm ci --cache .npm --prefer-offline
 
-      - name: Load docs
-        uses: actions/checkout@v2
-        with:
-          repository: stereotech/User-Manuals
-          path: docs
-          ref: master
-
-      - name: Prepare docs
-        run: |
-          cd docs
-          node ./scripts/generate-menu.js
-          cd ..
-          cp -rf docs/static .
-
       - name: Generate job
         run: npm run generate
 

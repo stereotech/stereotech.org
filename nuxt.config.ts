@@ -54,7 +54,7 @@ const config: NuxtConfig = {
     '@aceforth/nuxt-optimized-images'
   ],
   plugins: [
-    '~/plugins/init',
+    //'~/plugins/init',
     '~/plugins/htmlparser',
     '~/plugins/vue-the-mask',
   ],
@@ -63,7 +63,6 @@ const config: NuxtConfig = {
   */
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/axios',
     '@nuxtjs/google-analytics',
     [
       '@nuxtjs/yandex-metrika',
@@ -81,9 +80,15 @@ const config: NuxtConfig = {
     '@nuxtjs/robots',
     '@nuxtjs/apollo',
     '@nuxtjs/recaptcha',
-    '@nuxt/content',
+    //'@nuxt/content',
     'nuxt-i18n'
   ],
+  content: {
+    markdown: {
+      tocDepth: 2
+    },
+    fullTextSearchFields: ['text']
+  },
   i18n: {
     locales: [
       {
@@ -203,23 +208,10 @@ const config: NuxtConfig = {
     fallback: true,
     interval: 100,
     routes () {
-      const client = createApolloFetch({ uri: apolloUri })
-      const query = `
-        query {
-          blog_allposts {
-            post_id
-          }
-        }
-      `
-      return client({ query }).then((result) => {
-        const { data } = result
-        const mapped = data.blog_allposts.map((post: any) => `/blog/post/${post.post_id}`)
-        let routes: string[] = []
-        routes.push(...mapped)
-        routes.push('/info', '/info/team', '/info/address', '/info/media')
-        routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
-        return routes
-      })
+      let routes: string[] = []
+      routes.push('/info', '/info/team', '/info/address', '/info/media')
+      routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
+      return routes
     }
   }
 }

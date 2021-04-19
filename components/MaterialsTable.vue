@@ -1,19 +1,37 @@
 <template>
   <v-card>
-    <v-card-title
-      >{{ title }}
-
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
+    <v-card-title>
+      <v-row justify="center">
+        <v-col cols="12" sm="4">
+          {{ title }}
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-btn
+            color="primary"
+            depressed
+            outlined
+            block
+            @click="exportToExel"
+          >
+          <v-icon>mdi-download</v-icon>
+          {{$t('Выгрузить в xlsx')}}          
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-card-title>
+    <v-divider></v-divider>
     <v-card-text>
       <v-data-table
+        id="out-table"
         :headers="tableHeaders"
         :items="tableData"
         :dense="true"
@@ -27,7 +45,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Material, MaterialSpec, MaterialSpecValue } from '~/types/materials.ts'
+import { Material, MaterialSpec, MaterialSpecValue } from '~/types/materials'
+import XLSX from 'xlsx'
+
 
 @Component
 export default class MaterialsTable extends Vue {
@@ -56,10 +76,6 @@ export default class MaterialsTable extends Vue {
         {
           text: 'Полимерная основа',
           value: 'polymer'
-        },
-        {
-          text: 'Описание',
-          value: 'description'
         }
       ]
     this.specs.forEach(s => {
@@ -84,6 +100,11 @@ export default class MaterialsTable extends Vue {
       return item
     })
     return data
+  }
+
+  private exportToExel(){
+    var wb = XLSX.utils.table_to_book(document.getElementById('out-table'))
+    XLSX.writeFile(wb, 'materials.xlsx')
   }
 
 }
