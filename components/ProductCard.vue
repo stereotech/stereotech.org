@@ -6,38 +6,76 @@
           <v-img
             :src="image"
             class="white--text align-center text-center"
-            :gradient="fullsize  && $vuetify.breakpoint.smAndUp ? 'to bottom, rgba(2,119,189,0), rgba(2, 119, 189, 0.8), rgba(2,119,189,0)' : ''"
+            :gradient="
+              fullsize && $vuetify.breakpoint.smAndUp
+                ? 'to bottom, rgba(2,119,189,0), rgba(2, 119, 189, 0.8), rgba(2,119,189,0)'
+                : ''
+            "
           >
             <h4
               v-if="fullsize && $vuetify.breakpoint.smAndUp"
               class="display-1 font-weight-light"
-            >{{ title }}</h4>
+            >
+              {{ title }}
+            </h4>
 
             <slot v-if="fullsize && $vuetify.breakpoint.smAndUp">
               <v-btn
-                v-if="fullsize && $vuetify.breakpoint.smAndUp"
+                v-if="
+                  fullsize &&
+                  $vuetify.breakpoint.smAndUp &&
+                  link.startsWith('http')
+                "
+                color="accent"
+                class="mt-2"
+                depressed
+                :href="link"
+                target="_blank"
+              >
+                {{ $t("Узнать больше") }}
+                <v-icon right>mdi-chevron-right</v-icon>
+              </v-btn>
+              <v-btn
+                v-if="
+                  fullsize &&
+                  $vuetify.breakpoint.smAndUp &&
+                  !link.startsWith('http')
+                "
                 color="accent"
                 class="mt-2"
                 depressed
                 nuxt
                 :to="localePath(link)"
               >
-                {{$t('Узнать больше')}}
+                {{ $t("Узнать больше") }}
                 <v-icon right>mdi-chevron-right</v-icon>
               </v-btn>
             </slot>
-
           </v-img>
         </v-col>
-        <v-col cols="12" :sm="fullsize ? 12 : 6" :class="`text-center ${hidden}`">
+        <v-col
+          cols="12"
+          :sm="fullsize ? 12 : 6"
+          :class="`text-center ${hidden}`"
+        >
           <h4 class="display-1 font-weight-light">{{ title }}</h4>
           <p
             class="subtitle-1 font-weight-light"
             v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
           ></p>
           <slot>
-            <v-btn color="primary" depressed nuxt :to="localePath(link)">
-              {{$t('Узнать больше')}}
+            <v-btn
+              color="primary"
+              depressed
+              :href="link"
+              target="_blank"
+              v-if="link.startsWith('http')"
+            >
+              {{ $t("Узнать больше") }}
+              <v-icon right>mdi-chevron-right</v-icon>
+            </v-btn>
+            <v-btn color="primary" depressed nuxt :to="localePath(link)" v-else>
+              {{ $t("Узнать больше") }}
               <v-icon right>mdi-chevron-right</v-icon>
             </v-btn>
           </slot>

@@ -174,37 +174,6 @@ export default class Series5 extends Vue {
   }
 
   async mounted () {
-    // const result = await this.$apollo.query({
-    //   query: gql`query {
-    //      product(id: "676") {
-    //         product_id,
-    //         name,
-    //         price,
-    //         options {
-    //           product_option_id,
-    //           name,
-    //           product_option_value {
-    //             product_option_value_id,
-    //             name,
-    //             price
-    //           }
-    //         }
-    //         attributes {
-    //           attribute_group_id,
-    //           name,
-    //           attribute {
-    //             name,
-    //             attribute_id,
-    //             text
-    //           }
-    //         }
-    //      }
-    //   }
-    //   `
-    // })
-    // this.product = result.data.product
-    // this.product.price = Number(this.product.price)
-    // this.currentPrinter = this.printerItems[0]
     await this.getPrinterItems()
     await this.getFulSpec5()
     await this.getFeatures()

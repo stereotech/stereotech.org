@@ -1,13 +1,5 @@
 <template>
-  <!-- <v-card :loading="$apollo.loading"> -->
-    <!-- <v-card-text>
-      <v-progress-linear indeterminate v-if="$apollo.loading"></v-progress-linear>
-      <div v-else v-html="text" />
-    </v-card-text>
-  </v-card> -->
-  <div v-html="information">
-
-  </div>
+  <div v-html="information"></div>
 </template>
 
 <script lang="ts">
@@ -18,14 +10,10 @@ import gql from 'graphql-tag'
 export default class InformationViewer extends Vue {
   @Prop({ type: String, default: '' }) id!: string
 
-  // @Watch('information') onInformationChanged (oldVal: any, val: any) {
-  //   this.text = this.$convertHtml(this.information.description)
-  // }
-
   text: string = ''
   information: any = {}
 
-  private async getInformation() {
+  private async getInformation () {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/singletons/get/Media?token=${process.env.COCKPIT_TOKEN}`)
     data = await response.json()
@@ -35,20 +23,6 @@ export default class InformationViewer extends Vue {
 
   async mounted () {
     await this.getInformation()
-    // const result = await this.$apollo.query({
-    //   query: gql`
-    //   query($id: ID!) {
-    //       information(id: $id) {
-    //           information_id, title, description
-    //       }
-    //   }
-    //   `,
-    //   variables: {
-    //     id: this.id
-    //   }
-    // })
-
-    // this.information = result.data.information
   }
 }
 

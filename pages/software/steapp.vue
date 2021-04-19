@@ -5,11 +5,18 @@
         <ProductBanner
           image="/software/steapp/banner.jpg"
           :title="this.$tc('Управление 3D печатью - это просто')"
-          :description="this.$tc('Управляйте процессом 3D печати откуда угодно: с компьютера, смартфона или напрямую с принтера. Создавайте очередь печати на несколько 3D и 5D принтеров, автоматизируйте обсуживание, снижайте расходы.')"
+          :description="
+            this.$tc(
+              'Управляйте процессом 3D печати откуда угодно: с компьютера, смартфона или напрямую с принтера. Создавайте очередь печати на несколько 3D и 5D принтеров, автоматизируйте обсуживание, снижайте расходы.'
+            )
+          "
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <DownloadForm :title="this.$tc('Загрузить STE App')" :links="downloadLinks" />
+        <DownloadForm
+          :title="this.$tc('Загрузить STE App')"
+          :links="downloadLinks"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
@@ -21,18 +28,30 @@
         <ProductCard
           image="/software/steapp/manual.jpg"
           :title="this.$tc('Быстрый старт')"
-          :description="this.$tc('Изучите руководство пользователя для получния навыков работы с STE App')"
-          link="/support/manuals/steapp"
+          :description="
+            this.$tc(
+              'Изучите руководство пользователя для получния навыков работы с STE App'
+            )
+          "
+          link="https://support.stereotech.org/steapp"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title>{{$t('Программа предварительного тестирования')}}</v-card-title>
+          <v-card-title>{{
+            $t("Программа предварительного тестирования")
+          }}</v-card-title>
           <v-card-text>
             <v-container fluid>
               <v-row justify="center">
                 <v-col cols="12">
-                  <p>{{$t('Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения')}}</p>
+                  <p>
+                    {{
+                      $t(
+                        "Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения"
+                      )
+                    }}
+                  </p>
                 </v-col>
                 <v-col cols="12" lg="4">
                   <TestingForm
@@ -72,47 +91,41 @@ import { DownloadLink } from '~/types/download'
   }
 })
 export default class SteApp extends Vue {
-  get downloadLinks(): DownloadLink[] {
+  get downloadLinks (): DownloadLink[] {
     return [
       {
-      name: this.$tc('Загрузить обновление'),
-      icon: 'mdi-update',
-      description: this.$tc('Используйте последнюю версию ПО принтера'),
-      version: this.$tc('Версия ') + this.version,
-      download: 'http://software.stereotech.org/firmware/stable/ste-update.stu'
-    },
+        name: this.$tc('Загрузить обновление'),
+        icon: 'mdi-update',
+        description: this.$tc('Используйте последнюю версию ПО принтера'),
+        download: 'http://software.stereotech.org/firmware/stable/ste-update.stu'
+      },
       {
         name: this.$tc('Загрузить для Android'),
         icon: 'mdi-android',
         description: this.$tc('Приложение для доступа и управления принтером со смартфона'),
-        version: this.$tc('Версия ') + this.version,
         download: 'https://play.google.com/store/apps/details?id=ru.stereotech.steapp'
       }
     ]
   }
 
   keyFeatures: any[] = []
-  public async getSteAppFeatures(){
+  public async getSteAppFeatures () {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/steappBenefits?token=${process.env.COCKPIT_TOKEN}`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         lang: this.$i18n.locale
-      }) 
+      })
     })
     data = await response.json()
     this.keyFeatures = data.entries
   }
   async mounted () {
-
-    this.version = await this.$axios.$get('http://software.stereotech.org/firmware/stable/ste-update.stu.version')
-    this.version = this.version.replace(/(\r\n|\n|\r)/gm, "")
     await this.getSteAppFeatures()
 
   }
 
-  version: string = ''
 }
 
 </script>

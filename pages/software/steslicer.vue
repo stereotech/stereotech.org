@@ -44,7 +44,7 @@
               'Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer'
             )
           "
-          link="/support/manuals/steslicer"
+          link="https://support.stereotech.org/steslicer"
         />
       </v-col>
       <v-col cols="12" lg="10">
@@ -105,14 +105,14 @@ export default class SteSlicer extends Vue {
 
   keyFeatures: any[] = []
 
-  public async getSlicerFeatures(){
+  public async getSlicerFeatures () {
     let data
     let response = await fetch(`https://api2.stereotech.org/api/collections/get/slicerFeatures?token=${process.env.COCKPIT_TOKEN}`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         lang: this.$i18n.locale
-      }) 
+      })
     })
     data = await response.json()
     this.keyFeatures = data.entries

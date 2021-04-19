@@ -3,20 +3,25 @@
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" class="text-center">
-          <h4 class="display-1 text-uppercase font-weight-light">{{$t('Последние новости')}}</h4>
+          <h4 class="display-1 text-uppercase font-weight-light">
+            {{ $t("Последние новости") }}
+          </h4>
         </v-col>
       </v-row>
       <v-row justify="center" v-if="posts.length < 1">
         <v-col cols="2" class="text-center">
-          <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          <v-progress-circular
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
         </v-col>
       </v-row>
       <v-row v-else justify="center" align="center">
         <v-col v-for="(post, index) in posts" :key="index" cols="12" md="4">
           <blogPostCard
-            :postID="post.post_id"
-            :photoPath="`https://api.ste3d.ru/image/${post.image}`"
-            :postTitle="post.name"
+            :postID="post._id"
+            :photoPath="`https://api2.stereotech.org/${post.image.path}`"
+            :postTitle="post.postName"
             :postDescription="post.description"
           ></blogPostCard>
         </v-col>
@@ -40,20 +45,15 @@ export default class LatestPosts extends Vue {
   private posts: any[] = []
 
   async loadPosts () {
-    let result: any
-    result = await this.$apollo.query({
-      query: gql`query($limit: Int!){
-                blog_filter(sort: "p.date_added" , order: "DESC", start: 0, limit: $limit){
-                post_id,
-                name,
-                image
-            }}`,
-      variables: {
-        limit: this.limit
-      }
-    })
-
-    this.posts = result.data.blog_filter
+    let data
+    let response = await fetch(`https://api2.stereotech.org/api/collections/get/blog?token=${process.env.COCKPIT_TOKEN}`)
+    data = await response.json()
+    if (this.$route.params.slug === undefined) {
+      this.posts = data.entries.slice(0, this.limit)
+    }
+    else {
+      this.posts = data.entries.filter(item => item.category == this.$route.params.slug).slice(0, this.limit)
+    }
   }
 
   async mounted () {
