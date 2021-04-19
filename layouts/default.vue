@@ -10,7 +10,12 @@
     >
       <v-list nav>
         <template v-for="(menuItem, index) in mainMenu">
-          <v-list-group value="true" :key="index" :prepend-icon="menuItem.icon">
+          <v-list-group
+            value="true"
+            :key="index"
+            :prepend-icon="menuItem.icon"
+            v-if="menuItem.child"
+          >
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
@@ -31,6 +36,21 @@
               </v-list-item>
             </template>
           </v-list-group>
+          <v-list-item
+            v-else
+            :key="index"
+            :href="menuItem.link"
+            target="_blank"
+          >
+            <v-list-item-avatar>
+              <v-icon color="primary">
+                {{ menuItem.icon }}
+              </v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content color="primary">
+              <v-list-item-title>{{ menuItem.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </template>
         <v-list-item nuxt :to="localePath('/resellers')">
           <v-list-item-icon>
@@ -139,6 +159,7 @@
             v-else
             :key="index"
             text
+            color="primary"
             :href="menuItem.link"
             target="_blank"
             >{{ menuItem.title }}</v-btn
@@ -164,13 +185,6 @@
           </v-btn>
         </template>
         <v-list nav>
-          <!--<v-list-item
-            v-for="locale in locales"
-            :key="locale.locale"
-            @click="currentLang = locale.locale"
-          >
-            <v-list-item-title>{{ locale.text }}</v-list-item-title>
-          </v-list-item>-->
           <v-list-item
             v-for="locale in $i18n.locales"
             :key="locale.code"
@@ -275,7 +289,10 @@
                 :src="`https://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
               />
             </a>
-            <h6 class="text-center">Исследования осуществляются при грантовой поддержке Фонда «Сколково»</h6>
+            <h6 class="text-center">
+              Исследования осуществляются при грантовой поддержке Фонда
+              «Сколково»
+            </h6>
           </v-col>
           <v-col cols="6" lg="3">
             <a
@@ -429,35 +446,7 @@ export default class Layout extends Vue {
       {
         title: this.$tc('Поддержка'),
         icon: 'mdi-face-agent',
-        child: [
-
-          {
-            title: this.$tc('Руководства пользователя'),
-            link: '/support/manuals',
-            child: [
-              {
-                title: this.$tc('Принтеры 3хх серии'),
-                link: '/support/manuals/ste320'
-              },
-              {
-                title: this.$tc('Принтеры 5хх серии'),
-                link: '/support/manuals/ste520'
-              },
-              {
-                title: this.$tc('Слайсер STE Slicer'),
-                link: '/support/manuals/steslicer'
-              },
-              {
-                title: this.$tc('Система управления STE App'),
-                link: '/support/manuals/steapp'
-              }
-            ]
-          },
-          {
-            title: this.$tc('Связаться с нами'),
-            link: '/support'
-          },
-        ]
+        link: 'https://support.stereotech.org',
       },
       {
         title: this.$tc('О нас'),
