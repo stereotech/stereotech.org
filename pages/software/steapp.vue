@@ -33,7 +33,7 @@
               'Изучите руководство пользователя для получния навыков работы с STE App'
             )
           "
-          link="https://support.stereotech.org/steapp"
+          link="https://support.stereotech.org/software/steapp"
         />
       </v-col>
       <v-col cols="12" lg="10">

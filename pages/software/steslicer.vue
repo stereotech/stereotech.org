@@ -44,7 +44,7 @@
               'Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer'
             )
           "
-          link="https://support.stereotech.org/steslicer"
+          link="https://support.stereotech.org/software/steslicer"
         />
       </v-col>
       <v-col cols="12" lg="10">
