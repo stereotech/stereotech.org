@@ -31,7 +31,7 @@ const materials = namespace('materials')
     MaterialsTable
   }
 })
-export default class Special extends Vue {
+export default class Fiber extends Vue {
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
   @materials.Getter ourBrandMaterials!: any
@@ -39,7 +39,7 @@ export default class Special extends Vue {
   get currentPrinter(): PrinterVariant {
     return {
       model: this.$tc('Серия Fiber'),
-      image: '/printers/desktop/special.jpg',
+      image: '/printers/desktop/fiber.jpg',
       printerType: PrinterType.ThreeAxis,
       extruderType: ExtruderType.Dual,
       printVolumeType: PrintVolumeType.Standard,

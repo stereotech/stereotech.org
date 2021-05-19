@@ -105,7 +105,7 @@ const materials = namespace('materials')
     title: 'Hybrid'
   }
 })
-export default class Series5 extends Vue {
+export default class Hybrid extends Vue {
 
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any

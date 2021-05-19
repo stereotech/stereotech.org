@@ -51,7 +51,7 @@ import YoutubeChannel from '~/components/YoutubeChannel.vue'
     YoutubeChannel
   },
   head: {
-    title: 'Серия 5хх'
+    title: 'Настольные принтеры'
   }
 })
 export default class Printers extends Vue {
@@ -68,16 +68,16 @@ export default class Printers extends Vue {
       //   link: '/printers/series3'
       // },
       {
-        image: '/printers/desktop/series5.jpg',
-        title: this.$tc('Серия 5хх'),
+        image: '/printers/desktop/hybrid.jpg',
+        title: this.$tc('Hybrid'),
         description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
-        link: '/printers/series5'
+        link: '/printers/hybrid'
       },
       {
-        image: '/printers/desktop/special.jpg',
-        title: this.$tc('Специальная серия'),
+        image: '/printers/desktop/fiber.jpg',
+        title: this.$tc('Fiber'),
         description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
-        link: '/printers/special'
+        link: '/printers/fiber'
       }
     ]
   }
