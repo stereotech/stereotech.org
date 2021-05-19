@@ -51,7 +51,7 @@ import YoutubeChannel from '~/components/YoutubeChannel.vue'
     YoutubeChannel
   },
   head: {
-    title: 'Настольные принтеры'
+    title: 'Серия 5хх'
   }
 })
 export default class Printers extends Vue {

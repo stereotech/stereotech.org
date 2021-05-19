@@ -24,7 +24,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           :image="require('~/static/printers/desktop/banner1.jpg?webp')"
-          :title="this.$tc('Настольные принтеры')"
+          :title="this.$tc('Серия 5хх')"
           :description="
             this.$tc(
               'Устройства способные с легкостью изменить и оптимизировать процесс производства'

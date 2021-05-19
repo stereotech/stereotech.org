@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">
-          {{ $t("Серия 5хх - инновационные 5D принтеры") }}
+          {{ $t("Hybrid - инновационные 5D принтеры") }}
         </h1>
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
@@ -102,7 +102,7 @@ const materials = namespace('materials')
     //materialsSheet
   },
   head: {
-    title: 'Серия 5xx'
+    title: 'Hybrid'
   }
 })
 export default class Series5 extends Vue {

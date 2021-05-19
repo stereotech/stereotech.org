@@ -342,17 +342,17 @@ export default class Layout extends Vue {
         icon: 'mdi-printer-3d',
         child: [
           {
-            title: this.$tc('Настольные принтеры'),
+            title: this.$tc('Серия 5хх'),
             link: '/printers',
             icon: '/printers/desktop/series3.jpg',
             child: [
               {
-                title: this.$tc('Серия 5хх'),
+                title: this.$tc('Hybrid'),
                 link: '/printers/series5',
                 description: this.$tc('Инновационные 5D принтеры')
               },
               {
-                title: this.$tc('Серия Special'),
+                title: this.$tc('Fiber'),
                 link: '/printers/special',
                 description: this.$tc('3D и 5D принтеры для особых задач')
               }
