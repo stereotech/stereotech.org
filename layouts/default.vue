@@ -348,12 +348,12 @@ export default class Layout extends Vue {
             child: [
               {
                 title: this.$tc('Hybrid'),
-                link: '/printers/series5',
+                link: '/printers/hybrid',
                 description: this.$tc('Инновационные 5D принтеры')
               },
               {
                 title: this.$tc('Fiber'),
-                link: '/printers/special',
+                link: '/printers/fiber',
                 description: this.$tc('3D и 5D принтеры для особых задач')
               }
             ]

@@ -6,7 +6,7 @@
           fullsize
           :image="require('~/static/printers/desktop/series5_banner.jpg?webp')"
           :title="this.$tc('Печать изделий с прочностью металла')"
-          link="/printers/series5"
+          link="/printers/hybrid"
         />
       </v-col>
       <v-col cols="12" lg="10">
