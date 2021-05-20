@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid>
+  <!-- <v-container fluid> -->
+    <v-card>
     <v-data-iterator :items="parameters" 
       :items-per-page="itemsPerPage" 
       :page="page" 
@@ -10,7 +11,7 @@
     >
       <template v-slot:header>
         <v-container class="mb-1">
-          <v-card dark color="primary">
+          <v-card dark color="primary" outlined>
             <v-card-title>{{$t('Параметры печати')}}</v-card-title>
             <v-card-text>
               <v-row justify="center">
@@ -52,7 +53,7 @@
         </v-container>
       </template>
       <template v-slot:default="props">
-        <v-row>
+        <v-row class="ml-1 mr-1">
           <v-col
             v-for="item in props.items"
             :key="item.name"
@@ -60,7 +61,7 @@
             sm="6"
             md="4"
           >
-            <v-card>
+            <v-card outlined>
               <v-card-title>
                 <h4>{{ item.name }}</h4>
               </v-card-title>
@@ -83,7 +84,7 @@
         </v-row>
       </template>
       <template v-slot:footer>
-        <v-row class="mt-2" align="center" justify="center">
+        <v-row class="mt-2 ml-5" align="center" justify="center">
           <span class="grey--text">Items per page</span>
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -115,22 +116,39 @@
           <span class="mr-4 grey--text">
             Page {{ page }} of {{ numberOfPages() }}
           </span>
-          <v-btn
-            fab
-            dark
-            color="blue darken-3"
-            class="mr-1"
-            @click="formerPage"
-          >
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
-          <v-btn fab dark color="blue darken-3" class="ml-1" @click="nextPage">
-            <v-icon>mdi-chevron-right</v-icon>
-          </v-btn>
+          <v-col v-if="$vuetify.breakpoint.xs" class="text-center" cols="12">
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="mr-1 mb-2"
+              @click="formerPage"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-btn fab dark color="blue darken-3" class="ml-1 mr-5 mb-2" @click="nextPage">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col v-else sm="3" lg="2">
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="mr-1 mb-2"
+              @click="formerPage"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-btn fab dark color="blue darken-3" class="ml-1 mr-5 mb-2" @click="nextPage">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-col>
         </v-row>
       </template>
     </v-data-iterator>
-  </v-container>
+    </v-card>
+  <!-- </v-container> -->
 </template>
 
 <script lang="ts">
