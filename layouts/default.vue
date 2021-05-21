@@ -399,6 +399,16 @@ export default class Layout extends Vue {
                 title: 'Proto',
                 link: '/materials/proto',
                 description: this.$tc('Серия материалов для функциональных моделей и макетов')
+              },
+              {
+                title: 'Metalcast',
+                link: '/materials/metalcast',
+                description: this.$tc('')
+              },
+              {
+                title: 'ContiFiber',
+                link: '/materials/contifiber',
+                description: this.$tc('Серия материалов, армированных непрерывным углеволокном')
               }
             ]
           },

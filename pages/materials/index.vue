@@ -113,6 +113,18 @@ export default class materialsPage extends Vue {
       title: 'Proto',
       description: this.$tc('Серия материалов для функциональных моделей и макетов'),
       link: '/materials/proto'
+    },
+    {
+      image: '',
+      title: 'Metalcast',
+      description: this.$tc(''),
+      link: '/materials/metalcast'
+    },
+    {
+      image: '',
+      title: 'ContiFiber',
+      description: this.$tc('Серия материалов, армированных непрерывным углеволокном'),
+      link: '/materials/contifiber'
     }]
   }
 
