@@ -10,6 +10,9 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
+        <TrustCard />
+      </v-col>
+      <v-col cols="12" lg="10">
         <ProductCard
           image="/main/bg1.webp"
           :title="this.$tc('Закажите тестовую деталь')"
@@ -68,6 +71,7 @@ import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
 import LatestPosts from '~/components/LatestPosts.vue'
 import YoutubeChannel from '~/components/YoutubeChannel.vue'
+import TrustCard from '~/components/TrustCard.vue'
 
 @Component({
   components: {
@@ -76,7 +80,8 @@ import YoutubeChannel from '~/components/YoutubeChannel.vue'
     LatestPosts,
     ProductBanner,
     ProductCard,
-    YoutubeChannel
+    YoutubeChannel,
+    TrustCard
   }
 })
 export default class Index extends Vue {
