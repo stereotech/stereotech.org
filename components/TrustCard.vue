@@ -1,7 +1,7 @@
 <template>
   <v-card>
       <!-- <v-card-text> -->
-          <v-row justify="center">
+          <v-row justify="space-between">
             <v-col cols="12" class="text-center">
                 <h4 class="display-1 font-weight-light">{{ $t("Нам доверяют")}}</h4>
             </v-col>
