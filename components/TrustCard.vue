@@ -5,7 +5,7 @@
             <v-col cols="12" class="text-center">
                 <h4 class="display-1 font-weight-light">{{ $t("Нам доверяют")}}</h4>
             </v-col>
-              <v-col cols="12" sm="4" v-for="(logo, index) in logos" :key="index">
+              <v-col cols="6" sm="2" v-for="(logo, index) in logos" :key="index">
                   <v-img :src="logo"></v-img>
               </v-col>
           </v-row>

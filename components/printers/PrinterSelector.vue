@@ -44,9 +44,9 @@
               </template>
             </v-radio>
           </v-radio-group> -->
-          <h6 class="font-weight-light text-left">
+          <p>
             {{ model.description }}
-          </h6>
+          </p>
           <v-radio-group
             v-if="selectVolume.length > 1"
             @change="changeVolume"

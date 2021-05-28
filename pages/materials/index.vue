@@ -117,7 +117,7 @@ export default class materialsPage extends Vue {
     {
       image: '',
       title: 'Metalcast',
-      description: this.$tc(''),
+      description: this.$tc('Серия металлических материалов'),
       link: '/materials/metalcast'
     },
     {

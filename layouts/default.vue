@@ -403,7 +403,7 @@ export default class Layout extends Vue {
               {
                 title: 'Metalcast',
                 link: '/materials/metalcast',
-                description: this.$tc('')
+                description: this.$tc('Серия металлических материалов')
               },
               {
                 title: 'ContiFiber',
