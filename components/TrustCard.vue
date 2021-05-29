@@ -1,7 +1,7 @@
 <template>
   <v-card>
       <!-- <v-card-text> -->
-          <v-row justify="space-between">
+          <v-row justify="space-around">
             <v-col cols="12" class="text-center">
                 <h4 class="display-1 font-weight-light">{{ $t("Нам доверяют")}}</h4>
             </v-col>
@@ -21,7 +21,7 @@ export default class TrustCard extends Vue{
 
     private logos: string[] = [
         'trust/grass.jpg', 'trust/severstal.jpg', 'trust/vnm.jpg'
-    ] 
+    ]
 
 }
 </script>
