@@ -161,9 +161,9 @@ export default class Hybrid extends Vue {
       })
     })
     printData = await response3.json()
-    this.printerItems = printData.entries
+    this.printerItems = printData.entries.filter(v => /hybrid/i.test(v.model))
     this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
-    //console.log(this.currentPrinter)
+    //console.log(this.printerItems)
   }
 
   get currentPrice (): number {
