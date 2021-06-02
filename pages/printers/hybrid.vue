@@ -30,6 +30,13 @@
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
+          :image="require('~/static/materials/sealant.jpg?webp')"
+          :title="this.$tc('Материалы для печати')"
+          link="/materials"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <ProductCard
           image="/printers/software/steslicer.webp"
           title="STE Slicer"
           :description="
@@ -43,13 +50,6 @@
 
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :specXd="spec5d" />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ProductCard
-          :image="require('~/static/materials/sealant.jpg?webp')"
-          :title="this.$tc('Материалы для печати')"
-          link="/materials"
-        />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
         <BuyPrinter
