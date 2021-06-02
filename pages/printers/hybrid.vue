@@ -37,7 +37,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
-          image="/printers/software/steslicer.webp"
+          image="/software/steslicer/banner.jpg"
           title="STE Slicer"
           :description="
             $t(
