@@ -5,7 +5,6 @@
         <h1
           class="font-weight-light"
         >{{$t('Серия Fiber - Серия 3D и 5D принтеров для композитной печати с непрерывным волокном')}}</h1>
-        <h2>{{$tc('от 399000')}}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterSelector
