@@ -2,9 +2,13 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" class="text-center">
-        <h1
-          class="font-weight-light"
-        >{{$t('Серия Fiber - Серия 3D и 5D принтеров для композитной печати с непрерывным волокном')}}</h1>
+        <h1 class="font-weight-light">
+          {{
+            $t(
+              "Серия Fiber - Серия 5D принтеров для композитной печати с непрерывным волокном"
+            )
+          }}
+        </h1>
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterSelector
@@ -12,7 +16,7 @@
           :items="printerItems"
           :price="String(currentPrice)"
         />
-      </v-col> 
+      </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
           :title="$tc('Преимущества технологии 5Dtech')"
@@ -46,12 +50,12 @@
           "
           link="/software/steslicer"
         />
-      </v-col>                              
+      </v-col>
       <v-col cols="12" lg="10">
         <FullSpecs :specXd="spec5d" />
-      </v-col>   
+      </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" />
+        <BuyPrinter id="buyPrinterForm" :variant="currentPrinter" />
       </v-col>
     </v-row>
   </v-container>
@@ -111,7 +115,7 @@ export default class Fiber extends Vue {
 
   private async getReasonsToUse () {
     let data2
-    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`,{
+    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -150,7 +154,7 @@ export default class Fiber extends Vue {
     // return base + currentOption
     return this.currentPrinter.price
   }
-  async mounted(){
+  async mounted () {
     await this.getPrinterItems()
     await this.getFeatures()
     await this.getReasonsToUse()
