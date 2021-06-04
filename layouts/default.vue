@@ -354,7 +354,7 @@ export default class Layout extends Vue {
               {
                 title: this.$tc('Fiber'),
                 link: '/printers/fiber',
-                description: this.$tc('3D и 5D принтеры для особых задач')
+                description: this.$tc('5D принтеры для печати непрерывным волокном')
               }
             ]
           },
