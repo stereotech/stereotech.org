@@ -63,11 +63,7 @@
           </small>
         </v-col>
         <v-col cols="12" md="6">
-          <v-img
-            :src="
-              imgStr
-            "
-          />
+          <v-img :src="imgStr" />
         </v-col>
       </v-row>
     </v-container>
@@ -118,24 +114,24 @@ export default class BuyPrinter extends Vue {
   private snackbarText: string = ''
   private snackbarError: boolean = false
 
-  private get imgStr(){
-    if(this.variant.image){
-      if(typeof this.variant.image === 'object'){
-        return "https://api2.stereotech.org/" + this.variant.image.path 
+  private get imgStr () {
+    if (this.variant.buyImage) {
+      if (typeof this.variant.buyImage === 'object') {
+        return "https://api2.stereotech.org/" + this.variant.buyImage.path
       }
-      else if(typeof this.variant.image === 'string'){
-        return this.variant.image
-      }
-    }
-    else if(this.variant.buyImage){
-      if(typeof this.variant.buyImage === 'object'){
-        return "https://api2.stereotech.org/" + this.variant.buyImage.path 
-      }
-      else if(typeof this.variant.buyImage === 'string'){
+      else if (typeof this.variant.buyImage === 'string') {
         return this.variant.buyImage
       }
     }
-    else{
+    else if (this.variant.image) {
+      if (typeof this.variant.image === 'object') {
+        return "https://api2.stereotech.org/" + this.variant.image.path
+      }
+      else if (typeof this.variant.image === 'string') {
+        return this.variant.image
+      }
+    }
+    else {
       return ''
     }
   }
