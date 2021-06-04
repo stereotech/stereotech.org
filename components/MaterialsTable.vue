@@ -59,30 +59,45 @@ export default class MaterialsTable extends Vue {
 
   get tableHeaders (): {
     text: string,
-    value: string
+    value: string,
+    width: string
   }[] {
     let headers: {
       text: string,
-      value: string
+      value: string,
+      width: string
     }[] = [
         {
           text: 'Артикул',
-          value: 'sku'
+          value: 'sku',
+          width: ''
         },
         {
           text: 'Наименование',
-          value: 'name'
+          value: 'name',
+          width: ''
         },
         {
           text: 'Полимерная основа',
-          value: 'polymer'
+          value: 'polymer',
+          width: ''
         }
       ]
     this.specs.forEach(s => {
-      headers.push({
-        text: `${s.name}, ${s.unit}`,
-        value: s._id
-      })
+      if(s.name == 'Состав'){
+        headers.push({
+          text: `${s.name}, ${s.unit}`,
+          value: s._id,
+          width: '200px'
+        })
+      }
+      else{
+        headers.push({
+          text: `${s.name}, ${s.unit}`,
+          value: s._id,
+          width: ''
+        })
+      }
     })
     return headers
   }
@@ -112,4 +127,7 @@ export default class MaterialsTable extends Vue {
 </script>
 
 <style>
+  /* .v-data-table td:nth-child(17){
+    width: 100px!important;
+  } */
 </style>

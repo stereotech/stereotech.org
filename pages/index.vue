@@ -6,8 +6,11 @@
           fullsize
           :image="require('~/static/printers/desktop/series5_banner.jpg?webp')"
           :title="this.$tc('Печать изделий с прочностью металла')"
-          link="/printers/series5"
+          link="/printers/hybrid"
         />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <TrustCard />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
@@ -24,7 +27,7 @@
       <v-col cols="12" lg="10">
         <ProductCard
           :image="require('~/static/printers/desktop/banner1.jpg?webp')"
-          :title="this.$tc('Настольные принтеры')"
+          :title="this.$tc('Серия 5хх')"
           :description="
             this.$tc(
               'Устройства способные с легкостью изменить и оптимизировать процесс производства'
@@ -68,6 +71,7 @@ import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
 import LatestPosts from '~/components/LatestPosts.vue'
 import YoutubeChannel from '~/components/YoutubeChannel.vue'
+import TrustCard from '~/components/TrustCard.vue'
 
 @Component({
   components: {
@@ -76,7 +80,8 @@ import YoutubeChannel from '~/components/YoutubeChannel.vue'
     LatestPosts,
     ProductBanner,
     ProductCard,
-    YoutubeChannel
+    YoutubeChannel,
+    TrustCard
   }
 })
 export default class Index extends Vue {

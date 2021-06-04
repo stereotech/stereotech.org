@@ -125,7 +125,7 @@ export default class QuoteForm extends Vue {
     return [
       this.$tc('Серия 3хх'),
       this.$tc('Серия 5хх'),
-      this.$tc('Серия Special'),
+      this.$tc('Fiber'),
       this.$tc('Промышленые принтеры')
     ]
   }

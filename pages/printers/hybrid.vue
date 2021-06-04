@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">
-          {{ $t("Серия 5хх - инновационные 5D принтеры") }}
+          {{ $t("Hybrid - инновационные 5D принтеры") }}
         </h1>
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
@@ -30,7 +30,14 @@
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
-          image="/printers/software/steslicer.webp"
+          :image="require('~/static/materials/sealant.jpg?webp')"
+          :title="this.$tc('Материалы для печати')"
+          link="/materials"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <ProductCard
+          image="/software/steslicer/banner.jpg"
           title="STE Slicer"
           :description="
             $t(
@@ -43,13 +50,6 @@
 
       <v-col cols="12" lg="10" v-if="product">
         <FullSpecs :specXd="spec5d" />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ProductCard
-          :image="require('~/static/materials/sealant.jpg?webp')"
-          :title="this.$tc('Материалы для печати')"
-          link="/materials"
-        />
       </v-col>
       <v-col cols="12" lg="10" v-if="currentPrinter">
         <BuyPrinter
@@ -102,10 +102,10 @@ const materials = namespace('materials')
     //materialsSheet
   },
   head: {
-    title: 'Серия 5xx'
+    title: 'Hybrid'
   }
 })
-export default class Series5 extends Vue {
+export default class Hybrid extends Vue {
 
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
@@ -161,9 +161,9 @@ export default class Series5 extends Vue {
       })
     })
     printData = await response3.json()
-    this.printerItems = printData.entries
+    this.printerItems = printData.entries.filter(v => /hybrid/i.test(v.model))
     this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
-    //console.log(this.currentPrinter)
+    //console.log(this.printerItems)
   }
 
   get currentPrice (): number {

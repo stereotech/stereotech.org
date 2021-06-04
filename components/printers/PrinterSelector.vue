@@ -6,9 +6,9 @@
           <h4 class="display-1 text-uppercase font-weight-light text-center">
             {{ model.model }}
           </h4>
-          <p class="title font-weight-light text-center">
+          <!-- <p class="title font-weight-light text-center">
             {{ model.description }}
-          </p>
+          </p> -->
         </v-col>
 
         <v-col cols="12" sm="6" v-if="model.image">
@@ -44,6 +44,9 @@
               </template>
             </v-radio>
           </v-radio-group> -->
+          <p>
+            {{ model.description }}
+          </p>
           <v-radio-group
             v-if="selectVolume.length > 1"
             @change="changeVolume"

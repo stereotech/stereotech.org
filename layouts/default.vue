@@ -342,18 +342,18 @@ export default class Layout extends Vue {
         icon: 'mdi-printer-3d',
         child: [
           {
-            title: this.$tc('Настольные принтеры'),
+            title: this.$tc('Серия 5хх'),
             link: '/printers',
             icon: '/printers/desktop/series3.jpg',
             child: [
               {
-                title: this.$tc('Серия 5хх'),
-                link: '/printers/series5',
+                title: this.$tc('Hybrid'),
+                link: '/printers/hybrid',
                 description: this.$tc('Инновационные 5D принтеры')
               },
               {
-                title: this.$tc('Серия Special'),
-                link: '/printers/special',
+                title: this.$tc('Fiber'),
+                link: '/printers/fiber',
                 description: this.$tc('3D и 5D принтеры для особых задач')
               }
             ]
@@ -399,6 +399,16 @@ export default class Layout extends Vue {
                 title: 'Proto',
                 link: '/materials/proto',
                 description: this.$tc('Серия материалов для функциональных моделей и макетов')
+              },
+              {
+                title: 'Metalcast',
+                link: '/materials/metalcast',
+                description: this.$tc('Серия металлических материалов')
+              },
+              {
+                title: 'ContiFiber',
+                link: '/materials/contifiber',
+                description: this.$tc('Серия материалов, армированных непрерывным углеволокном')
               }
             ]
           },
