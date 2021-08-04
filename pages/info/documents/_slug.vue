@@ -14,6 +14,19 @@
               :href="`https://api2.stereotech.org/${currentDocument.file}`"
               ><v-icon>mdi-download</v-icon>{{ $t("Загрузить") }}</v-btn
             >
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-on="on" v-bind="attrs" @click="copyLink"
+                  ><v-icon>mdi-content-copy</v-icon></v-btn
+                >
+                <input
+                  type="hidden"
+                  :id="`link-input-${$route.params.slug}`"
+                  :value="`https://api2.stereotech.org/${currentDocument.file}`"
+                />
+              </template>
+              <span>{{ $t("Скопировать ссылку") }}</span>
+            </v-tooltip>
           </v-card-subtitle>
           <v-card-text
             v-if="currentDocument.content"
@@ -48,6 +61,17 @@ export default class DocumentPage extends Vue {
       _id: '',
       title: 'Документ не найден'
     }
+  }
+
+  copyLink () {
+    let input = document.getElementById(`link-input-${this.$route.params.slug}`)
+    //@ts-ignore
+    input.setAttribute('type', 'text')
+    //@ts-ignore
+    input.select()
+    document.execCommand("copy")
+    //@ts-ignore
+    input.setAttribute('type', 'hidden')
   }
 }
 
