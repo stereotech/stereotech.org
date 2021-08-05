@@ -1,26 +1,33 @@
 <template>
-    <v-container fluid>
-        <v-row justify="center">
-            <v-col cols="12" lg="10">
-            <MaterialsTable
-                title="Характеристики материалов"
-                :materials="materials"
-                :specs="specs"
-            />
-            </v-col>
-            <v-col cols="12" lg="10">
-                <PrintingParameters
-                :parameters="printParameters"
-                />
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="material in materials"
+        :key="material._id"
+      >
+        <MaterialCard :material="material" />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <MaterialsTable
+          title="Характеристики материалов"
+          :materials="materials"
+          :specs="specs"
+        />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <PrintingParameters :parameters="printParameters" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
+import MaterialCard from '~/components/materials/MaterialCard.vue'
 import { Material, MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
@@ -30,11 +37,12 @@ const printParameters = namespace('printParameters')
 @Component({
   components: {
     MaterialsTable,
-    PrintingParameters
+    PrintingParameters,
+    MaterialCard
   }
 })
 
-export default class ContifiberFilament extends Vue{
+export default class ContifiberFilament extends Vue {
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
 
@@ -50,7 +58,7 @@ export default class ContifiberFilament extends Vue{
     return this.ourBrandMaterialsBySku('5DTCFC')
   }
 
-  get printParameters(){
+  get printParameters () {
     return this.printParametersBySku('5DTCFC')
   }
 
@@ -58,7 +66,7 @@ export default class ContifiberFilament extends Vue{
     if (!this.filled) {
       await this.loadMaterialsData()
     }
-    if(!this.loaded){
+    if (!this.loaded) {
       await this.loadPrintParameters()
     }
   }
@@ -66,5 +74,4 @@ export default class ContifiberFilament extends Vue{
 </script>
 
 <style>
-
 </style>

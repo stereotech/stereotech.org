@@ -1,6 +1,14 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="material in materials"
+        :key="material._id"
+      >
+        <MaterialCard :material="material" />
+      </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
           title="Характеристики материалов"
@@ -8,11 +16,9 @@
           :specs="specs"
         />
       </v-col>
-        <v-col cols="12" lg="10">
-          <PrintingParameters
-            :parameters="printParameters"
-          />
-        </v-col>
+      <v-col cols="12" lg="10">
+        <PrintingParameters :parameters="printParameters" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -21,6 +27,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
+import MaterialCard from '~/components/materials/MaterialCard.vue'
 import { Material, MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
@@ -30,11 +37,12 @@ const printParameters = namespace('printParameters')
 @Component({
   components: {
     MaterialsTable,
-    PrintingParameters
+    PrintingParameters,
+    MaterialCard
   }
 })
 
-export default class MetalcastFilament extends Vue{
+export default class MetalcastFilament extends Vue {
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
 
@@ -50,7 +58,7 @@ export default class MetalcastFilament extends Vue{
     return this.ourBrandMaterialsBySku('5DTM')
   }
 
-  get printParameters(){
+  get printParameters () {
     return this.printParametersBySku('5DTM')
   }
 
@@ -58,7 +66,7 @@ export default class MetalcastFilament extends Vue{
     if (!this.filled) {
       await this.loadMaterialsData()
     }
-    if(!this.loaded){
+    if (!this.loaded) {
       await this.loadPrintParameters()
     }
   }
@@ -66,5 +74,4 @@ export default class MetalcastFilament extends Vue{
 </script>
 
 <style>
-
 </style>

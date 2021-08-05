@@ -1,6 +1,16 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="material in materials"
+        :key="material._id"
+      >
+        <MaterialCard :material="material" />
+      </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="10">
         <MaterialsTable
           title="Характеристики материалов"
@@ -9,9 +19,7 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <PrintingParameters
-          :parameters="printParameters"
-        />
+        <PrintingParameters :parameters="printParameters" />
       </v-col>
     </v-row>
   </v-container>
@@ -21,6 +29,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
+import MaterialCard from '~/components/materials/MaterialCard.vue'
 import { Material, MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
@@ -30,7 +39,8 @@ const printParameters = namespace('printParameters')
 @Component({
   components: {
     MaterialsTable,
-    PrintingParameters
+    PrintingParameters,
+    MaterialCard
   }
 })
 export default class ProtoFilament extends Vue {
@@ -49,15 +59,15 @@ export default class ProtoFilament extends Vue {
     return this.ourBrandMaterialsBySku('5DTPR')
   }
 
-  get printParameters(){
+  get printParameters () {
     return this.printParametersBySku('5DTPR')
-  }  
+  }
 
   async mounted () {
     if (!this.filled) {
       await this.loadMaterialsData()
     }
-    if(!this.loaded){
+    if (!this.loaded) {
       await this.loadPrintParameters()
     }
   }

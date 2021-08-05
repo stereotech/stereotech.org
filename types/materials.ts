@@ -6,6 +6,8 @@ export interface Material {
     _id: string
     our_brand: boolean
     tech_specs: MaterialSpecValue[]
+    image?: string
+    file?: string
 }
 
 export interface MaterialSpec {

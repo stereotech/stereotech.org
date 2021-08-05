@@ -15,15 +15,9 @@
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="4">
-          <v-btn
-            color="primary"
-            depressed
-            outlined
-            block
-            @click="exportToExel"
-          >
-          <v-icon>mdi-download</v-icon>
-          {{$t('Выгрузить в xlsx')}}          
+          <v-btn color="primary" depressed outlined block @click="exportToExel">
+            <v-icon>mdi-download</v-icon>
+            {{ $t("Выгрузить в xlsx") }}
           </v-btn>
         </v-col>
       </v-row>
@@ -84,14 +78,14 @@ export default class MaterialsTable extends Vue {
         }
       ]
     this.specs.forEach(s => {
-      if(s.name == 'Состав'){
+      if (s.name == 'Состав') {
         headers.push({
           text: `${s.name}, ${s.unit}`,
           value: s._id,
           width: '200px'
         })
       }
-      else{
+      else {
         headers.push({
           text: `${s.name}, ${s.unit}`,
           value: s._id,
@@ -107,17 +101,20 @@ export default class MaterialsTable extends Vue {
     let data: any[] = []
     data = this.materials.map(m => {
       let item: any = m
-      m.tech_specs.forEach(s => {
-        if (s.spec) {
-          item[s.spec._id || ''] = s.value
-        }
-      })
+      if (m.tech_specs) {
+        m.tech_specs.forEach(s => {
+          if (s.spec) {
+            item[s.spec._id || ''] = s.value
+          }
+        })
+      }
+
       return item
     })
     return data
   }
 
-  private exportToExel(){
+  private exportToExel () {
     var wb = XLSX.utils.table_to_book(document.getElementById('out-table'))
     XLSX.writeFile(wb, 'materials.xlsx')
   }
@@ -127,7 +124,7 @@ export default class MaterialsTable extends Vue {
 </script>
 
 <style>
-  /* .v-data-table td:nth-child(17){
+/* .v-data-table td:nth-child(17){
     width: 100px!important;
   } */
 </style>

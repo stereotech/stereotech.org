@@ -134,7 +134,8 @@ const config: NuxtConfig = {
     MATERIAL_TABLE_ID: process.env.MATERIAL_TABLE_ID || '',
     MATERIAL_TABLE_KEY: process.env.MATERIAL_TABLE_KEY || '',
     REPLAIN_CHAT_ID: process.env.REPLAIN_CHAT_ID || '',
-    COCKPIT_TOKEN: process.env.COCKPIT_TOKEN || ''
+    COCKPIT_TOKEN: process.env.COCKPIT_TOKEN || '',
+    API_ADDRESS: process.env.API_ADDRESS || 'https://api2.stereotech.org/'
   },
   manifest: {
     name: 'Stereotech - 5D Additive Manufacturing',
