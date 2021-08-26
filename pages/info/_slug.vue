@@ -9,9 +9,6 @@
       <v-col cols="12" lg="10" v-if="team">
         <TeamPanel />
       </v-col>
-      <v-col cols="12" lg="10" v-if="address">
-        <AddressMap :addresses="addresses" />
-      </v-col>
       <v-col cols="12" lg="10" v-if="media">
         <InformationViewer id="12" />
       </v-col>
@@ -41,31 +38,13 @@ export default class AboutStereotech extends Vue {
     return !this.$route.params.slug || this.$route.params.slug == 'team'
   }
 
-  get address (): boolean {
-    return !this.$route.params.slug || this.$route.params.slug == 'address'
-  }
-
   get media (): boolean {
     return this.$route.params.slug == 'media'
   }
 
   addresses: Seller[] = []
 
-  private async getAddresses() {
-    let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/addresses?token=${process.env.COCKPIT_TOKEN}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })      
-    })
-    data = await response.json()
-    this.addresses = data.entries
-  }
-
-  async mounted(){
-    await this.getAddresses()
+  async mounted () {
   }
 }
 

@@ -471,10 +471,6 @@ export default class Layout extends Vue {
                 link: '/info/team'
               },
               {
-                title: this.$tc('Адреса'),
-                link: '/info/address'
-              },
-              {
                 title: this.$tc('СМИ о нас'),
                 link: '/info/media'
               }
