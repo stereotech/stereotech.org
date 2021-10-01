@@ -53,12 +53,6 @@
                     }}
                   </p>
                 </v-col>
-                <v-col cols="12" lg="4">
-                  <TestingForm
-                    :buttonText="$tc('Запись в программу')"
-                    :title="$tc('Предварительное тестирование')"
-                  />
-                </v-col>
               </v-row>
             </v-container>
           </v-card-text>
