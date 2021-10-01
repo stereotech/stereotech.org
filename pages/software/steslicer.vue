@@ -12,23 +12,7 @@
           "
         />
       </v-col>
-      <v-col cols="12" lg="10">
-        <v-card>
-          <v-card-title>{{ $t("Запросить демо") }}</v-card-title>
-          <v-card-text>
-            <v-container fluid>
-              <v-row justify="center">
-                <v-col cols="12" lg="4">
-                  <TestingForm
-                    :buttonText="$tc('Запросить STE Slicer')"
-                    :title="$tc('Запросить демо STE Slicer')"
-                  />
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-col>
+
       <v-col cols="12" lg="10">
         <KeyFeatures
           :title="$tc('Особенности STE Slicer')"
@@ -46,28 +30,6 @@
           "
           link="https://support.stereotech.org/software/steslicer"
         />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <v-card>
-          <v-card-title>{{
-            $t("Программа предварительного тестирования")
-          }}</v-card-title>
-          <v-card-text>
-            <v-container fluid>
-              <v-row justify="center">
-                <v-col cols="12">
-                  <p>
-                    {{
-                      $t(
-                        "Хотите получать версии приложения, с новыми функциями раньше остальных? Вы можете записаться в программу предварительного тестирования, для получения тестовых сборок программного обеспечения"
-                      )
-                    }}
-                  </p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -111,6 +73,7 @@ export default class SteSlicer extends Vue {
     data = await response.json()
     this.keyFeatures = data.entries
   }
+
 
 
   async mounted () {
