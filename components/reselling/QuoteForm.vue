@@ -46,7 +46,11 @@
               ></v-text-field>
             </v-col>
             <v-col>
-              <v-textarea outlined v-model="comment" :label="this.$tc('Комментарий')"></v-textarea>
+              <v-textarea
+                outlined
+                v-model="comment"
+                :label="this.$tc('Комментарий')"
+              ></v-textarea>
             </v-col>
             <v-col cols="12" v-if="equipment">
               <v-checkbox
@@ -123,9 +127,8 @@ export default class QuoteForm extends Vue {
   private countries: any[] = require('country-json/src/country-by-name.json')
   get interests (): string[] {
     return [
-      this.$tc('Серия 3хх'),
-      this.$tc('Серия 5хх'),
-      this.$tc('Fiber'),
+      this.$tc('Серия Hybrid'),
+      this.$tc('Серия Fiber'),
       this.$tc('Промышленые принтеры')
     ]
   }
@@ -167,8 +170,8 @@ export default class QuoteForm extends Vue {
     return str
   }
 
-  private async submit1(){
-    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/quoteForm?token=${process.env.COCKPIT_TOKEN}`,{
+  private async submit1 () {
+    let response = await fetch(`https://api2.stereotech.org/api/forms/submit/quoteForm?token=${process.env.COCKPIT_TOKEN}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -183,12 +186,12 @@ export default class QuoteForm extends Vue {
         }
       })
     })
-    if(response.ok){
+    if (response.ok) {
       this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
       this.snackbarError = false
       this.snackbar = true
     }
-    else{
+    else {
       this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ')
       this.snackbarError = true
       this.snackbar = true
@@ -200,17 +203,17 @@ export default class QuoteForm extends Vue {
     name += ': ' + new Date().toString() + ' Обращение от ' + this.name
     const email = this.email
     const description = this.joinFormData
-     await this.$apollo.mutate({
-        mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
+    await this.$apollo.mutate({
+      mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
       {
           contactus(name: $name, email: $email, enquiry: $description)
       }`,
-        variables: {
-          name: name,
-          email: email,
-          description: description
-        }
-      })
+      variables: {
+        name: name,
+        email: email,
+        description: description
+      }
+    })
     try {
       //@ts-ignore
       let megaplan = new MegaplanApi()
