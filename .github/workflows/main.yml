@@ -47,6 +47,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run npm preparation script
         run: npm ci --cache .npm --prefer-offline
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate job
         run: npm run generate
