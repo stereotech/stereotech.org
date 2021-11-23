@@ -17,7 +17,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: node:12.18.2
     env:
       MEGAPLAN_LOGIN: ${{ secrets.MEGAPLAN_LOGIN }}
       MEGAPLAN_PASS: ${{ secrets.MEGAPLAN_PASS }}
@@ -52,7 +51,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run npm preparation script
-        run: npm ci --cache .npm --prefer-offline
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
