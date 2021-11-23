@@ -194,9 +194,9 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
     <v-footer height="auto" color="primary" dark>
       <v-container>
         <v-row>
@@ -478,8 +478,18 @@ export default class Layout extends Vue {
           },
           {
             title: this.$tc('Документы'),
-            link: '/info/documents'
-          }
+            child: [
+              {
+                title: this.$tc('Файлы'),
+                link: '/info/documents',
+              },
+              {
+                title: this.$tc('Пресс-центр'),
+                link: '/info/press'
+              }
+            ]
+          },
+
         ]
 
       }

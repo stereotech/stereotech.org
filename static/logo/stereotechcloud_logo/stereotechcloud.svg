@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="4096px" height="4096px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 4094.35 4094.35"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#191B38;stroke-width:83.55;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .str3 {stroke:#0075BE;stroke-width:83.56;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .str2 {stroke:#C2C2C2;stroke-width:83.56;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .str0 {stroke:#0075BE;stroke-width:83.56;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .fil2 {fill:none}
+    .fil4 {fill:#0075BE}
+    .fil1 {fill:#191B38}
+    .fil3 {fill:#C2C2C2}
+    .fil0 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2688181344528">
+   <path class="fil0 str0" d="M2047.18 41.78c1107.54,0 2005.39,897.84 2005.39,2005.4 0,1107.54 -897.85,2005.39 -2005.39,2005.39 -1107.56,0 -2005.4,-897.85 -2005.4,-2005.39 0,-1107.56 897.84,-2005.4 2005.4,-2005.4z"/>
+   <g>
+    <g>
+     <polygon class="fil1" points="2997.47,2218.59 3181.58,2324.89 3365.68,2431.18 3365.68,2643.76 3365.68,2856.35 3181.58,2962.64 2997.47,3068.94 2813.36,2962.64 2629.26,2856.35 2629.26,2643.76 2629.26,2431.18 2813.36,2324.89 "/>
+     <line class="fil2" x1="3365.68" y1="2431.18" x2="2997.47" y2= "2643.76" />
+     <line class="fil2" x1="2629.26" y1="2431.18" x2="2997.47" y2= "2643.76" />
+     <line class="fil2" x1="2997.47" y1="3068.94" x2="2997.47" y2= "2643.76" />
+    </g>
+    <g>
+     <polygon class="fil3" points="1096.88,2218.59 1280.99,2324.88 1465.09,2431.18 1465.09,2643.76 1465.09,2856.35 1280.99,2962.64 1096.88,3068.94 912.78,2962.64 728.67,2856.35 728.67,2643.76 728.67,2431.18 912.78,2324.88 "/>
+     <line class="fil2" x1="1465.09" y1="2431.18" x2="1096.88" y2= "2643.76" />
+     <line class="fil2" x1="728.67" y1="2431.18" x2="1096.88" y2= "2643.76" />
+     <line class="fil2" x1="1096.88" y1="3068.94" x2="1096.88" y2= "2643.76" />
+    </g>
+    <g>
+     <polygon class="fil4" points="2047.18,572.62 2231.28,678.92 2415.39,785.21 2415.39,997.8 2415.39,1210.38 2231.28,1316.68 2047.18,1422.97 1863.07,1316.68 1678.96,1210.38 1678.96,997.8 1678.96,785.21 1863.07,678.92 "/>
+     <line class="fil2" x1="2415.39" y1="785.21" x2="2047.17" y2= "997.8" />
+     <line class="fil2" x1="1678.96" y1="785.21" x2="2047.17" y2= "997.8" />
+     <line class="fil2" x1="2047.17" y1="1422.97" x2="2047.17" y2= "997.8" />
+    </g>
+    <line class="fil2 str1" x1="1809.6" y1="1409.29" x2="1334.45" y2= "2232.27" />
+    <line class="fil2 str2" x1="2284.76" y1="1409.29" x2="2759.9" y2= "2232.27" />
+    <line class="fil2 str3" x1="1572.03" y1="2643.76" x2="2522.33" y2= "2643.76" />
+   </g>
+  </g>
+ </g>
+</svg>

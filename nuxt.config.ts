@@ -151,12 +151,15 @@ const config: NuxtConfig = {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
+    treeShake: false,
     materialIcons: false,
-    lang: {
-      locales: { ru },
-      current: 'ru'
-    },
     theme: {
+      dark: false,
+      disable: false,
+      default: false,
+      options: {
+        customProperties: true
+      },
       themes: {
         light: {
           primary: '#0277bd',
@@ -170,15 +173,20 @@ const config: NuxtConfig = {
         dark: {
           primary: '#0277bd',
           secondary: '#ffffff',
-          accent: '#191b38',
-          error: '#FF5252',
-          info: '#9C27B0',
-          success: '#4CAF50',
-          warning: '#FFC107'
+          accent: '#827eab',
+          error: '#ff867f',
+          info: '#d05ce3',
+          success: '#80e27e',
+          warning: '#fff350'
         }
       }
     },
-    iconfont: 'mdi'
+    iconfont: 'mdi',
+    lang: {
+      locales: {
+        ru
+      }
+    }
   },
 
   loading: { color: '#263238' },
