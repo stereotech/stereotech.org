@@ -40,6 +40,7 @@ jobs:
         run: npm install
         env:
           NPM_CONFIG_USERCONFIG: ./npmrc
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate job
         run: npm run generate
