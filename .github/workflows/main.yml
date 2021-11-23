@@ -30,22 +30,15 @@ jobs:
       MATERIAL_TABLE_KEY: ${{ secrets.MATERIAL_TABLE_KEY }}
       REPLAIN_CHAT_ID: ${{ secrets.REPLAIN_CHAT_ID }}
       COCKPIT_TOKEN: ${{ secrets.COCKPIT_TOKEN }}
+      TOKEN: ${{ secrets.PAT_TOKEN }}
+      NPM_CONFIG_USERCONFIG: ./npmrc
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@stereotech'
-
       # Runs a set of commands using the runners shell
       - name: Run npm preparation script
         run: npm install
-        env:
-          NPM_CONFIG_USERCONFIG: ./npmrc
-          TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Generate job
         run: npm run generate
