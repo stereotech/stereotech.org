@@ -42,9 +42,6 @@
                   {{ $t("Презентация проекта") }}</v-list-item-title
                 >
               </v-list-item>
-              <v-list-item nuxt to="/info/press/brandbook" exact>
-                <v-list-item-title> {{ $t("Брендбук") }}</v-list-item-title>
-              </v-list-item>
             </v-card>
           </v-col>
         </v-row>
@@ -56,6 +53,14 @@
             <nuxt-child />
           </v-col>
         </v-row>
+      </v-col>
+      <v-col cols="12" sm="10">
+        <v-card>
+          <v-card-title>
+            {{ $t("Брендбук") }}
+          </v-card-title>
+          <StereotechBrandbook />
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
