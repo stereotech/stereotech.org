@@ -478,11 +478,8 @@ export default class Layout extends Vue {
           },
           {
             title: this.$tc('Документы'),
+            link: '/info/documents',
             child: [
-              {
-                title: this.$tc('Файлы'),
-                link: '/info/documents',
-              },
               {
                 title: this.$tc('Пресс-центр'),
                 link: '/info/press'
