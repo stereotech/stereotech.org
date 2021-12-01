@@ -8,17 +8,17 @@
           :title="this.$tc('Доступные материалы для печати')"
         >
           <v-btn
-           
             color="accent"
             class="mt-2"
             depressed
             @click="$vuetify.goTo('#materialsTable')"
           >
-            {{$t('Сравнить материалы')}}
+            {{ $t("Сравнить материалы") }}
             <v-icon right>mdi-chevron-right</v-icon>
           </v-btn>
         </ProductCard>
       </v-col>
+
       <v-col
         cols="12"
         lg="10"
@@ -33,9 +33,21 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <PrintingParameters
-          :parameters="allPrintParameters"
-        />
+        <v-card>
+          <v-btn
+            large
+            depressed
+            color="primary"
+            block
+            href="https://drive.google.com/drive/folders/1AIMZhAqIwwiQwO4HExZw3kOIoBO1GaNR?usp=sharing"
+            target="_blank"
+            ><v-icon left>mdi-google-drive</v-icon
+            >{{ $t("Загрузите информацию о материалах") }}</v-btn
+          >
+        </v-card>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <PrintingParameters :parameters="allPrintParameters" />
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
@@ -44,6 +56,18 @@
           :materials="ourBrandMaterials"
           :specs="specs"
         />
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-card>
+          <v-card-title>{{ $t("Памятка выбора материалов") }}</v-card-title>
+          <iframe
+            src="https://drive.google.com/file/d/1AGuLPv2NiyIoa84Bj0cW8GtGc1YOFUE5/preview"
+            width="100%"
+            height="640"
+            frameborder="0"
+            allow="autoplay"
+          ></iframe>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -132,7 +156,7 @@ export default class materialsPage extends Vue {
     if (!this.filled) {
       await this.loadMaterialsData()
     }
-    if(!this.loaded){
+    if (!this.loaded) {
       await this.loadPrintParameters()
     }
   }
