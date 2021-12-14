@@ -53,9 +53,7 @@
           link="/software"
         />
       </v-col>
-      <v-col cols="12" lg="10">
-        <LatestPosts />
-      </v-col>
+
       <v-col cols="12" lg="10">
         <YoutubeChannel :title="$t('Наш канал на Youtube')" />
       </v-col>

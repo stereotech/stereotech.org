@@ -431,28 +431,28 @@ export default class Layout extends Vue {
           },
         ]
       },
-      {
-        title: this.$tc('Узнать больше'),
-        icon: 'mdi-post-outline',
-        child: [
-          {
-            title: this.$tc('Блог'),
-            link: '/blog',
-            child: [
-              {
-                title: this.$tc('Новости'),
-                description: this.$tc('Последние новости о нашей компании'),
-                link: '/blog/news'
-              },
-              {
-                title: this.$tc('Научная деятельность'),
-                description: '',
-                link: '/blog/science'
-              },
-            ]
-          }
-        ]
-      },
+      //{
+      //  title: this.$tc('Узнать больше'),
+      //  icon: 'mdi-post-outline',
+      //  child: [
+      //    {
+      //      title: this.$tc('Блог'),
+      //      link: '/blog',
+      //      child: [
+      //        {
+      //          title: this.$tc('Новости'),
+      //          description: this.$tc('Последние новости о нашей компании'),
+      //          link: '/blog/news'
+      //        },
+      //        {
+      //          title: this.$tc('Научная деятельность'),
+      //          description: '',
+      //          link: '/blog/science'
+      //        },
+      //      ]
+      //    }
+      //  ]
+      //},
       {
         title: this.$tc('Поддержка'),
         icon: 'mdi-face-agent',
