@@ -462,30 +462,28 @@ export default class Layout extends Vue {
         title: this.$tc('О нас'),
         icon: 'mdi-information',
         child: [
-          {
-            title: this.$tc('О Stereotech'),
-            link: '/info',
-            child: [
-              {
-                title: this.$tc('Команда'),
-                link: '/info/team'
-              },
-              {
-                title: this.$tc('СМИ о нас'),
-                link: '/info/media'
-              }
-            ]
-          },
+          //{
+          //  title: this.$tc('О Stereotech'),
+          //  link: '/info',
+          //  child: [
+          //    {
+          //      title: this.$tc('Команда'),
+          //      link: '/info/team'
+          //    },
+          //    {
+          //      title: this.$tc('СМИ о нас'),
+          //      link: '/info/media'
+          //    }
+          //  ]
+          //},
           {
             title: this.$tc('Документы'),
             link: '/info/documents',
-            child: [
-              {
-                title: this.$tc('Пресс-центр'),
-                link: '/info/press'
-              }
-            ]
           },
+          {
+            title: this.$tc('Пресс-центр'),
+            link: '/info/press'
+          }
 
         ]
 
