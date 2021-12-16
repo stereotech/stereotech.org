@@ -82,7 +82,7 @@ const config: NuxtConfig = {
     '@nuxtjs/apollo',
     '@nuxtjs/recaptcha',
     //'@nuxt/content',
-    'nuxt-i18n'
+    '@nuxtjs/i18n'
   ],
   content: {
     markdown: {
