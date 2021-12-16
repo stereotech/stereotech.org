@@ -85,7 +85,7 @@ export class DocsServer {
                 const data = this.get(req.url)
                 send(res, 200, data)
             } catch (err) {
-                send(res, 404, { message: err.message })
+                //send(res, 404, { message: err.message })
             }
         })
         this.server.listen = promisify(this.server.listen)
