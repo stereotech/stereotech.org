@@ -164,12 +164,12 @@ export default class PrintingParameters extends Vue {
   })
   parameters!: any[];
 
-  private search: string = ""
-  private sortBy: string = ""
-  private sortDesc: boolean = false
-  private itemsPerPageArray: number[]=[1, 2, 3, 4, 8, 12]
-  private itemsPerPage: number = 3
-  private page: number = 1
+  search: string = ""
+  sortBy: string = ""
+  sortDesc: boolean = false
+  itemsPerPageArray: number[]=[1, 2, 3, 4, 8, 12]
+  itemsPerPage: number = 3
+  page: number = 1
   get sortKeys(): any[]{
     if (this.parameters[0]) {
 return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v => {return {text: this.$tc(`${v}`), value: v}})
@@ -179,18 +179,18 @@ return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v =
     }
       }
 
-  private  updateItemsPerPage (number) {
+  updateItemsPerPage (number) {
     this.itemsPerPage = number
   }
 
-  private numberOfPages () {
+  numberOfPages () {
     return Math.ceil(this.parameters.length / this.itemsPerPage)
   }
 
-  private nextPage () {
+  nextPage () {
         if (this.page + 1 <= this.numberOfPages()) this.page += 1
   }
-  private formerPage () {
+  formerPage () {
         if (this.page - 1 >= 1) this.page -= 1
   }
 

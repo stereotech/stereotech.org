@@ -1,34 +1,46 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" lg="10">
         <ProductBanner
-          image="/software/steslicer/banner.jpg"
-          :title="$t('Уникальное программное обеспечение для 5D печати')"
-          :description="
-            $tc(
-              'Подготавливайте 3D модели как для обычной, так и для инновационной 5D печати. Множество инструментов и настроек позволяют с точностью получить заданный результат.'
-            )
-          "
+          :fullsize="contentBanner.fullsize"
+          :image="contentBannerImage"
+          :title="contentBanner.title"
+          :description="contentBanner.description"
         />
       </v-col>
-
       <v-col cols="12" lg="10">
         <KeyFeatures
-          :title="$tc('Особенности STE Slicer')"
-          :items="keyFeatures"
+          :title="titleFeatures"
+          :items="contentFeatures"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ProductCard
-          image="/software/steslicer/manual.jpg"
-          :title="$tc('Быстрый старт')"
-          :description="
-            $tc(
-              'Изучите руководство пользователя, чтобы узнать обо всех функциях STE Slicer'
-            )
-          "
-          link="https://support.stereotech.org/software/steslicer"
+          :image="contentCardImage"
+          :title="contentCard.title"
+          :description="contentCard.description"
+          :link="contentCard.link"
         />
       </v-col>
     </v-row>
@@ -40,48 +52,73 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProductBanner from '~/components/ProductBanner.vue'
 import ProductCard from '~/components/ProductCard.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import TestingForm from '~/components/software/TestingForm.vue'
-import DownloadForm from '~/components/software/DownloadForm.vue'
-import { KeyFeature, MediaType } from '~/types/keyFeature'
-import { DownloadLink } from '~/types/download'
 
 @Component({
   components: {
     ProductBanner,
     KeyFeatures,
-    TestingForm,
     ProductCard,
-    DownloadForm
   },
   head: {
     title: 'STE Slicer'
   }
 })
+
 export default class SteSlicer extends Vue {
 
-  keyFeatures: any[] = []
+  title: string = ''
+  contentBanner: any = {}
+  contentBannerImage: string = ''
+  titleFeatures: string = ''
+  contentFeatures: any[] = []
+  contentCard: any = {}
+  contentCardImage: string = ''
+  loadedPage: boolean = false
 
-  public async getSlicerFeatures () {
-    let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/slicerFeatures?token=${process.env.COCKPIT_TOKEN}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })
+  private async getSteSlicerData () {
+    
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d23fcec4-4b3a-47a7-b564-7819c5568044`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
     })
-    data = await response.json()
-    this.keyFeatures = data.entries
+    let data = await response.json()
+    data = data.data
+
+    this.title = data.title
+
+    let getBanner = data.productbanner[0].api_url
+    response = await fetch(getBanner, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getBanner = await response.json()
+    this.contentBanner = getBanner.data
+    this.contentBannerImage = getBanner.data.image.permalink
+
+    this.titleFeatures = data.keyfeatures[0].title
+    let getFeatures = data.keyfeatures[0].handle
+    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures}/entries`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getFeatures = await response.json()
+    this.contentFeatures = getFeatures.data
+
+    let getCard = data.productcard[0].api_url
+    response = await fetch(getCard, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard = await response.json()
+    this.contentCard = getCard.data
+    this.contentCardImage = getCard.data.image[0].permalink
+
   }
-
-
 
   async mounted () {
-
-    await this.getSlicerFeatures()
+    await this.getSteSlicerData()
+    this.loadedPage = true
   }
-
-  version: string = ''
 
 }
 

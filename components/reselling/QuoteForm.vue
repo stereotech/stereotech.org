@@ -15,13 +15,13 @@
                 :rules="nameRules"
               ></v-text-field>
             </v-col>
-            <v-autocomplete
+            <!-- <v-autocomplete
               outlined
               v-model="country"
               :items="countries"
               item-text="country"
               :label="this.$tc('Страна')"
-            ></v-autocomplete>
+            ></v-autocomplete> -->
             <v-col cols="12">
               <v-text-field
                 outlined
@@ -107,9 +107,9 @@ export default class QuoteForm extends Vue {
   @Prop({ type: Boolean, default: false }) equipment!: boolean
   @Prop({ type: Boolean, default: false }) subscription!: boolean
   @Prop({ type: Boolean, default: false }) dealers!: boolean
-  private snackbar: boolean = false
-  private snackbarText: string = ''
-  private snackbarError: boolean = false
+  snackbar: boolean = false
+  snackbarText: string = ''
+  snackbarError: boolean = false
 
   dialog: boolean = false
   valid: boolean = false
@@ -124,7 +124,7 @@ export default class QuoteForm extends Vue {
   subscribe: boolean = true
   subscribeStr: string = ''
 
-  private countries: any[] = require('country-json/src/country-by-name.json')
+  //countries: any[] = require('country-json/src/country-by-name.json')
   get interests (): string[] {
     return [
       this.$tc('Серия Hybrid'),
@@ -170,7 +170,7 @@ export default class QuoteForm extends Vue {
     return str
   }
 
-  private async submit1 () {
+  async submit1 () {
     let response = await fetch(`https://api2.stereotech.org/api/forms/submit/quoteForm?token=${process.env.COCKPIT_TOKEN}`, {
       method: 'post',
       headers: {

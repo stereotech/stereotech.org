@@ -1,6 +1,5 @@
 require('dotenv').config()
 import { NuxtConfig } from '@nuxt/types'
-import { createApolloFetch } from 'apollo-fetch'
 import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
@@ -51,8 +50,8 @@ const config: NuxtConfig = {
     // ['~/modules/docs/', { port: 3001 }],
     // '~/modules/crawler/',
     // '~/modules/static/',
-    '~/modules/components/',
-    '@aceforth/nuxt-optimized-images'
+    //'~/modules/components/',
+    //'@aceforth/nuxt-optimized-images'
   ],
   plugins: [
     //'~/plugins/init',
@@ -63,24 +62,24 @@ const config: NuxtConfig = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
-    '@nuxtjs/google-analytics',
-    [
-      '@nuxtjs/yandex-metrika',
-      {
-        id: '54147616',
-        webvisor: true
-      }
-    ],
+    //'@nuxtjs/pwa',
+    //'@nuxtjs/google-analytics',
+    // [
+    //   '@nuxtjs/yandex-metrika',
+    //   {
+    //     id: '54147616',
+    //     webvisor: true
+    //   }
+    // ],
     ['vue-yandex-maps/nuxt', {
       apiKey: process.env.API_KEY,
       lang: 'ru_RU',
       version: '2.1'
     }],
-    '@nuxtjs/sitemap',
-    '@nuxtjs/robots',
+    // '@nuxtjs/sitemap',
+    // '@nuxtjs/robots',
     '@nuxtjs/apollo',
-    '@nuxtjs/recaptcha',
+    // '@nuxtjs/recaptcha',
     //'@nuxt/content',
     '@nuxtjs/i18n'
   ],

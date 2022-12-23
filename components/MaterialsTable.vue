@@ -39,8 +39,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Material, MaterialSpec, MaterialSpecValue } from '~/types/materials'
-import XLSX from 'xlsx'
+import { Material, MaterialSpec } from '~/types/materials'
+import * as XLSX from 'xlsx'
 
 
 @Component
@@ -95,26 +95,28 @@ export default class MaterialsTable extends Vue {
     })
     return headers
   }
-  private search: string = ""
+  search: string = ""
 
   get tableData (): any {
     let data: any[] = []
-    data = this.materials.map(m => {
+    data = this.materials
+
+    data.map(m => {
       let item: any = m
       if (m.tech_specs) {
         m.tech_specs.forEach(s => {
-          if (s.spec) {
-            item[s.spec._id || ''] = s.value
+          if (s.specs_description) {
+            item[s.specs_description.id || ''] = s.specs_value
           }
         })
       }
-
       return item
     })
+
     return data
   }
 
-  private exportToExel () {
+  exportToExel () {
     var wb = XLSX.utils.table_to_book(document.getElementById('out-table'))
     XLSX.writeFile(wb, 'materials.xlsx')
   }
@@ -124,7 +126,4 @@ export default class MaterialsTable extends Vue {
 </script>
 
 <style>
-/* .v-data-table td:nth-child(17){
-    width: 100px!important;
-  } */
 </style>

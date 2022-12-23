@@ -11,8 +11,8 @@
               outlined
               color="primary"
               target="_blank"
-              :href="`https://api2.stereotech.org/${currentDocument.file}`"
-              ><v-icon>mdi-download</v-icon>{{ $t("Загрузить") }}</v-btn
+              :href="documentFileLink"
+              ><v-icon>mdi-download</v-icon>{{ titleDownload }}</v-btn
             >
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
@@ -22,10 +22,10 @@
                 <input
                   type="hidden"
                   :id="`link-input-${$route.params.slug}`"
-                  :value="`https://api2.stereotech.org/${currentDocument.file}`"
+                  :value="documentFileLink"
                 />
               </template>
-              <span>{{ $t("Скопировать ссылку") }}</span>
+              <span>{{ titleCopy }}</span>
             </v-tooltip>
           </v-card-subtitle>
           <v-card-text
@@ -36,7 +36,7 @@
       </v-col>
       <v-col cols="12" v-else>
         <v-card class="text-center">
-          <v-card-title>Для просмотра выберите документ</v-card-title>
+          <v-card-title>{{ titleSlug }}</v-card-title>
           <v-card-text>
             <v-icon color="primary" size="210"
               >mdi-text-box-multiple-outline</v-icon
@@ -54,13 +54,38 @@ import { Document } from '~/types/documents'
 
 @Component
 export default class DocumentPage extends Vue {
+
   @Prop() documents!: Document[]
 
+  titleSlug: string = ''
+  titleDownload: string = ''
+  titleCopy: string = ''
+
+  private async getDocumentsData () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    this.titleSlug = data.data.title_slug
+    this.titleDownload = data.data.title_download
+    this.titleCopy = data.data.title_copy
+
+  }
+
   get currentDocument (): Document {
-    return this.documents.find(d => d._id === this.$route.params.slug) || {
-      _id: '',
+    return this.documents.find(d => d.id === this.$route.params.slug) || {
+      id: '',
       title: 'Документ не найден'
     }
+  }
+
+  get documentFileLink (): string {
+    if (this.currentDocument.file) {
+      return this.currentDocument.file[0].permalink
+    }
+    return ""
   }
 
   copyLink () {
@@ -73,6 +98,11 @@ export default class DocumentPage extends Vue {
     //@ts-ignore
     input.setAttribute('type', 'hidden')
   }
+
+  async mounted () {
+    await this.getDocumentsData()
+  }
+
 }
 
 </script>

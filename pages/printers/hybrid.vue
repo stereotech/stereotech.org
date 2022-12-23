@@ -1,61 +1,92 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col class="v-s-text" cols="12" lg="10" >
+        <v-skeleton-loader
+          type="text"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col 
+        cols="12" 
+        lg="10"
+        v-for="n in 2"
+        :key="n"
+      >
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="table-heading, table-thead, table-tbody"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-row>
+          <v-col cols="12" lg="6" md="6">
+            <v-skeleton-loader
+              type="article, button"
+            ></v-skeleton-loader>
+          </v-col>
+          <v-col cols="12" lg="6" md="6">
+            <v-skeleton-loader
+              type="image@2"
+              :tile=true
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">
-          {{ $t("Hybrid - инновационные 5D принтеры") }}
+          {{ titleHeader }}
         </h1>
       </v-col>
-      <v-col cols="12" lg="10" v-if="currentPrinter">
+      <v-col cols="12" lg="10">
         <PrinterSelector
-          v-model="currentPrinter"
-          :items="printerItems"
-          :price="String(currentPrice)"
+          :model="contentPrinter.title"
+          :image="imagePrinter"
+          :description="contentPrinter.description"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
-          :title="$tc('Преимущества технологии 5Dtech')"
-          :items="features"
+          :title="titleFeatures1"
+          :items="contentFeatures1"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
-          :title="this.$tc('Причины выбрать принтеры Stereotech')"
-          :items="reasonsToUse"
+          :title="titleFeatures2"
+          :items="contentFeatures2"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <ServiceBenefits />
       </v-col>
-      <v-col cols="12" lg="10">
+      <v-col
+        cols="12" lg="10"
+        v-for="(content, index) in contentCard"
+        :key="index"
+      >
         <ProductCard
-          :image="require('~/static/materials/sealant.jpg?webp')"
-          :title="this.$tc('Материалы для печати')"
-          link="/materials"
+          :image="content.image[0].permalink"
+          :title="content.title"
+          :description="content.description"
+          :link="content.link"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <ProductCard
-          image="/software/steslicer/banner.jpg"
-          title="STE Slicer"
-          :description="
-            $t(
-              'Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'
-            )
-          "
-          link="/software/steslicer"
-        />
+        <FullSpecs :specXd="contentFullSpecs" />
       </v-col>
-
-      <v-col cols="12" lg="10" v-if="product">
-        <FullSpecs :specXd="spec5d" />
-      </v-col>
-      <v-col cols="12" lg="10" v-if="currentPrinter">
+      <v-col cols="12" lg="10">
         <BuyPrinter
           id="buyPrinterForm"
-          :variant="currentPrinter"
-          :price="String(currentPrice)"
+          :model="contentPrinter.title"
+          :image="buyImagePrinter"
+          :price="contentPrinter.price"
         />
       </v-col>
     </v-row>
@@ -64,42 +95,21 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import MainParalax from '~/components/MainParalax.vue'
-import ColorModes from '~/components/printers/ColorModes.vue'
-import PrinterFeature from '~/components/printers/PrinterFeature.vue'
 import ProductCard from '~/components/ProductCard.vue'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
-import BenefitsPanel from '~/components/benefits/BenefitsPanel.vue'
-import ApplicationsPanel from '~/components/applications/ApplicationsPanel.vue'
 import ServiceBenefits from '~/components/printers/ServiceBenefits.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import { KeyFeature, MediaType } from '~/types/keyFeature'
-import MaterialsTable from '~/components/MaterialsTable.vue'
-//import materialsSheet from '~/components/materialsSheet.vue'
-import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
-import gql from 'graphql-tag'
-import { Material, MaterialSpec } from '~/types/materials'
-import { namespace } from 'vuex-class'
-
-const materials = namespace('materials')
 
 @Component({
   components: {
-    ColorModes,
-    MainParalax,
-    PrinterFeature,
     ProductCard,
     BuyPrinter,
     FullSpecs,
     PrinterSelector,
-    BenefitsPanel,
-    ApplicationsPanel,
     ServiceBenefits,
     KeyFeatures,
-    MaterialsTable
-    //materialsSheet
   },
   head: {
     title: 'Hybrid'
@@ -107,80 +117,87 @@ const materials = namespace('materials')
 })
 export default class Hybrid extends Vue {
 
-  @materials.State filled!: boolean
-  @materials.Action loadMaterialsData!: any
-  @materials.Getter ourBrandMaterials!: any
-  @materials.Getter specs!: MaterialSpec[]
-  currentPrinter: any = {}
-  product: any = {}
-  private spec5d: any[] = []
-  private features: any[] = []
-  private reasonsToUse: any[] = []
-  private printerItems: any[] = []
-  private async getFulSpec5 () {
-    let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/printers?token=${process.env.COCKPIT_TOKEN}`)
-    data = await response.json()
-    //console.log(data)
-    this.spec5d = data.entries.filter(v => /^5\d0 hybrid/i.test(v.model))
-  }
+  titleHeader: string = ''
+  contentPrinter: any = {}
+  imagePrinter: string = ''
+  buyImagePrinter: string = ''
+  titleFeatures1: string = ''
+  contentFeatures1: any[] = []
+  titleFeatures2: string = ''
+  contentFeatures2: any[] = []
+  contentCard: any[] = []
+  contentFullSpecs: any[] = []
+  loadedPage: boolean = false
 
-  private async getFeatures () {
-    let data1
-    let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })
+  private async getHybridData () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/e0614194-cfbd-40f3-97f3-28d6f4cb5dd3`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
     })
-    data1 = await response1.json()
-    this.features = data1.entries
-  }
+    let data = await response.json()
+    data = data.data
 
-  private async getReasonsToUse () {
-    let data2
-    let response2 = await fetch(`https://api2.stereotech.org/api/collections/get/reasonsToChose?token=${process.env.COCKPIT_TOKEN}`,{
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })
+    this.titleHeader = data.title_header
+
+    let getPrinter = data.buyprinter[0].api_url
+    response = await fetch(getPrinter, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
     })
-    data2 = await response2.json()
-    this.reasonsToUse = data2.entries
-  }
-
-  private async getPrinterItems () {
-    let printData
-    let response3 = await fetch(`https://api2.stereotech.org/api/collections/get/printersForSelling?token=${process.env.COCKPIT_TOKEN}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })
+    getPrinter = await response.json()
+    this.contentPrinter = getPrinter.data
+    this.imagePrinter = getPrinter.data.image[0].permalink
+    this.buyImagePrinter = getPrinter.data.buyimage[0].permalink
+    
+    this.titleFeatures1 = data.keyfeatures1[0].title
+    let getFeatures1 = data.keyfeatures1[0].handle
+    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures1}/entries`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
     })
-    printData = await response3.json()
-    this.printerItems = printData.entries.filter(v => /hybrid/i.test(v.model))
-    this.currentPrinter = this.printerItems.filter(v => /^520 hybrid/i.test(v.model))[0]
-    //console.log(this.printerItems)
-  }
+    getFeatures1 = await response.json()
+    this.contentFeatures1 = getFeatures1.data
 
-  get currentPrice (): number {
-    // const base = this.product ? this.product.price : 129000
-    // const currentOption = this.product && this.currentPrinter ? this.product.options[0].product_option_value.find((o: any) => o.name === (this.currentPrinter ? this.currentPrinter.model : '')).price : 0
-    // return base + currentOption
-    return this.currentPrinter.price
+    this.titleFeatures2 = data.keyfeatures2[0].title
+    let getFeatures2 = data.keyfeatures2[0].handle
+    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures2}/entries`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getFeatures2 = await response.json()
+    this.contentFeatures2 = getFeatures2.data
+
+    let getCard1 = data.productcard1[0].api_url
+    response = await fetch(getCard1, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard1 = await response.json()
+    let contentCard1 = [getCard1.data]
+
+    let getCard2 = data.productcard2[0].api_url
+    response = await fetch(getCard2, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard2 = await response.json()
+    let contentCard2 = [getCard2.data]
+    this.contentCard = contentCard1.concat(contentCard2)
+
+    let getFullSpecs = data.fullspecs[0].api_url
+    response = await fetch(getFullSpecs, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getFullSpecs = await response.json()
+    this.contentFullSpecs = [getFullSpecs.data]
+
   }
 
   async mounted () {
-    await this.getPrinterItems()
-    await this.getFulSpec5()
-    await this.getFeatures()
-    await this.getReasonsToUse()
-    if (!this.filled) {
-      await this.loadMaterialsData()
-    }
+    await this.getHybridData()
+    this.loadedPage = true
   }
 
 }
@@ -188,4 +205,8 @@ export default class Hybrid extends Vue {
 </script>
 
 <style>
+  .v-s-text {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 </style>

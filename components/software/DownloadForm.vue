@@ -12,7 +12,6 @@
             <v-row>
               <v-col cols="12">
                 <v-list-item>{{ link.description }}</v-list-item>
-                <v-list-item>{{ link.version }}</v-list-item>
               </v-col>
               <v-col cols="12">
                 <v-btn
@@ -25,7 +24,7 @@
                   target="_blank"
                 >
                   <v-icon left>{{link.icon}}</v-icon>
-                  {{ link.name }}
+                  {{ link.title }}
                 </v-btn>
               </v-col>
             </v-row>
@@ -38,12 +37,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { DownloadLink } from '~/types/download'
 
 @Component
 export default class DownloadForm extends Vue {
+  
   @Prop({ type: String, default: 'Загрузить' }) title!: string
-  @Prop({ type: Array, default: () => { return [] } }) links!: DownloadLink[]
+  @Prop({ type: Array, default: () => { return [] } }) links!: any[]
+
 }
 
 </script>

@@ -1,27 +1,54 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col class="v-s-text" cols="12" lg="8">
+        <v-skeleton-loader
+          type="text@2"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-row>
+          <v-col cols="12" lg="6" md="6">
+            <v-skeleton-loader
+              type="article, button"
+            ></v-skeleton-loader>
+          </v-col>
+          <v-col cols="12" lg="6" md="6">
+            <v-skeleton-loader
+              type="image@2"
+              :tile=true
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" class="text-center">
         <h1 class="font-weight-light">
-          {{
-            $t(
-              "Серия 8хх - Восьмиосевой принтер для производства прочных композитных деталей"
-            )
-          }}
+          {{ titleHeader }}
         </h1>
-        <h2>{{ $t("Стоимость по запросу") }}</h2>
+        <h2>{{ subtitleHeader }}</h2>
       </v-col>
       <v-col cols="12" lg="10">
         <KeyFeatures
-          :title="this.$tc('Преимущества технологии 5Dtech')"
-          :items="features"
+          :title="titleFeatures"
+          :items="contentFeatures"
         />
       </v-col>
-      <v-col cols="12" lg="10" v-if="product">
-        <FullSpecs :attributes="product.attributes" />
-      </v-col>
       <v-col cols="12" lg="10">
-        <BuyPrinter id='buyPrinterForm' :variant="currentPrinter" />
+        <BuyPrinter
+          id="buyPrinterForm"
+          :model="contentPrinter.title"
+          :image="buyImagePrinter"
+          :price="contentPrinter.price"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -30,81 +57,74 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
-import FullSpecs from '~/components/printers/FullSpecs.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import { KeyFeature, MediaType } from '~/types/keyFeature'
-import { PrinterVariant, ExtruderType, PrintVolumeType, FiveAxisType, PrinterType } from '~/types/printerVariant'
-import gql from 'graphql-tag'
 
 @Component({
   components: {
     BuyPrinter,
-    FullSpecs,
     KeyFeatures
   }
 })
+
 export default class Series8 extends Vue {
-  private features: any[] = []
-  get currentPrinter (): PrinterVariant {
-    return {
-      model: this.$tc('Серия 8хх'),
-      image: '/printers/industrial/series8.jpg',
-      printerType: PrinterType.ThreeAxis,
-      extruderType: ExtruderType.Dual,
-      printVolumeType: PrintVolumeType.Standard,
-      fiveAxisType: FiveAxisType.Normal,
-      description: this.$tc('Восьмиосевая машина АП на базе промышленного манипулятора для производства прочных полимерных деталей')
-    }
-  }
- 
-   private async getFeatures () {
-    let data1
-    let response1 = await fetch(`https://api2.stereotech.org/api/collections/get/features?token=${process.env.COCKPIT_TOKEN}`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lang: this.$i18n.locale
-      })
+
+  titleHeader: string = ''
+  subtitleHeader: string = ''
+  titleFeatures: string = ''
+  contentFeatures: any[] = []
+  contentPrinter: any = {}
+  buyImagePrinter: string = ''
+  loadedPage: boolean = false
+
+  private async getSeries8Data () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/3bfd8463-dd44-47ef-9c87-1b9b179dce3f`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
     })
-    data1 = await response1.json()
-    this.features = data1.entries
+    let data = await response.json()
+    data = data.data
+
+    this.titleHeader = data.title_header
+    this.subtitleHeader = data.subtitle_header
+
+    this.titleFeatures = data.keyfeatures[0].title
+    let getFeatures = data.keyfeatures[0].handle
+    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures}/entries`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getFeatures = await response.json()
+    this.contentFeatures = getFeatures.data
+
+    let getPrinter = data.buyprinter[0].api_url
+    response = await fetch(getPrinter, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getPrinter = await response.json()
+
+    if (getPrinter.data.price === null) {
+      getPrinter.data.price = ''
+    }
+
+    this.contentPrinter = getPrinter.data
+    this.buyImagePrinter = getPrinter.data.buyimage[0].permalink
+
   }
 
-  product: any = {}
   async mounted () {
-    const result = await this.$apollo.query({
-      query: gql`query{
-         product(id: "683") {
-            product_id,
-            name,
-            price,
-            options {
-              product_option_id,
-              name,
-              product_option_value {
-                product_option_value_id,
-                name,
-                price
-              }
-            }
-            attributes {
-              attribute_group_id,
-              name,
-              attribute {
-                name,
-                attribute_id,
-                text
-              }
-            }
-         }
-      }`
-    })
-    this.product = result.data.product
-    await this.getFeatures()
+    await this.getSeries8Data()
+    this.loadedPage = true
   }
+
 }
 
 </script>
 
 <style>
+  .v-s-text {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 </style>

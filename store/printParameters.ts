@@ -1,4 +1,4 @@
-import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
+import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import { PrintParameter } from '~/types/printParameters';
 import { RootState } from '.';
 
@@ -31,16 +31,14 @@ export const getters: GetterTree<PrintParametersState, RootState> = {
 
 export const actions: ActionTree<PrintParametersState, RootState> = {
     async loadPrintParameters ({ commit }) {
-        let data: { entries: PrintParameter[] }
-        let response = await fetch(`https://api2.stereotech.org/api/collections/get/printingParameters?token=${process.env.COCKPIT_TOKEN}`, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                lang: this
-            })
+        let data: { data: PrintParameter[] }
+        let response = await fetch(`https://api.stereotech.org/api/collections/printingParameters/entries`, {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
         })
         data = await response.json()
-        const printParameters: PrintParameter[] = data.entries
+        const printParameters: PrintParameter[] = data.data.map((item:any) => {return {"sku": item.title, name: item.name, printtemperature: item.printtemperature, 
+            threedtemperature: item.threedtemperature, blowing: item.blowing, speed: item.speed, flow: item.flow, layerheight: item.layerheight}})
         commit('setPrintParameters', printParameters)
     }
 }

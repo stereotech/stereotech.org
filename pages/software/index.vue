@@ -1,12 +1,30 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
-      <v-col lg="10" v-for="(soft, index) in software" :key="index">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col 
+        cols="12" 
+        lg="10"
+        v-for="n in 2"
+        :key="n"
+      >
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="(content, index) in contentCard"
+        :key="index"
+      >
         <ProductCard
-          :image="soft.image"
-          :title="soft.title"
-          :description="soft.description"
-          :link="soft.link"
+          :image="content.image[0].permalink"
+          :title="content.title"
+          :description="content.description"
+          :link="content.link"
         />
       </v-col>
     </v-row>
@@ -25,28 +43,48 @@ import ProductCard from '~/components/ProductCard.vue'
     title: 'Программное обеспечение'
   }
 })
+
 export default class Software extends Vue {
-  get software(): {
-    image: string,
-    title: string,
-    description: string,
-    link: string
-  }[] {
-    return [
-      {
-        image: '/printers/software/steapp.webp',
-        title: 'STE App',
-        description: this.$tc('Приложение для управления процессом печати\nПросто.\nГибко.\nЭффективно.'),
-        link: '/software/steapp'
-      },
-      {
-        image: '/software/steslicer/banner.jpg',
-        title: 'STE Slicer',
-        description: this.$tc('Первое в мире программное обеспечение для 5D принтеров\nПодготовка моделей для 3D и 5D печати\nПоддержка различных режимов 5D печати\nВстроенное STE App'),
-        link: '/software/steslicer'
-      }
-    ]
+
+  contentCard: any[] = []
+  titlePage: string = ''
+  loadedPage: boolean = false
+
+  private async getSoftwareData () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/782ff176-f43c-4eb9-aaef-4eb2f7ef31f3`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    data = data.data
+
+    let getCard1 = data.productcard1[0].api_url
+    response = await fetch(getCard1, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard1 = await response.json()
+    let contentCard1 = [getCard1.data]
+
+    let getCard2 = data.productcard2[0].api_url
+    response = await fetch(getCard2, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard2 = await response.json()
+    let contentCard2 = [getCard2.data]
+    
+    this.contentCard = contentCard1.concat(contentCard2)
+    this.titlePage = data.title
+
   }
+
+  async mounted () {
+    await this.getSoftwareData()
+    this.loadedPage = true
+  }
+
 
 }
 

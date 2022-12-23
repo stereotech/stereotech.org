@@ -33,20 +33,20 @@ export default class FullSpecs extends Vue {
 
   private datamap = new Map()
   private tableHeaders: any[] = [{ text: 'характеристика', value: 'spec' }]
-  private tableData: any[] = []
+  tableData: any[] = []
 
-  private get getTableHeaders () {
+  get getTableHeaders () {
     this.specXd.forEach(s => {
-      this.tableHeaders.push({ text: s.model, value: s.model })
-      let smodel = s.model
+      this.tableHeaders.push({ text: s.title, value: s.title })
+      let smodel = s.title
       s.specs.forEach(el => {
-        let dataobject = this.datamap.get(el.value.key)
+        let dataobject = this.datamap.get(el.key)
         if (dataobject === undefined) {
-          this.datamap.set(el.value.key, {})
-          dataobject = this.datamap.get(el.value.key)
+          this.datamap.set(el.key, {})
+          dataobject = this.datamap.get(el.key)
         }
 
-        dataobject[smodel] = el.value.value
+        dataobject[smodel] = el.valueKey
 
       });
     });

@@ -17,6 +17,6 @@ export interface MaterialSpec {
 }
 
 export interface MaterialSpecValue {
-    spec?: MaterialSpec
-    value?: string
+    specs_description?: MaterialSpec
+    specs_value?: string
 }

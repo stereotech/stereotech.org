@@ -3,7 +3,7 @@
     <v-container>
       <v-row justify="center">
         <v-col cols="12" md="6" v-if="material.image">
-          <v-img :src="`${apiAddress}${material.image.path}`"></v-img>
+          <v-img :src="material.image"></v-img>
         </v-col>
         <v-col cols="12" md="6">
           <div class="text-center font-weight-light display-2">
@@ -18,7 +18,7 @@
                 color="primary"
                 depressed
                 target="_blank"
-                :href="`${apiAddress}${material.file}`"
+                :href="material.file"
               >
                 <v-icon left>mdi-download</v-icon
                 >{{ $t("Загрузить брошюру") }}</v-btn
@@ -37,6 +37,7 @@ import { Material } from '~/types/materials'
 
 @Component
 export default class MaterialCard extends Vue {
+  
   @Prop({
     type: Object, default: (): Material => {
       return {
@@ -49,9 +50,6 @@ export default class MaterialCard extends Vue {
     }
   }) material!: Material
 
-  get apiAddress () {
-    return process.env.API_ADDRESS
-  }
 }
 
 </script>

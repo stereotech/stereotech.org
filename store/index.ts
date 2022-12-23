@@ -1,5 +1,4 @@
-import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import { ActionTree, MutationTree } from 'vuex'
 
 export interface RootState {
   locale: string

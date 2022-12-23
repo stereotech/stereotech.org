@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ $t("О технологии 5Dtech") }}
+      {{ title }}
     </v-card-title>
     <iframe
       width="100%"
       height="480"
-      src="https://www.youtube.com/embed/videoseries?list=PLpJTPL5twL-4bOAtLpnqyBxoCi0NR9UdG"
-      title="О технологии 5Dtech"
+      :src="link"
+      :title="title"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
@@ -20,6 +20,27 @@ import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class PressPage extends Vue {
+
+  title: string = ''
+  link: string = ''
+
+  private async getDocumentsData () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/53feee36-a6b0-4957-948d-1e30fce28d6c`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    data = data.data
+
+    this.title = data.video_title
+    this.link = data.video_link
+
+  }
+
+  async mounted () {
+    await this.getDocumentsData()
+  }
 
 }
 

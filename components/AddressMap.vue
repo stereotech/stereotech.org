@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-text>
-      <v-container fluid>
+      <v-container fluid v-if="this.loadedPage == true">
         <v-row justify="center" align="center">
           <v-col cols="12">
             <v-sheet :height="height" elevation="1">
@@ -12,21 +12,16 @@
                   :controls="['zoomControl', 'typeSelector']"
                   zoom="5"
                 >
-                  <template v-for="(address, index) in addresses">
-                    <ymap-marker
-                      :key="index"
-                      :marker-id="index"
-                      marker-type="placemark"
-                      :coords="mapCoords(address.coords)"
-                      :hint-content="`${address.name} | ${address.address}`"
-                      :balloon-template="balloonTemplate(address._id)"
-                    >
-                      <!-- <v-card slot="balloon">
-                        <v-card-title>{{ address.name }}</v-card-title>
-                        <v-btn>1233</v-btn>
-                      </v-card> -->
-                    </ymap-marker>
-                  </template>
+                  <ymap-marker
+                    v-for="(address, index) in addresses"
+                    :key="index"
+                    :marker-id="index"
+                    marker-type="placemark"
+                    :coords="mapCoords(JSON.parse(address.coords))"
+                    :hint-content="`${address.title} | ${address.address}`"
+                    :balloon-template="balloonTemplate(address.id)"
+                  >
+                  </ymap-marker>
                 </yandex-map>
               </client-only>
             </v-sheet>
@@ -35,27 +30,28 @@
 
         <template v-if="regionsByCountry" id="a">
           <template v-for="(country, countryInd) in regionsByCountry.keys()">
-            <v-row justify="center" :key="`title-${countryInd}`">
-              <v-col cols="12" md="8">
+            <v-row justify="center">
+              <v-col cols="12" md="8" :key="`title-${countryInd}`">
                 <h2 class="text-h2">{{ country }}</h2>
               </v-col>
             </v-row>
             <template
               v-for="(region, regionInd) in regionsByCountry.get(country)"
             >
-              <v-row justify="center" :key="`region-${country}-${regionInd}`">
-                <v-col cols="12" md="8">
+              <v-row justify="center">
+                <v-col cols="12" md="8" :key="`region-${country}-${regionInd}`">
                   <h4 class="text-h4">{{ region.region }}</h4>
                 </v-col>
                 <template
+                  v-if="groupedAddress"
                   v-for="(address, index) in groupedAddress.get(region.region)"
                 >
-                  <v-col cols="12" md="8" :key="`address-${index}`">
-                    <v-card class="mx-auto" outlined :id="`${address._id}`">
+                  <v-col cols="12" md="8">
+                    <v-card class="mx-auto" outlined :id="`${address.id}`" :key="`address-${index}`">
                       <v-list-item two-line>
                         <v-list-item-content>
                           <v-list-item-title class="headline">{{
-                            address.name
+                            address.title
                           }}</v-list-item-title>
                           <v-list-item-subtitle>{{
                             address.address
@@ -68,8 +64,8 @@
                           color="white"
                         >
                           <v-img
-                            v-if="address.logo"
-                            :src="`https://api2.stereotech.org/${address.logo.path}`"
+                            v-if="address.logo[0]?.permalink"
+                            :src="address.logo[0].permalink"
                           ></v-img>
                         </v-list-item-avatar>
                       </v-list-item>
@@ -112,15 +108,15 @@
                             <v-icon>mdi-phone</v-icon>
                           </v-btn>
                         </template>
-                        <v-btn
-                          text
-                          color="primary"
-                          :href="address.website"
-                          target="_blank"
-                          >{{
-                            address.website.replace(/https?:\/\//g, "")
-                          }}</v-btn
-                        >
+                          <v-btn
+                            text
+                            color="primary"
+                            :href="address.website"
+                            target="_blank"
+                            >{{
+                              address.website?.replace(/https?:\/\//g, "")
+                            }}
+                          </v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-col>
@@ -142,6 +138,7 @@ import { Seller } from '~/types/reseller'
 export default class AddressMap extends Vue {
   @Prop({ type: Number, default: 600 }) height!: number
   @Prop({ type: Array, default: () => { return [] } }) addresses!: Seller[]
+  @Prop({ type: Boolean, default: false }) loadedPage!: boolean
 
   @Watch('addresses') OnAddressesChanged () {
     this.groupedAddress = this.groupBy(this.addresses, address => address.region)
@@ -176,13 +173,13 @@ export default class AddressMap extends Vue {
     return map;
   }
 
-  private mapCoords (coords: { lat: number, lng: number }) {
+  mapCoords (coords: { lat: number, lng: number }) {
     //return coords.map(c => {c.lat, c.lng})
     return Object.values(coords)
   }
 
-  private balloonTemplate(elId: string){
-    console.log(elId)
+  balloonTemplate(elId: string){
+    //console.log(elId)
     return `<div>
       <button onclick="document.getElementById('${elId}').scrollIntoView({block: \'center\', behavior: \'smooth\'});" type="button" class="v-btn  v-btn--depressed theme--light v-size--small primary"><span class="v-btn__content">${this.$t('Подробнее')}</span></button>
     </div>`

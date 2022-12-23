@@ -1,4 +1,4 @@
-import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
+import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import { Material, MaterialSpec } from '~/types/materials';
 import { RootState } from '.';
 
@@ -43,29 +43,27 @@ export const getters: GetterTree<MaterialsState, RootState> = {
 
 export const actions: ActionTree<MaterialsState, RootState> = {
     async loadMaterialsData ({ commit }) {
-        let data: { entries: Material[]; }
-        let response = await fetch(`https://api2.stereotech.org/api/collections/get/filaments?token=${process.env.COCKPIT_TOKEN}`)
-        data = await response.json()
-        const materials: Material[] = data.entries
-        let techSpecsdata: { entries: MaterialSpec[]; }
-        response = await fetch(`https://api2.stereotech.org/api/collections/get/filament_specs_description?token=${process.env.COCKPIT_TOKEN}`)
-        techSpecsdata = await response.json()
-        const techSpecs: MaterialSpec[] = techSpecsdata.entries
-        commit('setSpecs', techSpecs)
-        let specs = await (await fetch(`https://api2.stereotech.org/api/collections/get/filament_to_spec_description?token=${process.env.COCKPIT_TOKEN}`)).json()
-        specs = specs.entries
-        specs.forEach((s: { filament: { _id: string; }; spec_description: { _id: string; }; value: any; }) => {
-            let material = materials.find(m => m._id === s.filament._id)
-            if (material) {
-                if (!material.tech_specs) {
-                    material.tech_specs = []
-                }
-                material.tech_specs.push({
-                    spec: techSpecs.find(t => t._id === s.spec_description._id),
-                    value: s.value
-                })
-            }
+
+        let techSpecsdata: { data: MaterialSpec[]; }
+        let response = await fetch(`https://api.stereotech.org/api/collections/filament_specs_description/entries`, {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
         })
+        techSpecsdata = await response.json()
+        const techSpecs: MaterialSpec[] = techSpecsdata.data.map((item:any) => {return {"name": item.title, unit: item.unit, "_id": item.id}})
+        commit('setSpecs', techSpecs)
+
+        let data: { data: Material[]; }
+        response = await fetch(`https://api.stereotech.org/api/collections/filaments/entries`, {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        data = await response.json()
+
+        const materials: Material[] = data.data.map((item:any) => {return {"sku": item.title, name: item.name, polymer: item.polymer, description: item.description,
+            "_id": item.id, our_brand: item.our_brand, "tech_specs": item.filament_specs, image: item.image[0]?.permalink, file: item.file[0]?.permalink}})
+
         commit('setMaterials', materials)
+
     }
 }

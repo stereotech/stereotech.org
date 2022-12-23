@@ -1,6 +1,36 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="table"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="9">
+        <v-row>
+          <v-col 
+            cols="12"
+            lg="4"
+            md="4"
+            sm="4"
+            v-for="n in 3"
+            :key="n"
+          >
+            <v-skeleton-loader
+              type="image@2"
+              :tile=true
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-col>  
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col
         cols="12"
         lg="10"
@@ -28,7 +58,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
 import MaterialCard from '~/components/materials/MaterialCard.vue'
-import { Material, MaterialSpec } from '~/types/materials'
+import { MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
 const materials = namespace('materials')
@@ -42,15 +72,16 @@ const printParameters = namespace('printParameters')
   }
 })
 export default class FiberpartFilament extends Vue {
+
+  loadedPage: boolean = false
+
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
-
   @materials.Getter ourBrandMaterialsBySku!: any
   @materials.Getter specs!: MaterialSpec[]
 
   @printParameters.State loaded!: boolean
   @printParameters.Action loadPrintParameters!: any
-
   @printParameters.Getter printParametersBySku!: any
 
   get materials () {
@@ -60,6 +91,7 @@ export default class FiberpartFilament extends Vue {
   get printParameters () {
     return this.printParametersBySku('5DTFP')
   }
+
   async mounted () {
     if (!this.filled) {
       await this.loadMaterialsData()
@@ -67,6 +99,7 @@ export default class FiberpartFilament extends Vue {
     if (!this.loaded) {
       await this.loadPrintParameters()
     }
+    this.loadedPage = true
   }
 }
 

@@ -25,6 +25,7 @@
               v-for="(subItem, subIndex) in mapMenuItems(menuItem.child)"
             >
               <v-list-item
+                v-if="subItem.link !== undefined"
                 :key="subIndex"
                 nuxt
                 :to="localePath(subItem.link)"
@@ -38,7 +39,6 @@
           </v-list-group>
           <v-list-item
             v-else
-            :key="index"
             :href="menuItem.link"
             target="_blank"
           >
@@ -52,35 +52,79 @@
             </v-list-item-content>
           </v-list-item>
         </template>
-        <v-list-item nuxt :to="localePath('/resellers')">
+        <v-list-item nuxt :to="localePath(resellers.link)">
           <v-list-item-icon>
-            <v-icon>mdi-map-marker-question-outline</v-icon>
+            <v-icon>{{ resellers.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>{{ $t("Где купить") }}</v-list-item-title>
+          <v-list-item-title>{{ resellers.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="secondary" app clipped-left>
+
+    <v-app-bar color="secondary" app clipped-left v-if="this.loadedPage == false">
+      <v-app-bar-nav-icon class="hidden-md-and-up">
+        <v-skeleton-loader
+          type="image"
+          width="25"
+          height="20"
+        ></v-skeleton-loader>
+      </v-app-bar-nav-icon>
+      <v-avatar size="36px" class="mx-1">
+        <v-skeleton-loader
+          type="avatar"
+        ></v-skeleton-loader>
+      </v-avatar>
+      <v-row justify="start">
+        <v-col cols="3">
+          <v-skeleton-loader
+            style="margin-top: 6px"
+            type="text"
+          ></v-skeleton-loader>
+        </v-col>
+        <v-col cols="3" v-for="n in 3" :key="n" class="hidden-sm-and-down">
+          <v-skeleton-loader
+            style="margin-top: 6px"
+            type="text"
+          ></v-skeleton-loader>
+        </v-col>
+      </v-row>
+      <v-spacer/>
+      <v-row justify="end" class="hidden-sm-and-down">
+        <v-col cols="4" style="margin-right: 20px">
+          <v-skeleton-loader
+            style="margin-top: 6px"
+            type="text"
+          ></v-skeleton-loader>
+        </v-col>
+      </v-row>
+      <v-avatar size="22px">
+        <v-skeleton-loader
+          type="avatar"
+        ></v-skeleton-loader>
+      </v-avatar>
+    </v-app-bar>
+
+    <v-app-bar color="secondary" app clipped-left v-if="this.loadedPage == true">
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
       <v-avatar size="36px" class="mx-1">
-        <img src="ste-logo.png" alt="Logo" />
+        <img :src="home.logo" alt="Logo" />
       </v-avatar>
       <v-toolbar-title>
-        <nuxt-link no-prefetch :to="localePath('/')">
+        <nuxt-link no-prefetch :to="localePath(home.link)">
           <span
             :class="`font-weight-medium ${
               $vuetify.theme.dark ? 'white--text' : 'accent--text'
             }`"
-            >Stereo</span
+            >{{ home.name1 }}</span
           >
           <span
             :class="`font-weight-medium ml-n1 ${
               $vuetify.theme.dark ? 'grey--text' : 'primary--text'
             }`"
-            >tech</span
+            >{{ home.name2 }}</span
           >
         </nuxt-link>
       </v-toolbar-title>
@@ -102,9 +146,10 @@
               <v-container>
                 <v-row justify="center">
                   <template v-for="(childItem, childIndex) in menuItem.child">
-                    <v-col cols="6" :key="childIndex">
-                      <v-list dense nav class="primary--text">
+                    <v-col cols="6">
+                      <v-list dense nav class="primary--text" :key="childIndex">
                         <v-list-item
+                          v-if="childItem.link !== undefined"
                           nuxt
                           exact
                           :to="localePath(childItem.link)"
@@ -124,22 +169,24 @@
                           </v-list-item-content>
                         </v-list-item>
                         <v-divider v-if="childItem.child" />
-                        <v-list-item
-                          v-for="(sublink, sublinkIndex) in childItem.child"
-                          :key="sublinkIndex"
-                          nuxt
-                          exact
-                          :to="localePath(sublink.link)"
-                        >
-                          <v-list-item-content>
-                            <v-list-item-title class="caption">{{
-                              sublink.title
-                            }}</v-list-item-title>
-                            <v-list-item-subtitle>{{
-                              sublink.description
-                            }}</v-list-item-subtitle>
-                          </v-list-item-content>
-                        </v-list-item>
+                        <template v-for="(sublink, sublinkIndex) in childItem.child">
+                          <v-list-item
+                            v-if="sublink.link !== undefined"
+                            :key="sublinkIndex"
+                            nuxt
+                            exact
+                            :to="localePath(sublink.link)"
+                          >
+                            <v-list-item-content>
+                              <v-list-item-title class="caption">{{
+                                sublink.title
+                              }}</v-list-item-title>
+                              <v-list-item-subtitle>{{
+                                sublink.description
+                              }}</v-list-item-subtitle>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </template>
                       </v-list>
                     </v-col>
                   </template>
@@ -148,16 +195,7 @@
             </v-card>
           </v-menu>
           <v-btn
-            v-else-if="menuItem.link.startsWith('/')"
-            :key="index"
-            text
-            nuxt
-            :to="localePath(menuItem.link)"
-            >{{ menuItem.title }}</v-btn
-          >
-          <v-btn
             v-else
-            :key="index"
             text
             color="primary"
             :href="menuItem.link"
@@ -171,17 +209,17 @@
         text
         color="primary"
         nuxt
-        :to="localePath('/resellers')"
+        :to="localePath(resellers.link)"
         exact
         class="hidden-sm-and-down"
       >
-        {{ $t("Где купить") }}
-        <v-icon right dark>mdi-map-marker-question-outline</v-icon>
+        {{ resellers.title }}
+        <v-icon right dark>{{ resellers.icon }}</v-icon>
       </v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" color="primary">
-            <v-icon>mdi-earth</v-icon>
+            <v-icon>{{ dataLayout.icon_locale }}</v-icon>
           </v-btn>
         </template>
         <v-list nav>
@@ -204,43 +242,61 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-list flat light dense dark color="primary">
+
+                  <v-list flat light dense dark color="primary" v-if="this.loadedPage == false">
+                    <v-list-item v-for="n in 3" :key="n">
+                      <v-list-item-title>
+                        <v-skeleton-loader
+                          type="text"
+                        ></v-skeleton-loader>
+                      </v-list-item-title>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-avatar size="30px" class="mx-1" v-for="n in 3" :key="n">
+                        <v-skeleton-loader
+                          type="avatar"
+                        ></v-skeleton-loader>
+                      </v-avatar>
+                    </v-list-item>
+                  </v-list>
+
+                  <v-list flat light dense dark color="primary" v-if="this.loadedPage == true">
                     <v-list-item>
                       <v-list-item-title>
                         &copy;{{ currentYear }} —
-                        <strong>Stereotech</strong>
+                        <strong>{{ dataLayout.sitename }}</strong>
                       </v-list-item-title>
                     </v-list-item>
-                    <v-list-item href="tel:+79023648404">
-                      <v-list-item-title>+79023648404</v-list-item-title>
+                    <v-list-item :href="dataLayout.contact_tel_link">
+                      <v-list-item-title>{{ dataLayout.contact_tel }}</v-list-item-title>
                     </v-list-item>
-                    <v-list-item href="mailto:info@5dtech.pro" target="_blank">
-                      <v-list-item-title>info@5dtech.pro</v-list-item-title>
+                    <v-list-item :href="dataLayout.contact_mail_link" target="_blank">
+                      <v-list-item-title>{{ dataLayout.contact_mail }}</v-list-item-title>
                     </v-list-item>
                     <v-list-item>
                       <v-btn
                         text
                         icon
-                        href="https://vk.com/5dtechpro"
+                        :href="dataLayout.link_vk"
                         target="_blank"
                       >
-                        <v-icon>mdi-vk</v-icon>
+                        <v-icon>{{ dataLayout.icon_vk }}</v-icon>
                       </v-btn>
                       <v-btn
                         text
                         icon
-                        href="https://instagram.com/5dtechpro/"
+                        :href="dataLayout.link_inst"
                         target="_blank"
                       >
-                        <v-icon>mdi-instagram</v-icon>
+                        <v-icon>{{ dataLayout.icon_inst }}</v-icon>
                       </v-btn>
                       <v-btn
                         text
                         icon
-                        href="https://www.youtube.com/channel/UCgpK6bZ6uaGyIGB2jp-aTUw/"
+                        :href="dataLayout.link_youtube"
                         target="_blank"
                       >
-                        <v-icon>mdi-youtube</v-icon>
+                        <v-icon>{{ dataLayout.icon_youtube }}</v-icon>
                       </v-btn>
                     </v-list-item>
                   </v-list>
@@ -250,59 +306,93 @@
           </v-col>
           <v-col cols="12" sm="9">
             <v-container>
-              <v-row>
-                <v-col
-                  cols="12"
-                  sm="6"
-                  lg="3"
-                  v-for="(menu, index) in mainMenu"
-                  :key="index"
-                >
+              <v-row v-if="this.loadedPage == false">
+                <v-col cols="12" lg="3" sm="6" v-for="n in 2" :key="n">
+                  <v-col lg="8" align="left">
+                    <v-skeleton-loader
+                      type="heading"
+                    ></v-skeleton-loader>
+                  </v-col>
                   <v-list flat light dense dark color="primary">
-                    <v-list-item>
-                      <v-list-item-title
-                        class="text-uppercase font-weight-bold"
-                        >{{ menu.title }}</v-list-item-title
-                      >
-                    </v-list-item>
-                    <v-divider />
-                    <v-list-item
-                      nuxt
-                      :to="localePath(child.link)"
-                      v-for="(child, childIndex) in menu.child"
-                      :key="childIndex"
-                    >
-                      <v-list-item-title>{{ child.title }}</v-list-item-title>
+                    <v-list-item v-for="n in 4" :key="n">
+                      <v-col lg="6" align="left" style="padding-left: 0">
+                        <v-skeleton-loader
+                          type="text"
+                        ></v-skeleton-loader>
+                      </v-col>
                     </v-list-item>
                   </v-list>
                 </v-col>
               </v-row>
+
+              <v-row v-if="this.loadedPage == true">
+                <template v-for="(menu, index) in mainMenu">
+                  <v-col
+                    v-if="menu.child !== undefined"
+                    cols="12"
+                    sm="6"
+                    lg="3"
+                    :key="index"
+                  >
+                    <v-list flat light dense dark color="primary">
+                      <v-list-item>
+                        <v-list-item-title
+                          class="text-uppercase font-weight-bold"
+                          >{{ menu.title }}</v-list-item-title
+                        >
+                      </v-list-item>
+                      <v-divider />
+                      <template v-for="(child, childIndex) in menu.child">
+                        <v-list-item
+                          v-if="child.link !== undefined"
+                          nuxt
+                          :to="localePath(child.link)"
+                          :key="childIndex"
+                        >
+                          <v-list-item-title>{{ child.title }}</v-list-item-title>
+                        </v-list-item>
+                      </template>
+                    </v-list>
+                  </v-col>
+                </template>
+              </v-row>
             </v-container>
           </v-col>
         </v-row>
-        <v-row justify="center">
+
+        <v-row justify="center" v-if="this.loadedPage == false">
+          <v-col cols="6" lg="3" align="center" v-for="n in 2" :key="n" style="align-items: center;">
+            <v-skeleton-loader
+              height="64"
+              width="100"
+              type="image"
+              tile
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+
+        <v-row justify="center" v-if="this.loadedPage == true">
           <v-col cols="6" lg="3">
-            <a href="https://navigator.sk.ru/orn/1122828" target="_blank">
+            <a :href="dataLayout.link_skolkovo" target="_blank">
               <v-img
                 height="64"
                 contain
-                :src="`https://sk.ru/themes/generic/images/sklogo_${$store.state.locale}.png`"
+                :src="dataLayout.logo_skolkovo"
               />
             </a>
             <h6 class="text-center">
-              Исследования осуществляются при грантовой поддержке Фонда
-              «Сколково»
+              {{ dataLayout.text_skolkovo }}
             </h6>
           </v-col>
           <v-col cols="6" lg="3">
             <a
-              href="http://fasie.ru/press/fund/volgogradskaya-kompaniya-stereotek-razrabotala-5d-printer-dlya-pechati-raskhodnykh-chastey-promoboru/"
+              :href="dataLayout.link_fund"
               target="_blank"
             >
               <v-img
                 height="64"
                 contain
-                src="https://online.fasie.ru/images/logo.png"
+                :src="dataLayout.logo_fund"
               />
             </a>
           </v-col>
@@ -327,171 +417,26 @@ export interface MenuItem {
 })
 export default class Layout extends Vue {
 
-  private get currentYear () {
+  home: any = {}
+  nav: any[] = []
+  resellers: any = {}
+  dataLayout: any = {}
+  loadedPage: boolean = false
+
+  get currentYear () {
     return new Date().getFullYear()
   }
 
-  private mapMenuItems (items: MenuItem[]): MenuItem[] {
+  mapMenuItems (items: MenuItem[]): MenuItem[] {
     return items.flatMap(x => x.child ? [x, ...x.child] : [x])
   }
 
   get mainMenu (): MenuItem[] {
-    return [
-      {
-        title: this.$tc("Продукты"),
-        icon: 'mdi-printer-3d',
-        child: [
-          {
-            title: this.$tc('Серия 5хх'),
-            link: '/printers',
-            icon: '/printers/desktop/series3.jpg',
-            child: [
-              {
-                title: this.$tc('Hybrid'),
-                link: '/printers/hybrid',
-                description: this.$tc('Инновационные 5D принтеры')
-              },
-              {
-                title: this.$tc('Fiber'),
-                link: '/printers/fiber',
-                description: this.$tc('5D принтеры для печати непрерывным волокном')
-              }
-            ]
-          },
-          {
-            title: this.$tc('Промышленные принтеры'),
-            link: '/industrial',
-            icon: 'printers/industrial/series8.jpg',
-            child: [
-              {
-                title: this.$tc('Серия 6хх'),
-                link: '/industrial/series6',
-                description: this.$tc('Шестиосевое устройство на базе промышленного робота')
-              },
-              {
-                title: this.$tc('Серия 8хх'),
-                link: '/industrial/series8',
-                description: this.$tc('Восьмиосевое устройство для специальных задач')
-              }
-            ]
-          },
-          {
-            title: this.$tc('Материалы для печати'),
-            link: '/materials',
-            icon: '/materials/sealant.jpg',
-            child: [
-              {
-                title: 'Sealant',
-                link: '/materials/sealant',
-                description: this.$tc('Серия эластичных материалов для изготовления уплотнений, прокладок и гибких элементов')
-              },
-              {
-                title: 'Fiberpart',
-                link: '/materials/fiberpart',
-                description: this.$tc('Серия высокопрочных материалов, наполненных рубленым волокном')
-              },
-              {
-                title: 'Enduse',
-                link: '/materials/enduse',
-                description: this.$tc('Серия материалов, применимых для деталей конечного использования')
-              },
-              {
-                title: 'Proto',
-                link: '/materials/proto',
-                description: this.$tc('Серия материалов для функциональных моделей и макетов')
-              },
-              {
-                title: 'Metalcast',
-                link: '/materials/metalcast',
-                description: this.$tc('Серия металлических материалов')
-              },
-              {
-                title: 'ContiFiber',
-                link: '/materials/contifiber',
-                description: this.$tc('Серия материалов, армированных непрерывным углеволокном')
-              }
-            ]
-          },
-          {
-            title: this.$tc('Программное обеспечение'),
-            link: '/software',
-            icon: 'printers/software/steapp.webp',
-            child: [
-              {
-                title: 'STE Slicer',
-                link: '/software/steslicer',
-                description: this.$tc('Подготовка к 3D и 5D печати')
-              },
-              {
-                title: 'STE App',
-                link: '/software/steapp',
-                description: this.$tc('Управление процессом печати')
-              },
-            ]
-          },
-        ]
-      },
-      //{
-      //  title: this.$tc('Узнать больше'),
-      //  icon: 'mdi-post-outline',
-      //  child: [
-      //    {
-      //      title: this.$tc('Блог'),
-      //      link: '/blog',
-      //      child: [
-      //        {
-      //          title: this.$tc('Новости'),
-      //          description: this.$tc('Последние новости о нашей компании'),
-      //          link: '/blog/news'
-      //        },
-      //        {
-      //          title: this.$tc('Научная деятельность'),
-      //          description: '',
-      //          link: '/blog/science'
-      //        },
-      //      ]
-      //    }
-      //  ]
-      //},
-      {
-        title: this.$tc('Поддержка'),
-        icon: 'mdi-face-agent',
-        link: 'https://support.stereotech.org',
-      },
-      {
-        title: this.$tc('О нас'),
-        icon: 'mdi-information',
-        child: [
-          //{
-          //  title: this.$tc('О Stereotech'),
-          //  link: '/info',
-          //  child: [
-          //    {
-          //      title: this.$tc('Команда'),
-          //      link: '/info/team'
-          //    },
-          //    {
-          //      title: this.$tc('СМИ о нас'),
-          //      link: '/info/media'
-          //    }
-          //  ]
-          //},
-          {
-            title: this.$tc('Документы'),
-            link: '/info/documents',
-          },
-          {
-            title: this.$tc('Пресс-центр'),
-            link: '/info/press'
-          }
-
-        ]
-
-      }
-    ]
+    return this.nav
   }
+
   private miniVariant: boolean = this.$vuetify.breakpoint.smOnly
-  private drawer: boolean = false
+  drawer: boolean = false
 
   get locales () {
     return [
@@ -508,6 +453,7 @@ export default class Layout extends Vue {
     }
     return 'ru'
   }
+  
   set currentLang (newLang: string) {
     const lang = this.locales.find(v => v.locale == newLang)
     if (!lang) {
@@ -525,7 +471,86 @@ export default class Layout extends Vue {
     return this.$i18n.locale
   }
 
-  mounted () {
+  private async getLayoutData() {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/78f5a59a-e1d5-4f36-9c92-270401431a64`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    this.dataLayout = data.data
+
+  }
+
+  private async getNavData() {
+
+    function navFilter(item:any) {
+      if (item.children.length != 0) {
+        let childF = item.children.map((child:any) => {
+          return navFilter(child)
+        })
+
+        return{title: item.page.title, icon: item.page.icon, link: item.page.link, 
+          description: item.page.description, child: childF}
+      }
+
+      return {title: item.page.title, icon: item.page.icon, link: item.page.link, 
+        description: item.page.description}
+    }
+
+    function navDelUndef(item:any) {
+      for (const key in item) {
+        if (item[key] === undefined){
+          delete (item[key])
+        }
+      }
+
+      if (typeof(item?.icon) !== 'string' && item.icon) {
+        item.icon = item.icon[0].permalink
+      }
+
+      if (item.child) {
+        item.child.map((child:any) => {
+          return navDelUndef(child)
+        })
+      }
+
+      return item
+    }
+    
+    let response = await fetch(`https://api.stereotech.org/api/navs/main_nav/tree`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+
+    let nav = data.data.map((item:any) => {
+      return navFilter(item)
+    })
+
+    nav = nav.map((item:any) => {
+      return navDelUndef(item)
+    })
+
+    response = await fetch(`https://api.stereotech.org/api/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    data = await response.json()
+    data = [data.data]
+
+    let home = data.map((item:any) => {return {title: item.title, logo: item.logo[0].permalink, link: item.link, name1: item.name1, name2: item.name2}})
+
+    this.home = home[0]
+    this.resellers = nav[nav.length - 1]
+    nav.pop()
+    this.nav = nav
+
+  }
+
+  async mounted () {
+    await this.getLayoutData()
+    await this.getNavData()
     if (process.client) {
       //@ts-ignore
       window.replainSettings = {
@@ -541,6 +566,7 @@ export default class Layout extends Vue {
       reScript.setAttribute('id', this.elementId)
       document.head.appendChild(reScript)
     }
+    this.loadedPage = true
   }
 
 

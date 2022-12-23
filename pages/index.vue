@@ -1,61 +1,62 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col 
+        cols="12" 
+        lg="10"
+        v-for="n in 2"
+        :key="n"
+      >
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="6">
+        <v-skeleton-loader
+          type="text"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="7">
+        <v-skeleton-loader
+          type="image@2, table-row"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" lg="10">
         <ProductCard
-          fullsize
-          :image="require('~/static/printers/desktop/series5_banner.jpg?webp')"
-          :title="this.$tc('Печать изделий с прочностью металла')"
-          link="/printers/hybrid"
+          :fullsize="contentHeaderCard.fullsize"
+          :image="contentHeaderCardImage"
+          :title="contentHeaderCard.title"
+          :link="contentHeaderCard.link"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <TrustCard />
       </v-col>
-      <v-col cols="12" lg="10">
+      <v-col
+        cols="12"
+        lg="10"
+        v-for="(content, index) in contentCard"
+        :key="index"
+      >
         <ProductCard
-          image="/main/bg1.webp"
-          :title="this.$tc('Закажите тестовую деталь')"
-          :description="
-            this.$tc(
-              'Чтобы наилучшим образом решить вашу проблему предлагаем вам заказать тестовую деталь'
-            )
-          "
-          link="/resellers"
+          :image="content.image[0].permalink"
+          :title="content.title"
+          :description="content.description"
+          :link="content.link"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <ProductCard
-          :image="require('~/static/printers/desktop/banner1.jpg?webp')"
-          :title="this.$tc('Серия 5хх')"
-          :description="
-            this.$tc(
-              'Устройства способные с легкостью изменить и оптимизировать процесс производства'
-            )
-          "
-          link="/printers"
-        />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ProductCard
-          :image="require('~/static/materials/sealant.jpg?webp')"
-          :title="this.$tc('Материалы для печати')"
-          link="/materials"
-        />
-      </v-col>
-      <v-col cols="12" lg="10">
-        <ProductCard
-          :image="require('~/static/software/steapp/banner.jpg?webp')"
-          :title="$t('Наше программное обеспечение')"
-          :description="
-            $t('Подготовка к 3D и 5D печати\nУправление процессом печати')
-          "
-          link="/software"
-        />
-      </v-col>
-
-      <v-col cols="12" lg="10">
-        <YoutubeChannel :title="$t('Наш канал на Youtube')" />
+        <YoutubeChannel :title="titleYoutube" />
       </v-col>
     </v-row>
   </v-container>
@@ -63,26 +64,63 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import MainParalax from '~/components/MainParalax.vue'
-import SoftwareBanner from '~/components/software/SoftwareBanner.vue'
 import ProductCard from '~/components/ProductCard.vue'
-import ProductBanner from '~/components/ProductBanner.vue'
-import LatestPosts from '~/components/LatestPosts.vue'
 import YoutubeChannel from '~/components/YoutubeChannel.vue'
 import TrustCard from '~/components/TrustCard.vue'
 
 @Component({
   components: {
-    MainParalax,
-    SoftwareBanner,
-    LatestPosts,
-    ProductBanner,
     ProductCard,
     YoutubeChannel,
     TrustCard
   }
 })
 export default class Index extends Vue {
+
+  contentHeaderCard: any = {}
+  contentHeaderCardImage: string = ''
+  contentCard: any[] = []
+  titleYoutube: string = ''
+  loadedPage: boolean = false
+
+  private async getHomeData () {
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    data = data.data
+    this.titleYoutube = data.title_youtube
+  
+    let getContentHeaderCard = data.productcard[0].api_url
+    response = await fetch(getContentHeaderCard, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getContentHeaderCard = await response.json()
+    this.contentHeaderCard = getContentHeaderCard.data
+    this.contentHeaderCardImage = getContentHeaderCard.data.image[0].permalink
+
+    let getContentCard = []
+    for (let i = 1; i < data.productcard.length; i++) {
+      let getCard = data.productcard[i].api_url
+      response = await fetch(getCard, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }  
+      })
+      getCard = await response.json()
+      getCard = [getCard.data]
+
+      getContentCard = getContentCard.concat(getCard)
+    }
+    
+    this.contentCard = getContentCard
+  }
+
+  async mounted () {
+    await this.getHomeData()
+    this.loadedPage = true
+  }
 
 }
 </script>

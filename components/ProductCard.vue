@@ -24,7 +24,7 @@
                 v-if="
                   fullsize &&
                   $vuetify.breakpoint.smAndUp &&
-                  link.startsWith('http')
+                  linkIf
                 "
                 color="accent"
                 class="mt-2"
@@ -39,7 +39,7 @@
                 v-if="
                   fullsize &&
                   $vuetify.breakpoint.smAndUp &&
-                  !link.startsWith('http')
+                  !linkIf
                 "
                 color="accent"
                 class="mt-2"
@@ -61,7 +61,7 @@
           <h4 class="display-1 font-weight-light">{{ title }}</h4>
           <p
             class="subtitle-1 font-weight-light"
-            v-html="description.replace(/(?:\r\n|\r|\n)/g, '<br />')"
+            v-html="descriptionHtml"
           ></p>
           <slot>
             <v-btn
@@ -69,7 +69,7 @@
               depressed
               :href="link"
               target="_blank"
-              v-if="link.startsWith('http')"
+              v-if="linkIf"
             >
               {{ $t("Узнать больше") }}
               <v-icon right>mdi-chevron-right</v-icon>
@@ -99,6 +99,14 @@ export default class ProductCard extends Vue {
 
   get hidden () {
     return this.fullsize ? 'hidden-sm-and-up' : ''
+  }
+
+  get descriptionHtml() {
+    return this.description?.replace(/(?:\r\n|\r|\n)/g, '<br />') ?? ''
+  }
+
+  get linkIf() {
+    return this.link?.startsWith('http') ?? ''
   }
 }
 

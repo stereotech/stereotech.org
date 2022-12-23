@@ -32,7 +32,7 @@
         </v-btn>
         <v-item-group v-model="current" class="text-center" mandatory>
           <v-item
-            v-for="n in videoItems.length"
+            v-for="n in videoItems?.length"
             :key="`btn-${n}`"
             v-slot:default="{ active, toggle }"
           >
@@ -58,8 +58,8 @@ export default class YoutubeChannel extends Vue {
   @Prop({ type: String, default: 'Наш канал на Youtube' }) title !: string
   @Prop({ type: String, default: '' }) playlistId !: string
   private video: any = {}
-  private videoItems: any[] = []
-  private current: number = 0
+  videoItems: any[] = []
+  current: number = 0
 
   next () {
     this.current = this.current + 1 === this.videoItems.length
@@ -82,7 +82,6 @@ export default class YoutubeChannel extends Vue {
       response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.playlistId}&key=${process.env.VIDEO_KEY}`)
     }
     this.video = await response.json()
-    //console.log(this.video.items)
     this.videoItems = this.video.items
     return this.videoItems
   }

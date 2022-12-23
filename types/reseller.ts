@@ -1,5 +1,6 @@
 export interface Seller {
-    name: string
+    id: string
+    title: string
     logo: { path: string }
     email: string
     website: string
@@ -7,7 +8,7 @@ export interface Seller {
     country: string
     address: string
     phone?: string
-    coords: { lat: number, lng: number }
+    coords: string
     type: SellerType
 }
 

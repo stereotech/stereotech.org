@@ -1,33 +1,59 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col 
+        cols="12" 
+        lg="10"
+        v-for="n in 2"
+        :key="n"
+      >
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="6">
+        <v-skeleton-loader
+          type="text"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="7">
+        <v-skeleton-loader
+          type="image@2, table-row"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" lg="10">
         <ProductBanner
-          fullsize
-          :image="require('~/static/printers/desktop/banner.jpg?webp')"
-          :title="$tc('Принтеры, открывающие новые возможности')"
-          :description="
-            $tc(
-              'Настольные 3D и 5D принтеры, повышающие эффективность производства и способные решить задачи, недоступные другим 3D принтерам'
-            )
-          "
+          :fullsize="contentBanner.fullsize"
+          :image="contentBannerImage"
+          :title="contentBanner.title"
+          :description="contentBanner.description"
         />
       </v-col>
       <v-col
         cols="12"
         lg="10"
-        v-for="(printer, index) in printers"
+        v-for="(content, index) in contentCard"
         :key="index"
       >
         <ProductCard
-          :image="printer.image"
-          :title="printer.title"
-          :description="printer.description"
-          :link="printer.link"
+          :image="content.image[0].permalink"
+          :title="content.title"
+          :description="content.description"
+          :link="content.link"
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <YoutubeChannel />
+        <YoutubeChannel/>
       </v-col>
     </v-row>
   </v-container>
@@ -37,46 +63,67 @@
 import { Vue, Component } from 'vue-property-decorator'
 import ProductCard from '~/components/ProductCard.vue'
 import ProductBanner from '~/components/ProductBanner.vue'
-import LatestPosts from '~/components/LatestPosts.vue'
 import YoutubeChannel from '~/components/YoutubeChannel.vue'
 
 @Component({
   components: {
     ProductCard,
-    LatestPosts,
     ProductBanner,
     YoutubeChannel
   },
   head: {
-    title: 'Настольные принтеры'
+    title: 'Серия 5хх'
   }
 })
 export default class Printers extends Vue {
-  get printers (): {
-    image: string,
-    title: string,
-    description: string,
-    link: string
-  }[] {
-    return [
-      // {
-      //   image: '/printers/desktop/series3.jpg', title: this.$tc('Серия 3хх'),
-      //   description: this.$tc('Серия продвинутых 3D принтеров, предназначенных для обучения, производства и разработки. Доступна печать двумя материалами, закрытая камера печати, управление по сети.'),
-      //   link: '/printers/series3'
-      // },
-      {
-        image: '/printers/desktop/hybrid.jpg',
-        title: this.$tc('Hybrid'),
-        description: this.$tc('Серия инновационных 5D принтеров, для печати прочных изделий и открывающая новые возможности производства.'),
-        link: '/printers/hybrid'
-      },
-      {
-        image: '/printers/desktop/fiber.jpg',
-        title: this.$tc('Fiber'),
-        description: this.$tc('Серия 3D и 5D принтеров, обладающая возможностью печати непрерывным углеволокном для решения особых задач.'),
-        link: '/printers/fiber'
-      }
-    ]
+
+  contentBanner: any = {}
+  contentBannerImage: string = ''
+  contentCard: any[] = []
+  titlePage: string = ''
+  loadedPage: boolean = false
+
+  private async getPrintersData () {
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/e5159acc-3054-4c4f-8262-eea287fd7f41`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    data = data.data
+  
+    let getBanner = data.productbanner[0].api_url
+    response = await fetch(getBanner, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getBanner = await response.json()
+    this.contentBanner = getBanner.data
+    this.contentBannerImage = getBanner.data.image.permalink
+
+    let getCard1 = data.productcard1[0].api_url
+    response = await fetch(getCard1, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard1 = await response.json()
+    let contentCard1 = [getCard1.data]
+
+    let getCard2 = data.productcard2[0].api_url
+    response = await fetch(getCard2, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCard2 = await response.json()
+    let contentCard2 = [getCard2.data]
+    
+    this.contentCard = contentCard1.concat(contentCard2)
+    this.titlePage = data.title
+
+  }
+
+  async mounted () {
+    await this.getPrintersData()
+    this.loadedPage = true
   }
 
 }

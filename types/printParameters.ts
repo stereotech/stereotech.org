@@ -1,10 +1,10 @@
 export interface PrintParameter{
     sku: string
     name: string
-    printTemperature: string
-    threeDTemperature: string
+    printtemperature: string
+    threedtemperature: string
     blowing: string
     speed: string
     flow: string
-    layerHeight: string
+    layerheight: string
 }

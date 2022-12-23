@@ -1,11 +1,58 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="list-item"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="9">
+        <v-row>
+          <v-col 
+            cols="12"
+            lg="4"
+            md="4"
+            sm="4"
+            v-for="n in 3"
+            :key="n"
+          >
+            <v-skeleton-loader
+              type="image@2"
+              :tile=true
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="table"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" lg="10">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" lg="10">
         <ProductCard
-          fullsize
-          :image="require('~/static/materials/banner.jpg?webp')"
-          :title="this.$tc('Доступные материалы для печати')"
+          :image="contentCardImageHead"
+          :title="contentCardHead.title"
+          :fullsize="contentCardHead.fullsize"
         >
           <v-btn
             color="accent"
@@ -13,7 +60,7 @@
             depressed
             @click="$vuetify.goTo('#materialsTable')"
           >
-            {{ $t("Сравнить материалы") }}
+            {{ title_v_btn }}
             <v-icon right>mdi-chevron-right</v-icon>
           </v-btn>
         </ProductCard>
@@ -22,14 +69,14 @@
       <v-col
         cols="12"
         lg="10"
-        v-for="(series, index) in materialsSeries"
+        v-for="(contentCard, index) in contentCards"
         :key="index"
       >
         <ProductCard
-          :image="series.image"
-          :title="series.title"
-          :description="series.description"
-          :link="series.link"
+          :image="contentCard.image[0].permalink"
+          :title="contentCard.title"
+          :description="contentCard.description"
+          :link="contentCard.link"
         />
       </v-col>
       <v-col cols="12" lg="10">
@@ -41,9 +88,10 @@
             block
             href="https://drive.google.com/drive/folders/1AIMZhAqIwwiQwO4HExZw3kOIoBO1GaNR?usp=sharing"
             target="_blank"
-            ><v-icon left>mdi-google-drive</v-icon
-            >{{ $t("Загрузите информацию о материалах") }}</v-btn
-          >
+            >
+            <v-icon left>mdi-google-drive</v-icon>
+            {{ title_v_card1 }}
+          </v-btn>
         </v-card>
       </v-col>
       <v-col cols="12" lg="10">
@@ -52,14 +100,14 @@
       <v-col cols="12" lg="10">
         <MaterialsTable
           id="materialsTable"
-          title="Технические характеристики"
+          :title="title_v_table"
           :materials="ourBrandMaterials"
           :specs="specs"
         />
       </v-col>
       <v-col cols="12" lg="10">
         <v-card>
-          <v-card-title>{{ $t("Памятка выбора материалов") }}</v-card-title>
+          <v-card-title>{{ title_v_card2 }}</v-card-title>
           <iframe
             src="https://drive.google.com/file/d/1AGuLPv2NiyIoa84Bj0cW8GtGc1YOFUE5/preview"
             width="100%"
@@ -76,10 +124,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import ProductCard from '~/components/ProductCard.vue'
-import ProductBanner from '~/components/ProductBanner.vue'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
-import { Material, MaterialSpec } from '~/types/materials'
+import { MaterialSpec } from '~/types/materials'
 import { namespace } from 'vuex-class'
 
 const materials = namespace('materials')
@@ -88,7 +135,6 @@ const printParameters = namespace('printParameters')
 @Component({
   components: {
     ProductCard,
-    ProductBanner,
     MaterialsTable,
     PrintingParameters
   },
@@ -97,6 +143,7 @@ const printParameters = namespace('printParameters')
   }
 })
 export default class materialsPage extends Vue {
+
   @materials.State filled!: boolean
   @materials.Action loadMaterialsData!: any
   @materials.Getter ourBrandMaterials!: any
@@ -104,61 +151,69 @@ export default class materialsPage extends Vue {
 
   @printParameters.State loaded!: boolean
   @printParameters.Action loadPrintParameters!: any
-
-  @printParameters.Getter printParametersBySku!: any
   @printParameters.Getter allPrintParameters!: any
 
-  get materialsSeries (): {
-    image: string,
-    title: string,
-    description: string,
-    link: string
-  }[] {
-    return [{
-      image: '/materials/sealant.jpg',
-      title: 'Sealant',
-      description: this.$tc('Серия эластичных материалов для изготовления уплотнений, прокладок и гибких элементов'),
-      link: '/materials/sealant'
-    },
-    {
-      image: '/materials/fiberpart.jpg',
-      title: 'Fiberpart',
-      description: this.$tc('Серия высокопрочных материалов, наполненных рубленым волокном'),
-      link: '/materials/fiberpart'
-    },
-    {
-      image: '/materials/enduse.jpg',
-      title: 'Enduse',
-      description: this.$tc('Серия материалов, применимых для деталей конечного использования'),
-      link: '/materials/enduse'
-    },
-    {
-      image: '/materials/proto.jpg',
-      title: 'Proto',
-      description: this.$tc('Серия материалов для функциональных моделей и макетов'),
-      link: '/materials/proto'
-    },
-    {
-      image: '/materials/metalcast.jpg',
-      title: 'Metalcast',
-      description: this.$tc('Серия металлических материалов'),
-      link: '/materials/metalcast'
-    },
-    {
-      image: '/materials/contifiber.jpg',
-      title: 'ContiFiber',
-      description: this.$tc('Серия материалов, армированных непрерывным углеволокном'),
-      link: '/materials/contifiber'
-    }]
+  title: string = ''
+  title_v_btn: string = ''
+  title_v_card1: string = ''
+  title_v_card2: string = ''
+  title_v_table: string = ''
+  contentCardImageHead: string = ''
+  contentCardHead: any = {}
+  contentCards: any = {}
+  loadedPage: boolean = false
+
+  private async getMaterialsPageData() {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/c33a351e-19e7-4f60-b16a-9d98523b2e6f`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    data = data.data
+
+    this.title = data.title
+    this.title_v_btn = data.v_btn
+    this.title_v_card1 = data.v_card1
+    this.title_v_card2 = data.v_card2
+    this.title_v_table = data.v_table
+
+    let getCardHead = data.productcard[0].api_url
+    response = await fetch(getCardHead, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    getCardHead = await response.json()
+    this.contentCardHead = getCardHead.data
+    this.contentCardImageHead = getCardHead.data.image[0].permalink
+
+    let getCards = data.productcard
+    let contentCard = []
+    for (let i = 1; i < getCards.length; i++) {
+
+      let getCard = data.productcard[i].api_url
+      response = await fetch(getCard, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }  
+      })
+      getCard = await response.json()
+      contentCard = contentCard.concat(getCard.data)
+
+    }
+    this.contentCards = contentCard
+
   }
 
   async mounted () {
+    await this.getMaterialsPageData()
+
     if (!this.filled) {
       await this.loadMaterialsData()
     }
     if (!this.loaded) {
       await this.loadPrintParameters()
     }
+    this.loadedPage = true
   }
 }
 

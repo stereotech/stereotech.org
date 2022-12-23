@@ -1,17 +1,35 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center" v-if="this.loadedPage == false">
+      <v-col class="v-s-text" cols="12">
+        <v-skeleton-loader
+          type="heading"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" md="3">
+        <v-skeleton-loader
+          type="list-item-avatar@10"
+        ></v-skeleton-loader>
+      </v-col>
+      <v-col cols="12" md="9">
+        <v-skeleton-loader
+          type="image@2"
+          :tile=true
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <v-row  v-if="this.loadedPage == true">
       <v-col cols="12">
-        <h1 class="text-h1">{{ $t("Документы") }}</h1>
+        <h1 class="text-h1">{{ title }}</h1>
       </v-col>
       <v-col cols="12" md="3">
         <v-card>
           <v-list>
             <v-list-item
               v-for="document in documents"
-              :key="document._id"
+              :key="document.id"
               nuxt
-              :to="`/info/documents/${document._id}`"
+              :to="`/info/documents/${document.id}`"
             >
               <v-list-item-icon>
                 <v-icon>mdi-file-document-edit-outline</v-icon>
@@ -36,17 +54,42 @@ import { Document } from '~/types/documents'
 
 @Component
 export default class DocumentsPage extends Vue {
+
   documents: Document[] = []
+  title: string = ''
+  loadedPage: boolean = false
+
+  private async getDocumentsData () {
+
+    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    let getEntriesDocuments = data.data.collections_documents[0].handle
+    this.title = data.data.title
+
+    response = await fetch(`https://api.stereotech.org/api/collections/${getEntriesDocuments}/entries`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    data = await response.json()
+    this.documents = data.data
+    
+  }
 
   async mounted () {
-    let data
-    let response = await fetch(`https://api2.stereotech.org/api/collections/get/documents?token=${process.env.COCKPIT_TOKEN}`)
-    data = await response.json()
-    this.documents = data.entries
+    await this.getDocumentsData()
+    this.loadedPage = true
   }
+
 }
 
 </script>
 
 <style>
+  .v-s-text {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 </style>
