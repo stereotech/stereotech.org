@@ -91,7 +91,7 @@ export default class SteApp extends Vue {
 
   private async getSteAppData () {
     
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/9447bc54-394d-4c87-97e1-0403e0150f96`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/9447bc54-394d-4c87-97e1-0403e0150f96`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -111,7 +111,7 @@ export default class SteApp extends Vue {
 
     this.titleDownload = data.downloadform[0].title
     let getDownload = data.downloadform[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getDownload}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getDownload}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })
@@ -120,7 +120,7 @@ export default class SteApp extends Vue {
 
     this.titleFeatures = data.keyfeatures[0].title
     let getFeatures = data.keyfeatures[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

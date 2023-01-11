@@ -165,7 +165,7 @@ export default class materialsPage extends Vue {
 
   private async getMaterialsPageData() {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/c33a351e-19e7-4f60-b16a-9d98523b2e6f`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/c33a351e-19e7-4f60-b16a-9d98523b2e6f`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

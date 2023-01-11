@@ -52,7 +52,7 @@ export default class Software extends Vue {
 
   private async getSoftwareData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/782ff176-f43c-4eb9-aaef-4eb2f7ef31f3`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/782ff176-f43c-4eb9-aaef-4eb2f7ef31f3`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

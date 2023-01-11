@@ -117,7 +117,7 @@ export default class Resellers extends Vue {
   adresses: any[] = []
 
   private async getResellersData () {
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/a02027e1-ce2c-433e-ab02-7a1223098d26`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/a02027e1-ce2c-433e-ab02-7a1223098d26`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })
@@ -148,7 +148,7 @@ export default class Resellers extends Vue {
     this.dealersFormTitle = getDealersForm.data.fields.title.default
 
     let getAdresses = data.dealers_collections[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getAdresses}/entries?filter[locale]=default`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getAdresses}/entries?filter[locale]=default`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

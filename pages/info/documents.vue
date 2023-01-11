@@ -61,7 +61,7 @@ export default class DocumentsPage extends Vue {
 
   private async getDocumentsData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -69,7 +69,7 @@ export default class DocumentsPage extends Vue {
     let getEntriesDocuments = data.data.collections_documents[0].handle
     this.title = data.data.title
 
-    response = await fetch(`https://api.stereotech.org/api/collections/${getEntriesDocuments}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getEntriesDocuments}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

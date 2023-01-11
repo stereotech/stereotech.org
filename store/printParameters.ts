@@ -32,7 +32,7 @@ export const getters: GetterTree<PrintParametersState, RootState> = {
 export const actions: ActionTree<PrintParametersState, RootState> = {
     async loadPrintParameters ({ commit }) {
         let data: { data: PrintParameter[] }
-        let response = await fetch(`https://api.stereotech.org/api/collections/printingParameters/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/printingParameters/entries`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })

@@ -22,7 +22,7 @@ export default class TrustCard extends Vue{
 
     private async getHomeData () {
 
-        let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })

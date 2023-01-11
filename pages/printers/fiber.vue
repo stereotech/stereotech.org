@@ -131,7 +131,7 @@ export default class Fiber extends Vue {
 
   private async getFiberData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/2d515764-7156-4d92-a934-192486b74a67`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/2d515764-7156-4d92-a934-192486b74a67`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -152,7 +152,7 @@ export default class Fiber extends Vue {
 
     this.titleFeatures1 = data.keyfeatures1[0].title
     let getFeatures1 = data.keyfeatures1[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures1}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures1}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })
@@ -161,7 +161,7 @@ export default class Fiber extends Vue {
 
     this.titleFeatures2 = data.keyfeatures2[0].title
     let getFeatures2 = data.keyfeatures2[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures2}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures2}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

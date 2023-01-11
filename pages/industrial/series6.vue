@@ -61,7 +61,7 @@ export default class Series6 extends Vue {
 
   private async getSeries6Data () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/47ccbc58-8c9c-4d1b-9584-0736160a8ea2`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/47ccbc58-8c9c-4d1b-9584-0736160a8ea2`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

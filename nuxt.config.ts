@@ -5,7 +5,6 @@ import ru from 'vuetify/src/locale/ru'
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
 const domain = process.env.NUXT_ENV_DOMAIN || 'https://5dtech.pro'
 const rootPath = process.env.NUXT_ENV_ROOT || '/'
-const apolloUri = 'https://api.ste3d.ru/index.php?route=api/graphql/usage'
 
 const config: NuxtConfig = {
   target: 'static',
@@ -62,25 +61,23 @@ const config: NuxtConfig = {
   ** Nuxt.js modules
   */
   modules: [
-    //'@nuxtjs/pwa',
-    //'@nuxtjs/google-analytics',
-    // [
-    //   '@nuxtjs/yandex-metrika',
-    //   {
-    //     id: '54147616',
-    //     webvisor: true
-    //   }
-    // ],
+    '@nuxtjs/pwa',
+    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '54147616',
+        webvisor: true
+      }
+    ],
     ['vue-yandex-maps/nuxt', {
       apiKey: process.env.API_KEY,
       lang: 'ru_RU',
       version: '2.1'
     }],
-    // '@nuxtjs/sitemap',
-    // '@nuxtjs/robots',
-    '@nuxtjs/apollo',
-    // '@nuxtjs/recaptcha',
-    //'@nuxt/content',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+    '@nuxtjs/recaptcha',
     '@nuxtjs/i18n'
   ],
   content: {
@@ -112,13 +109,6 @@ const config: NuxtConfig = {
     langDir: 'locales/',
     defaultLocale: locale,
   },
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: apolloUri
-      },
-    }
-  },
   env: {
     LOCALE: locale,
     DOMAIN: domain,
@@ -129,6 +119,7 @@ const config: NuxtConfig = {
     SECURE_TOKEN: process.env.SECURE_TOKEN || '',
     YANDEX_VER: process.env.YANDEX_VER || '',
     API_KEY: process.env.API_KEY || '',
+    API_STATAMIC: process.env.API_STATAMIC || '',
     SITE_KEY: process.env.SITE_KEY || '',
     BITRIX_SEC: process.env.BITRIX_SEC || '',
     MATERIAL_TABLE_ID: process.env.MATERIAL_TABLE_ID || '',

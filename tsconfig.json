@@ -31,10 +31,7 @@
       "@nuxt/types",
       "@nuxtjs/i18n",
       // "@nuxt/vue-app",
-      "vuetify",
-      "vue-apollo/types",
-      // "@nuxtjs/axios",
-      // "@nuxt/content"
+      "vuetify"
     ]
   },
   "exclude": [

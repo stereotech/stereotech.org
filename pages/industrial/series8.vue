@@ -78,7 +78,7 @@ export default class Series8 extends Vue {
 
   private async getSeries8Data () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/3bfd8463-dd44-47ef-9c87-1b9b179dce3f`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/3bfd8463-dd44-47ef-9c87-1b9b179dce3f`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -90,7 +90,7 @@ export default class Series8 extends Vue {
 
     this.titleFeatures = data.keyfeatures[0].title
     let getFeatures = data.keyfeatures[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

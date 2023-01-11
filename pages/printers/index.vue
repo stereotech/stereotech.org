@@ -84,7 +84,7 @@ export default class Printers extends Vue {
   loadedPage: boolean = false
 
   private async getPrintersData () {
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/e5159acc-3054-4c4f-8262-eea287fd7f41`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/e5159acc-3054-4c4f-8262-eea287fd7f41`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

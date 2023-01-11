@@ -63,7 +63,7 @@ export default class DocumentPage extends Vue {
 
   private async getDocumentsData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/d71b7a3c-8005-44b5-9dbc-5e5fc5c328a9`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

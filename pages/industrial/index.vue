@@ -52,7 +52,7 @@ export default class Industrial extends Vue {
 
   private async getIndustrialData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/602f8332-39f8-4e02-a705-2edea64744ad`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/602f8332-39f8-4e02-a705-2edea64744ad`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

@@ -473,7 +473,7 @@ export default class Layout extends Vue {
 
   private async getLayoutData() {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/78f5a59a-e1d5-4f36-9c92-270401431a64`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/78f5a59a-e1d5-4f36-9c92-270401431a64`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -518,7 +518,7 @@ export default class Layout extends Vue {
       return item
     }
     
-    let response = await fetch(`https://api.stereotech.org/api/navs/main_nav/tree`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/navs/main_nav/tree`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -532,7 +532,7 @@ export default class Layout extends Vue {
       return navDelUndef(item)
     })
 
-    response = await fetch(`https://api.stereotech.org/api/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

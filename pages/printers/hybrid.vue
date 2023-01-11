@@ -131,7 +131,7 @@ export default class Hybrid extends Vue {
 
   private async getHybridData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/e0614194-cfbd-40f3-97f3-28d6f4cb5dd3`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/e0614194-cfbd-40f3-97f3-28d6f4cb5dd3`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -152,7 +152,7 @@ export default class Hybrid extends Vue {
     
     this.titleFeatures1 = data.keyfeatures1[0].title
     let getFeatures1 = data.keyfeatures1[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures1}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures1}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })
@@ -161,7 +161,7 @@ export default class Hybrid extends Vue {
 
     this.titleFeatures2 = data.keyfeatures2[0].title
     let getFeatures2 = data.keyfeatures2[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures2}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures2}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

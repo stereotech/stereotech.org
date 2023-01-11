@@ -18,7 +18,7 @@ export default class ServiceBenefits extends Vue{
   title: string = ''
 
   private async getServiceBenefits(){
-    let response = await fetch(`https://api.stereotech.org/api/collections/serviceBenefits/entries`,{
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/serviceBenefits/entries`,{
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

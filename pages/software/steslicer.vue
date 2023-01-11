@@ -77,7 +77,7 @@ export default class SteSlicer extends Vue {
 
   private async getSteSlicerData () {
     
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/d23fcec4-4b3a-47a7-b564-7819c5568044`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/d23fcec4-4b3a-47a7-b564-7819c5568044`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -97,7 +97,7 @@ export default class SteSlicer extends Vue {
 
     this.titleFeatures = data.keyfeatures[0].title
     let getFeatures = data.keyfeatures[0].handle
-    response = await fetch(`https://api.stereotech.org/api/collections/${getFeatures}/entries`, {
+    response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures}/entries`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }  
     })

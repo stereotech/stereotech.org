@@ -26,7 +26,7 @@ export default class PressPage extends Vue {
 
   private async getDocumentsData () {
 
-    let response = await fetch(`https://api.stereotech.org/api/collections/page/entries/53feee36-a6b0-4957-948d-1e30fce28d6c`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/53feee36-a6b0-4957-948d-1e30fce28d6c`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
     })

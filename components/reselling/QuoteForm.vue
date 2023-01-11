@@ -15,13 +15,6 @@
                 :rules="nameRules"
               ></v-text-field>
             </v-col>
-            <!-- <v-autocomplete
-              outlined
-              v-model="country"
-              :items="countries"
-              item-text="country"
-              :label="this.$tc('Страна')"
-            ></v-autocomplete> -->
             <v-col cols="12">
               <v-text-field
                 outlined
@@ -93,8 +86,6 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import DialogForm from '~/components/DialogForm.vue'
-import gql from 'graphql-tag'
-import { MegaplanApi } from '~/types/megaplan/base'
 
 @Component({
   components: {
@@ -124,7 +115,6 @@ export default class QuoteForm extends Vue {
   subscribe: boolean = true
   subscribeStr: string = ''
 
-  //countries: any[] = require('country-json/src/country-by-name.json')
   get interests (): string[] {
     return [
       this.$tc('Серия Hybrid'),
@@ -197,63 +187,6 @@ export default class QuoteForm extends Vue {
       this.snackbar = true
     }
   }
-
-  private async submit () {
-    let name = this.dealers ? 'Запрос дилерства' : 'Запрос предложения'
-    name += ': ' + new Date().toString() + ' Обращение от ' + this.name
-    const email = this.email
-    const description = this.joinFormData
-    await this.$apollo.mutate({
-      mutation: gql`mutation ($name: String!, $email: String!, $description: String!)
-      {
-          contactus(name: $name, email: $email, enquiry: $description)
-      }`,
-      variables: {
-        name: name,
-        email: email,
-        description: description
-      }
-    })
-    try {
-      //@ts-ignore
-      let megaplan = new MegaplanApi()
-      await megaplan.authenticate()
-      let company: any = null
-      let isCompany = false
-      let clientId = ''
-      if (this.companyName && this.companyName !== '') {
-        company = await megaplan.createCompany(this.companyName, this.description)
-      }
-      let contact = await megaplan.createClient(this.name, this.phone, this.email, company ? company.id : '', this.description)
-      if (company) {
-        isCompany = true
-        clientId = company.id
-      } else {
-        clientId = contact.id
-      }
-      let callToDo = await megaplan.createCallToDo(isCompany, clientId)
-      let emailToDo = await megaplan.createEmailToDo(isCompany, clientId)
-
-      this.snackbarText = this.$tc('Ваш запрос успешно отправлен!')
-      this.snackbarError = false
-      this.snackbar = true
-
-      this.name = ""
-      this.phone = ""
-      this.email = ""
-      this.companyName = ""
-      this.interestIn = []
-      this.subscribe = true
-
-      this.dialog = false
-
-    } catch (error) {
-      this.snackbarText = this.$tc('Произошла ошибка при отправке формы, ') + error
-      this.snackbarError = true
-      this.snackbar = true
-    }
-  }
-
 
 }
 

@@ -45,7 +45,7 @@ export const actions: ActionTree<MaterialsState, RootState> = {
     async loadMaterialsData ({ commit }) {
 
         let techSpecsdata: { data: MaterialSpec[]; }
-        let response = await fetch(`https://api.stereotech.org/api/collections/filament_specs_description/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/filament_specs_description/entries`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -54,7 +54,7 @@ export const actions: ActionTree<MaterialsState, RootState> = {
         commit('setSpecs', techSpecs)
 
         let data: { data: Material[]; }
-        response = await fetch(`https://api.stereotech.org/api/collections/filaments/entries`, {
+        response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
