@@ -206,13 +206,7 @@ const config: NuxtConfig = {
   generate: {
     dir: 'public',
     fallback: true,
-    interval: 100,
-    routes () {
-      let routes: string[] = []
-      routes.push('/info', '/info/team', '/info/address', '/info/media')
-      routes.push('/en/info', '/en/info/team', '/en/info/address', '/en/info/media')
-      return routes
-    }
+    interval: 100
   }
 }
 
