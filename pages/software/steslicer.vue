@@ -43,6 +43,9 @@
           :link="contentCard.link"
         />
       </v-col>
+            <v-col cols="12" lg="10">
+              <BuyPrinter model="STE Slicer (Cтоимость рассчитывается индивидуально)" image="/buyImageSlicer.jpg"  />
+            </v-col>
     </v-row>
   </v-container>
 </template>
@@ -52,12 +55,14 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProductBanner from '~/components/ProductBanner.vue'
 import ProductCard from '~/components/ProductCard.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
+import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 
 @Component({
   components: {
     ProductBanner,
     KeyFeatures,
     ProductCard,
+    BuyPrinter
   },
   head: {
     title: 'STE Slicer'
@@ -76,7 +81,7 @@ export default class SteSlicer extends Vue {
   loadedPage: boolean = false
 
   private async getSteSlicerData () {
-    
+
     let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/d23fcec4-4b3a-47a7-b564-7819c5568044`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' }
@@ -89,7 +94,7 @@ export default class SteSlicer extends Vue {
     let getBanner = data.productbanner[0].api_url
     response = await fetch(getBanner, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getBanner = await response.json()
     this.contentBanner = getBanner.data
@@ -99,7 +104,7 @@ export default class SteSlicer extends Vue {
     let getFeatures = data.keyfeatures[0].handle
     response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures}/entries`, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getFeatures = await response.json()
     this.contentFeatures = getFeatures.data
@@ -107,7 +112,7 @@ export default class SteSlicer extends Vue {
     let getCard = data.productcard[0].api_url
     response = await fetch(getCard, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getCard = await response.json()
     this.contentCard = getCard.data

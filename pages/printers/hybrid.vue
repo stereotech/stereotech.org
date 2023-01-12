@@ -6,8 +6,8 @@
           type="text"
         ></v-skeleton-loader>
       </v-col>
-      <v-col 
-        cols="12" 
+      <v-col
+        cols="12"
         lg="10"
         v-for="n in 2"
         :key="n"
@@ -83,7 +83,6 @@
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter
-          id="buyPrinterForm"
           :model="contentPrinter.title"
           :image="buyImagePrinter"
           :price="contentPrinter.price"
@@ -143,18 +142,18 @@ export default class Hybrid extends Vue {
     let getPrinter = data.buyprinter[0].api_url
     response = await fetch(getPrinter, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getPrinter = await response.json()
     this.contentPrinter = getPrinter.data
     this.imagePrinter = getPrinter.data.image[0].permalink
     this.buyImagePrinter = getPrinter.data.buyimage[0].permalink
-    
+
     this.titleFeatures1 = data.keyfeatures1[0].title
     let getFeatures1 = data.keyfeatures1[0].handle
     response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures1}/entries`, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getFeatures1 = await response.json()
     this.contentFeatures1 = getFeatures1.data
@@ -163,7 +162,7 @@ export default class Hybrid extends Vue {
     let getFeatures2 = data.keyfeatures2[0].handle
     response = await fetch(`${process.env.API_STATAMIC}/collections/${getFeatures2}/entries`, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getFeatures2 = await response.json()
     this.contentFeatures2 = getFeatures2.data
@@ -171,7 +170,7 @@ export default class Hybrid extends Vue {
     let getCard1 = data.productcard1[0].api_url
     response = await fetch(getCard1, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getCard1 = await response.json()
     let contentCard1 = [getCard1.data]
@@ -179,7 +178,7 @@ export default class Hybrid extends Vue {
     let getCard2 = data.productcard2[0].api_url
     response = await fetch(getCard2, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getCard2 = await response.json()
     let contentCard2 = [getCard2.data]
@@ -188,7 +187,7 @@ export default class Hybrid extends Vue {
     let getFullSpecs = data.fullspecs[0].api_url
     response = await fetch(getFullSpecs, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
     getFullSpecs = await response.json()
     this.contentFullSpecs = [getFullSpecs.data]
