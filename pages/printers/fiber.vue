@@ -40,15 +40,16 @@
     </v-row>
     <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">
-          {{ titleHeader }}
-        </h1>
+        <Header1
+          title="Серия Fiber - Серия 5D принтеров для композитной печати с непрерывным волокном"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterSelector
-          :model="contentPrinter.title"
+          :title="contentPrinter.title"
           :image="imagePrinter"
           :description="contentPrinter.description"
+          :buttons="buttons"
         />
       </v-col>
       <v-col cols="12" lg="10">
@@ -95,6 +96,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import Header1 from "~/components/elements/Header1.vue";
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
 import PrinterSelector from '~/components/printers/PrinterSelector.vue'
 import FullSpecs from '~/components/printers/FullSpecs.vue'
@@ -104,6 +106,7 @@ import ProductCard from '~/components/ProductCard.vue'
 
 @Component({
   components: {
+    Header1,
     BuyPrinter,
     PrinterSelector,
     FullSpecs,
@@ -128,8 +131,16 @@ export default class Fiber extends Vue {
   contentCard: any[] = []
   contentFullSpecs: any[] = []
   loadedPage: boolean = false
+  buttons: any = {}
 
   private async getFiberData () {
+
+    let response1 = await fetch(`${process.env.API_STATAMIC}/collections/PrinterSelector/entries/3c540623-c399-43c7-8a22-dc0507fc2de5`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    let data1 = await response1.json()
+    this.buttons = data1.data.buttons
 
     let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/2d515764-7156-4d92-a934-192486b74a67`, {
       method: 'get',

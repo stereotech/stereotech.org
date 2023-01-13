@@ -46,7 +46,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <PrinterSelector
-          :model="contentPrinter.title"
+          :title="contentPrinter.title"
           :image="imagePrinter"
           :description="contentPrinter.description"
         />
