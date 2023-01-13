@@ -32,6 +32,7 @@
         :search="search"
         :mobile-breakpoint="0"
         fixed-header
+        :items-per-page="-1"
       ></v-data-table>
     </v-card-text>
   </v-card>
