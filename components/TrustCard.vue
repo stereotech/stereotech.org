@@ -15,7 +15,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class Images extends Vue{
+export default class TrustCard extends Vue{
 
     @Prop({ type: String, default: '' }) title!: string
     @Prop({ type: Array, default: () => { return [] } }) images!: any[]

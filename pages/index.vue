@@ -40,7 +40,7 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <Images
+        <TrustCard
           :title="images.title"
           :images="images.images"
         />
@@ -69,13 +69,13 @@
 import { Vue, Component } from 'vue-property-decorator'
 import ProductCard from '~/components/ProductCard.vue'
 import YoutubeChannel from '~/components/YoutubeChannel.vue'
-import Images from '~/components/elements/Images.vue'
+import TrustCard from '~/components/TrustCard.vue'
 
 @Component({
   components: {
     ProductCard,
     YoutubeChannel,
-    Images
+    TrustCard
   }
 })
 export default class Index extends Vue {
