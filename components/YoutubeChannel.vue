@@ -10,7 +10,7 @@
           </v-col>
         </v-row>
         <v-row justify="center" align="center">
-          <v-col cols="12" lg="8">
+          <v-col cols="12" lg="8" v-if="!this.link">
             <v-window v-model="current">
               <v-window-item v-for="(item, index) in videoItems" :key="index">
                 <iframe
@@ -24,9 +24,23 @@
               </v-window-item>
             </v-window>
           </v-col>
+          <v-col cols="12" lg="8" v-if="this.link">
+            <v-window v-model="current">
+              <v-window-item>
+                <iframe
+                  width="100%"
+                  height="500uv"
+                  :src="`https://www.youtube.com/embed/${link}`"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </v-window-item>
+            </v-window>
+          </v-col>
         </v-row>
       </v-container>
-      <v-card-actions class="justify-space-between">
+      <v-card-actions class="justify-space-between" v-if="!this.link">
         <v-btn text @click="prev">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
@@ -56,7 +70,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class YoutubeChannel extends Vue {
 
   @Prop({ type: String, default: 'Наш канал на Youtube' }) title !: string
-  @Prop({ type: String, default: '' }) playlistId !: string
+  @Prop({ type: String, default: '' }) link !: string
   private video: any = {}
   videoItems: any[] = []
   current: number = 0
@@ -73,21 +87,16 @@ export default class YoutubeChannel extends Vue {
   }
 
   private async getVideo () {
-    let response
-    if (this.playlistId == '') {
-
-      response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgpK6bZ6uaGyIGB2jp-aTUw&maxResults=10&order=date&key=${process.env.VIDEO_KEY}`)
-    }
-    else {
-      response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${this.playlistId}&key=${process.env.VIDEO_KEY}`)
-    }
+    let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCgpK6bZ6uaGyIGB2jp-aTUw&maxResults=10&order=date&key=${process.env.VIDEO_KEY}`)
     this.video = await response.json()
     this.videoItems = this.video.items
     return this.videoItems
   }
 
   async mounted () {
-    this.getVideo()
+    if (!this.link) {
+      this.getVideo()
+    }
   }
 }
 

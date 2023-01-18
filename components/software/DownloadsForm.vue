@@ -7,11 +7,11 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col cols="12" sm="6" lg="4" v-for="(link, index) in links" :key="index">
+        <v-col cols="12" sm="6" lg="4" v-for="(spec, index) in specs" :key="index">
           <v-container fluid>
             <v-row>
               <v-col cols="12">
-                <v-list-item>{{ link.description }}</v-list-item>
+                <v-list-item>{{ spec.descriptionSpec }}</v-list-item>
               </v-col>
               <v-col cols="12">
                 <v-btn
@@ -20,11 +20,11 @@
                   depressed
                   :outlined="index > 0"
                   color="primary"
-                  :href="link.download"
+                  :href="spec.linkSpec"
                   target="_blank"
                 >
-                  <v-icon left>{{link.icon}}</v-icon>
-                  {{ link.title }}
+                  <v-icon v-if="spec.iconSpec" left>{{ spec.iconSpec }}</v-icon>
+                  {{ spec.titleSpec }}
                 </v-btn>
               </v-col>
             </v-row>
@@ -39,10 +39,10 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
-export default class DownloadForm extends Vue {
+export default class DownloadsForm extends Vue {
   
   @Prop({ type: String, default: 'Загрузить' }) title!: string
-  @Prop({ type: Array, default: () => { return [] } }) links!: any[]
+  @Prop({ type: Array, default: () => { return [] } }) specs!: any[]
 
 }
 

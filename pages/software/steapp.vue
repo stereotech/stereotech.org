@@ -35,9 +35,9 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <DownloadForm
-          :title="titleDownload"
-          :links="contentDownload"
+        <DownloadsForm
+          :title="DownloadsForm.title"
+          :specs="DownloadsForm.specs"
         />
       </v-col>
       <v-col cols="12" lg="10">
@@ -63,14 +63,14 @@ import { Vue, Component } from 'vue-property-decorator'
 import ProductBanner from '~/components/ProductBanner.vue'
 import ProductCard from '~/components/ProductCard.vue'
 import KeyFeatures from '~/components/KeyFeatures.vue'
-import DownloadForm from '~/components/software/DownloadForm.vue'
+import DownloadsForm from '~/components/software/DownloadsForm.vue'
 
 @Component({
   components: {
     ProductBanner,
     KeyFeatures,
     ProductCard,
-    DownloadForm
+    DownloadsForm
   },
   head: {
     title: 'STE App'
@@ -88,6 +88,7 @@ export default class SteApp extends Vue {
   contentCard: any = {}
   contentCardImage: string = ''
   loadedPage: boolean = false
+  DownloadsForm: any = {}
 
   private async getSteAppData () {
     
@@ -135,6 +136,13 @@ export default class SteApp extends Vue {
     getCard = await response.json()
     this.contentCard = getCard.data
     this.contentCardImage = getCard.data.image[0].permalink
+
+    response = await fetch('https://stage.stereotech.org/api/collections/DownloadsForm/entries/8abc8a77-0372-49fa-9fe1-8d5431bec85c', {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }  
+    })
+    let DownloadsForm = await response.json()
+    this.DownloadsForm = DownloadsForm.data
 
   }
 

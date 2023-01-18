@@ -80,19 +80,11 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <v-card>
-          <v-btn
-            large
-            depressed
-            color="primary"
-            block
-            href="https://drive.google.com/drive/folders/1AIMZhAqIwwiQwO4HExZw3kOIoBO1GaNR?usp=sharing"
-            target="_blank"
-            >
-            <v-icon left>mdi-google-drive</v-icon>
-            {{ title_v_card1 }}
-          </v-btn>
-        </v-card>
+        <Button
+          title="Загрузите информацию о материалах"
+          link="https://drive.google.com/drive/folders/1AIMZhAqIwwiQwO4HExZw3kOIoBO1GaNR?usp=sharing"
+          icon="mdi-google-drive"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <PrintingParameters :parameters="allPrintParameters" />
@@ -106,16 +98,10 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <v-card>
-          <v-card-title>{{ title_v_card2 }}</v-card-title>
-          <iframe
-            src="https://drive.google.com/file/d/1AGuLPv2NiyIoa84Bj0cW8GtGc1YOFUE5/preview"
-            width="100%"
-            height="640"
-            frameborder="0"
-            allow="autoplay"
-          ></iframe>
-        </v-card>
+        <Iframe
+          title="Памятка выбора материалов"
+          link="https://drive.google.com/file/d/1AGuLPv2NiyIoa84Bj0cW8GtGc1YOFUE5/preview"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -123,6 +109,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import Button from "~/components/elements/Button.vue"
+import Iframe from "~/components/elements/Iframe.vue"
 import ProductCard from '~/components/ProductCard.vue'
 import MaterialsTable from '~/components/MaterialsTable.vue'
 import PrintingParameters from '~/components/PrintingParameters.vue'
@@ -134,6 +122,8 @@ const printParameters = namespace('printParameters')
 
 @Component({
   components: {
+    Iframe,
+    Button,
     ProductCard,
     MaterialsTable,
     PrintingParameters

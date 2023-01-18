@@ -154,6 +154,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class PrintingParameters extends Vue {
+  @Prop({ type: String, default: '' }) title!: string
   @Prop({
     type: Array,
     default: () => {
