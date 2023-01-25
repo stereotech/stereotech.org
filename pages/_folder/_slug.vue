@@ -37,6 +37,7 @@
             <v-col cols="12" lg="10" v-for="(entry, index) in page" :key="index">
                 <component 
                     :is="entry.collection.handle" 
+                    :id="entry.collection.handle" 
                     v-bind:title="entry.title"
                     v-bind:items="entry.items"
                     v-bind:image="entry.image?.[0]?.permalink"

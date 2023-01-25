@@ -70,7 +70,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
-          id="materialsTable"
+          id="MaterialsTable"
           :title="title_v_table"
           :materials="ourBrandMaterials"
           :specs="specs"
