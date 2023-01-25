@@ -5,7 +5,7 @@
         <v-col cols="12" md="6" class="text-center">
           <h2>{{ $t("Заказ") }}</h2>
           <h3 class="text-uppercase">{{ model }}</h3>
-          <h3>{{ '₽' + price }}</h3>
+          <h3 v-if="price">{{ '₽' + price }}</h3>
           <v-form v-model="valid">
             <v-text-field
               v-model="orderName"

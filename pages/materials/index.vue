@@ -154,7 +154,7 @@ export default class materialsPage extends Vue {
     })
     let pages = await response.json()
     for (const page of pages.data) {
-      if (this.$route.fullPath == page.link) {
+      if (this.$route.fullPath == page.link || this.$route.fullPath == (page.link + '/')) {
           for (const content of page.content) {
               let response = await fetch(`${content.api_url}`, {
                   method: 'get',
