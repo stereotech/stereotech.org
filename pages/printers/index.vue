@@ -82,6 +82,8 @@ export default class Printers extends Vue {
   contentCard: any[] = []
   titlePage: string = ''
   loadedPage: boolean = false
+  video1: any = {}
+  video2: any = {}
 
   private async getPrintersData () {
     let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/e5159acc-3054-4c4f-8262-eea287fd7f41`, {
@@ -118,7 +120,6 @@ export default class Printers extends Vue {
     
     this.contentCard = contentCard1.concat(contentCard2)
     this.titlePage = data.title
-
   }
 
   async mounted () {

@@ -40,7 +40,10 @@
         />
       </v-col>
       <v-col cols="12" lg="10">
-        <TrustCard />
+        <TrustCard
+          :title="images.title"
+          :images="images.images"
+        />
       </v-col>
       <v-col
         cols="12"
@@ -82,6 +85,7 @@ export default class Index extends Vue {
   contentCard: any[] = []
   titleYoutube: string = ''
   loadedPage: boolean = false
+  images: any = {}
 
   private async getHomeData () {
     let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/a2701ab7-b60d-461f-bc13-3bb0422393d3`, {
@@ -113,8 +117,14 @@ export default class Index extends Vue {
 
       getContentCard = getContentCard.concat(getCard)
     }
-    
     this.contentCard = getContentCard
+
+    response = await fetch(`${process.env.API_STATAMIC}/collections/TrustCard/entries/e1115e0d-45e3-4f8a-b8c0-d26a639c0aca`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    data = await response.json()
+    this.images = data.data
   }
 
   async mounted () {

@@ -25,10 +25,12 @@
 
     <v-row justify="center" v-if="this.loadedPage == true">
       <v-col cols="12" class="text-center">
-        <h1 class="font-weight-light">
-          {{ titleHeader }}
-        </h1>
-        <h2>{{ subtitleHeader }}</h2>
+        <Header1
+          title="Серия 6хх - Шестиосевая установка аддитивного производства на базе промышленного манипулятора для производства полимерных деталей"
+        />
+        <Header2
+          title="Стоимость по запросу"
+        />
       </v-col>
       <v-col cols="12" lg="10">
         <BuyPrinter
@@ -45,9 +47,13 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BuyPrinter from '~/components/printers/BuyPrinter.vue'
+import Header1 from "~/components/elements/Header1.vue";
+import Header2 from "~/components/elements/Header2.vue";
 
 @Component({
   components: {
+    Header1,
+    Header2,
     BuyPrinter
   }
 })
