@@ -37,7 +37,7 @@
             <v-col cols="12" lg="10" v-for="(entry, index) in page" :key="index">
                 <component 
                     :is="entry.collection.handle" 
-                    :id="entry.collection.handle" 
+                    :id="entry.collection.handle"
                     v-bind="entry"
                     :image="entry.image?.[0]?.permalink"
                     :specXd="entry.specs"

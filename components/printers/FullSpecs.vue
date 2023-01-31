@@ -30,25 +30,23 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 })
 export default class FullSpecs extends Vue {
   @Prop({ type: Array, required: true, default: () => { return [] } }) specXd!: any[]
+  @Prop({ type: String, required: true, default: '' }) model!: string
 
   private datamap = new Map()
   private tableHeaders: any[] = [{ text: 'характеристика', value: 'spec' }]
   tableData: any[] = []
 
   get getTableHeaders () {
-    this.specXd.forEach(s => {
-      this.tableHeaders.push({ text: s.title, value: s.title })
-      let smodel = s.title
-      s.specs.forEach(el => {
-        let dataobject = this.datamap.get(el.key)
-        if (dataobject === undefined) {
-          this.datamap.set(el.key, {})
-          dataobject = this.datamap.get(el.key)
-        }
+    this.tableHeaders.push({ text: this.model, value: this.model })
+    let smodel = this.model
+    this.specXd.forEach(el => {
+      let dataobject = this.datamap.get(el.keySpec)
+      if (dataobject === undefined) {
+        this.datamap.set(el.keySpec, {})
+        dataobject = this.datamap.get(el.keySpec)
+      }
 
-        dataobject[smodel] = el.valueKey
-
-      });
+      dataobject[smodel] = el.valueSpec
     });
     this.getData()
     return this.tableHeaders
@@ -63,7 +61,6 @@ export default class FullSpecs extends Vue {
 
 
   async mounted () {
-
   }
 
 }

@@ -1,6 +1,5 @@
 <template>
-  <!-- <v-container fluid> -->
-    <v-card>
+  <v-card>
     <v-data-iterator :items="parameters" 
       :items-per-page="itemsPerPage" 
       :page="page" 
@@ -147,8 +146,7 @@
         </v-row>
       </template>
     </v-data-iterator>
-    </v-card>
-  <!-- </v-container> -->
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -156,6 +154,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class PrintingParameters extends Vue {
+  @Prop({ type: String, default: '' }) title!: string
   @Prop({
     type: Array,
     default: () => {
@@ -170,14 +169,15 @@ export default class PrintingParameters extends Vue {
   itemsPerPageArray: number[]=[1, 2, 3, 4, 8, 12]
   itemsPerPage: number = 3
   page: number = 1
+  
   get sortKeys(): any[]{
     if (this.parameters[0]) {
-return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v => {return {text: this.$tc(`${v}`), value: v}})
+      return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v => {return {text: this.$tc(`${v}`), value: v}})
 
     } else {
       return []
     }
-      }
+  }
 
   updateItemsPerPage (number) {
     this.itemsPerPage = number
@@ -193,10 +193,6 @@ return Object.keys(this.parameters[0]).filter((v) => !v.startsWith('_')).map(v =
   formerPage () {
         if (this.page - 1 >= 1) this.page -= 1
   }
-
-// async beforeMount(){
-
-// }
 
 }
 </script>

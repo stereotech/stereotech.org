@@ -7,4 +7,5 @@ export interface PrintParameter{
     speed: string
     flow: string
     layerheight: string
+    // [key: string]: string
 }

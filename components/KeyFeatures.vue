@@ -8,21 +8,21 @@
         <v-col cols="12">
           <v-tabs centered center-active show-arrows v-model="tab">
             <v-tabs-slider></v-tabs-slider>
-            <v-tab v-for="(item, index) in items" :key="index">{{
-              item.title
-            }}</v-tab>
+            <v-tab v-for="(item, index) in items" :key="index">
+              {{ item.itemTitle }}
+            </v-tab>
           </v-tabs>
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="(item, index) in items" :key="index">
               <v-container fluid>
                 <v-row justify="center">
                   <v-col cols="12" sm="6" lg="4">
-                    <v-img :src="item.mediasource[0].permalink" />
+                    <v-img :src="item.itemImage?.[0].permalink" />
                   </v-col>
                   <v-col cols="12" sm="6" lg="4">
-                    <h3 class="font-weight-light">{{ item.title }}</h3>
+                    <h3 class="font-weight-light">{{ item.itemTitle }}</h3>
                     <br />
-                    <p>{{ item.description }}</p>
+                    <p>{{ item.itemDescription }}</p>
                   </v-col>
                 </v-row>
               </v-container>
