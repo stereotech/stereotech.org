@@ -1,5 +1,6 @@
 require('dotenv').config()
 import { NuxtConfig } from '@nuxt/types'
+import axios from 'axios'
 import ru from 'vuetify/src/locale/ru'
 
 const locale = process.env.NUXT_ENV_LOCALE || 'ru'
@@ -206,7 +207,14 @@ const config: NuxtConfig = {
   generate: {
     dir: 'public',
     fallback: true,
-    interval: 100
+    interval: 100,
+    routes: (): Promise<string[]> => {
+      return axios.get(`${process.env.API_STATAMIC}/collections/Pages/entries`).then(res => {
+        return res.data.data.map(value => {
+          return value.link
+        })
+      })
+    }
   }
 }
 
