@@ -38,19 +38,10 @@
                 <component 
                     :is="entry.collection.handle" 
                     :id="entry.collection.handle" 
-                    v-bind:title="entry.title"
-                    v-bind:items="entry.items"
-                    v-bind:image="entry.image?.[0]?.permalink"
-                    v-bind:description="entry.description"
-                    v-bind:fullsize="entry.fullsize"
-                    v-bind:link="entry.link"
-                    v-bind:icon="entry.icon"
-                    v-bind:model="entry.title"
-                    v-bind:price="entry.price"
-                    v-bind:specXd="entry.specs"
-                    v-bind:buttons="entry.buttons"
-                    v-bind:specs="entry.specs"
-                    v-bind:images="entry.images"
+                    v-bind="entry"
+                    :image="entry.image?.[0]?.permalink"
+                    :specXd="entry.specs"
+                    :model="entry.title"
                 ></component>
             </v-col>
         </v-row>
