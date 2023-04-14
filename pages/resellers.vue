@@ -117,12 +117,12 @@ export default class Resellers extends Vue {
   adresses: any[] = []
 
   private async getResellersData () {
-    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/a02027e1-ce2c-433e-ab02-7a1223098d26`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries?filter[link:is]=${this.$route.fullPath.slice(-1) == "/" ? this.$route.fullPath.slice(0, -1) : this.$route.fullPath}`, {
       method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
+      headers: { 'Content-Type': 'application/json' }
     })
-    let data = await response.json()
-    data = data.data
+    let page = await response.json()
+    let data = page.data[0]
 
     this.title = data.title_header
     this.subtitle = data.title_footer
@@ -135,8 +135,8 @@ export default class Resellers extends Vue {
       headers: { 'Content-Type': 'application/json' }  
     })
     getSubForm = await response.json()
-    this.subFormButton = getSubForm.data.fields.buttontext.default
-    this.subFormTitle = getSubForm.data.fields.title.default
+    this.subFormButton = this.$tc(getSubForm.data.fields.buttontext.default)
+    this.subFormTitle = this.$tc(getSubForm.data.fields.title.default)
 
     let getDealersForm = data.dealers_form.api_url
     response = await fetch(getDealersForm, {
@@ -144,16 +144,20 @@ export default class Resellers extends Vue {
       headers: { 'Content-Type': 'application/json' }  
     })
     getDealersForm = await response.json()
-    this.dealersFormButton = getDealersForm.data.fields.buttontext.default
-    this.dealersFormTitle = getDealersForm.data.fields.title.default
+    this.dealersFormButton = this.$tc(getDealersForm.data.fields.buttontext.default)
+    this.dealersFormTitle = this.$tc(getDealersForm.data.fields.title.default)
 
-    let getAdresses = data.dealers_collections[0].handle
-    response = await fetch(`${process.env.API_STATAMIC}/collections/${getAdresses}/entries?filter[locale]=default`, {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
-    })
-    getAdresses = await response.json()
-    this.adresses = getAdresses.data
+    let adresses = data.dealers_collection.map(async (content, index) => {
+        let response = await fetch(`${content.api_url}`, {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        let data = await response.json()
+        data.data.id = index
+        this.adresses.push(data.data)
+    });
+    await Promise.all(adresses)
+    this.adresses.sort((a, b) => a.id - b.id)
   }
 
   async mounted () {

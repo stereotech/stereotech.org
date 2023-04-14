@@ -54,15 +54,14 @@ export const actions: ActionTree<MaterialsState, RootState> = {
         commit('setSpecs', techSpecs)
 
         let data: { data: Material[]; }
-        response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries`, {
+        //&filter[locale:is]=${this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"}
+        response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries?limit=500`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
         data = await response.json()
-
         const materials: Material[] = data.data.map((item:any) => {return {"sku": item.title, name: item.name, polymer: item.polymer, description: item.description,
-            "_id": item.id, our_brand: item.our_brand, "tech_specs": item.filament_specs, image: item.image[0]?.permalink, file: item.file[0]?.permalink}})
-
+            "_id": item.id, our_brand: item.our_brand, "tech_specs": item.filament_specs, image: item.image[0]?.permalink, file: item.file[0]?.permalink, locale: item.locale}})
         commit('setMaterials', materials)
 
     }

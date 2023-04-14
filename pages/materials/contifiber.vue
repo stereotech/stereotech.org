@@ -88,7 +88,11 @@ export default class ContifiberFilament extends Vue {
   @printParameters.Getter printParametersBySku!: any
 
   get materials () {
-    return this.ourBrandMaterialsBySku('5DTCFC')
+    let material = this.ourBrandMaterialsBySku('5DTCFC')
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    material.filter(mLoc => mLoc.locale == locale)
+    console.log(material)
+    return material
   }
 
   get printParameters () {
