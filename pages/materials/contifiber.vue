@@ -41,7 +41,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
-          title="Характеристики материалов."
+          title="Характеристики материалов.."
           :materials="materials"
           :specs="specs"
         />
