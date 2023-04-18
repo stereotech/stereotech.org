@@ -115,7 +115,7 @@ const printParameters = namespace('printParameters')
     DownloadsForm
   },
   head: {
-    title: 'Материалы для печати'
+    title: 'Материалы для печати.'
   }
 })
 export default class materialsPage extends Vue {
