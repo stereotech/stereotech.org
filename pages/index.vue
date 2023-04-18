@@ -89,23 +89,22 @@ export default class Page extends Vue {
     loadedPage: boolean = false
 
     private async getPageContent() {
-        let response = await fetch(`${process.env.API_STATAMIC}/collections/Pages/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/Pages/entries?fields=content,link,title&filter[link:is]=${this.$route.fullPath}`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
-        let pages = await response.json()
-        for (const page of pages.data) {
-            if (this.$route.fullPath == page.link || this.$route.fullPath == (page.link + '/')) {
-                for (const content of page.content) {
-                    let response = await fetch(`${content.api_url}`, {
-                        method: 'get',
-                        headers: { 'Content-Type': 'application/json' }
-                    })
-                    let data = await response.json()
-                    this.page.push(data.data)
-                }
-            }
-        }
+        let page = await response.json()
+        let promises = page.data[0].content.map(async (content, index) => {
+            let response = await fetch(`${content.api_url}`, {
+                method: 'get',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            let data = await response.json()
+            data.data.id = index
+            this.page.push(data.data)
+        });
+        await Promise.all(promises)
+        this.page.sort((a, b) => a.id - b.id)
     }
 
     async mounted() {        

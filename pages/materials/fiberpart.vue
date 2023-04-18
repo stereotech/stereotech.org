@@ -85,11 +85,20 @@ export default class FiberpartFilament extends Vue {
   @printParameters.Getter printParametersBySku!: any
 
   get materials () {
-    return this.ourBrandMaterialsBySku('5DTFP')
+    let material = this.ourBrandMaterialsBySku('5DTFP')
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    material = material.filter(mLoc => mLoc.locale === locale)
+    return material
   }
 
   get printParameters () {
-    return this.printParametersBySku('5DTFP')
+    let printParam = this.printParametersBySku('5DTFP')
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    let printParamUnlocale = printParam.filter(mLoc => mLoc.locale === locale)
+    printParamUnlocale.forEach(param => {
+      delete param.locale
+    });
+    return printParamUnlocale
   }
 
   async mounted () {

@@ -41,7 +41,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
-          title="Характеристики материалов"
+          title="Характеристики материалов.."
           :materials="materials"
           :specs="specs"
         />
@@ -72,6 +72,7 @@ const printParameters = namespace('printParameters')
   }
 })
 
+
 export default class ContifiberFilament extends Vue {
 
   loadedPage: boolean = false
@@ -88,11 +89,20 @@ export default class ContifiberFilament extends Vue {
   @printParameters.Getter printParametersBySku!: any
 
   get materials () {
-    return this.ourBrandMaterialsBySku('5DTCFC')
+    let material = this.ourBrandMaterialsBySku('5DTCFC')
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    material = material.filter(mLoc => mLoc.locale === locale)
+    return material
   }
 
   get printParameters () {
-    return this.printParametersBySku('5DTCFC')
+    let printParam = this.printParametersBySku('5DTCFC')
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    let printParamUnlocale = printParam.filter(mLoc => mLoc.locale === locale)
+    printParamUnlocale.forEach(param => {
+      delete param.locale
+    });
+    return printParamUnlocale
   }
 
   async mounted () {

@@ -45,7 +45,8 @@ export default class MaterialCard extends Vue {
         name: '',
         _id: '',
         our_brand: true,
-        tech_specs: []
+        tech_specs: [],
+        locale: 'default'
       }
     }
   }) material!: Material

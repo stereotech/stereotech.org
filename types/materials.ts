@@ -8,12 +8,14 @@ export interface Material {
     tech_specs: MaterialSpecValue[]
     image?: string
     file?: string
+    locale: string
 }
 
 export interface MaterialSpec {
     _id: string
     name: string
     unit?: string
+    locale: string
 }
 
 export interface MaterialSpecValue {

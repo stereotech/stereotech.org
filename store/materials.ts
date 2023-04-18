@@ -45,24 +45,22 @@ export const actions: ActionTree<MaterialsState, RootState> = {
     async loadMaterialsData ({ commit }) {
 
         let techSpecsdata: { data: MaterialSpec[]; }
-        let response = await fetch(`${process.env.API_STATAMIC}/collections/filament_specs_description/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/filament_specs_description/entries?limit=9999`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
         techSpecsdata = await response.json()
-        const techSpecs: MaterialSpec[] = techSpecsdata.data.map((item:any) => {return {"name": item.title, unit: item.unit, "_id": item.id}})
+        const techSpecs: MaterialSpec[] = techSpecsdata.data.map((item:any) => {return {"name": item.title, unit: item.unit, "_id": item.id, locale: item.locale}})
         commit('setSpecs', techSpecs)
 
         let data: { data: Material[]; }
-        response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries`, {
+        response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries?limit=500`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
         data = await response.json()
-
         const materials: Material[] = data.data.map((item:any) => {return {"sku": item.title, name: item.name, polymer: item.polymer, description: item.description,
-            "_id": item.id, our_brand: item.our_brand, "tech_specs": item.filament_specs, image: item.image[0]?.permalink, file: item.file[0]?.permalink}})
-
+            "_id": item.id, our_brand: item.our_brand, "tech_specs": item.filament_specs, image: item.image[0]?.permalink, file: item.file[0]?.permalink, locale: item.locale}})
         commit('setMaterials', materials)
 
     }
