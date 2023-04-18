@@ -3,7 +3,7 @@
     <v-card-title>
       <v-row justify="center">
         <v-col cols="12" sm="4">
-          {{ title }}
+          {{ $t(title) }}
         </v-col>
         <v-col cols="12" sm="4">
           <v-text-field
@@ -51,7 +51,6 @@ export default class MaterialsTable extends Vue {
   @Prop({ type: Array, default: () => { return [] } }) materials!: Material[]
   @Prop({ type: Array, default: () => { return [] } }) specs!: MaterialSpec[]
 
-
   get tableHeaders (): {
     text: string,
     value: string,
@@ -63,22 +62,24 @@ export default class MaterialsTable extends Vue {
       width: string
     }[] = [
         {
-          text: 'Артикул',
+          text: `${this.$t('Артикул')}`,
           value: 'sku',
           width: ''
         },
         {
-          text: 'Наименование',
+          text: `${this.$t('Наименование')}`,
           value: 'name',
           width: ''
         },
         {
-          text: 'Полимерная основа',
+          text: `${this.$t('Полимерная основа')}`,
           value: 'polymer',
           width: ''
         }
       ]
-    this.specs.forEach(s => {
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    let specs = this.specs.filter(mLoc => mLoc.locale === locale)
+    specs.forEach(s => {
       if (s.name == 'Состав') {
         headers.push({
           text: `${s.name}, ${s.unit}`,
@@ -100,7 +101,9 @@ export default class MaterialsTable extends Vue {
 
   get tableData (): any {
     let data: any[] = []
-    data = this.materials
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    let material = this.materials.filter(mLoc => mLoc.locale === locale)
+    data = material
 
     data.map(m => {
       let item: any = m

@@ -45,16 +45,15 @@ export const actions: ActionTree<MaterialsState, RootState> = {
     async loadMaterialsData ({ commit }) {
 
         let techSpecsdata: { data: MaterialSpec[]; }
-        let response = await fetch(`${process.env.API_STATAMIC}/collections/filament_specs_description/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/filament_specs_description/entries?limit=9999`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
         techSpecsdata = await response.json()
-        const techSpecs: MaterialSpec[] = techSpecsdata.data.map((item:any) => {return {"name": item.title, unit: item.unit, "_id": item.id}})
+        const techSpecs: MaterialSpec[] = techSpecsdata.data.map((item:any) => {return {"name": item.title, unit: item.unit, "_id": item.id, locale: item.locale}})
         commit('setSpecs', techSpecs)
 
         let data: { data: Material[]; }
-        //&filter[locale:is]=${this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"}
         response = await fetch(`${process.env.API_STATAMIC}/collections/filaments/entries?limit=500`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }

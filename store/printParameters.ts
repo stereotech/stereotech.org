@@ -32,13 +32,13 @@ export const getters: GetterTree<PrintParametersState, RootState> = {
 export const actions: ActionTree<PrintParametersState, RootState> = {
     async loadPrintParameters ({ commit }) {
         let data: { data: PrintParameter[] }
-        let response = await fetch(`${process.env.API_STATAMIC}/collections/printingParameters/entries`, {
+        let response = await fetch(`${process.env.API_STATAMIC}/collections/printingParameters/entries?limit=500`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json' }
         })
         data = await response.json()
         const printParameters: PrintParameter[] = data.data.map((item:any) => {return {"sku": item.title, name: item.name, printtemperature: item.printtemperature, 
-            threedtemperature: item.threedtemperature, blowing: item.blowing, speed: item.speed, flow: item.flow, layerheight: item.layerheight}})
+            threedtemperature: item.threedtemperature, blowing: item.blowing, speed: item.speed, flow: item.flow, layerheight: item.layerheight, locale: item.locale}})
         commit('setPrintParameters', printParameters)
     }
 }
