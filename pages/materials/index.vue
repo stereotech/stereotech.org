@@ -59,13 +59,13 @@
         ></component>
       </v-col>
       <v-col cols="12" lg="10">
-        <PrintingParameters :parameters="allPrintParameters" />
+        <PrintingParameters :parameters="printParameters" />
       </v-col>
       <v-col cols="12" lg="10">
         <MaterialsTable
           id="MaterialsTable"
-          :title="title_v_table"
-          :materials="ourBrandMaterials"
+          title="Характеристики материалов"
+          :materials="materials"
           :specs="specs"
         />
       </v-col>
@@ -131,79 +131,46 @@ export default class materialsPage extends Vue {
 
   page: any[] = []
   title: string = ''
-  title_v_btn: string = ''
-  title_v_card1: string = ''
-  title_v_card2: string = ''
-  title_v_table: string = ''
-  contentCardImageHead: string = ''
-  contentCardHead: any = {}
-  contentCards: any = {}
   loadedPage: boolean = false
 
+  get printParameters () {
+    let printParam = this.allPrintParameters
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    let printParamUnlocale = printParam.filter(mLoc => mLoc.locale === locale)
+    printParamUnlocale.forEach(param => {
+      delete param.locale
+    });
+    return printParamUnlocale
+  }
+
+  get materials () {
+    let material = this.ourBrandMaterials
+    let locale = this.$i18n.locale == "en" ? "second" : this.$i18n.locale == "de" ? "third" : "default"
+    material = material.filter(mLoc => mLoc.locale === locale)
+    return material
+  }
+
   private async getPageContent() {
-    let response = await fetch(`${process.env.API_STATAMIC}/collections/Pages/entries`, {
+    let response = await fetch(`${process.env.API_STATAMIC}/collections/Pages/entries?fields=content,link,title&filter[link:is]=${this.$route.fullPath.slice(-1) == "/" ? this.$route.fullPath.slice(0, -1) : this.$route.fullPath}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
     })
-    let pages = await response.json()
-    for (const page of pages.data) {
-      if (this.$route.fullPath == page.link || this.$route.fullPath == (page.link + '/')) {
-          for (const content of page.content) {
-              let response = await fetch(`${content.api_url}`, {
-                  method: 'get',
-                  headers: { 'Content-Type': 'application/json' }
-              })
-              let data = await response.json()
-              this.page.push(data.data)
-          }
-      }
-    }
-  }
-  
-  private async getMaterialsPageData() {
-
-    let response = await fetch(`${process.env.API_STATAMIC}/collections/page/entries/c33a351e-19e7-4f60-b16a-9d98523b2e6f`, {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' }
-    })
-    let data = await response.json()
-    data = data.data
-
-    this.title = data.title
-    this.title_v_btn = data.v_btn
-    this.title_v_card1 = data.v_card1
-    this.title_v_card2 = data.v_card2
-    this.title_v_table = data.v_table
-
-    let getCardHead = data.productcard[0].api_url
-    response = await fetch(getCardHead, {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' }  
-    })
-    getCardHead = await response.json()
-    this.contentCardHead = getCardHead.data
-    this.contentCardImageHead = getCardHead.data.image[0].permalink
-
-    let getCards = data.productcard
-    let contentCard = []
-    for (let i = 1; i < getCards.length; i++) {
-
-      let getCard = data.productcard[i].api_url
-      response = await fetch(getCard, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }  
-      })
-      getCard = await response.json()
-      contentCard = contentCard.concat(getCard.data)
-
-    }
-    this.contentCards = contentCard
-
+    let page = await response.json()
+    let promises = page.data[0].content.map(async (content, index) => {
+        let response = await fetch(`${content.api_url}`, {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        let data = await response.json()
+        data.data.id = index
+        this.page.push(data.data)
+    });
+    await Promise.all(promises)
+    this.page.sort((a, b) => a.id - b.id)
   }
 
   async mounted () {
     await this.getPageContent()
-    await this.getMaterialsPageData()
 
     if (!this.filled) {
       await this.loadMaterialsData()
