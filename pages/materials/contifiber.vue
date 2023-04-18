@@ -72,6 +72,7 @@ const printParameters = namespace('printParameters')
   }
 })
 
+
 export default class ContifiberFilament extends Vue {
 
   loadedPage: boolean = false
